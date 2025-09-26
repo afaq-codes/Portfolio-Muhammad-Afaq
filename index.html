@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio Demos - Full-Stack Developer</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #b02f33;
+            --secondary-color: #2c3e50;
+            --success-color: #27ae60;
+            --warning-color: #f39c12;
+            --danger-color: #e74c3c;
+            --info-color: #3498db;
+            --light-bg: #f8f9fa;
+            --dark-bg: #2c3e50;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #ffffff;
+        }
+        
+        .navbar {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .navbar-brand {
+            font-weight: 700;
+            color: white !important;
+        }
+        
+        .nav-link {
+            color: rgba(255,255,255,0.9) !important;
+            font-weight: 500;
+        }
+        
+        .nav-link:hover {
+            color: white !important;
+        }
+        
+        .project-card {
+            border: none;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            margin-bottom: 2rem;
+        }
+        
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+        
+        .project-header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 1.5rem;
+            border-radius: 15px 15px 0 0;
+        }
+        
+        .project-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+        
+        .project-subtitle {
+            font-size: 1rem;
+            opacity: 0.9;
+            margin-bottom: 0;
+        }
+        
+        .tech-badge {
+            background: rgba(255,255,255,0.2);
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            margin-right: 0.5rem;
+            margin-bottom: 0.5rem;
+            display: inline-block;
+        }
+        
+        .project-body {
+            padding: 2rem;
+        }
+        
+        .feature-list {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .feature-list li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            align-items: center;
+        }
+        
+        .feature-list li:last-child {
+            border-bottom: none;
+        }
+        
+        .feature-list li i {
+            color: var(--success-color);
+            margin-right: 0.75rem;
+            width: 20px;
+        }
+        
+        .stats-row {
+            background: var(--light-bg);
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin: 1rem 0;
+        }
+        
+        .stat-item {
+            text-align: center;
+        }
+        
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+        
+        .stat-label {
+            font-size: 0.9rem;
+            color: #666;
+            margin-top: 0.25rem;
+        }
+        
+        .btn-primary {
+            background: var(--primary-color);
+            border: none;
+            padding: 0.75rem 2rem;
+            border-radius: 25px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary:hover {
+            background: #9a2629;
+            transform: translateY(-2px);
+        }
+        
+        .btn-outline-primary {
+            border: 2px solid var(--primary-color);
+            color: var(--primary-color);
+            padding: 0.75rem 2rem;
+            border-radius: 25px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-outline-primary:hover {
+            background: var(--primary-color);
+            color: white;
+        }
+        
+        .hero-section {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 4rem 0;
+            text-align: center;
+        }
+        
+        .hero-title {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+        
+        .hero-subtitle {
+            font-size: 1.25rem;
+            opacity: 0.9;
+            margin-bottom: 2rem;
+        }
+        
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--secondary-color);
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .footer {
+            background: var(--secondary-color);
+            color: white;
+            padding: 3rem 0;
+            text-align: center;
+        }
+        
+        .social-links a {
+            color: white;
+            font-size: 1.5rem;
+            margin: 0 1rem;
+            transition: color 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            color: var(--primary-color);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <i class="fas fa-code me-2"></i>
+                Portfolio Demos
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#projects">Projects</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#skills">Skills</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="container">
+            <h1 class="hero-title">Full-Stack Developer Portfolio</h1>
+            <p class="hero-subtitle">Enterprise Java & Angular Specialist | Healthcare & Business Solutions Expert</p>
+            <div class="mt-4">
+                <a href="#projects" class="btn btn-primary me-3">View Projects</a>
+                <a href="#contact" class="btn btn-outline-primary">Get In Touch</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-5">
+        <div class="container">
+            <h2 class="section-title">Featured Projects</h2>
+            
+            <!-- CareMD Project -->
+            <div class="row">
+                <div class="col-12">
+                    <div class="card project-card">
+                        <div class="project-header">
+                            <h3 class="project-title">CareMD - Medical Practice Management System</h3>
+                            <p class="project-subtitle">Enterprise Multi-Tenant SaaS Healthcare Platform</p>
+                            <div class="mt-3">
+                                <span class="tech-badge">Java 17</span>
+                                <span class="tech-badge">Spring Boot 3.2</span>
+                                <span class="tech-badge">Angular 14+</span>
+                                <span class="tech-badge">PostgreSQL</span>
+                                <span class="tech-badge">Docker</span>
+                                <span class="tech-badge">WebSocket</span>
+                            </div>
+                        </div>
+                        <div class="project-body">
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <h5>Project Overview</h5>
+                                    <p>Built a comprehensive medical practice management system from scratch, handling complex healthcare workflows including patient management, appointment scheduling, claims processing, and multi-tenant architecture serving multiple medical practices.</p>
+                                    
+                                    <h6 class="mt-4">Key Features Implemented:</h6>
+                                    <ul class="feature-list">
+                                        <li><i class="fas fa-check"></i> Multi-tenant SaaS architecture with complete data isolation</li>
+                                        <li><i class="fas fa-check"></i> Real-time messaging system with WebSocket integration</li>
+                                        <li><i class="fas fa-check"></i> Complex medical billing workflows with insurance processing</li>
+                                        <li><i class="fas fa-check"></i> Role-based access control with hierarchical permissions</li>
+                                        <li><i class="fas fa-check"></i> Batch import/export functionality for large datasets</li>
+                                        <li><i class="fas fa-check"></i> Interactive dashboard with charts and calendar integration</li>
+                                    </ul>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="stats-row">
+                                        <div class="row text-center">
+                                            <div class="col-6">
+                                                <div class="stat-item">
+                                                    <div class="stat-number">15+</div>
+                                                    <div class="stat-label">Domain Entities</div>
+                                                </div>
+                                            </div>
+                                            <div class="col-6">
+                                                <div class="stat-item">
+                                                    <div class="stat-number">34+</div>
+                                                    <div class="stat-label">DB Migrations</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="text-center">
+                                        <a href="caremd-demo.html" class="btn btn-primary">View Demo</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- WellnessNow Project -->
+            <div class="row">
+                <div class="col-12">
+                    <div class="card project-card">
+                        <div class="project-header">
+                            <h3 class="project-title">WellnessNow - Microservices Healthcare Platform</h3>
+                            <p class="project-subtitle">Spring Cloud Microservices Architecture</p>
+                            <div class="mt-3">
+                                <span class="tech-badge">Spring Cloud</span>
+                                <span class="tech-badge">API Gateway</span>
+                                <span class="tech-badge">Eureka</span>
+                                <span class="tech-badge">Config Server</span>
+                                <span class="tech-badge">Angular 14</span>
+                                <span class="tech-badge">MariaDB</span>
+                            </div>
+                        </div>
+                        <div class="project-body">
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <h5>Project Overview</h5>
+                                    <p>Designed and implemented a microservices-based healthcare platform with service discovery, API gateway, and centralized configuration management. The system includes user service, inventory service, and screening service with proper separation of concerns.</p>
+                                    
+                                    <h6 class="mt-4">Microservices Architecture:</h6>
+                                    <ul class="feature-list">
+                                        <li><i class="fas fa-check"></i> Spring Cloud Gateway for API routing and load balancing</li>
+                                        <li><i class="fas fa-check"></i> Eureka Service Discovery for service registration</li>
+                                        <li><i class="fas fa-check"></i> Config Server for centralized configuration management</li>
+                                        <li><i class="fas fa-check"></i> JWT-based authentication across all services</li>
+                                        <li><i class="fas fa-check"></i> Common library for shared utilities and DTOs</li>
+                                        <li><i class="fas fa-check"></i> Health monitoring and service resilience</li>
+                                    </ul>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="stats-row">
+                                        <div class="row text-center">
+                                            <div class="col-6">
+                                                <div class="stat-item">
+                                                    <div class="stat-number">7</div>
+                                                    <div class="stat-label">Services</div>
+                                                </div>
+                                            </div>
+                                            <div class="col-6">
+                                                <div class="stat-item">
+                                                    <div class="stat-number">100%</div>
+                                                    <div class="stat-label">Uptime</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="text-center">
+                                        <a href="wellness-demo.html" class="btn btn-primary">View Demo</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Booster 2.0 Project -->
+            <div class="row">
+                <div class="col-12">
+                    <div class="card project-card">
+                        <div class="project-header">
+                            <h3 class="project-title">Booster 2.0 - Advanced POS & E-commerce System</h3>
+                            <p class="project-subtitle">Point of Sale with Marketplace Integration</p>
+                            <div class="mt-3">
+                                <span class="tech-badge">Spring Boot 3.2</span>
+                                <span class="tech-badge">Angular 17</span>
+                                <span class="tech-badge">PostgreSQL</span>
+                                <span class="tech-badge">Daraz API</span>
+                                <span class="tech-badge">PDF Generation</span>
+                                <span class="tech-badge">QR Codes</span>
+                            </div>
+                        </div>
+                        <div class="project-body">
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <h5>Project Overview</h5>
+                                    <p>Developed a comprehensive Point of Sale system with advanced inventory management, financial reporting, and e-commerce marketplace integration. The system handles real-time inventory tracking and provides detailed analytics for business operations.</p>
+                                    
+                                    <h6 class="mt-4">Key Features:</h6>
+                                    <ul class="feature-list">
+                                        <li><i class="fas fa-check"></i> Real-time inventory management and tracking</li>
+                                        <li><i class="fas fa-check"></i> Daraz marketplace integration for e-commerce</li>
+                                        <li><i class="fas fa-check"></i> PDF generation for invoices and reports</li>
+                                        <li><i class="fas fa-check"></i> QR code generation for product identification</li>
+                                        <li><i class="fas fa-check"></i> Financial reporting and analytics dashboard</li>
+                                        <li><i class="fas fa-check"></i> Multi-user role management system</li>
+                                    </ul>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="stats-row">
+                                        <div class="row text-center">
+                                            <div class="col-6">
+                                                <div class="stat-item">
+                                                    <div class="stat-number">50+</div>
+                                                    <div class="stat-label">API Endpoints</div>
+                                                </div>
+                                            </div>
+                                            <div class="col-6">
+                                                <div class="stat-item">
+                                                    <div class="stat-number">99.9%</div>
+                                                    <div class="stat-label">Reliability</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="text-center">
+                                        <a href="booster-demo.html" class="btn btn-primary">View Demo</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- AutoSchedula Project -->
+            <div class="row">
+                <div class="col-12">
+                    <div class="card project-card">
+                        <div class="project-header">
+                            <h3 class="project-title">AutoSchedula - Educational Management System</h3>
+                            <p class="project-subtitle">Automated Scheduling for Educational Institutions</p>
+                            <div class="mt-3">
+                                <span class="tech-badge">Spring Boot 3.2</span>
+                                <span class="tech-badge">Angular 14</span>
+                                <span class="tech-badge">PostgreSQL</span>
+                                <span class="tech-badge">Algorithm Design</span>
+                                <span class="tech-badge">JWT Auth</span>
+                            </div>
+                        </div>
+                        <div class="project-body">
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <h5>Project Overview</h5>
+                                    <p>Built an automated scheduling system for educational institutions that handles teacher assignments, section management, and timetable generation with conflict resolution algorithms. The system optimizes resource allocation and minimizes scheduling conflicts.</p>
+                                    
+                                    <h6 class="mt-4">Core Functionality:</h6>
+                                    <ul class="feature-list">
+                                        <li><i class="fas fa-check"></i> Automated timetable generation with conflict resolution</li>
+                                        <li><i class="fas fa-check"></i> Teacher and section management system</li>
+                                        <li><i class="fas fa-check"></i> Resource allocation optimization</li>
+                                        <li><i class="fas fa-check"></i> Real-time conflict detection and resolution</li>
+                                        <li><i class="fas fa-check"></i> User-friendly interface for schedule management</li>
+                                        <li><i class="fas fa-check"></i> Export functionality for timetable distribution</li>
+                                    </ul>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="stats-row">
+                                        <div class="row text-center">
+                                            <div class="col-6">
+                                                <div class="stat-item">
+                                                    <div class="stat-number">95%</div>
+                                                    <div class="stat-label">Efficiency</div>
+                                                </div>
+                                            </div>
+                                            <div class="col-6">
+                                                <div class="stat-item">
+                                                    <div class="stat-number">0</div>
+                                                    <div class="stat-label">Conflicts</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="text-center">
+                                        <a href="autoschedula-demo.html" class="btn btn-primary">View Demo</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Chiltan Pure ERP Project -->
+            <div class="row">
+                <div class="col-12">
+                    <div class="card project-card">
+                        <div class="project-header">
+                            <h3 class="project-title">Chiltan Pure ERP - Business Management System</h3>
+                            <p class="project-subtitle">Complete Enterprise Resource Planning Solution</p>
+                            <div class="mt-3">
+                                <span class="tech-badge">Spring Boot 2.1</span>
+                                <span class="tech-badge">Angular 12</span>
+                                <span class="tech-badge">MariaDB</span>
+                                <span class="tech-badge">Liquibase</span>
+                                <span class="tech-badge">Swagger</span>
+                            </div>
+                        </div>
+                        <div class="project-body">
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <h5>Project Overview</h5>
+                                    <p>Developed a comprehensive ERP solution for business operations including inventory management, user management, reporting, and multi-module architecture. The system provides complete business process automation and data management.</p>
+                                    
+                                    <h6 class="mt-4">ERP Modules:</h6>
+                                    <ul class="feature-list">
+                                        <li><i class="fas fa-check"></i> Complete inventory management system</li>
+                                        <li><i class="fas fa-check"></i> User and role management with permissions</li>
+                                        <li><i class="fas fa-check"></i> Financial reporting and analytics</li>
+                                        <li><i class="fas fa-check"></i> Database optimization and performance tuning</li>
+                                        <li><i class="fas fa-check"></i> API documentation with Swagger integration</li>
+                                        <li><i class="fas fa-check"></i> Multi-module architecture for scalability</li>
+                                    </ul>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="stats-row">
+                                        <div class="row text-center">
+                                            <div class="col-6">
+                                                <div class="stat-item">
+                                                    <div class="stat-number">10+</div>
+                                                    <div class="stat-label">Modules</div>
+                                                </div>
+                                            </div>
+                                            <div class="col-6">
+                                                <div class="stat-item">
+                                                    <div class="stat-number">500+</div>
+                                                    <div class="stat-label">Users</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="text-center">
+                                        <a href="chiltan-demo.html" class="btn btn-primary">View Demo</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="py-5 bg-light">
+        <div class="container">
+            <h2 class="section-title">Technical Skills</h2>
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100 text-center">
+                        <div class="card-body">
+                            <i class="fas fa-server fa-3x text-primary mb-3"></i>
+                            <h5>Backend Development</h5>
+                            <p>Java, Spring Boot, Spring Security, Microservices, RESTful APIs, PostgreSQL, Docker</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100 text-center">
+                        <div class="card-body">
+                            <i class="fas fa-laptop-code fa-3x text-primary mb-3"></i>
+                            <h5>Frontend Development</h5>
+                            <p>Angular, TypeScript, JavaScript, HTML5, CSS3, Bootstrap, Material Design</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100 text-center">
+                        <div class="card-body">
+                            <i class="fas fa-database fa-3x text-primary mb-3"></i>
+                            <h5>Database & DevOps</h5>
+                            <p>PostgreSQL, MariaDB, Database Design, Docker, Git, API Documentation</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-5">
+        <div class="container">
+            <h2 class="section-title">Get In Touch</h2>
+            <div class="row justify-content-center">
+                <div class="col-md-8 text-center">
+                    <p class="lead">Ready to transform your business requirements into robust, scalable applications?</p>
+                    <p>Let's discuss your project and create something amazing together!</p>
+                    <div class="mt-4">
+                        <a href="mailto:your.email@example.com" class="btn btn-primary me-3">
+                            <i class="fas fa-envelope me-2"></i>Contact Me
+                        </a>
+                        <a href="https://linkedin.com/in/yourprofile" class="btn btn-outline-primary">
+                            <i class="fab fa-linkedin me-2"></i>LinkedIn
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <h5>Full-Stack Developer Portfolio</h5>
+                    <p>Enterprise Java & Angular Specialist | Healthcare & Business Solutions Expert</p>
+                    <div class="social-links mt-3">
+                        <a href="#"><i class="fab fa-github"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fas fa-envelope"></i></a>
+                    </div>
+                    <p class="mt-3 mb-0">&copy; 2024 Portfolio Demos. All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

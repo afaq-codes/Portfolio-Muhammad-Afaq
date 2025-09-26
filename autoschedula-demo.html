@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AutoSchedula - Educational Management System</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #b02f33;
+            --secondary-color: #2c3e50;
+            --success-color: #27ae60;
+            --warning-color: #f39c12;
+            --danger-color: #e74c3c;
+            --info-color: #3498db;
+            --light-bg: #f8f9fa;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #ffffff;
+        }
+        
+        .navbar {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .navbar-brand {
+            font-weight: 700;
+            color: white !important;
+        }
+        
+        .nav-link {
+            color: rgba(255,255,255,0.9) !important;
+            font-weight: 500;
+        }
+        
+        .nav-link:hover {
+            color: white !important;
+        }
+        
+        .timetable-container {
+            background: #f8f9fa;
+            min-height: 100vh;
+            padding: 0;
+        }
+        
+        .timetable-sidebar {
+            background: white;
+            border-right: 1px solid #e9ecef;
+            height: 100vh;
+            overflow-y: auto;
+        }
+        
+        .timetable-main {
+            background: white;
+            height: 100vh;
+            overflow-y: auto;
+        }
+        
+        .timetable-grid {
+            display: grid;
+            grid-template-columns: 100px repeat(5, 1fr);
+            gap: 1px;
+            background: #dee2e6;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        
+        .time-slot {
+            background: var(--primary-color);
+            color: white;
+            padding: 1rem 0.5rem;
+            text-align: center;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+        
+        .day-header {
+            background: var(--secondary-color);
+            color: white;
+            padding: 1rem 0.5rem;
+            text-align: center;
+            font-weight: 600;
+        }
+        
+        .schedule-cell {
+            background: white;
+            padding: 0.5rem;
+            min-height: 80px;
+            border: 1px solid #e9ecef;
+            position: relative;
+        }
+        
+        .schedule-item {
+            background: linear-gradient(135deg, var(--info-color), var(--success-color));
+            color: white;
+            padding: 0.5rem;
+            border-radius: 5px;
+            margin-bottom: 0.25rem;
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .schedule-item:hover {
+            transform: scale(1.02);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+        }
+        
+        .teacher-card {
+            border: 1px solid #e9ecef;
+            border-radius: 10px;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .teacher-card:hover {
+            border-color: var(--primary-color);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .section-card {
+            background: white;
+            border: 1px solid #e9ecef;
+            border-radius: 10px;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .section-card:hover {
+            border-color: var(--success-color);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .conflict-warning {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-radius: 5px;
+            padding: 0.5rem;
+            margin-bottom: 0.5rem;
+            font-size: 0.8rem;
+        }
+        
+        .conflict-warning i {
+            color: var(--warning-color);
+        }
+        
+        .dashboard-card {
+            border: none;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+        }
+        
+        .dashboard-header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 1.5rem;
+            border-radius: 15px 15px 0 0;
+        }
+        
+        .stat-card {
+            background: white;
+            border-radius: 15px;
+            padding: 1.5rem;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+        
+        .stat-label {
+            color: #666;
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+        }
+        
+        .btn-primary {
+            background: var(--primary-color);
+            border: none;
+            border-radius: 25px;
+            padding: 0.75rem 2rem;
+            font-weight: 600;
+        }
+        
+        .btn-primary:hover {
+            background: #9a2629;
+        }
+        
+        .algorithm-status {
+            background: linear-gradient(135deg, var(--success-color), var(--info-color));
+            color: white;
+            padding: 1.5rem;
+            border-radius: 15px;
+            margin: 1rem 0;
+        }
+        
+        .optimization-metrics {
+            background: white;
+            border-radius: 15px;
+            padding: 1.5rem;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+        
+        .metric-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.75rem 0;
+            border-bottom: 1px solid #e9ecef;
+        }
+        
+        .metric-item:last-child {
+            border-bottom: none;
+        }
+        
+        .metric-value {
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+                <i class="fas fa-calendar-alt me-2"></i>
+                AutoSchedula - Educational Management
+            </a>
+            <div class="navbar-nav ms-auto">
+                <a class="nav-link" href="#">
+                    <i class="fas fa-bell me-2"></i>
+                    Alerts (2)
+                </a>
+                <a class="nav-link" href="#">
+                    <i class="fas fa-user me-2"></i>
+                    Admin
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container-fluid timetable-container">
+        <div class="row">
+            <!-- Sidebar -->
+            <div class="col-md-3 timetable-sidebar">
+                <div class="p-3">
+                    <h5 class="mb-3">
+                        <i class="fas fa-cogs me-2"></i>
+                        Management
+                    </h5>
+                    
+                    <!-- Teachers -->
+                    <div class="mb-4">
+                        <h6 class="text-primary">Teachers</h6>
+                        <div class="teacher-card">
+                            <div class="d-flex align-items-center">
+                                <div class="bg-primary rounded-circle d-flex align-items-center justify-content-center me-3" style="width: 40px; height: 40px;">
+                                    <i class="fas fa-user text-white"></i>
+                                </div>
+                                <div>
+                                    <h6 class="mb-1">Dr. Sarah Johnson</h6>
+                                    <small class="text-muted">Mathematics</small>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="teacher-card">
+                            <div class="d-flex align-items-center">
+                                <div class="bg-success rounded-circle d-flex align-items-center justify-content-center me-3" style="width: 40px; height: 40px;">
+                                    <i class="fas fa-user text-white"></i>
+                                </div>
+                                <div>
+                                    <h6 class="mb-1">Prof. Michael Brown</h6>
+                                    <small class="text-muted">Physics</small>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="teacher-card">
+                            <div class="d-flex align-items-center">
+                                <div class="bg-info rounded-circle d-flex align-items-center justify-content-center me-3" style="width: 40px; height: 40px;">
+                                    <i class="fas fa-user text-white"></i>
+                                </div>
+                                <div>
+                                    <h6 class="mb-1">Dr. Emily Davis</h6>
+                                    <small class="text-muted">Chemistry</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Sections -->
+                    <div class="mb-4">
+                        <h6 class="text-success">Sections</h6>
+                        <div class="section-card">
+                            <h6 class="mb-1">Section A</h6>
+                            <small class="text-muted">30 Students</small>
+                            <div class="mt-2">
+                                <span class="badge bg-success">Active</span>
+                            </div>
+                        </div>
+                        
+                        <div class="section-card">
+                            <h6 class="mb-1">Section B</h6>
+                            <small class="text-muted">28 Students</small>
+                            <div class="mt-2">
+                                <span class="badge bg-success">Active</span>
+                            </div>
+                        </div>
+                        
+                        <div class="section-card">
+                            <h6 class="mb-1">Section C</h6>
+                            <small class="text-muted">32 Students</small>
+                            <div class="mt-2">
+                                <span class="badge bg-warning">Pending</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Quick Actions -->
+                    <div class="mb-4">
+                        <h6 class="text-warning">Quick Actions</h6>
+                        <div class="d-grid gap-2">
+                            <button class="btn btn-primary btn-sm">
+                                <i class="fas fa-magic me-2"></i>
+                                Generate Schedule
+                            </button>
+                            <button class="btn btn-outline-primary btn-sm">
+                                <i class="fas fa-search me-2"></i>
+                                Check Conflicts
+                            </button>
+                            <button class="btn btn-outline-success btn-sm">
+                                <i class="fas fa-download me-2"></i>
+                                Export Timetable
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Main Timetable Area -->
+            <div class="col-md-9 timetable-main">
+                <div class="p-3">
+                    <!-- Dashboard Stats -->
+                    <div class="row mb-4">
+                        <div class="col-md-3">
+                            <div class="stat-card">
+                                <div class="stat-number">15</div>
+                                <div class="stat-label">Teachers</div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="stat-card">
+                                <div class="stat-number">8</div>
+                                <div class="stat-label">Sections</div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="stat-card">
+                                <div class="stat-number">0</div>
+                                <div class="stat-label">Conflicts</div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="stat-card">
+                                <div class="stat-number">95%</div>
+                                <div class="stat-label">Efficiency</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Timetable Grid -->
+                    <div class="card dashboard-card">
+                        <div class="dashboard-header">
+                            <h5 class="mb-0">
+                                <i class="fas fa-calendar-alt me-2"></i>
+                                Weekly Timetable - Spring 2024
+                            </h5>
+                        </div>
+                        <div class="card-body p-0">
+                            <div class="timetable-grid">
+                                <!-- Time Column -->
+                                <div class="time-slot">Time</div>
+                                <div class="day-header">Monday</div>
+                                <div class="day-header">Tuesday</div>
+                                <div class="day-header">Wednesday</div>
+                                <div class="day-header">Thursday</div>
+                                <div class="day-header">Friday</div>
+                                
+                                <!-- Time Slots -->
+                                <div class="time-slot">8:00 AM</div>
+                                <div class="schedule-cell">
+                                    <div class="schedule-item">
+                                        <strong>Math 101</strong><br>
+                                        <small>Dr. Johnson - Section A</small>
+                                    </div>
+                                </div>
+                                <div class="schedule-cell">
+                                    <div class="schedule-item">
+                                        <strong>Physics 201</strong><br>
+                                        <small>Prof. Brown - Section B</small>
+                                    </div>
+                                </div>
+                                <div class="schedule-cell">
+                                    <div class="schedule-item">
+                                        <strong>Chemistry 101</strong><br>
+                                        <small>Dr. Davis - Section C</small>
+                                    </div>
+                                </div>
+                                <div class="schedule-cell">
+                                    <div class="schedule-item">
+                                        <strong>Math 201</strong><br>
+                                        <small>Dr. Johnson - Section A</small>
+                                    </div>
+                                </div>
+                                <div class="schedule-cell">
+                                    <div class="schedule-item">
+                                        <strong>Physics 101</strong><br>
+                                        <small>Prof. Brown - Section B</small>
+                                    </div>
+                                </div>
+                                
+                                <div class="time-slot">9:00 AM</div>
+                                <div class="schedule-cell">
+                                    <div class="schedule-item">
+                                        <strong>Chemistry 201</strong><br>
+                                        <small>Dr. Davis - Section A</small>
+                                    </div>
+                                </div>
+                                <div class="schedule-cell">
+                                    <div class="schedule-item">
+                                        <strong>Math 301</strong><br>
+                                        <small>Dr. Johnson - Section C</small>
+                                    </div>
+                                </div>
+                                <div class="schedule-cell">
+                                    <div class="schedule-item">
+                                        <strong>Physics 301</strong><br>
+                                        <small>Prof. Brown - Section A</small>
+                                    </div>
+                                </div>
+                                <div class="schedule-cell">
+                                    <div class="schedule-item">
+                                        <strong>Chemistry 301</strong><br>
+                                        <small>Dr. Davis - Section B</small>
+                                    </div>
+                                </div>
+                                <div class="schedule-cell">
+                                    <div class="schedule-item">
+                                        <strong>Math 401</strong><br>
+                                        <small>Dr. Johnson - Section C</small>
+                                    </div>
+                                </div>
+                                
+                                <div class="time-slot">10:00 AM</div>
+                                <div class="schedule-cell">
+                                    <div class="schedule-item">
+                                        <strong>Lab Session</strong><br>
+                                        <small>Physics Lab - Section A</small>
+                                    </div>
+                                </div>
+                                <div class="schedule-cell">
+                                    <div class="schedule-item">
+                                        <strong>Lab Session</strong><br>
+                                        <small>Chemistry Lab - Section B</small>
+                                    </div>
+                                </div>
+                                <div class="schedule-cell">
+                                    <div class="schedule-item">
+                                        <strong>Lab Session</strong><br>
+                                        <small>Math Lab - Section C</small>
+                                    </div>
+                                </div>
+                                <div class="schedule-cell">
+                                    <div class="schedule-item">
+                                        <strong>Lab Session</strong><br>
+                                        <small>Physics Lab - Section A</small>
+                                    </div>
+                                </div>
+                                <div class="schedule-cell">
+                                    <div class="schedule-item">
+                                        <strong>Lab Session</strong><br>
+                                        <small>Chemistry Lab - Section B</small>
+                                    </div>
+                                </div>
+                                
+                                <div class="time-slot">11:00 AM</div>
+                                <div class="schedule-cell">
+                                    <div class="schedule-item">
+                                        <strong>Break</strong><br>
+                                        <small>Free Period</small>
+                                    </div>
+                                </div>
+                                <div class="schedule-cell">
+                                    <div class="schedule-item">
+                                        <strong>Break</strong><br>
+                                        <small>Free Period</small>
+                                    </div>
+                                </div>
+                                <div class="schedule-cell">
+                                    <div class="schedule-item">
+                                        <strong>Break</strong><br>
+                                        <small>Free Period</small>
+                                    </div>
+                                </div>
+                                <div class="schedule-cell">
+                                    <div class="schedule-item">
+                                        <strong>Break</strong><br>
+                                        <small>Free Period</small>
+                                    </div>
+                                </div>
+                                <div class="schedule-cell">
+                                    <div class="schedule-item">
+                                        <strong>Break</strong><br>
+                                        <small>Free Period</small>
+                                    </div>
+                                </div>
+                                
+                                <div class="time-slot">12:00 PM</div>
+                                <div class="schedule-cell">
+                                    <div class="schedule-item">
+                                        <strong>Lunch</strong><br>
+                                        <small>Free Period</small>
+                                    </div>
+                                </div>
+                                <div class="schedule-cell">
+                                    <div class="schedule-item">
+                                        <strong>Lunch</strong><br>
+                                        <small>Free Period</small>
+                                    </div>
+                                </div>
+                                <div class="schedule-cell">
+                                    <div class="schedule-item">
+                                        <strong>Lunch</strong><br>
+                                        <small>Free Period</small>
+                                    </div>
+                                </div>
+                                <div class="schedule-cell">
+                                    <div class="schedule-item">
+                                        <strong>Lunch</strong><br>
+                                        <small>Free Period</small>
+                                    </div>
+                                </div>
+                                <div class="schedule-cell">
+                                    <div class="schedule-item">
+                                        <strong>Lunch</strong><br>
+                                        <small>Free Period</small>
+                                    </div>
+                                </div>
+                                
+                                <div class="time-slot">1:00 PM</div>
+                                <div class="schedule-cell">
+                                    <div class="schedule-item">
+                                        <strong>Advanced Math</strong><br>
+                                        <small>Dr. Johnson - Section A</small>
+                                    </div>
+                                </div>
+                                <div class="schedule-cell">
+                                    <div class="schedule-item">
+                                        <strong>Advanced Physics</strong><br>
+                                        <small>Prof. Brown - Section B</small>
+                                    </div>
+                                </div>
+                                <div class="schedule-cell">
+                                    <div class="schedule-item">
+                                        <strong>Advanced Chemistry</strong><br>
+                                        <small>Dr. Davis - Section C</small>
+                                    </div>
+                                </div>
+                                <div class="schedule-cell">
+                                    <div class="schedule-item">
+                                        <strong>Advanced Math</strong><br>
+                                        <small>Dr. Johnson - Section A</small>
+                                    </div>
+                                </div>
+                                <div class="schedule-cell">
+                                    <div class="schedule-item">
+                                        <strong>Advanced Physics</strong><br>
+                                        <small>Prof. Brown - Section B</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Algorithm Status -->
+                    <div class="algorithm-status">
+                        <h5 class="mb-3">
+                            <i class="fas fa-robot me-2"></i>
+                            Scheduling Algorithm Status
+                        </h5>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h6>Optimization Results</h6>
+                                <div class="optimization-metrics">
+                                    <div class="metric-item">
+                                        <span>Resource Utilization</span>
+                                        <span class="metric-value">95%</span>
+                                    </div>
+                                    <div class="metric-item">
+                                        <span>Conflict Resolution</span>
+                                        <span class="metric-value">100%</span>
+                                    </div>
+                                    <div class="metric-item">
+                                        <span>Teacher Satisfaction</span>
+                                        <span class="metric-value">92%</span>
+                                    </div>
+                                    <div class="metric-item">
+                                        <span>Schedule Efficiency</span>
+                                        <span class="metric-value">98%</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <h6>Algorithm Features</h6>
+                                <ul class="list-unstyled">
+                                    <li><i class="fas fa-check text-light me-2"></i>Genetic Algorithm Optimization</li>
+                                    <li><i class="fas fa-check text-light me-2"></i>Constraint Satisfaction</li>
+                                    <li><i class="fas fa-check text-light me-2"></i>Real-time Conflict Detection</li>
+                                    <li><i class="fas fa-check text-light me-2"></i>Teacher Preference Matching</li>
+                                    <li><i class="fas fa-check text-light me-2"></i>Room Availability Checking</li>
+                                    <li><i class="fas fa-check text-light me-2"></i>Load Balancing</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Technical Features -->
+                    <div class="card dashboard-card">
+                        <div class="dashboard-header">
+                            <h5 class="mb-0">
+                                <i class="fas fa-cogs me-2"></i>
+                                Technical Implementation
+                            </h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <h6>Backend Technologies</h6>
+                                    <ul class="list-unstyled">
+                                        <li><i class="fas fa-check text-success me-2"></i>Spring Boot 3.2</li>
+                                        <li><i class="fas fa-check text-success me-2"></i>Java 17</li>
+                                        <li><i class="fas fa-check text-success me-2"></i>PostgreSQL Database</li>
+                                        <li><i class="fas fa-check text-success me-2"></i>JWT Authentication</li>
+                                        <li><i class="fas fa-check text-success me-2"></i>RESTful APIs</li>
+                                        <li><i class="fas fa-check text-success me-2"></i>Algorithm Engine</li>
+                                    </ul>
+                                </div>
+                                <div class="col-md-4">
+                                    <h6>Frontend Technologies</h6>
+                                    <ul class="list-unstyled">
+                                        <li><i class="fas fa-check text-success me-2"></i>Angular 14</li>
+                                        <li><i class="fas fa-check text-success me-2"></i>TypeScript</li>
+                                        <li><i class="fas fa-check text-success me-2"></i>Bootstrap 5</li>
+                                        <li><i class="fas fa-check text-success me-2"></i>Interactive UI</li>
+                                        <li><i class="fas fa-check text-success me-2"></i>Real-time Updates</li>
+                                        <li><i class="fas fa-check text-success me-2"></i>Responsive Design</li>
+                                    </ul>
+                                </div>
+                                <div class="col-md-4">
+                                    <h6>Key Features</h6>
+                                    <ul class="list-unstyled">
+                                        <li><i class="fas fa-check text-success me-2"></i>Automated Scheduling</li>
+                                        <li><i class="fas fa-check text-success me-2"></i>Conflict Resolution</li>
+                                        <li><i class="fas fa-check text-success me-2"></i>Teacher Management</li>
+                                        <li><i class="fas fa-check text-success me-2"></i>Section Management</li>
+                                        <li><i class="fas fa-check text-success me-2"></i>Export Functionality</li>
+                                        <li><i class="fas fa-check text-success me-2"></i>Optimization Engine</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

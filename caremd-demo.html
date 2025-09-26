@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CareMD - Medical Practice Management System</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #b02f33;
+            --secondary-color: #2c3e50;
+            --success-color: #27ae60;
+            --warning-color: #f39c12;
+            --danger-color: #e74c3c;
+            --info-color: #3498db;
+            --light-bg: #f8f9fa;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #ffffff;
+        }
+        
+        .navbar {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .navbar-brand {
+            font-weight: 700;
+            color: white !important;
+        }
+        
+        .nav-link {
+            color: rgba(255,255,255,0.9) !important;
+            font-weight: 500;
+        }
+        
+        .nav-link:hover {
+            color: white !important;
+        }
+        
+        .sidebar {
+            background: #f8f9fa;
+            min-height: 100vh;
+            padding: 0;
+        }
+        
+        .sidebar .nav-link {
+            color: #495057 !important;
+            padding: 1rem 1.5rem;
+            border-bottom: 1px solid #e9ecef;
+            transition: all 0.3s ease;
+        }
+        
+        .sidebar .nav-link:hover {
+            background: var(--primary-color);
+            color: white !important;
+        }
+        
+        .sidebar .nav-link.active {
+            background: var(--primary-color);
+            color: white !important;
+        }
+        
+        .main-content {
+            padding: 2rem;
+        }
+        
+        .dashboard-card {
+            border: none;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+        }
+        
+        .dashboard-header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 1.5rem;
+            border-radius: 15px 15px 0 0;
+        }
+        
+        .stat-card {
+            background: white;
+            border-radius: 15px;
+            padding: 1.5rem;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+        
+        .stat-label {
+            color: #666;
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+        }
+        
+        .table {
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        
+        .table thead {
+            background: var(--primary-color);
+            color: white;
+        }
+        
+        .btn-primary {
+            background: var(--primary-color);
+            border: none;
+            border-radius: 25px;
+            padding: 0.75rem 2rem;
+            font-weight: 600;
+        }
+        
+        .btn-primary:hover {
+            background: #9a2629;
+        }
+        
+        .calendar-container {
+            background: white;
+            border-radius: 15px;
+            padding: 1.5rem;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+        
+        .appointment-card {
+            background: #f8f9fa;
+            border-left: 4px solid var(--primary-color);
+            padding: 1rem;
+            margin-bottom: 1rem;
+            border-radius: 0 10px 10px 0;
+        }
+        
+        .patient-card {
+            background: white;
+            border: 1px solid #e9ecef;
+            border-radius: 10px;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            transition: box-shadow 0.3s ease;
+        }
+        
+        .patient-card:hover {
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .status-badge {
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        
+        .status-active {
+            background: #d4edda;
+            color: #155724;
+        }
+        
+        .status-pending {
+            background: #fff3cd;
+            color: #856404;
+        }
+        
+        .status-completed {
+            background: #d1ecf1;
+            color: #0c5460;
+        }
+        
+        .chart-container {
+            background: white;
+            border-radius: 15px;
+            padding: 1.5rem;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+                <i class="fas fa-hospital me-2"></i>
+                CareMD - Medical Practice Management
+            </a>
+            <div class="navbar-nav ms-auto">
+                <a class="nav-link" href="#">
+                    <i class="fas fa-bell me-2"></i>
+                    Notifications (3)
+                </a>
+                <a class="nav-link" href="#">
+                    <i class="fas fa-user me-2"></i>
+                    Dr. John Smith
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Sidebar -->
+            <div class="col-md-2 sidebar">
+                <ul class="nav flex-column">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#">
+                            <i class="fas fa-tachometer-alt me-2"></i>
+                            Dashboard
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">
+                            <i class="fas fa-users me-2"></i>
+                            Patients
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">
+                            <i class="fas fa-calendar-alt me-2"></i>
+                            Appointments
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">
+                            <i class="fas fa-file-medical me-2"></i>
+                            Claims
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">
+                            <i class="fas fa-chart-bar me-2"></i>
+                            Reports
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">
+                            <i class="fas fa-cog me-2"></i>
+                            Settings
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Main Content -->
+            <div class="col-md-10 main-content">
+                <!-- Dashboard Stats -->
+                <div class="row mb-4">
+                    <div class="col-md-3">
+                        <div class="stat-card">
+                            <div class="stat-number">1,247</div>
+                            <div class="stat-label">Total Patients</div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="stat-card">
+                            <div class="stat-number">89</div>
+                            <div class="stat-label">Today's Appointments</div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="stat-card">
+                            <div class="stat-number">156</div>
+                            <div class="stat-label">Pending Claims</div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="stat-card">
+                            <div class="stat-number">$45,230</div>
+                            <div class="stat-label">Monthly Revenue</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <!-- Recent Appointments -->
+                    <div class="col-md-6">
+                        <div class="card dashboard-card">
+                            <div class="dashboard-header">
+                                <h5 class="mb-0">
+                                    <i class="fas fa-calendar-alt me-2"></i>
+                                    Today's Appointments
+                                </h5>
+                            </div>
+                            <div class="card-body">
+                                <div class="appointment-card">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div>
+                                            <h6 class="mb-1">Sarah Johnson</h6>
+                                            <small class="text-muted">General Checkup</small>
+                                        </div>
+                                        <div class="text-end">
+                                            <div class="status-badge status-active">Active</div>
+                                            <div class="text-muted small">10:30 AM</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="appointment-card">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div>
+                                            <h6 class="mb-1">Michael Brown</h6>
+                                            <small class="text-muted">Follow-up Visit</small>
+                                        </div>
+                                        <div class="text-end">
+                                            <div class="status-badge status-pending">Pending</div>
+                                            <div class="text-muted small">11:15 AM</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="appointment-card">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div>
+                                            <h6 class="mb-1">Emily Davis</h6>
+                                            <small class="text-muted">Consultation</small>
+                                        </div>
+                                        <div class="text-end">
+                                            <div class="status-badge status-completed">Completed</div>
+                                            <div class="text-muted small">09:45 AM</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="text-center mt-3">
+                                    <a href="#" class="btn btn-primary">View All Appointments</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Recent Patients -->
+                    <div class="col-md-6">
+                        <div class="card dashboard-card">
+                            <div class="dashboard-header">
+                                <h5 class="mb-0">
+                                    <i class="fas fa-users me-2"></i>
+                                    Recent Patients
+                                </h5>
+                            </div>
+                            <div class="card-body">
+                                <div class="patient-card">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div class="d-flex align-items-center">
+                                            <div class="bg-primary rounded-circle d-flex align-items-center justify-content-center me-3" style="width: 40px; height: 40px;">
+                                                <i class="fas fa-user text-white"></i>
+                                            </div>
+                                            <div>
+                                                <h6 class="mb-1">Robert Wilson</h6>
+                                                <small class="text-muted">ID: P-2024-001</small>
+                                            </div>
+                                        </div>
+                                        <div class="text-end">
+                                            <div class="text-muted small">2 hours ago</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="patient-card">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div class="d-flex align-items-center">
+                                            <div class="bg-success rounded-circle d-flex align-items-center justify-content-center me-3" style="width: 40px; height: 40px;">
+                                                <i class="fas fa-user text-white"></i>
+                                            </div>
+                                            <div>
+                                                <h6 class="mb-1">Lisa Anderson</h6>
+                                                <small class="text-muted">ID: P-2024-002</small>
+                                            </div>
+                                        </div>
+                                        <div class="text-end">
+                                            <div class="text-muted small">4 hours ago</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="patient-card">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div class="d-flex align-items-center">
+                                            <div class="bg-warning rounded-circle d-flex align-items-center justify-content-center me-3" style="width: 40px; height: 40px;">
+                                                <i class="fas fa-user text-white"></i>
+                                            </div>
+                                            <div>
+                                                <h6 class="mb-1">David Miller</h6>
+                                                <small class="text-muted">ID: P-2024-003</small>
+                                            </div>
+                                        </div>
+                                        <div class="text-end">
+                                            <div class="text-muted small">6 hours ago</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="text-center mt-3">
+                                    <a href="#" class="btn btn-primary">View All Patients</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Claims Management -->
+                <div class="row mt-4">
+                    <div class="col-12">
+                        <div class="card dashboard-card">
+                            <div class="dashboard-header">
+                                <h5 class="mb-0">
+                                    <i class="fas fa-file-medical me-2"></i>
+                                    Insurance Claims Management
+                                </h5>
+                            </div>
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table class="table table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th>Claim ID</th>
+                                                <th>Patient</th>
+                                                <th>Insurance</th>
+                                                <th>Amount</th>
+                                                <th>Status</th>
+                                                <th>Date</th>
+                                                <th>Actions</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>#C-2024-001</td>
+                                                <td>Sarah Johnson</td>
+                                                <td>Blue Cross</td>
+                                                <td>$1,250.00</td>
+                                                <td><span class="status-badge status-pending">Pending</span></td>
+                                                <td>2024-01-15</td>
+                                                <td>
+                                                    <button class="btn btn-sm btn-outline-primary">View</button>
+                                                    <button class="btn btn-sm btn-outline-success">Process</button>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>#C-2024-002</td>
+                                                <td>Michael Brown</td>
+                                                <td>Aetna</td>
+                                                <td>$850.00</td>
+                                                <td><span class="status-badge status-active">Processing</span></td>
+                                                <td>2024-01-14</td>
+                                                <td>
+                                                    <button class="btn btn-sm btn-outline-primary">View</button>
+                                                    <button class="btn btn-sm btn-outline-warning">Update</button>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>#C-2024-003</td>
+                                                <td>Emily Davis</td>
+                                                <td>Cigna</td>
+                                                <td>$2,100.00</td>
+                                                <td><span class="status-badge status-completed">Approved</span></td>
+                                                <td>2024-01-13</td>
+                                                <td>
+                                                    <button class="btn btn-sm btn-outline-primary">View</button>
+                                                    <button class="btn btn-sm btn-outline-info">Download</button>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Revenue Chart -->
+                <div class="row mt-4">
+                    <div class="col-12">
+                        <div class="chart-container">
+                            <h5 class="mb-3">
+                                <i class="fas fa-chart-line me-2"></i>
+                                Monthly Revenue Analytics
+                            </h5>
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <div class="bg-light rounded p-4 text-center">
+                                        <h6 class="text-muted">Revenue Chart Placeholder</h6>
+                                        <p class="text-muted">Interactive chart showing monthly revenue trends, patient visits, and claim processing statistics</p>
+                                        <div class="d-flex justify-content-around mt-3">
+                                            <div class="text-center">
+                                                <div class="h4 text-primary">$45,230</div>
+                                                <small class="text-muted">This Month</small>
+                                            </div>
+                                            <div class="text-center">
+                                                <div class="h4 text-success">+12.5%</div>
+                                                <small class="text-muted">Growth</small>
+                                            </div>
+                                            <div class="text-center">
+                                                <div class="h4 text-info">156</div>
+                                                <small class="text-muted">Claims</small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <h6>Key Features Demonstrated:</h6>
+                                    <ul class="list-unstyled">
+                                        <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Multi-tenant Architecture</li>
+                                        <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Real-time Dashboard</li>
+                                        <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Claims Management</li>
+                                        <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Patient Management</li>
+                                        <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Appointment Scheduling</li>
+                                        <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Role-based Access Control</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
