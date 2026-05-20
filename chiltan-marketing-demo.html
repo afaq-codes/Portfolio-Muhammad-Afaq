@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-59XXTKP9');</script>
+    <!-- End Google Tag Manager -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chiltan Marketing - E-Marketing Platform</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #9b2226;
+            --secondary-color: #6a0572;
+            --success-color: #059669;
+            --warning-color: #d97706;
+            --info-color: #2563eb;
+            --light-bg: #fdf4ff;
+        }
+
+        body { font-family: 'Inter', sans-serif; background-color: #f8fafc; }
+
+        .navbar {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            box-shadow: 0 2px 10px rgba(0,0,0,0.12);
+        }
+        .navbar-brand { font-weight: 700; color: white !important; }
+        .nav-link { color: rgba(255,255,255,0.85) !important; font-weight: 500; }
+        .nav-link:hover { color: white !important; }
+
+        .sidebar {
+            background: white;
+            min-height: 100vh;
+            border-right: 1px solid #e2e8f0;
+            padding: 0;
+        }
+        .sidebar .nav-link {
+            color: #475569 !important;
+            padding: 0.85rem 1.5rem;
+            border-bottom: 1px solid #f1f5f9;
+            font-size: 0.875rem;
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+        .sidebar .nav-link:hover,
+        .sidebar .nav-link.active {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white !important;
+        }
+
+        .main-content { padding: 2rem; background: #f8fafc; min-height: 100vh; }
+
+        .stat-card {
+            background: white;
+            border-radius: 16px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+            border: 1px solid #e2e8f0;
+            text-align: center;
+            transition: transform 0.3s;
+        }
+        .stat-card:hover { transform: translateY(-4px); }
+        .stat-number { font-size: 2.25rem; font-weight: 800; color: var(--primary-color); }
+        .stat-label { color: #64748b; font-size: 0.8rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; margin-top: 0.4rem; }
+        .stat-icon {
+            width: 44px; height: 44px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            border-radius: 12px;
+            display: flex; align-items: center; justify-content: center;
+            margin: 0 auto 0.75rem;
+        }
+        .stat-icon i { color: white; font-size: 1.1rem; }
+
+        .dashboard-card {
+            border: none;
+            border-radius: 16px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+            margin-bottom: 1.5rem;
+            background: white;
+            border: 1px solid #e2e8f0;
+        }
+        .dashboard-header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 1.25rem 1.5rem;
+            border-radius: 16px 16px 0 0;
+            font-weight: 600;
+        }
+
+        .btn-primary {
+            background: var(--primary-color);
+            border: none;
+            border-radius: 50px;
+            padding: 0.6rem 1.5rem;
+            font-weight: 600;
+            font-size: 0.875rem;
+        }
+        .btn-primary:hover { background: #7d1a1d; }
+
+        /* Email Builder Mock */
+        .email-builder {
+            background: white;
+            border: 2px dashed #e2e8f0;
+            border-radius: 12px;
+            min-height: 300px;
+            padding: 1.5rem;
+            position: relative;
+            overflow: hidden;
+        }
+        .email-block {
+            border-radius: 8px;
+            margin-bottom: 0.75rem;
+            overflow: hidden;
+        }
+        .email-block-header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 1.5rem;
+            text-align: center;
+        }
+        .email-block-body { background: #f8fafc; padding: 1rem; border: 1px solid #e2e8f0; }
+        .email-block-footer { background: #1e293b; color: rgba(255,255,255,0.7); padding: 0.75rem; text-align: center; font-size: 0.75rem; }
+        .toolbar-btn {
+            width: 36px; height: 36px;
+            background: var(--light-bg);
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            display: flex; align-items: center; justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-size: 0.8rem;
+            color: #475569;
+        }
+        .toolbar-btn:hover { background: linear-gradient(135deg, var(--primary-color), var(--secondary-color)); color: white; border-color: transparent; }
+
+        /* Charts */
+        .chart-bar-wrap { display: flex; align-items: flex-end; gap: 6px; height: 100px; justify-content: space-around; padding: 0 0.5rem; }
+        .chart-bar { border-radius: 4px 4px 0 0; background: linear-gradient(to top, var(--primary-color), #c026d3); min-width: 20px; }
+
+        .status-badge { padding: 0.2rem 0.65rem; border-radius: 50px; font-size: 0.72rem; font-weight: 600; }
+        .status-sent { background: #d1fae5; color: #065f46; }
+        .status-draft { background: #f3f4f6; color: #374151; }
+        .status-scheduled { background: #dbeafe; color: #1e40af; }
+        .status-active { background: #fdf4ff; color: #6b21a8; }
+
+        .table thead { background: linear-gradient(135deg, var(--primary-color), var(--secondary-color)); color: white; }
+        .table thead th { border: none; font-weight: 600; font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.5px; padding: 0.75rem 1rem; }
+
+        .chart-legend { display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; margin-top: 0.75rem; }
+        .legend-item { display: flex; align-items: center; gap: 0.4rem; font-size: 0.78rem; color: #64748b; }
+        .legend-dot { width: 10px; height: 10px; border-radius: 50%; }
+    </style>
+</head>
+<body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-59XXTKP9"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+                <i class="fas fa-bullhorn me-2"></i>
+                Chiltan Marketing
+            </a>
+            <div class="navbar-nav ms-auto">
+                <a class="nav-link" href="index.html">
+                    <i class="fas fa-arrow-left me-1"></i> Portfolio
+                </a>
+                <a class="nav-link" href="#">
+                    <i class="fas fa-bell me-2"></i> Notifications
+                </a>
+                <a class="nav-link" href="#">
+                    <i class="fas fa-user me-2"></i> Marketing User
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Sidebar -->
+            <div class="col-md-2 sidebar">
+                <ul class="nav flex-column">
+                    <li class="nav-item"><a class="nav-link active" href="#"><i class="fas fa-tachometer-alt me-2"></i>Dashboard</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#"><i class="fas fa-envelope me-2"></i>Campaigns</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#"><i class="fas fa-edit me-2"></i>Email Builder</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#"><i class="fas fa-users me-2"></i>Audience</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#"><i class="fas fa-chart-line me-2"></i>Analytics</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#"><i class="fas fa-file-excel me-2"></i>Export Data</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#"><i class="fas fa-cog me-2"></i>Settings</a></li>
+                </ul>
+            </div>
+
+            <!-- Main Content -->
+            <div class="col-md-10 main-content">
+                <!-- Stats -->
+                <div class="row g-3 mb-4">
+                    <div class="col-md-3">
+                        <div class="stat-card">
+                            <div class="stat-icon"><i class="fas fa-paper-plane"></i></div>
+                            <div class="stat-number">48</div>
+                            <div class="stat-label">Campaigns Sent</div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="stat-card">
+                            <div class="stat-icon"><i class="fas fa-users"></i></div>
+                            <div class="stat-number">12.4K</div>
+                            <div class="stat-label">Subscribers</div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="stat-card">
+                            <div class="stat-icon"><i class="fas fa-mouse-pointer"></i></div>
+                            <div class="stat-number">34.2%</div>
+                            <div class="stat-label">Open Rate</div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="stat-card">
+                            <div class="stat-icon"><i class="fas fa-chart-line"></i></div>
+                            <div class="stat-number">8.7%</div>
+                            <div class="stat-label">Click Rate</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row g-3">
+                    <!-- Email Builder -->
+                    <div class="col-md-7">
+                        <div class="card dashboard-card">
+                            <div class="dashboard-header">
+                                <i class="fas fa-edit me-2"></i>Email Campaign Builder — Angular Email Editor
+                            </div>
+                            <div class="card-body p-3">
+                                <!-- Toolbar -->
+                                <div class="d-flex gap-2 mb-3 flex-wrap">
+                                    <div class="toolbar-btn" title="Add Header"><i class="fas fa-heading"></i></div>
+                                    <div class="toolbar-btn" title="Add Image"><i class="fas fa-image"></i></div>
+                                    <div class="toolbar-btn" title="Add Text"><i class="fas fa-font"></i></div>
+                                    <div class="toolbar-btn" title="Add Button"><i class="fas fa-square"></i></div>
+                                    <div class="toolbar-btn" title="Add Divider"><i class="fas fa-minus"></i></div>
+                                    <div class="toolbar-btn" title="Add Columns"><i class="fas fa-columns"></i></div>
+                                    <div class="ms-auto d-flex gap-2">
+                                        <button class="btn btn-sm btn-outline-secondary" style="border-radius:50px;font-size:0.8rem;">Preview</button>
+                                        <button class="btn btn-primary btn-sm">Save</button>
+                                    </div>
+                                </div>
+                                <!-- Email Preview -->
+                                <div class="email-builder">
+                                    <div class="email-block">
+                                        <div class="email-block-header">
+                                            <h5 class="mb-1 fw-bold">Chiltan Newsletter</h5>
+                                            <p class="mb-0 opacity-75" style="font-size:0.85rem;">Your Monthly Update — May 2025</p>
+                                        </div>
+                                        <div class="email-block-body">
+                                            <p class="text-muted small mb-2">Dear Subscriber,</p>
+                                            <p class="small mb-2">We're excited to share our latest products and offers with you. Check out what's new this month...</p>
+                                            <div class="text-center mt-2">
+                                                <a href="#" class="btn btn-primary btn-sm" style="pointer-events:none;">Shop Now</a>
+                                            </div>
+                                        </div>
+                                        <div class="email-block-footer">
+                                            &copy; 2025 Chiltan Marketing &bull; <a href="#" style="color:#93c5fd;">Unsubscribe</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Analytics Charts -->
+                    <div class="col-md-5">
+                        <div class="card dashboard-card">
+                            <div class="dashboard-header">
+                                <i class="fas fa-chart-bar me-2"></i>Campaign Analytics — AmCharts / Highcharts
+                            </div>
+                            <div class="card-body p-3">
+                                <p class="small text-muted mb-2">Open Rates — Last 7 Campaigns</p>
+                                <div class="chart-bar-wrap mb-1">
+                                    <div class="chart-bar" style="height:45px;" title="Camp 1"></div>
+                                    <div class="chart-bar" style="height:72px;" title="Camp 2"></div>
+                                    <div class="chart-bar" style="height:58px;" title="Camp 3"></div>
+                                    <div class="chart-bar" style="height:88px;" title="Camp 4"></div>
+                                    <div class="chart-bar" style="height:65px;" title="Camp 5"></div>
+                                    <div class="chart-bar" style="height:94px;" title="Camp 6"></div>
+                                    <div class="chart-bar" style="height:78px;" title="Camp 7"></div>
+                                </div>
+                                <p class="text-muted small text-center mb-3">Interactive chart in production</p>
+                                <hr>
+                                <p class="small text-muted mb-2">Top Performing Campaigns</p>
+                                <div class="d-flex justify-content-between mb-1">
+                                    <small>Summer Sale Launch</small>
+                                    <div class="progress" style="width:120px;height:8px;margin-top:5px;">
+                                        <div class="progress-bar" style="width:82%;background:var(--primary-color);"></div>
+                                    </div>
+                                    <small class="fw-bold">82%</small>
+                                </div>
+                                <div class="d-flex justify-content-between mb-1">
+                                    <small>New Arrivals</small>
+                                    <div class="progress" style="width:120px;height:8px;margin-top:5px;">
+                                        <div class="progress-bar" style="width:67%;background:var(--secondary-color);"></div>
+                                    </div>
+                                    <small class="fw-bold">67%</small>
+                                </div>
+                                <div class="d-flex justify-content-between">
+                                    <small>Monthly Newsletter</small>
+                                    <div class="progress" style="width:120px;height:8px;margin-top:5px;">
+                                        <div class="progress-bar" style="width:54%;background:#a21caf;"></div>
+                                    </div>
+                                    <small class="fw-bold">54%</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Campaign Table -->
+                <div class="card dashboard-card">
+                    <div class="dashboard-header">
+                        <i class="fas fa-list me-2"></i>Campaign List — with Search, Pagination &amp; Excel Export
+                    </div>
+                    <div class="card-body p-3">
+                        <div class="d-flex justify-content-between mb-3 align-items-center flex-wrap gap-2">
+                            <div class="input-group" style="width:280px;">
+                                <input type="text" class="form-control form-control-sm" placeholder="Search campaigns...">
+                                <button class="btn btn-sm btn-outline-secondary"><i class="fas fa-search"></i></button>
+                            </div>
+                            <div class="d-flex gap-2">
+                                <button class="btn btn-sm btn-outline-success"><i class="fas fa-file-excel me-1"></i>Export Excel</button>
+                                <button class="btn btn-primary btn-sm"><i class="fas fa-plus me-1"></i>New Campaign</button>
+                            </div>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="table table-hover table-sm mb-0">
+                                <thead>
+                                    <tr>
+                                        <th>Campaign Name</th>
+                                        <th>Audience</th>
+                                        <th>Sent Date</th>
+                                        <th>Opens</th>
+                                        <th>Clicks</th>
+                                        <th>Status</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><small>Summer Sale 2025</small></td>
+                                        <td><small>4,520</small></td>
+                                        <td><small>May 15, 2025</small></td>
+                                        <td><small class="text-success fw-bold">82%</small></td>
+                                        <td><small>12.4%</small></td>
+                                        <td><span class="status-badge status-sent">Sent</span></td>
+                                        <td>
+                                            <button class="btn btn-sm btn-outline-primary" style="border-radius:50px;font-size:0.7rem;">View</button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><small>Eid Special Offers</small></td>
+                                        <td><small>6,800</small></td>
+                                        <td><small>May 10, 2025</small></td>
+                                        <td><small class="text-success fw-bold">74%</small></td>
+                                        <td><small>9.8%</small></td>
+                                        <td><span class="status-badge status-sent">Sent</span></td>
+                                        <td>
+                                            <button class="btn btn-sm btn-outline-primary" style="border-radius:50px;font-size:0.7rem;">View</button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><small>Monthly Newsletter — June</small></td>
+                                        <td><small>12,400</small></td>
+                                        <td><small>Jun 01, 2025</small></td>
+                                        <td><small class="text-muted">—</small></td>
+                                        <td><small class="text-muted">—</small></td>
+                                        <td><span class="status-badge status-scheduled">Scheduled</span></td>
+                                        <td>
+                                            <button class="btn btn-sm btn-outline-warning" style="border-radius:50px;font-size:0.7rem;">Edit</button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><small>New Collection Teaser</small></td>
+                                        <td><small>—</small></td>
+                                        <td><small>—</small></td>
+                                        <td><small class="text-muted">—</small></td>
+                                        <td><small class="text-muted">—</small></td>
+                                        <td><span class="status-badge status-draft">Draft</span></td>
+                                        <td>
+                                            <button class="btn btn-sm btn-outline-secondary" style="border-radius:50px;font-size:0.7rem;">Edit</button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="d-flex justify-content-between align-items-center mt-3">
+                            <small class="text-muted">Showing 4 of 48 campaigns</small>
+                            <nav>
+                                <ul class="pagination pagination-sm mb-0">
+                                    <li class="page-item active"><a class="page-link" href="#" style="background:var(--primary-color);border-color:var(--primary-color);">1</a></li>
+                                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

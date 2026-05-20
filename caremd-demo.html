@@ -1,531 +1,566 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-59XXTKP9');</script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CareMD - Medical Practice Management System</title>
+    <title>CareMD — Platform Demo | Muhammad Afaq</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary-color: #b02f33;
-            --secondary-color: #2c3e50;
-            --success-color: #27ae60;
-            --warning-color: #f39c12;
-            --danger-color: #e74c3c;
-            --info-color: #3498db;
-            --light-bg: #f8f9fa;
+            --primary: #0066cc;
+            --primary-dark: #003d99;
+            --clinical: #2e7d32;
+            --hr: #6a1b9a;
+            --assets: #ef6c00;
+            --access: #455a64;
+            --reports: #00838f;
+            --notify: #1565c0;
+            --bg: #f1f5f9;
+            --card: #ffffff;
+            --text: #1e293b;
+            --muted: #64748b;
+            --border: #e2e8f0;
         }
-        
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #ffffff;
+        body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); }
+        .top-nav {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            box-shadow: 0 2px 16px rgba(0,0,0,0.12);
+            padding: 0.85rem 0;
         }
-        
-        .navbar {
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        }
-        
-        .navbar-brand {
-            font-weight: 700;
-            color: white !important;
-        }
-        
-        .nav-link {
-            color: rgba(255,255,255,0.9) !important;
-            font-weight: 500;
-        }
-        
-        .nav-link:hover {
-            color: white !important;
-        }
-        
-        .sidebar {
-            background: #f8f9fa;
-            min-height: 100vh;
-            padding: 0;
-        }
-        
-        .sidebar .nav-link {
-            color: #495057 !important;
-            padding: 1rem 1.5rem;
-            border-bottom: 1px solid #e9ecef;
-            transition: all 0.3s ease;
-        }
-        
-        .sidebar .nav-link:hover {
-            background: var(--primary-color);
-            color: white !important;
-        }
-        
-        .sidebar .nav-link.active {
-            background: var(--primary-color);
-            color: white !important;
-        }
-        
-        .main-content {
-            padding: 2rem;
-        }
-        
-        .dashboard-card {
-            border: none;
-            border-radius: 15px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-            margin-bottom: 2rem;
-        }
-        
-        .dashboard-header {
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+        .top-nav .brand { font-weight: 800; color: #fff !important; font-size: 1.05rem; }
+        .top-nav .nav-link { color: rgba(255,255,255,0.9) !important; font-weight: 500; font-size: 0.875rem; }
+        .hero-demo {
+            background: linear-gradient(140deg, #0f172a 0%, #1e3a5f 55%, #0f3460 100%);
             color: white;
-            padding: 1.5rem;
-            border-radius: 15px 15px 0 0;
+            padding: 3rem 0 2.5rem;
         }
-        
-        .stat-card {
-            background: white;
-            border-radius: 15px;
-            padding: 1.5rem;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-            text-align: center;
-            transition: transform 0.3s ease;
+        .hero-demo h1 { font-size: 2rem; font-weight: 800; letter-spacing: -0.5px; }
+        .hero-demo p { color: rgba(255,255,255,0.75); max-width: 720px; margin: 0.75rem auto 0; font-size: 0.95rem; line-height: 1.7; }
+        .hero-stats { display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap; margin-top: 1.75rem; }
+        .hero-stat-num { font-size: 1.75rem; font-weight: 800; color: #93c5fd; }
+        .hero-stat-lbl { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 1px; color: rgba(255,255,255,0.55); font-weight: 600; }
+        .app-tabs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            justify-content: center;
+            padding: 1.25rem 0 0;
         }
-        
-        .stat-card:hover {
-            transform: translateY(-5px);
-        }
-        
-        .stat-number {
-            font-size: 2.5rem;
-            font-weight: 700;
-            color: var(--primary-color);
-        }
-        
-        .stat-label {
-            color: #666;
-            font-size: 0.9rem;
-            margin-top: 0.5rem;
-        }
-        
-        .table {
-            border-radius: 10px;
-            overflow: hidden;
-        }
-        
-        .table thead {
-            background: var(--primary-color);
-            color: white;
-        }
-        
-        .btn-primary {
-            background: var(--primary-color);
-            border: none;
-            border-radius: 25px;
-            padding: 0.75rem 2rem;
-            font-weight: 600;
-        }
-        
-        .btn-primary:hover {
-            background: #9a2629;
-        }
-        
-        .calendar-container {
-            background: white;
-            border-radius: 15px;
-            padding: 1.5rem;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-        }
-        
-        .appointment-card {
-            background: #f8f9fa;
-            border-left: 4px solid var(--primary-color);
-            padding: 1rem;
-            margin-bottom: 1rem;
-            border-radius: 0 10px 10px 0;
-        }
-        
-        .patient-card {
-            background: white;
-            border: 1px solid #e9ecef;
-            border-radius: 10px;
-            padding: 1rem;
-            margin-bottom: 1rem;
-            transition: box-shadow 0.3s ease;
-        }
-        
-        .patient-card:hover {
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-        }
-        
-        .status-badge {
-            padding: 0.25rem 0.75rem;
-            border-radius: 20px;
+        .app-tab {
+            border: 2px solid rgba(255,255,255,0.2);
+            background: rgba(255,255,255,0.08);
+            color: rgba(255,255,255,0.85);
+            padding: 0.55rem 1.1rem;
+            border-radius: 50px;
             font-size: 0.8rem;
             font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
         }
-        
-        .status-active {
-            background: #d4edda;
-            color: #155724;
-        }
-        
-        .status-pending {
-            background: #fff3cd;
-            color: #856404;
-        }
-        
-        .status-completed {
-            background: #d1ecf1;
-            color: #0c5460;
-        }
-        
-        .chart-container {
+        .app-tab:hover, .app-tab.active {
             background: white;
-            border-radius: 15px;
-            padding: 1.5rem;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            color: var(--text);
+            border-color: white;
         }
+        .app-tab[data-app="clinical"].active { color: var(--clinical); }
+        .app-tab[data-app="hr"].active { color: var(--hr); }
+        .app-tab[data-app="assets"].active { color: var(--assets); }
+        .app-tab[data-app="access"].active { color: var(--access); }
+        .app-tab[data-app="reports"].active { color: var(--reports); }
+        .app-tab[data-app="notifications"].active { color: var(--notify); }
+        .main-wrap { padding: 2rem 0 4rem; }
+        .panel { display: none; animation: fadeIn 0.3s ease; }
+        .panel.active { display: block; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+        .panel-header {
+            background: var(--card);
+            border-radius: 18px;
+            padding: 1.5rem 1.75rem;
+            border: 1px solid var(--border);
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        .panel-icon {
+            width: 52px; height: 52px;
+            border-radius: 14px;
+            display: flex; align-items: center; justify-content: center;
+            color: white; font-size: 1.35rem; flex-shrink: 0;
+        }
+        .panel-icon.clinical { background: var(--clinical); }
+        .panel-icon.hr { background: var(--hr); }
+        .panel-icon.assets { background: var(--assets); }
+        .panel-icon.access { background: var(--access); }
+        .panel-icon.reports { background: var(--reports); }
+        .panel-icon.notifications { background: var(--notify); }
+        .panel-title { font-size: 1.35rem; font-weight: 800; margin: 0; }
+        .panel-desc { font-size: 0.875rem; color: var(--muted); margin: 0.25rem 0 0; line-height: 1.55; }
+        .module-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1rem; }
+        .module-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            overflow: hidden;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .module-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 32px rgba(0,0,0,0.08);
+        }
+        .module-card-head {
+            padding: 1rem 1.15rem;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            gap: 0.65rem;
+        }
+        .module-card-head i { font-size: 1.1rem; opacity: 0.85; }
+        .module-card-head h6 { margin: 0; font-weight: 700; font-size: 0.95rem; }
+        .module-card-body { padding: 1rem 1.15rem; }
+        .module-card-body ul { margin: 0; padding-left: 1.1rem; font-size: 0.8rem; color: var(--muted); line-height: 1.65; }
+        .module-card-body li { margin-bottom: 0.2rem; }
+        .tag-row { display: flex; flex-wrap: wrap; gap: 0.35rem; margin-top: 0.65rem; }
+        .feat-tag {
+            font-size: 0.68rem;
+            font-weight: 600;
+            padding: 0.2rem 0.55rem;
+            border-radius: 6px;
+            background: #f1f5f9;
+            color: #475569;
+        }
+        .mock-section {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 18px;
+            padding: 1.5rem;
+            margin-top: 1.5rem;
+        }
+        .mock-section h5 { font-size: 1rem; font-weight: 700; margin-bottom: 1rem; }
+        .mock-table { font-size: 0.8rem; }
+        .mock-table thead { background: var(--primary); color: white; }
+        .mock-table .badge-pending { background: #fef3c7; color: #92400e; }
+        .mock-table .badge-done { background: #d1fae5; color: #065f46; }
+        .mock-table .badge-flag { background: #fee2e2; color: #991b1b; }
+        .arch-bar {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 18px;
+            padding: 2rem;
+            margin-top: 2rem;
+        }
+        .arch-bar h4 { font-weight: 800; margin-bottom: 1.25rem; }
+        .arch-cols { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; }
+        .arch-item {
+            text-align: center;
+            padding: 1.25rem;
+            background: var(--bg);
+            border-radius: 12px;
+            border: 1px solid var(--border);
+        }
+        .arch-item i { font-size: 1.5rem; color: var(--primary); margin-bottom: 0.5rem; }
+        .arch-item strong { display: block; font-size: 0.85rem; }
+        .arch-item span { font-size: 0.75rem; color: var(--muted); }
+        .stack-footer {
+            text-align: center;
+            padding: 1.5rem;
+            font-size: 0.8rem;
+            color: var(--muted);
+        }
+        .stack-footer a { color: var(--primary); font-weight: 600; text-decoration: none; }
     </style>
 </head>
 <body>
-    <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-dark">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="#">
-                <i class="fas fa-hospital me-2"></i>
-                CareMD - Medical Practice Management
-            </a>
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-59XXTKP9" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+    <nav class="top-nav navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand brand" href="#"><i class="fas fa-hospital me-2"></i>CareMD Platform Demo</a>
             <div class="navbar-nav ms-auto">
-                <a class="nav-link" href="#">
-                    <i class="fas fa-bell me-2"></i>
-                    Notifications (3)
-                </a>
-                <a class="nav-link" href="#">
-                    <i class="fas fa-user me-2"></i>
-                    Dr. John Smith
-                </a>
+                <a class="nav-link" href="index.html"><i class="fas fa-arrow-left me-1"></i> Back to Portfolio</a>
             </div>
         </div>
     </nav>
 
-    <div class="container-fluid">
-        <div class="row">
-            <!-- Sidebar -->
-            <div class="col-md-2 sidebar">
-                <ul class="nav flex-column">
-                    <li class="nav-item">
-                        <a class="nav-link active" href="#">
-                            <i class="fas fa-tachometer-alt me-2"></i>
-                            Dashboard
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">
-                            <i class="fas fa-users me-2"></i>
-                            Patients
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">
-                            <i class="fas fa-calendar-alt me-2"></i>
-                            Appointments
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">
-                            <i class="fas fa-file-medical me-2"></i>
-                            Claims
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">
-                            <i class="fas fa-chart-bar me-2"></i>
-                            Reports
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">
-                            <i class="fas fa-cog me-2"></i>
-                            Settings
-                        </a>
-                    </li>
-                </ul>
+    <section class="hero-demo text-center">
+        <div class="container">
+            <h1><i class="fas fa-hospital-alt me-2"></i>CareMD — Medical Practice Management</h1>
+            <p>
+                Multi-tenant SaaS platform for medical billing, revenue cycle management (RCM), HR operations, asset tracking, and practice administration.
+                Built as primary developer — Spring Boot 3.2 backend, Angular 14 SPA, PostgreSQL with Flyway migrations.
+            </p>
+            <div class="hero-stats">
+                <div><div class="hero-stat-num">58+</div><div class="hero-stat-lbl">Domain Entities</div></div>
+                <div><div class="hero-stat-num">136+</div><div class="hero-stat-lbl">DB Migrations</div></div>
+                <div><div class="hero-stat-num">34+</div><div class="hero-stat-lbl">REST Controllers</div></div>
+                <div><div class="hero-stat-num">6</div><div class="hero-stat-lbl">App Modules</div></div>
             </div>
+            <div class="app-tabs" role="tablist">
+                <button type="button" class="app-tab active" data-app="clinical" data-panel="panel-clinical"><i class="fas fa-file-medical"></i> Billing / Clinical</button>
+                <button type="button" class="app-tab" data-app="hr" data-panel="panel-hr"><i class="fas fa-users"></i> HR / Operations</button>
+                <button type="button" class="app-tab" data-app="assets" data-panel="panel-assets"><i class="fas fa-boxes-stacked"></i> Assets</button>
+                <button type="button" class="app-tab" data-app="access" data-panel="panel-access"><i class="fas fa-shield-halved"></i> Access</button>
+                <button type="button" class="app-tab" data-app="reports" data-panel="panel-reports"><i class="fas fa-chart-pie"></i> Reports</button>
+                <button type="button" class="app-tab" data-app="notifications" data-panel="panel-notifications"><i class="fas fa-bell"></i> Notifications</button>
+            </div>
+        </div>
+    </section>
 
-            <!-- Main Content -->
-            <div class="col-md-10 main-content">
-                <!-- Dashboard Stats -->
-                <div class="row mb-4">
-                    <div class="col-md-3">
-                        <div class="stat-card">
-                            <div class="stat-number">1,247</div>
-                            <div class="stat-label">Total Patients</div>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="stat-card">
-                            <div class="stat-number">89</div>
-                            <div class="stat-label">Today's Appointments</div>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="stat-card">
-                            <div class="stat-number">156</div>
-                            <div class="stat-label">Pending Claims</div>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="stat-card">
-                            <div class="stat-number">$45,230</div>
-                            <div class="stat-label">Monthly Revenue</div>
-                        </div>
+    <div class="container main-wrap">
+
+        <!-- CLINICAL / BILLING -->
+        <div id="panel-clinical" class="panel active">
+            <div class="panel-header">
+                <div class="panel-icon clinical"><i class="fas fa-file-medical"></i></div>
+                <div>
+                    <h2 class="panel-title">Billing &amp; Clinical (RCM)</h2>
+                    <p class="panel-desc">End-to-end revenue cycle: practices, patients, appointments, insurance claims, payments, negative balances, and claim configuration. Multi-tenant data isolation per practice with role-gated workflows.</p>
+                </div>
+            </div>
+            <div class="module-grid">
+                <div class="module-card">
+                    <div class="module-card-head" style="color:var(--clinical)"><i class="fas fa-gauge-high"></i><h6>My Dashboard</h6></div>
+                    <div class="module-card-body">
+                        <ul><li>Personalized biller dashboard with claim KPIs</li><li>Quick filters by practice, status, and date range</li><li>At-a-glance workload and pending actions</li></ul>
+                        <div class="tag-row"><span class="feat-tag">ApexCharts</span><span class="feat-tag">Role: MY_DASHBOARD</span></div>
                     </div>
                 </div>
-
-                <div class="row">
-                    <!-- Recent Appointments -->
-                    <div class="col-md-6">
-                        <div class="card dashboard-card">
-                            <div class="dashboard-header">
-                                <h5 class="mb-0">
-                                    <i class="fas fa-calendar-alt me-2"></i>
-                                    Today's Appointments
-                                </h5>
-                            </div>
-                            <div class="card-body">
-                                <div class="appointment-card">
-                                    <div class="d-flex justify-content-between align-items-center">
-                                        <div>
-                                            <h6 class="mb-1">Sarah Johnson</h6>
-                                            <small class="text-muted">General Checkup</small>
-                                        </div>
-                                        <div class="text-end">
-                                            <div class="status-badge status-active">Active</div>
-                                            <div class="text-muted small">10:30 AM</div>
-                                        </div>
-                                    </div>
-                                </div>
-                                
-                                <div class="appointment-card">
-                                    <div class="d-flex justify-content-between align-items-center">
-                                        <div>
-                                            <h6 class="mb-1">Michael Brown</h6>
-                                            <small class="text-muted">Follow-up Visit</small>
-                                        </div>
-                                        <div class="text-end">
-                                            <div class="status-badge status-pending">Pending</div>
-                                            <div class="text-muted small">11:15 AM</div>
-                                        </div>
-                                    </div>
-                                </div>
-                                
-                                <div class="appointment-card">
-                                    <div class="d-flex justify-content-between align-items-center">
-                                        <div>
-                                            <h6 class="mb-1">Emily Davis</h6>
-                                            <small class="text-muted">Consultation</small>
-                                        </div>
-                                        <div class="text-end">
-                                            <div class="status-badge status-completed">Completed</div>
-                                            <div class="text-muted small">09:45 AM</div>
-                                        </div>
-                                    </div>
-                                </div>
-                                
-                                <div class="text-center mt-3">
-                                    <a href="#" class="btn btn-primary">View All Appointments</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Recent Patients -->
-                    <div class="col-md-6">
-                        <div class="card dashboard-card">
-                            <div class="dashboard-header">
-                                <h5 class="mb-0">
-                                    <i class="fas fa-users me-2"></i>
-                                    Recent Patients
-                                </h5>
-                            </div>
-                            <div class="card-body">
-                                <div class="patient-card">
-                                    <div class="d-flex justify-content-between align-items-center">
-                                        <div class="d-flex align-items-center">
-                                            <div class="bg-primary rounded-circle d-flex align-items-center justify-content-center me-3" style="width: 40px; height: 40px;">
-                                                <i class="fas fa-user text-white"></i>
-                                            </div>
-                                            <div>
-                                                <h6 class="mb-1">Robert Wilson</h6>
-                                                <small class="text-muted">ID: P-2024-001</small>
-                                            </div>
-                                        </div>
-                                        <div class="text-end">
-                                            <div class="text-muted small">2 hours ago</div>
-                                        </div>
-                                    </div>
-                                </div>
-                                
-                                <div class="patient-card">
-                                    <div class="d-flex justify-content-between align-items-center">
-                                        <div class="d-flex align-items-center">
-                                            <div class="bg-success rounded-circle d-flex align-items-center justify-content-center me-3" style="width: 40px; height: 40px;">
-                                                <i class="fas fa-user text-white"></i>
-                                            </div>
-                                            <div>
-                                                <h6 class="mb-1">Lisa Anderson</h6>
-                                                <small class="text-muted">ID: P-2024-002</small>
-                                            </div>
-                                        </div>
-                                        <div class="text-end">
-                                            <div class="text-muted small">4 hours ago</div>
-                                        </div>
-                                    </div>
-                                </div>
-                                
-                                <div class="patient-card">
-                                    <div class="d-flex justify-content-between align-items-center">
-                                        <div class="d-flex align-items-center">
-                                            <div class="bg-warning rounded-circle d-flex align-items-center justify-content-center me-3" style="width: 40px; height: 40px;">
-                                                <i class="fas fa-user text-white"></i>
-                                            </div>
-                                            <div>
-                                                <h6 class="mb-1">David Miller</h6>
-                                                <small class="text-muted">ID: P-2024-003</small>
-                                            </div>
-                                        </div>
-                                        <div class="text-end">
-                                            <div class="text-muted small">6 hours ago</div>
-                                        </div>
-                                    </div>
-                                </div>
-                                
-                                <div class="text-center mt-3">
-                                    <a href="#" class="btn btn-primary">View All Patients</a>
-                                </div>
-                            </div>
-                        </div>
+                <div class="module-card">
+                    <div class="module-card-head" style="color:var(--clinical)"><i class="fas fa-calendar"></i><h6>Appointment Calendar</h6></div>
+                    <div class="module-card-body">
+                        <ul><li>FullCalendar-based scheduling view</li><li>Practice-scoped appointment visibility</li><li>Calendar and list views for front-desk workflows</li></ul>
+                        <div class="tag-row"><span class="feat-tag">FullCalendar</span><span class="feat-tag">WebSocket updates</span></div>
                     </div>
                 </div>
-
-                <!-- Claims Management -->
-                <div class="row mt-4">
-                    <div class="col-12">
-                        <div class="card dashboard-card">
-                            <div class="dashboard-header">
-                                <h5 class="mb-0">
-                                    <i class="fas fa-file-medical me-2"></i>
-                                    Insurance Claims Management
-                                </h5>
-                            </div>
-                            <div class="card-body">
-                                <div class="table-responsive">
-                                    <table class="table table-hover">
-                                        <thead>
-                                            <tr>
-                                                <th>Claim ID</th>
-                                                <th>Patient</th>
-                                                <th>Insurance</th>
-                                                <th>Amount</th>
-                                                <th>Status</th>
-                                                <th>Date</th>
-                                                <th>Actions</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>#C-2024-001</td>
-                                                <td>Sarah Johnson</td>
-                                                <td>Blue Cross</td>
-                                                <td>$1,250.00</td>
-                                                <td><span class="status-badge status-pending">Pending</span></td>
-                                                <td>2024-01-15</td>
-                                                <td>
-                                                    <button class="btn btn-sm btn-outline-primary">View</button>
-                                                    <button class="btn btn-sm btn-outline-success">Process</button>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>#C-2024-002</td>
-                                                <td>Michael Brown</td>
-                                                <td>Aetna</td>
-                                                <td>$850.00</td>
-                                                <td><span class="status-badge status-active">Processing</span></td>
-                                                <td>2024-01-14</td>
-                                                <td>
-                                                    <button class="btn btn-sm btn-outline-primary">View</button>
-                                                    <button class="btn btn-sm btn-outline-warning">Update</button>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>#C-2024-003</td>
-                                                <td>Emily Davis</td>
-                                                <td>Cigna</td>
-                                                <td>$2,100.00</td>
-                                                <td><span class="status-badge status-completed">Approved</span></td>
-                                                <td>2024-01-13</td>
-                                                <td>
-                                                    <button class="btn btn-sm btn-outline-primary">View</button>
-                                                    <button class="btn btn-sm btn-outline-info">Download</button>
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
+                <div class="module-card">
+                    <div class="module-card-head" style="color:var(--clinical)"><i class="fas fa-hospital"></i><h6>Practices</h6></div>
+                    <div class="module-card-body">
+                        <ul><li>CRUD for medical practices / facilities</li><li>Multi-tenant practice switcher in header</li><li>Facility, place-of-service, and insurance linkage</li></ul>
+                        <div class="tag-row"><span class="feat-tag">List / New / Update / View</span><span class="feat-tag">ngx-datatable</span></div>
                     </div>
                 </div>
+                <div class="module-card">
+                    <div class="module-card-head" style="color:var(--clinical)"><i class="fas fa-user-injured"></i><h6>Patients</h6></div>
+                    <div class="module-card-body">
+                        <ul><li>Patient demographics and insurance profiles</li><li>Authorizations and eligibility tracking</li><li>Bulk patient import (Excel)</li></ul>
+                        <div class="tag-row"><span class="feat-tag">Batch Import</span><span class="feat-tag">PatientInsurance</span></div>
+                    </div>
+                </div>
+                <div class="module-card">
+                    <div class="module-card-head" style="color:var(--clinical)"><i class="fas fa-calendar-check"></i><h6>Appointments</h6></div>
+                    <div class="module-card-body">
+                        <ul><li>Appointment list, create, update, view</li><li>Scheduled and future appointment views</li><li>Appointment import and action history</li></ul>
+                        <div class="tag-row"><span class="feat-tag">Import</span><span class="feat-tag">AppointmentAction</span></div>
+                    </div>
+                </div>
+                <div class="module-card">
+                    <div class="module-card-head" style="color:var(--clinical)"><i class="fas fa-file-invoice"></i><h6>Claims</h6></div>
+                    <div class="module-card-body">
+                        <ul><li>Full claim lifecycle — new, update, view, list</li><li>Claim status workflow and action audit trail</li><li>Claims import and CPT code import</li><li>Advanced search with JPA Specifications</li></ul>
+                        <div class="tag-row"><span class="feat-tag">RCM Core</span><span class="feat-tag">ClaimStatus</span><span class="feat-tag">RefCpt</span></div>
+                    </div>
+                </div>
+                <div class="module-card">
+                    <div class="module-card-head" style="color:var(--clinical)"><i class="fas fa-flag"></i><h6>Flagged Claims</h6></div>
+                    <div class="module-card-body">
+                        <ul><li>Claims flagged for review or follow-up</li><li>Configurable claim flags (setup module)</li><li>Permission-gated flagged claims queue</li></ul>
+                        <div class="tag-row"><span class="feat-tag">ClaimFlag</span><span class="feat-tag">Workflow</span></div>
+                    </div>
+                </div>
+                <div class="module-card">
+                    <div class="module-card-head" style="color:var(--clinical)"><i class="fas fa-money-bill-wave"></i><h6>Payments</h6></div>
+                    <div class="module-card-body">
+                        <ul><li>Insurance response posting and adjustments</li><li>Patient payment entry and listing</li><li>Bulk payments processing</li><li>Payment selector for multi-line posting</li></ul>
+                        <div class="tag-row"><span class="feat-tag">ERA / EOB</span><span class="feat-tag">Bulk Payments</span></div>
+                    </div>
+                </div>
+                <div class="module-card">
+                    <div class="module-card-head" style="color:var(--clinical)"><i class="fas fa-scale-unbalanced"></i><h6>Negative Balance</h6></div>
+                    <div class="module-card-body">
+                        <ul><li>Track accounts with outstanding negative balances</li><li>Separate module route (/nb) for balance reconciliation</li><li>Filtered list with practice context</li></ul>
+                        <div class="tag-row"><span class="feat-tag">Reconciliation</span></div>
+                    </div>
+                </div>
+                <div class="module-card">
+                    <div class="module-card-head" style="color:var(--clinical)"><i class="fas fa-sliders"></i><h6>Setup — Claim Flags</h6></div>
+                    <div class="module-card-body">
+                        <ul><li>Admin configuration for claim flag types</li><li>CRUD for flag definitions used across claims</li><li>Metadata endpoint with PreAuthorize alignment</li></ul>
+                        <div class="tag-row"><span class="feat-tag">Reference Data</span></div>
+                    </div>
+                </div>
+            </div>
+            <div class="mock-section">
+                <h5><i class="fas fa-table me-2 text-primary"></i>Sample — Claims List (mock data)</h5>
+                <div class="table-responsive">
+                    <table class="table table-hover mock-table mb-0">
+                        <thead><tr><th>Claim #</th><th>Patient</th><th>Practice</th><th>Payer</th><th>Charges</th><th>Status</th><th>DOS</th></tr></thead>
+                        <tbody>
+                            <tr><td>CLM-2025-8841</td><td>Sarah Johnson</td><td>Metro Family Care</td><td>Blue Cross</td><td>$1,250.00</td><td><span class="badge badge-pending">Submitted</span></td><td>2025-04-12</td></tr>
+                            <tr><td>CLM-2025-8839</td><td>Michael Brown</td><td>Valley Pediatrics</td><td>Aetna</td><td>$850.00</td><td><span class="badge badge-done">Paid</span></td><td>2025-04-10</td></tr>
+                            <tr><td>CLM-2025-8835</td><td>Emily Davis</td><td>Metro Family Care</td><td>Cigna</td><td>$2,100.00</td><td><span class="badge badge-flag">On Hold</span></td><td>2025-04-08</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
 
-                <!-- Revenue Chart -->
-                <div class="row mt-4">
-                    <div class="col-12">
-                        <div class="chart-container">
-                            <h5 class="mb-3">
-                                <i class="fas fa-chart-line me-2"></i>
-                                Monthly Revenue Analytics
-                            </h5>
-                            <div class="row">
-                                <div class="col-md-8">
-                                    <div class="bg-light rounded p-4 text-center">
-                                        <h6 class="text-muted">Revenue Chart Placeholder</h6>
-                                        <p class="text-muted">Interactive chart showing monthly revenue trends, patient visits, and claim processing statistics</p>
-                                        <div class="d-flex justify-content-around mt-3">
-                                            <div class="text-center">
-                                                <div class="h4 text-primary">$45,230</div>
-                                                <small class="text-muted">This Month</small>
-                                            </div>
-                                            <div class="text-center">
-                                                <div class="h4 text-success">+12.5%</div>
-                                                <small class="text-muted">Growth</small>
-                                            </div>
-                                            <div class="text-center">
-                                                <div class="h4 text-info">156</div>
-                                                <small class="text-muted">Claims</small>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <h6>Key Features Demonstrated:</h6>
-                                    <ul class="list-unstyled">
-                                        <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Multi-tenant Architecture</li>
-                                        <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Real-time Dashboard</li>
-                                        <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Claims Management</li>
-                                        <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Patient Management</li>
-                                        <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Appointment Scheduling</li>
-                                        <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Role-based Access Control</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
+        <!-- HR -->
+        <div id="panel-hr" class="panel">
+            <div class="panel-header">
+                <div class="panel-icon hr"><i class="fas fa-users"></i></div>
+                <div>
+                    <h2 class="panel-title">HR / Operations</h2>
+                    <p class="panel-desc">Workforce management: attendance with PWA check-in, leave management, loans, timesheets, team structure, shift schedules, employee records, and recruiting pipelines.</p>
+                </div>
+            </div>
+            <div class="module-grid">
+                <div class="module-card">
+                    <div class="module-card-head" style="color:var(--hr)"><i class="fas fa-fingerprint"></i><h6>Attendance</h6></div>
+                    <div class="module-card-body">
+                        <ul><li>Check-in / check-out with break tracking</li><li>Attendance list and detailed view per employee</li><li>PWA support with offline today-cache</li><li>Break overlay for active sessions</li></ul>
+                        <div class="tag-row"><span class="feat-tag">PWA</span><span class="feat-tag">AttendanceBreak</span></div>
+                    </div>
+                </div>
+                <div class="module-card">
+                    <div class="module-card-head" style="color:var(--hr)"><i class="fas fa-plane-departure"></i><h6>Leaves</h6></div>
+                    <div class="module-card-body">
+                        <ul><li>Leave request submission and approval workflow</li><li>Leave types and balance deduction</li><li>Manager review and status tracking</li></ul>
+                    </div>
+                </div>
+                <div class="module-card">
+                    <div class="module-card-head" style="color:var(--hr)"><i class="fas fa-piggy-bank"></i><h6>Leave Bank</h6></div>
+                    <div class="module-card-body">
+                        <ul><li>Employee self-service leave balance view</li><li>Accrual and usage history</li><li>Employee-only gated route</li></ul>
+                    </div>
+                </div>
+                <div class="module-card">
+                    <div class="module-card-head" style="color:var(--hr)"><i class="fas fa-hand-holding-dollar"></i><h6>Loans</h6></div>
+                    <div class="module-card-body">
+                        <ul><li>Employee loan requests and approvals</li><li>Repayment schedule tracking (LoanRepayment)</li><li>Payroll deduction integration</li></ul>
+                        <div class="tag-row"><span class="feat-tag">Loan</span><span class="feat-tag">Repayment</span></div>
+                    </div>
+                </div>
+                <div class="module-card">
+                    <div class="module-card-head" style="color:var(--hr)"><i class="fas fa-calendar-day"></i><h6>Public Holidays</h6></div>
+                    <div class="module-card-body">
+                        <ul><li>Company holiday calendar management</li><li>CRUD for public holiday definitions</li><li>Used in attendance and payroll calculations</li></ul>
+                    </div>
+                </div>
+                <div class="module-card">
+                    <div class="module-card-head" style="color:var(--hr)"><i class="fas fa-clock"></i><h6>Timesheets</h6></div>
+                    <div class="module-card-body">
+                        <ul><li>Timesheet entry with line items (TimesheetItem)</li><li>Weekly / period-based submission</li><li>Approval workflow for managers</li></ul>
+                    </div>
+                </div>
+                <div class="module-card">
+                    <div class="module-card-head" style="color:var(--hr)"><i class="fas fa-people-group"></i><h6>Teams</h6></div>
+                    <div class="module-card-body">
+                        <ul><li>Team structure and member assignment</li><li>Team-based reporting and scheduling</li><li>Links employees to organizational units</li></ul>
+                    </div>
+                </div>
+                <div class="module-card">
+                    <div class="module-card-head" style="color:var(--hr)"><i class="fas fa-calendar-week"></i><h6>Schedules</h6></div>
+                    <div class="module-card-body">
+                        <ul><li>Shift schedule planning and assignment</li><li>Schedule list with employee mapping</li><li>Supports operations workforce planning</li></ul>
+                    </div>
+                </div>
+                <div class="module-card">
+                    <div class="module-card-head" style="color:var(--hr)"><i class="fas fa-id-badge"></i><h6>Employees</h6></div>
+                    <div class="module-card-body">
+                        <ul><li>Full employee CRUD with profile pictures</li><li>Compensation, designation, and status</li><li>Employee view with linked attendance and loans</li></ul>
+                        <div class="tag-row"><span class="feat-tag">Profile Picture</span><span class="feat-tag">Employee</span></div>
+                    </div>
+                </div>
+                <div class="module-card">
+                    <div class="module-card-head" style="color:var(--hr)"><i class="fas fa-user-plus"></i><h6>Recruiting</h6></div>
+                    <div class="module-card-body">
+                        <ul><li>Meta hiring leads — campaign-sourced candidates</li><li>Hiring clone — duplicate lead management</li><li>Custom hiring — manual lead entry</li><li>Status dialog for hiring pipeline stages</li></ul>
+                        <div class="tag-row"><span class="feat-tag">MetaHiringLead</span><span class="feat-tag">CustomHiringLead</span></div>
                     </div>
                 </div>
             </div>
         </div>
+
+        <!-- ASSETS -->
+        <div id="panel-assets" class="panel">
+            <div class="panel-header">
+                <div class="panel-icon assets"><i class="fas fa-boxes-stacked"></i></div>
+                <div>
+                    <h2 class="panel-title">Assets</h2>
+                    <p class="panel-desc">IT and office asset inventory management — track hardware, assignments to employees, categories, and summary dashboards.</p>
+                </div>
+            </div>
+            <div class="module-grid">
+                <div class="module-card">
+                    <div class="module-card-head" style="color:var(--assets)"><i class="fas fa-chart-pie"></i><h6>Summary Dashboard</h6></div>
+                    <div class="module-card-body">
+                        <ul><li>Asset allocation overview charts</li><li>Counts by category and assignment status</li><li>Quick navigation to inventory and assignments</li></ul>
+                    </div>
+                </div>
+                <div class="module-card">
+                    <div class="module-card-head" style="color:var(--assets)"><i class="fas fa-laptop"></i><h6>Inventory</h6></div>
+                    <div class="module-card-body">
+                        <ul><li>Asset CRUD — serial numbers, purchase date, condition</li><li>Search and filter with ngx-datatable</li><li>Asset view with assignment history</li></ul>
+                        <div class="tag-row"><span class="feat-tag">Asset</span></div>
+                    </div>
+                </div>
+                <div class="module-card">
+                    <div class="module-card-head" style="color:var(--assets)"><i class="fas fa-user-check"></i><h6>Assignments</h6></div>
+                    <div class="module-card-body">
+                        <ul><li>Assign assets to employees</li><li>Track assignment dates and return status</li><li>Create and list assignment records</li></ul>
+                        <div class="tag-row"><span class="feat-tag">AssetAssignment</span></div>
+                    </div>
+                </div>
+                <div class="module-card">
+                    <div class="module-card-head" style="color:var(--assets)"><i class="fas fa-folder-tree"></i><h6>Categories</h6></div>
+                    <div class="module-card-body">
+                        <ul><li>Asset category taxonomy (laptops, monitors, etc.)</li><li>Category CRUD with asset count linkage</li></ul>
+                        <div class="tag-row"><span class="feat-tag">AssetCategory</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ACCESS -->
+        <div id="panel-access" class="panel">
+            <div class="panel-header">
+                <div class="panel-icon access"><i class="fas fa-shield-halved"></i></div>
+                <div>
+                    <h2 class="panel-title">Access &amp; Administration</h2>
+                    <p class="panel-desc">Multi-tenant identity and authorization — users, roles, feature packages, tenant management, and real-time in-app messaging via WebSocket/STOMP.</p>
+                </div>
+            </div>
+            <div class="module-grid">
+                <div class="module-card">
+                    <div class="module-card-head" style="color:var(--access)"><i class="fas fa-users-gear"></i><h6>Users</h6></div>
+                    <div class="module-card-body">
+                        <ul><li>User CRUD with role and practice assignment</li><li>Password reset and session management</li><li>JWT access (12h) and refresh tokens (7d)</li></ul>
+                        <div class="tag-row"><span class="feat-tag">JWT</span><span class="feat-tag">Spring Security</span></div>
+                    </div>
+                </div>
+                <div class="module-card">
+                    <div class="module-card-head" style="color:var(--access)"><i class="fas fa-user-shield"></i><h6>Roles</h6></div>
+                    <div class="module-card-body">
+                        <ul><li>Hierarchical role-based access control</li><li>Role-to-feature permission mapping</li><li>OR-prefixed permission keys for granular gates</li></ul>
+                    </div>
+                </div>
+                <div class="module-card">
+                    <div class="module-card-head" style="color:var(--access)"><i class="fas fa-cube"></i><h6>Packages</h6></div>
+                    <div class="module-card-body">
+                        <ul><li>Subscription packages for tenant features</li><li>Package-to-module and feature bundling</li><li>Controls which app areas a tenant can access</li></ul>
+                        <div class="tag-row"><span class="feat-tag">Package</span><span class="feat-tag">Feature</span><span class="feat-tag">Module</span></div>
+                    </div>
+                </div>
+                <div class="module-card">
+                    <div class="module-card-head" style="color:var(--access)"><i class="fas fa-building"></i><h6>Tenants</h6></div>
+                    <div class="module-card-body">
+                        <ul><li>Multi-tenant organization management</li><li>Tenant provisioning and configuration</li><li>BaseTenantEntity isolation across all data</li></ul>
+                        <div class="tag-row"><span class="feat-tag">Multi-Tenant</span></div>
+                    </div>
+                </div>
+                <div class="module-card">
+                    <div class="module-card-head" style="color:var(--access)"><i class="fas fa-comments"></i><h6>Messages</h6></div>
+                    <div class="module-card-body">
+                        <ul><li>Real-time in-app messaging</li><li>WebSocket/STOMP push notifications</li><li>User-to-user communication within platform</li></ul>
+                        <div class="tag-row"><span class="feat-tag">WebSocket</span><span class="feat-tag">STOMP</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- REPORTS -->
+        <div id="panel-reports" class="panel">
+            <div class="panel-header">
+                <div class="panel-icon reports"><i class="fas fa-chart-pie"></i></div>
+                <div>
+                    <h2 class="panel-title">Reports &amp; Analytics</h2>
+                    <p class="panel-desc">Unified reports hub with role-filtered sections — clinical RCM analytics, HR attendance and payroll reports, and user activity audit logs.</p>
+                </div>
+            </div>
+            <div class="module-grid">
+                <div class="module-card">
+                    <div class="module-card-head" style="color:var(--reports)"><i class="fas fa-hospital"></i><h6>Clinical Reports</h6></div>
+                    <div class="module-card-body">
+                        <ul><li>Service reports with ApexCharts analytics</li><li>Facility reports</li><li>Claim denial and secondary denial reports</li><li>Resubmission tracker</li><li>On-hold claims report</li><li>Patient balance report</li><li>Check report (ERA reconciliation)</li></ul>
+                    </div>
+                </div>
+                <div class="module-card">
+                    <div class="module-card-head" style="color:var(--reports)"><i class="fas fa-user-clock"></i><h6>HR Reports</h6></div>
+                    <div class="module-card-body">
+                        <ul><li>Attendance reports and daily summaries</li><li>Employee leave bank report</li><li>Daily performance report</li><li>Payroll / salary summary</li><li>Performance adjustment admin</li></ul>
+                    </div>
+                </div>
+                <div class="module-card">
+                    <div class="module-card-head" style="color:var(--reports)"><i class="fas fa-list-check"></i><h6>Activity Logs</h6></div>
+                    <div class="module-card-body">
+                        <ul><li>User activity audit trail</li><li>Filterable log viewer for compliance</li><li>Tracks critical actions across modules</li></ul>
+                        <div class="tag-row"><span class="feat-tag">ActivityLog</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- NOTIFICATIONS -->
+        <div id="panel-notifications" class="panel">
+            <div class="panel-header">
+                <div class="panel-icon notifications"><i class="fas fa-bell"></i></div>
+                <div>
+                    <h2 class="panel-title">Notifications</h2>
+                    <p class="panel-desc">System-wide notification center — alerts for claim updates, approvals, assignments, and platform events delivered to users in real time.</p>
+                </div>
+            </div>
+            <div class="module-grid">
+                <div class="module-card">
+                    <div class="module-card-head" style="color:var(--notify)"><i class="fas fa-inbox"></i><h6>Notification Center</h6></div>
+                    <div class="module-card-body">
+                        <ul><li>Centralized notifications list</li><li>Read / unread status tracking</li><li>Linked to backend Notification entity</li><li>Integrates with WebSocket for live delivery</li></ul>
+                        <div class="tag-row"><span class="feat-tag">Notification</span><span class="feat-tag">Real-time</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ARCHITECTURE -->
+        <div class="arch-bar">
+            <h4><i class="fas fa-sitemap me-2"></i>Technical Architecture</h4>
+            <div class="arch-cols">
+                <div class="arch-item"><i class="fas fa-server d-block"></i><strong>Spring Boot 3.2</strong><span>REST API · Java 17 · MapStruct · Lombok</span></div>
+                <div class="arch-item"><i class="fas fa-laptop-code d-block"></i><strong>Angular 14 SPA</strong><span>Lazy modules · Material · ngx-datatable</span></div>
+                <div class="arch-item"><i class="fas fa-database d-block"></i><strong>PostgreSQL</strong><span>Flyway migrations · JPA/Hibernate 6</span></div>
+                <div class="arch-item"><i class="fas fa-lock d-block"></i><strong>Security</strong><span>JWT · RBAC · Multi-tenant isolation</span></div>
+                <div class="arch-item"><i class="fas fa-bolt d-block"></i><strong>Real-time</strong><span>WebSocket/STOMP · Caffeine cache</span></div>
+                <div class="arch-item"><i class="fas fa-cloud d-block"></i><strong>Deployment</strong><span>Docker · GitLab CI · Dual brand builds</span></div>
+            </div>
+        </div>
+
+        <p class="stack-footer">
+            Portfolio demo — illustrative UI only. <a href="index.html">Return to portfolio</a>
+        </p>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.querySelectorAll('.app-tab').forEach(function(tab) {
+            tab.addEventListener('click', function() {
+                var app = this.getAttribute('data-app');
+                var panelId = this.getAttribute('data-panel');
+                document.querySelectorAll('.app-tab').forEach(function(t) { t.classList.remove('active'); });
+                document.querySelectorAll('.panel').forEach(function(p) { p.classList.remove('active'); });
+                this.classList.add('active');
+                document.getElementById(panelId).classList.add('active');
+            });
+        });
+    </script>
 </body>
 </html>
