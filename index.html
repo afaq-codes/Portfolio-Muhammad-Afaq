@@ -1,545 +1,786 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-59XXTKP9');</script>
+    <!-- End Google Tag Manager -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio Demos - Full-Stack Developer</title>
+    <meta name="description" content="Muhammad Afaq — Full-Stack Java & Angular Developer. Portfolio showcasing enterprise healthcare, ERP, POS, and educational management systems.">
+    <meta property="og:title" content="Muhammad Afaq — Full-Stack Java & Angular Developer">
+    <meta property="og:description" content="Portfolio of Muhammad Afaq, Full-Stack Developer specializing in Java Spring Boot & Angular enterprise applications.">
+    <title>Muhammad Afaq — Full-Stack Developer</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary-color: #b02f33;
-            --secondary-color: #2c3e50;
-            --success-color: #27ae60;
-            --warning-color: #f39c12;
-            --danger-color: #e74c3c;
-            --info-color: #3498db;
-            --light-bg: #f8f9fa;
-            --dark-bg: #2c3e50;
+            --body-bg: #f8fafc;
+            --text-dark: #1e293b;
+            --text-muted: #64748b;
+            --border-light: #e2e8f0;
         }
-        
+
+        /* Per-project color themes applied to each .project-card */
+        .theme-caremd     { --p1: #0066cc; --p2: #003d99; }
+        .theme-rynodesk    { --p1: #e85d04; --p2: #9d0208; }
+        .theme-autoschedula { --p1: #7209b7; --p2: #3a0ca3; }
+        .theme-erp        { --p1: #1e3a5f; --p2: #2c6fad; }
+        .theme-carer      { --p1: #0891b2; --p2: #065f74; }
+        .theme-wellness   { --p1: #16a34a; --p2: #14532d; }
+        .theme-marketing  { --p1: #9b2226; --p2: #6a0572; }
+
+        html { scroll-behavior: smooth; }
+
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #ffffff;
+            background-color: var(--body-bg);
+            color: var(--text-dark);
         }
-        
+
+        /* ===== NAVBAR ===== */
         .navbar {
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            background: linear-gradient(135deg, #0f172a, #1e293b);
+            box-shadow: 0 2px 20px rgba(0,0,0,0.2);
+            padding: 0.9rem 0;
         }
-        
         .navbar-brand {
-            font-weight: 700;
+            font-weight: 800;
+            font-size: 1.2rem;
             color: white !important;
+            letter-spacing: -0.5px;
         }
-        
+        .navbar-brand .accent { color: #60a5fa; }
         .nav-link {
-            color: rgba(255,255,255,0.9) !important;
+            color: rgba(255,255,255,0.75) !important;
             font-weight: 500;
+            font-size: 0.875rem;
+            padding: 0.45rem 0.9rem !important;
+            border-radius: 8px;
+            transition: all 0.2s;
         }
-        
         .nav-link:hover {
             color: white !important;
+            background: rgba(255,255,255,0.08);
         }
-        
-        .project-card {
-            border: none;
-            border-radius: 15px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            margin-bottom: 2rem;
-        }
-        
-        .project-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
-        }
-        
-        .project-header {
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+
+        /* ===== HERO ===== */
+        .hero-section {
+            background: linear-gradient(140deg, #0f172a 0%, #1e3a5f 55%, #0f3460 100%);
             color: white;
-            padding: 1.5rem;
-            border-radius: 15px 15px 0 0;
-        }
-        
-        .project-title {
-            font-size: 1.5rem;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-        }
-        
-        .project-subtitle {
-            font-size: 1rem;
-            opacity: 0.9;
-            margin-bottom: 0;
-        }
-        
-        .tech-badge {
-            background: rgba(255,255,255,0.2);
-            color: white;
-            padding: 0.25rem 0.75rem;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            margin-right: 0.5rem;
-            margin-bottom: 0.5rem;
-            display: inline-block;
-        }
-        
-        .project-body {
-            padding: 2rem;
-        }
-        
-        .feature-list {
-            list-style: none;
-            padding: 0;
-        }
-        
-        .feature-list li {
-            padding: 0.5rem 0;
-            border-bottom: 1px solid #eee;
-            display: flex;
-            align-items: center;
-        }
-        
-        .feature-list li:last-child {
-            border-bottom: none;
-        }
-        
-        .feature-list li i {
-            color: var(--success-color);
-            margin-right: 0.75rem;
-            width: 20px;
-        }
-        
-        .stats-row {
-            background: var(--light-bg);
-            border-radius: 10px;
-            padding: 1.5rem;
-            margin: 1rem 0;
-        }
-        
-        .stat-item {
+            padding: 6rem 0 5rem;
             text-align: center;
+            position: relative;
+            overflow: hidden;
         }
-        
-        .stat-number {
-            font-size: 2rem;
-            font-weight: 700;
-            color: var(--primary-color);
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            width: 700px; height: 700px;
+            background: radial-gradient(circle, rgba(96,165,250,0.07) 0%, transparent 70%);
+            top: -250px; right: -150px;
+            border-radius: 50%;
+            pointer-events: none;
         }
-        
-        .stat-label {
+        .hero-section::after {
+            content: '';
+            position: absolute;
+            width: 400px; height: 400px;
+            background: radial-gradient(circle, rgba(167,139,250,0.06) 0%, transparent 70%);
+            bottom: -100px; left: -100px;
+            border-radius: 50%;
+            pointer-events: none;
+        }
+        .hero-greeting {
             font-size: 0.9rem;
-            color: #666;
-            margin-top: 0.25rem;
-        }
-        
-        .btn-primary {
-            background: var(--primary-color);
-            border: none;
-            padding: 0.75rem 2rem;
-            border-radius: 25px;
+            color: #93c5fd;
             font-weight: 600;
-            transition: all 0.3s ease;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 0.75rem;
         }
-        
-        .btn-primary:hover {
-            background: #9a2629;
+        .hero-name {
+            font-size: 3.75rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+            letter-spacing: -1.5px;
+            line-height: 1.1;
+        }
+        .hero-role {
+            font-size: 1.25rem;
+            color: rgba(255,255,255,0.65);
+            font-weight: 400;
+            margin-bottom: 1.75rem;
+        }
+        .hero-role strong { color: #60a5fa; font-weight: 600; }
+        .hero-chips {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 2.5rem;
+            flex-wrap: wrap;
+        }
+        .hero-chip {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.45rem;
+            background: rgba(255,255,255,0.08);
+            border: 1px solid rgba(255,255,255,0.15);
+            color: rgba(255,255,255,0.8);
+            padding: 0.45rem 1rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+        .hero-chip i { color: #60a5fa; font-size: 0.8rem; }
+        .hero-actions {
+            display: flex;
+            justify-content: center;
+            gap: 0.875rem;
+            flex-wrap: wrap;
+        }
+        .btn-hero-primary {
+            background: #2563eb;
+            color: white;
+            border: none;
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.25s;
+        }
+        .btn-hero-primary:hover {
+            background: #1d4ed8;
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(37,99,235,0.45);
+        }
+        .btn-hero-ghost {
+            background: rgba(255,255,255,0.08);
+            color: white;
+            border: 1.5px solid rgba(255,255,255,0.25);
+            padding: 0.8rem 1.75rem;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.25s;
+        }
+        .btn-hero-ghost:hover {
+            border-color: white;
+            background: rgba(255,255,255,0.15);
+            color: white;
             transform: translateY(-2px);
         }
-        
-        .btn-outline-primary {
-            border: 2px solid var(--primary-color);
-            color: var(--primary-color);
-            padding: 0.75rem 2rem;
-            border-radius: 25px;
-            font-weight: 600;
-            transition: all 0.3s ease;
-        }
-        
-        .btn-outline-primary:hover {
-            background: var(--primary-color);
-            color: white;
-        }
-        
-        .hero-section {
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            color: white;
-            padding: 4rem 0;
-            text-align: center;
-        }
-        
-        .hero-title {
-            font-size: 3rem;
+
+        /* ===== SECTION HEADERS ===== */
+        .section-eyebrow {
+            font-size: 0.8rem;
             font-weight: 700;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            color: #2563eb;
+            margin-bottom: 0.4rem;
+        }
+        .section-heading {
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: var(--text-dark);
+            margin-bottom: 0.6rem;
+            letter-spacing: -0.5px;
+        }
+        .section-sub {
+            color: var(--text-muted);
+            font-size: 1rem;
+            max-width: 580px;
+            margin: 0 auto 3.5rem;
+        }
+
+        /* ===== ABOUT / STATS ===== */
+        .about-section {
+            background: white;
+            padding: 4.5rem 0;
+            border-bottom: 1px solid var(--border-light);
+        }
+        .about-text {
+            font-size: 1.05rem;
+            color: var(--text-muted);
+            line-height: 1.75;
+            max-width: 700px;
+        }
+        .about-text strong { color: var(--text-dark); }
+        .stat-card {
+            background: var(--body-bg);
+            border-radius: 18px;
+            padding: 1.75rem 1.25rem;
+            text-align: center;
+            border: 1px solid var(--border-light);
+            transition: all 0.3s;
+            height: 100%;
+        }
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 35px rgba(0,0,0,0.08);
+            border-color: #93c5fd;
+        }
+        .stat-card-icon {
+            width: 50px; height: 50px;
+            background: linear-gradient(135deg, #2563eb, #1d4ed8);
+            border-radius: 14px;
+            display: flex; align-items: center; justify-content: center;
+            margin: 0 auto 1rem;
+        }
+        .stat-card-icon i { color: white; font-size: 1.2rem; }
+        .stat-card-num {
+            font-size: 2.25rem;
+            font-weight: 800;
+            color: var(--text-dark);
+            line-height: 1;
+            margin-bottom: 0.3rem;
+        }
+        .stat-card-lbl {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* ===== EXPERIENCE TIMELINE ===== */
+        /* ===== EXPERIENCE CARDS ===== */
+        .experience-section { padding: 5rem 0; background: var(--body-bg); }
+        .exp-card {
+            background: white;
+            border-radius: 22px;
+            border: 1px solid var(--border-light);
+            box-shadow: 0 2px 15px rgba(0,0,0,0.05);
+            overflow: hidden;
+            height: 100%;
+            transition: all 0.3s;
+        }
+        .exp-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.1);
+        }
+        .exp-top {
+            padding: 2rem;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+        .exp-top::before {
+            content: '';
+            position: absolute;
+            width: 220px; height: 220px;
+            background: radial-gradient(circle, rgba(255,255,255,0.07) 0%, transparent 70%);
+            top: -70px; right: -50px;
+            border-radius: 50%;
+            pointer-events: none;
+        }
+        .exp-top-secoptech { background: linear-gradient(140deg, #1e3a5f 0%, #2c6fad 100%); }
+        .exp-top-caremd    { background: linear-gradient(140deg, #0f172a 0%, #1e3a5f 55%, #0f3460 100%); }
+        .exp-top-row { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1.25rem; }
+        .exp-icon {
+            width: 54px; height: 54px;
+            background: rgba(255,255,255,0.15);
+            border-radius: 16px;
+            display: flex; align-items: center; justify-content: center;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+        .exp-icon i { font-size: 1.45rem; color: white; }
+        .current-pill {
+            background: #22c55e;
+            color: white;
+            padding: 0.3rem 0.85rem;
+            border-radius: 50px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            display: inline-flex; align-items: center; gap: 0.35rem;
+        }
+        .exp-company { font-size: 1.65rem; font-weight: 800; margin-bottom: 0.3rem; letter-spacing: -0.5px; }
+        .exp-role { font-size: 0.875rem; opacity: 0.8; margin-bottom: 1.1rem; line-height: 1.4; }
+        .exp-chips { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+        .exp-chip {
+            background: rgba(255,255,255,0.12);
+            border: 1px solid rgba(255,255,255,0.2);
+            color: rgba(255,255,255,0.85);
+            padding: 0.25rem 0.75rem;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            display: inline-flex; align-items: center; gap: 0.35rem;
+        }
+        .exp-chip i { font-size: 0.65rem; opacity: 0.75; }
+        .exp-body { padding: 2rem; }
+        .exp-highlights { list-style: none; padding: 0; margin: 0 0 1.75rem; }
+        .exp-highlights li {
+            display: flex; align-items: flex-start; gap: 0.7rem;
+            padding: 0.5rem 0; border-bottom: 1px solid #f1f5f9;
+            font-size: 0.875rem; color: #334155; line-height: 1.55;
+        }
+        .exp-highlights li:last-child { border-bottom: none; }
+        .exp-check {
+            width: 20px; height: 20px; flex-shrink: 0;
+            background: #d1fae5; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            margin-top: 2px;
+        }
+        .exp-check i { color: #059669; font-size: 0.6rem; }
+        .exp-proj-label {
+            font-size: 0.72rem; font-weight: 700;
+            text-transform: uppercase; letter-spacing: 1px;
+            color: var(--text-muted); margin-bottom: 0.65rem;
+        }
+        .exp-proj-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+        .exp-proj-tag {
+            background: #f1f5f9; color: #475569;
+            padding: 0.25rem 0.75rem; border-radius: 50px;
+            font-size: 0.75rem; font-weight: 600; border: 1px solid #e2e8f0;
+        }
+        .exp-proj-tag.major  { background: #fef3c7; color: #92400e; border-color: #fde68a; }
+        .exp-proj-tag.primary { background: #dbeafe; color: #1e40af; border-color: #bfdbfe; }
+
+        /* ===== PROJECT CARDS ===== */
+        .projects-section {
+            padding: 5rem 0;
+            background: white;
+        }
+        .project-card {
+            border: 1px solid var(--border-light);
+            border-radius: 22px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            margin-bottom: 2.25rem;
+            background: white;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.04);
+        }
+        .project-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 22px 55px rgba(0,0,0,0.11);
+            border-color: transparent;
+        }
+        .project-header {
+            background: linear-gradient(140deg, var(--p1), var(--p2));
+            color: white;
+            padding: 2rem 2rem 1.75rem;
+        }
+        .project-header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 0.75rem;
+            margin-bottom: 1.1rem;
+            flex-wrap: wrap;
+        }
+        .project-header-badges { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+        .badge-contribution {
+            background: rgba(255,255,255,0.22);
+            color: white;
+            padding: 0.25rem 0.8rem;
+            border-radius: 50px;
+            font-size: 0.72rem;
+            font-weight: 700;
+            border: 1px solid rgba(255,255,255,0.3);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .badge-company {
+            background: rgba(0,0,0,0.2);
+            color: rgba(255,255,255,0.9);
+            padding: 0.25rem 0.8rem;
+            border-radius: 50px;
+            font-size: 0.72rem;
+            font-weight: 600;
+            letter-spacing: 0.3px;
+        }
+        .project-icon-wrap {
+            width: 46px; height: 46px;
+            background: rgba(255,255,255,0.15);
+            border-radius: 13px;
+            display: flex; align-items: center; justify-content: center;
+        }
+        .project-icon-wrap i { font-size: 1.35rem; color: white; }
+        .project-name {
+            font-size: 1.45rem;
+            font-weight: 700;
+            margin-bottom: 0.3rem;
+            line-height: 1.2;
+        }
+        .project-tagline {
+            font-size: 0.9rem;
+            opacity: 0.82;
             margin-bottom: 1rem;
         }
-        
-        .hero-subtitle {
-            font-size: 1.25rem;
-            opacity: 0.9;
-            margin-bottom: 2rem;
+        .tech-badges { display: flex; flex-wrap: wrap; gap: 0.35rem; }
+        .tech-badge {
+            background: rgba(255,255,255,0.15);
+            color: white;
+            padding: 0.2rem 0.65rem;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            border: 1px solid rgba(255,255,255,0.2);
         }
-        
-        .section-title {
-            font-size: 2.5rem;
+        .project-body { padding: 2rem; }
+        .project-section-label {
+            font-size: 0.75rem;
             font-weight: 700;
-            color: var(--secondary-color);
-            text-align: center;
-            margin-bottom: 3rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-muted);
+            margin-bottom: 0.75rem;
         }
-        
+        .feature-list {
+            list-style: none;
+            padding: 0; margin: 0;
+        }
+        .feature-list li {
+            padding: 0.55rem 0;
+            border-bottom: 1px solid #f1f5f9;
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+            font-size: 0.875rem;
+            color: #334155;
+            line-height: 1.5;
+        }
+        .feature-list li:last-child { border-bottom: none; }
+        .feature-check {
+            width: 20px; height: 20px;
+            background: #d1fae5;
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            flex-shrink: 0;
+            margin-top: 1px;
+        }
+        .feature-check i { color: #059669; font-size: 0.6rem; }
+        .caremd-modules .caremd-module-title {
+            display: block;
+            white-space: nowrap;
+            color: var(--text-dark);
+            font-size: 0.875rem;
+            margin-bottom: 0.2rem;
+        }
+        .caremd-modules .caremd-module-desc {
+            display: block;
+            font-size: 0.8rem;
+            color: #64748b;
+            line-height: 1.5;
+            font-weight: 400;
+        }
+        .rynodesk-modules .rynodesk-module-title {
+            display: block;
+            white-space: nowrap;
+            color: var(--text-dark);
+            font-size: 0.875rem;
+            margin-bottom: 0.2rem;
+        }
+        .rynodesk-modules .rynodesk-module-desc {
+            display: block;
+            font-size: 0.8rem;
+            color: #64748b;
+            line-height: 1.5;
+            font-weight: 400;
+        }
+        .project-stats {
+            background: var(--body-bg);
+            border-radius: 14px;
+            padding: 1.25rem;
+            margin-bottom: 1.25rem;
+            border: 1px solid var(--border-light);
+        }
+        .p-stat-num {
+            font-size: 1.75rem;
+            font-weight: 800;
+            color: var(--p1);
+            line-height: 1;
+        }
+        .p-stat-lbl {
+            font-size: 0.72rem;
+            color: var(--text-muted);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+            margin-top: 0.2rem;
+        }
+        .btn-view-demo {
+            background: linear-gradient(135deg, var(--p1), var(--p2));
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            transition: all 0.25s;
+            width: 100%;
+        }
+        .btn-view-demo:hover {
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 22px rgba(0,0,0,0.28);
+            filter: brightness(1.1);
+        }
+
+        /* ===== SKILLS ===== */
+        .skills-section {
+            padding: 5rem 0;
+            background: var(--body-bg);
+        }
+        .skill-card {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem 1.75rem;
+            border: 1px solid var(--border-light);
+            height: 100%;
+            transition: all 0.3s;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.04);
+        }
+        .skill-card:hover {
+            box-shadow: 0 12px 35px rgba(0,0,0,0.08);
+            transform: translateY(-4px);
+        }
+        .skill-icon-box {
+            width: 50px; height: 50px;
+            border-radius: 14px;
+            display: flex; align-items: center; justify-content: center;
+            margin-bottom: 1.25rem;
+        }
+        .skill-icon-box i { font-size: 1.3rem; color: white; }
+        .bg-blue   { background: linear-gradient(135deg, #2563eb, #1d4ed8); }
+        .bg-green  { background: linear-gradient(135deg, #16a34a, #14532d); }
+        .bg-purple { background: linear-gradient(135deg, #7c3aed, #5b21b6); }
+        .bg-orange { background: linear-gradient(135deg, #ea580c, #9a3412); }
+        .skill-card-title {
+            font-weight: 700;
+            font-size: 1rem;
+            color: var(--text-dark);
+            margin-bottom: 1rem;
+        }
+        .skill-pills { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+        .skill-pill {
+            background: #f1f5f9;
+            color: #334155;
+            padding: 0.3rem 0.75rem;
+            border-radius: 50px;
+            font-size: 0.775rem;
+            font-weight: 500;
+            border: 1px solid #e2e8f0;
+        }
+
+        /* ===== CONTACT ===== */
+        .contact-section {
+            padding: 5rem 0;
+            background: white;
+        }
+        .contact-card {
+            background: linear-gradient(140deg, #0f172a 0%, #1e3a5f 60%, #0f3460 100%);
+            color: white;
+            border-radius: 26px;
+            padding: 4rem 3rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .contact-card::before {
+            content: '';
+            position: absolute;
+            width: 400px; height: 400px;
+            background: radial-gradient(circle, rgba(96,165,250,0.09) 0%, transparent 70%);
+            top: -150px; right: -80px;
+            border-radius: 50%;
+            pointer-events: none;
+        }
+        .contact-heading {
+            font-size: 2.1rem;
+            font-weight: 800;
+            margin-bottom: 0.75rem;
+            position: relative;
+        }
+        .contact-desc {
+            color: rgba(255,255,255,0.65);
+            font-size: 1.05rem;
+            margin-bottom: 2.5rem;
+            max-width: 520px;
+            margin-left: auto;
+            margin-right: auto;
+            position: relative;
+        }
+        .contact-btns {
+            display: flex;
+            justify-content: center;
+            gap: 0.875rem;
+            flex-wrap: wrap;
+            position: relative;
+        }
+        .btn-cta {
+            padding: 0.8rem 1.75rem;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.875rem;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.25s;
+            border: none;
+        }
+        .btn-cta-email   { background: #2563eb; color: white; }
+        .btn-cta-email:hover { background: #1d4ed8; color: white; transform: translateY(-2px); box-shadow: 0 8px 25px rgba(37,99,235,0.45); }
+        .btn-cta-linkedin { background: #0077b5; color: white; }
+        .btn-cta-linkedin:hover { background: #005e8a; color: white; transform: translateY(-2px); box-shadow: 0 8px 25px rgba(0,119,181,0.45); }
+        .btn-cta-github  { background: rgba(255,255,255,0.1); color: white; border: 1.5px solid rgba(255,255,255,0.25); }
+        .btn-cta-github:hover { background: rgba(255,255,255,0.18); color: white; transform: translateY(-2px); }
+        .btn-cta-whatsapp { background: #25d366; color: white; }
+        .btn-cta-whatsapp:hover { background: #1da851; color: white; transform: translateY(-2px); box-shadow: 0 8px 25px rgba(37,211,102,0.45); }
+
+        /* ===== FOOTER ===== */
         .footer {
-            background: var(--secondary-color);
-            color: white;
-            padding: 3rem 0;
+            background: linear-gradient(135deg, #0f172a, #1e293b);
+            color: rgba(255,255,255,0.55);
+            padding: 2rem 0;
             text-align: center;
+            font-size: 0.85rem;
         }
-        
-        .social-links a {
-            color: white;
-            font-size: 1.5rem;
-            margin: 0 1rem;
-            transition: color 0.3s ease;
+        .footer-social {
+            display: flex;
+            justify-content: center;
+            gap: 1.25rem;
+            margin-bottom: 0.75rem;
         }
-        
-        .social-links a:hover {
-            color: var(--primary-color);
+        .footer-social a {
+            color: rgba(255,255,255,0.5);
+            font-size: 1.15rem;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        .footer-social a:hover { color: #60a5fa; }
+        .footer strong { color: rgba(255,255,255,0.85); }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 992px) {
+            .hero-name { font-size: 2.75rem; }
+        }
+        @media (max-width: 576px) {
+            .hero-name { font-size: 2.1rem; }
+            .section-heading { font-size: 1.75rem; }
+            .contact-card { padding: 2.5rem 1.5rem; }
+            .contact-heading { font-size: 1.65rem; }
         }
     </style>
 </head>
 <body>
-    <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-dark">
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-59XXTKP9"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
+    <!-- ===== NAVBAR ===== -->
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
         <div class="container">
             <a class="navbar-brand" href="#">
-                <i class="fas fa-code me-2"></i>
-                Portfolio Demos
+                <i class="fas fa-code me-2"></i>Muhammad <span class="accent">Afaq</span>
             </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="#projects">Projects</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#skills">Skills</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#contact">Contact</a>
-                    </li>
+                <ul class="navbar-nav ms-auto gap-1">
+                    <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#experience">Experience</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#skills">Skills</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
                 </ul>
             </div>
         </div>
     </nav>
 
-    <!-- Hero Section -->
+    <!-- ===== HERO ===== -->
     <section class="hero-section">
-        <div class="container">
-            <h1 class="hero-title">Full-Stack Developer Portfolio</h1>
-            <p class="hero-subtitle">Enterprise Java & Angular Specialist | Healthcare & Business Solutions Expert</p>
-            <div class="mt-4">
-                <a href="#projects" class="btn btn-primary me-3">View Projects</a>
-                <a href="#contact" class="btn btn-outline-primary">Get In Touch</a>
+        <div class="container position-relative">
+            <p class="hero-greeting">Full-Stack Developer</p>
+            <h1 class="hero-name">Muhammad Afaq</h1>
+            <p class="hero-role">Specializing in <strong>Java Spring Boot</strong> &amp; <strong>Angular</strong> Enterprise Applications</p>
+            <div class="hero-chips">
+                <span class="hero-chip"><i class="fas fa-briefcase"></i> 3+ Years Experience</span>
+                <span class="hero-chip"><i class="fas fa-layer-group"></i> 7 Projects Delivered</span>
+                <span class="hero-chip"><i class="fas fa-building"></i> CareMD — Current</span>
+                <span class="hero-chip"><i class="fas fa-map-marker-alt"></i> Pakistan</span>
+            </div>
+            <div class="hero-actions">
+                <a href="#projects" class="btn-hero-primary">
+                    <i class="fas fa-folder-open"></i> View Projects
+                </a>
+                <a href="https://github.com/afaq-codes" target="_blank" rel="noopener" class="btn-hero-ghost">
+                    <i class="fab fa-github"></i> GitHub
+                </a>
+                <a href="https://www.linkedin.com/in/afaq-springboot-angular" target="_blank" rel="noopener" class="btn-hero-ghost">
+                    <i class="fab fa-linkedin"></i> LinkedIn
+                </a>
             </div>
         </div>
     </section>
 
-    <!-- Projects Section -->
-    <section id="projects" class="py-5">
+    <!-- ===== ABOUT / STATS ===== -->
+    <section id="about" class="about-section">
         <div class="container">
-            <h2 class="section-title">Featured Projects</h2>
-            
-            <!-- CareMD Project -->
-            <div class="row">
-                <div class="col-12">
-                    <div class="card project-card">
-                        <div class="project-header">
-                            <h3 class="project-title">CareMD - Medical Practice Management System</h3>
-                            <p class="project-subtitle">Enterprise Multi-Tenant SaaS Healthcare Platform</p>
-                            <div class="mt-3">
-                                <span class="tech-badge">Java 17</span>
-                                <span class="tech-badge">Spring Boot 3.2</span>
-                                <span class="tech-badge">Angular 14+</span>
-                                <span class="tech-badge">PostgreSQL</span>
-                                <span class="tech-badge">Docker</span>
-                                <span class="tech-badge">WebSocket</span>
-                            </div>
-                        </div>
-                        <div class="project-body">
-                            <div class="row">
-                                <div class="col-md-8">
-                                    <h5>Project Overview</h5>
-                                    <p>Built a comprehensive medical practice management system from scratch, handling complex healthcare workflows including patient management, appointment scheduling, claims processing, and multi-tenant architecture serving multiple medical practices.</p>
-                                    
-                                    <h6 class="mt-4">Key Features Implemented:</h6>
-                                    <ul class="feature-list">
-                                        <li><i class="fas fa-check"></i> Multi-tenant SaaS architecture with complete data isolation</li>
-                                        <li><i class="fas fa-check"></i> Real-time messaging system with WebSocket integration</li>
-                                        <li><i class="fas fa-check"></i> Complex medical billing workflows with insurance processing</li>
-                                        <li><i class="fas fa-check"></i> Role-based access control with hierarchical permissions</li>
-                                        <li><i class="fas fa-check"></i> Batch import/export functionality for large datasets</li>
-                                        <li><i class="fas fa-check"></i> Interactive dashboard with charts and calendar integration</li>
-                                    </ul>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="stats-row">
-                                        <div class="row text-center">
-                                            <div class="col-6">
-                                                <div class="stat-item">
-                                                    <div class="stat-number">15+</div>
-                                                    <div class="stat-label">Domain Entities</div>
-                                                </div>
-                                            </div>
-                                            <div class="col-6">
-                                                <div class="stat-item">
-                                                    <div class="stat-number">34+</div>
-                                                    <div class="stat-label">DB Migrations</div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="text-center">
-                                        <a href="caremd-demo.html" class="btn btn-primary">View Demo</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+            <div class="row align-items-center g-5">
+                <div class="col-lg-6">
+                    <p class="section-eyebrow">About Me</p>
+                    <h2 class="section-heading" style="margin-bottom:1rem;">Building Enterprise Software That Scales</h2>
+                    <p class="about-text">
+                        I'm a <strong>Full-Stack Java &amp; Angular Developer</strong> with hands-on experience building and delivering production-grade enterprise applications — from ERP systems and POS platforms to healthcare SaaS products.
+                    </p>
+                    <p class="about-text mt-3">
+                        Starting at <strong>SecopTech</strong>, I worked across multiple products including ERP migration, a Point-of-Sale system with marketplace integration, and a care management platform. I then joined <strong>CareMD</strong>, where I built a full medical practice management system from scratch — handling architecture, backend, frontend, and database design under the guidance of my project manager.
+                    </p>
                 </div>
-            </div>
-
-            <!-- WellnessNow Project -->
-            <div class="row">
-                <div class="col-12">
-                    <div class="card project-card">
-                        <div class="project-header">
-                            <h3 class="project-title">WellnessNow - Microservices Healthcare Platform</h3>
-                            <p class="project-subtitle">Spring Cloud Microservices Architecture</p>
-                            <div class="mt-3">
-                                <span class="tech-badge">Spring Cloud</span>
-                                <span class="tech-badge">API Gateway</span>
-                                <span class="tech-badge">Eureka</span>
-                                <span class="tech-badge">Config Server</span>
-                                <span class="tech-badge">Angular 14</span>
-                                <span class="tech-badge">MariaDB</span>
+                <div class="col-lg-6">
+                    <div class="row g-3">
+                        <div class="col-6">
+                            <div class="stat-card">
+                                <div class="stat-card-icon"><i class="fas fa-calendar-alt"></i></div>
+                                <div class="stat-card-num">3+</div>
+                                <div class="stat-card-lbl">Years Experience</div>
                             </div>
                         </div>
-                        <div class="project-body">
-                            <div class="row">
-                                <div class="col-md-8">
-                                    <h5>Project Overview</h5>
-                                    <p>Designed and implemented a microservices-based healthcare platform with service discovery, API gateway, and centralized configuration management. The system includes user service, inventory service, and screening service with proper separation of concerns.</p>
-                                    
-                                    <h6 class="mt-4">Microservices Architecture:</h6>
-                                    <ul class="feature-list">
-                                        <li><i class="fas fa-check"></i> Spring Cloud Gateway for API routing and load balancing</li>
-                                        <li><i class="fas fa-check"></i> Eureka Service Discovery for service registration</li>
-                                        <li><i class="fas fa-check"></i> Config Server for centralized configuration management</li>
-                                        <li><i class="fas fa-check"></i> JWT-based authentication across all services</li>
-                                        <li><i class="fas fa-check"></i> Common library for shared utilities and DTOs</li>
-                                        <li><i class="fas fa-check"></i> Health monitoring and service resilience</li>
-                                    </ul>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="stats-row">
-                                        <div class="row text-center">
-                                            <div class="col-6">
-                                                <div class="stat-item">
-                                                    <div class="stat-number">7</div>
-                                                    <div class="stat-label">Services</div>
-                                                </div>
-                                            </div>
-                                            <div class="col-6">
-                                                <div class="stat-item">
-                                                    <div class="stat-number">100%</div>
-                                                    <div class="stat-label">Uptime</div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="text-center">
-                                        <a href="wellness-demo.html" class="btn btn-primary">View Demo</a>
-                                    </div>
-                                </div>
+                        <div class="col-6">
+                            <div class="stat-card">
+                                <div class="stat-card-icon"><i class="fas fa-project-diagram"></i></div>
+                                <div class="stat-card-num">7</div>
+                                <div class="stat-card-lbl">Projects Delivered</div>
                             </div>
                         </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Booster 2.0 Project -->
-            <div class="row">
-                <div class="col-12">
-                    <div class="card project-card">
-                        <div class="project-header">
-                            <h3 class="project-title">Booster 2.0 - Advanced POS & E-commerce System</h3>
-                            <p class="project-subtitle">Point of Sale with Marketplace Integration</p>
-                            <div class="mt-3">
-                                <span class="tech-badge">Spring Boot 3.2</span>
-                                <span class="tech-badge">Angular 17</span>
-                                <span class="tech-badge">PostgreSQL</span>
-                                <span class="tech-badge">Daraz API</span>
-                                <span class="tech-badge">PDF Generation</span>
-                                <span class="tech-badge">QR Codes</span>
+                        <div class="col-6">
+                            <div class="stat-card">
+                                <div class="stat-card-icon"><i class="fas fa-cubes"></i></div>
+                                <div class="stat-card-num">30+</div>
+                                <div class="stat-card-lbl">Modules Built</div>
                             </div>
                         </div>
-                        <div class="project-body">
-                            <div class="row">
-                                <div class="col-md-8">
-                                    <h5>Project Overview</h5>
-                                    <p>Developed a comprehensive Point of Sale system with advanced inventory management, financial reporting, and e-commerce marketplace integration. The system handles real-time inventory tracking and provides detailed analytics for business operations.</p>
-                                    
-                                    <h6 class="mt-4">Key Features:</h6>
-                                    <ul class="feature-list">
-                                        <li><i class="fas fa-check"></i> Real-time inventory management and tracking</li>
-                                        <li><i class="fas fa-check"></i> Daraz marketplace integration for e-commerce</li>
-                                        <li><i class="fas fa-check"></i> PDF generation for invoices and reports</li>
-                                        <li><i class="fas fa-check"></i> QR code generation for product identification</li>
-                                        <li><i class="fas fa-check"></i> Financial reporting and analytics dashboard</li>
-                                        <li><i class="fas fa-check"></i> Multi-user role management system</li>
-                                    </ul>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="stats-row">
-                                        <div class="row text-center">
-                                            <div class="col-6">
-                                                <div class="stat-item">
-                                                    <div class="stat-number">50+</div>
-                                                    <div class="stat-label">API Endpoints</div>
-                                                </div>
-                                            </div>
-                                            <div class="col-6">
-                                                <div class="stat-item">
-                                                    <div class="stat-number">99.9%</div>
-                                                    <div class="stat-label">Reliability</div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="text-center">
-                                        <a href="booster-demo.html" class="btn btn-primary">View Demo</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- AutoSchedula Project -->
-            <div class="row">
-                <div class="col-12">
-                    <div class="card project-card">
-                        <div class="project-header">
-                            <h3 class="project-title">AutoSchedula - Educational Management System</h3>
-                            <p class="project-subtitle">Automated Scheduling for Educational Institutions</p>
-                            <div class="mt-3">
-                                <span class="tech-badge">Spring Boot 3.2</span>
-                                <span class="tech-badge">Angular 14</span>
-                                <span class="tech-badge">PostgreSQL</span>
-                                <span class="tech-badge">Algorithm Design</span>
-                                <span class="tech-badge">JWT Auth</span>
-                            </div>
-                        </div>
-                        <div class="project-body">
-                            <div class="row">
-                                <div class="col-md-8">
-                                    <h5>Project Overview</h5>
-                                    <p>Built an automated scheduling system for educational institutions that handles teacher assignments, section management, and timetable generation with conflict resolution algorithms. The system optimizes resource allocation and minimizes scheduling conflicts.</p>
-                                    
-                                    <h6 class="mt-4">Core Functionality:</h6>
-                                    <ul class="feature-list">
-                                        <li><i class="fas fa-check"></i> Automated timetable generation with conflict resolution</li>
-                                        <li><i class="fas fa-check"></i> Teacher and section management system</li>
-                                        <li><i class="fas fa-check"></i> Resource allocation optimization</li>
-                                        <li><i class="fas fa-check"></i> Real-time conflict detection and resolution</li>
-                                        <li><i class="fas fa-check"></i> User-friendly interface for schedule management</li>
-                                        <li><i class="fas fa-check"></i> Export functionality for timetable distribution</li>
-                                    </ul>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="stats-row">
-                                        <div class="row text-center">
-                                            <div class="col-6">
-                                                <div class="stat-item">
-                                                    <div class="stat-number">95%</div>
-                                                    <div class="stat-label">Efficiency</div>
-                                                </div>
-                                            </div>
-                                            <div class="col-6">
-                                                <div class="stat-item">
-                                                    <div class="stat-number">0</div>
-                                                    <div class="stat-label">Conflicts</div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="text-center">
-                                        <a href="autoschedula-demo.html" class="btn btn-primary">View Demo</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Chiltan Pure ERP Project -->
-            <div class="row">
-                <div class="col-12">
-                    <div class="card project-card">
-                        <div class="project-header">
-                            <h3 class="project-title">Chiltan Pure ERP - Business Management System</h3>
-                            <p class="project-subtitle">Complete Enterprise Resource Planning Solution</p>
-                            <div class="mt-3">
-                                <span class="tech-badge">Spring Boot 2.1</span>
-                                <span class="tech-badge">Angular 12</span>
-                                <span class="tech-badge">MariaDB</span>
-                                <span class="tech-badge">Liquibase</span>
-                                <span class="tech-badge">Swagger</span>
-                            </div>
-                        </div>
-                        <div class="project-body">
-                            <div class="row">
-                                <div class="col-md-8">
-                                    <h5>Project Overview</h5>
-                                    <p>Developed a comprehensive ERP solution for business operations including inventory management, user management, reporting, and multi-module architecture. The system provides complete business process automation and data management.</p>
-                                    
-                                    <h6 class="mt-4">ERP Modules:</h6>
-                                    <ul class="feature-list">
-                                        <li><i class="fas fa-check"></i> Complete inventory management system</li>
-                                        <li><i class="fas fa-check"></i> User and role management with permissions</li>
-                                        <li><i class="fas fa-check"></i> Financial reporting and analytics</li>
-                                        <li><i class="fas fa-check"></i> Database optimization and performance tuning</li>
-                                        <li><i class="fas fa-check"></i> API documentation with Swagger integration</li>
-                                        <li><i class="fas fa-check"></i> Multi-module architecture for scalability</li>
-                                    </ul>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="stats-row">
-                                        <div class="row text-center">
-                                            <div class="col-6">
-                                                <div class="stat-item">
-                                                    <div class="stat-number">10+</div>
-                                                    <div class="stat-label">Modules</div>
-                                                </div>
-                                            </div>
-                                            <div class="col-6">
-                                                <div class="stat-item">
-                                                    <div class="stat-number">500+</div>
-                                                    <div class="stat-label">Users</div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="text-center">
-                                        <a href="chiltan-demo.html" class="btn btn-primary">View Demo</a>
-                                    </div>
-                                </div>
+                        <div class="col-6">
+                            <div class="stat-card">
+                                <div class="stat-card-icon"><i class="fas fa-code-branch"></i></div>
+                                <div class="stat-card-num">Full</div>
+                                <div class="stat-card-lbl">Stack Developer</div>
                             </div>
                         </div>
                     </div>
@@ -548,35 +789,525 @@
         </div>
     </section>
 
-    <!-- Skills Section -->
-    <section id="skills" class="py-5 bg-light">
+    <!-- ===== EXPERIENCE TIMELINE ===== -->
+    <section id="experience" class="experience-section">
         <div class="container">
-            <h2 class="section-title">Technical Skills</h2>
-            <div class="row">
-                <div class="col-md-4 mb-4">
-                    <div class="card h-100 text-center">
-                        <div class="card-body">
-                            <i class="fas fa-server fa-3x text-primary mb-3"></i>
-                            <h5>Backend Development</h5>
-                            <p>Java, Spring Boot, Spring Security, Microservices, RESTful APIs, PostgreSQL, Docker</p>
+            <div class="text-center">
+                <p class="section-eyebrow">Career Journey</p>
+                <h2 class="section-heading">Professional Experience</h2>
+                <p class="section-sub">From enterprise ERP migration to building a full healthcare SaaS platform — growing through every project.</p>
+            </div>
+
+            <div class="row g-4 align-items-stretch">
+
+                <!-- ── SecopTech ── -->
+                <div class="col-lg-6">
+                    <div class="exp-card">
+                        <div class="exp-top exp-top-secoptech">
+                            <div class="exp-top-row">
+                                <div class="exp-icon"><i class="fas fa-building"></i></div>
+                                <span style="background:rgba(255,255,255,0.15);color:white;padding:0.25rem 0.8rem;border-radius:50px;font-size:0.72rem;font-weight:700;border:1px solid rgba(255,255,255,0.25);">First Role</span>
+                            </div>
+                            <div class="exp-company">SecopTech</div>
+                            <div class="exp-role">Software Engineer &mdash; Full-Stack</div>
+                            <div class="exp-chips">
+                                <span class="exp-chip"><i class="fas fa-briefcase"></i> 5 Products</span>
+                                <span class="exp-chip"><i class="fas fa-map-marker-alt"></i> Pakistan</span>
+                                <span class="exp-chip"><i class="fas fa-layer-group"></i> Java &amp; Angular</span>
+                            </div>
+                        </div>
+                        <div class="exp-body">
+                            <ul class="exp-highlights">
+                                <li><span class="exp-check"><i class="fas fa-check"></i></span>Migrated Chiltan Pure ERP from legacy system to modern Spring Boot + Angular stack</li>
+                                <li><span class="exp-check"><i class="fas fa-check"></i></span>Major contributor to RynoDesk POS — worked on almost every module including inventory, billing, and marketplace</li>
+                                <li><span class="exp-check"><i class="fas fa-check"></i></span>Built backend CRUDs and Angular UI components across multiple products</li>
+                                <li><span class="exp-check"><i class="fas fa-check"></i></span>Contributed modules to Carer care management and WellnessNow microservices platform</li>
+                                <li><span class="exp-check"><i class="fas fa-check"></i></span>Wrote Liquibase database migration scripts and integrated Swagger API documentation</li>
+                            </ul>
+                            <div class="exp-proj-label">Projects</div>
+                            <div class="exp-proj-tags">
+                                <span class="exp-proj-tag major">RynoDesk</span>
+                                <span class="exp-proj-tag major">Chiltan ERP</span>
+                                <span class="exp-proj-tag">Carer</span>
+                                <span class="exp-proj-tag">WellnessNow</span>
+                                <span class="exp-proj-tag">Chiltan Marketing</span>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4 mb-4">
-                    <div class="card h-100 text-center">
-                        <div class="card-body">
-                            <i class="fas fa-laptop-code fa-3x text-primary mb-3"></i>
-                            <h5>Frontend Development</h5>
-                            <p>Angular, TypeScript, JavaScript, HTML5, CSS3, Bootstrap, Material Design</p>
+
+                <!-- ── CareMD ── -->
+                <div class="col-lg-6">
+                    <div class="exp-card">
+                        <div class="exp-top exp-top-caremd">
+                            <div class="exp-top-row">
+                                <div class="exp-icon"><i class="fas fa-hospital-alt"></i></div>
+                                <span class="current-pill"><i class="fas fa-circle" style="font-size:0.45rem;"></i> Current</span>
+                            </div>
+                            <div class="exp-company">CareMD</div>
+                            <div class="exp-role">Software Engineer &mdash; Full-Stack (Primary Developer)</div>
+                            <div class="exp-chips">
+                                <span class="exp-chip"><i class="fas fa-star"></i> 90%+ Solo Built</span>
+                                <span class="exp-chip"><i class="fas fa-map-marker-alt"></i> Pakistan</span>
+                                <span class="exp-chip"><i class="fas fa-shield-alt"></i> Healthcare SaaS</span>
+                            </div>
+                        </div>
+                        <div class="exp-body">
+                            <ul class="exp-highlights">
+                                <li><span class="exp-check"><i class="fas fa-check"></i></span>Built the entire CareMD medical practice management platform from scratch as the primary developer</li>
+                                <li><span class="exp-check"><i class="fas fa-check"></i></span>Designed and implemented multi-tenant SaaS architecture with full data isolation per practice</li>
+                                <li><span class="exp-check"><i class="fas fa-check"></i></span>Responsible for 90%+ of the codebase — backend APIs, Angular frontend, and database schema</li>
+                                <li><span class="exp-check"><i class="fas fa-check"></i></span>Delivered 15+ domain entities, 34+ Liquibase migrations, and real-time WebSocket messaging</li>
+                                <li><span class="exp-check"><i class="fas fa-check"></i></span>Working under mentorship and guidance of project manager to deliver production-grade quality</li>
+                            </ul>
+                            <div class="exp-proj-label">Project</div>
+                            <div class="exp-proj-tags">
+                                <span class="exp-proj-tag primary">CareMD Platform</span>
+                                <span class="exp-proj-tag primary">Multi-Tenant SaaS</span>
+                                <span class="exp-proj-tag primary">Built from Scratch</span>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4 mb-4">
-                    <div class="card h-100 text-center">
-                        <div class="card-body">
-                            <i class="fas fa-database fa-3x text-primary mb-3"></i>
-                            <h5>Database & DevOps</h5>
-                            <p>PostgreSQL, MariaDB, Database Design, Docker, Git, API Documentation</p>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== PROJECTS ===== -->
+    <section id="projects" class="projects-section">
+        <div class="container">
+            <div class="text-center">
+                <p class="section-eyebrow">Portfolio</p>
+                <h2 class="section-heading">Featured Projects</h2>
+                <p class="section-sub">7 production and academic projects spanning healthcare, ERP, POS, e-commerce, and education management.</p>
+            </div>
+
+            <!-- ── CareMD ── -->
+            <div class="project-card theme-caremd">
+                <div class="project-header">
+                    <div class="project-header-top">
+                        <div class="project-icon-wrap"><i class="fas fa-hospital-alt"></i></div>
+                        <div class="project-header-badges">
+                            <span class="badge-contribution">Solo Built &bull; 90%+</span>
+                            <span class="badge-company">CareMD</span>
+                        </div>
+                    </div>
+                    <div class="project-name">CareMD — Medical Practice Management</div>
+                    <div class="project-tagline">Enterprise Multi-Tenant SaaS — Billing, HR, Assets, Access &amp; Reports</div>
+                    <div class="tech-badges">
+                        <span class="tech-badge">Java 17</span>
+                        <span class="tech-badge">Spring Boot 3.2</span>
+                        <span class="tech-badge">Angular 14</span>
+                        <span class="tech-badge">PostgreSQL</span>
+                        <span class="tech-badge">Flyway</span>
+                        <span class="tech-badge">WebSocket</span>
+                        <span class="tech-badge">MapStruct</span>
+                        <span class="tech-badge">JWT</span>
+                    </div>
+                </div>
+                <div class="project-body">
+                    <div class="row g-4">
+                        <div class="col-md-8">
+                            <p class="project-section-label">Overview</p>
+                            <p style="font-size:0.9rem;color:#475569;line-height:1.7;margin-bottom:1.25rem;">
+                                Built the entire CareMD platform from scratch as primary developer — a multi-tenant medical billing and practice-management SaaS spanning six application areas: Clinical/RCM, HR Operations, Assets, Access Control, Reports, and Notifications. Spring Boot REST API, Angular lazy-loaded modules, PostgreSQL with 136+ Flyway migrations.
+                            </p>
+                            <p class="project-section-label">Platform Modules</p>
+                            <ul class="feature-list caremd-modules">
+                                <li><span class="feature-check"><i class="fas fa-check"></i></span><div><strong class="caremd-module-title">Billing / Clinical</strong><span class="caremd-module-desc">Practices, Patients, Appointments, Claims, Payments, Flagged Claims, Negative Balance, Setup</span></div></li>
+                                <li><span class="feature-check"><i class="fas fa-check"></i></span><div><strong class="caremd-module-title">HR / Operations</strong><span class="caremd-module-desc">Attendance, Leaves, Loans, Timesheets, Teams, Schedules, Employees, Recruiting</span></div></li>
+                                <li><span class="feature-check"><i class="fas fa-check"></i></span><div><strong class="caremd-module-title">Assets</strong><span class="caremd-module-desc">Inventory, Assignments, Categories, Summary Dashboard</span></div></li>
+                                <li><span class="feature-check"><i class="fas fa-check"></i></span><div><strong class="caremd-module-title">Access</strong><span class="caremd-module-desc">Users, Roles, Packages, Tenants, Real-Time Messaging</span></div></li>
+                                <li><span class="feature-check"><i class="fas fa-check"></i></span><div><strong class="caremd-module-title">Reports</strong><span class="caremd-module-desc">Clinical RCM Analytics, HR Attendance And Payroll, Activity Logs</span></div></li>
+                                <li><span class="feature-check"><i class="fas fa-check"></i></span><div><strong class="caremd-module-title">Notifications</strong><span class="caremd-module-desc">System-Wide Notification Center With Live Delivery</span></div></li>
+                            </ul>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="project-stats">
+                                <div class="row text-center g-2">
+                                    <div class="col-6">
+                                        <div class="p-stat-num">58+</div>
+                                        <div class="p-stat-lbl">Entities</div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="p-stat-num">136+</div>
+                                        <div class="p-stat-lbl">Migrations</div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="p-stat-num">34+</div>
+                                        <div class="p-stat-lbl">Controllers</div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="p-stat-num">6</div>
+                                        <div class="p-stat-lbl">App Areas</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <a href="caremd-demo.html" class="btn-view-demo">
+                                <i class="fas fa-eye"></i> View Full Module Demo
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ── RynoDesk ── -->
+            <div class="project-card theme-rynodesk">
+                <div class="project-header">
+                    <div class="project-header-top">
+                        <div class="project-icon-wrap"><i class="fas fa-cash-register"></i></div>
+                        <div class="project-header-badges">
+                            <span class="badge-contribution">Major Contributor</span>
+                            <span class="badge-company">SecopTech</span>
+                        </div>
+                    </div>
+                    <div class="project-name">RynoDesk — POS &amp; E-commerce Platform</div>
+                    <div class="project-tagline">POS, Inventory, Marketplace Sync &amp; Electron Desktop</div>
+                    <div class="tech-badges">
+                        <span class="tech-badge">Spring Boot 3.2</span>
+                        <span class="tech-badge">Angular 17</span>
+                        <span class="tech-badge">PostgreSQL</span>
+                        <span class="tech-badge">Electron.js</span>
+                        <span class="tech-badge">Daraz / Wix API</span>
+                        <span class="tech-badge">ApexCharts</span>
+                        <span class="tech-badge">PDF / QR</span>
+                    </div>
+                </div>
+                <div class="project-body">
+                    <div class="row g-4">
+                        <div class="col-md-8">
+                            <p class="project-section-label">Overview</p>
+                            <p style="font-size:0.9rem;color:#475569;line-height:1.7;margin-bottom:1.25rem;">
+                                Major contributor on RynoDesk — retail POS and e-commerce platform. Worked across sales, inventory, products, finance, and integrations (web + desktop).
+                            </p>
+                            <p class="project-section-label">Platform Areas</p>
+                            <ul class="feature-list rynodesk-modules">
+                                <li><span class="feature-check"><i class="fas fa-check"></i></span><div><strong class="rynodesk-module-title">Sales / Orders</strong></div></li>
+                                <li><span class="feature-check"><i class="fas fa-check"></i></span><div><strong class="rynodesk-module-title">Products</strong></div></li>
+                                <li><span class="feature-check"><i class="fas fa-check"></i></span><div><strong class="rynodesk-module-title">Inventory</strong></div></li>
+                                <li><span class="feature-check"><i class="fas fa-check"></i></span><div><strong class="rynodesk-module-title">Integrations</strong></div></li>
+                                <li><span class="feature-check"><i class="fas fa-check"></i></span><div><strong class="rynodesk-module-title">Finance</strong></div></li>
+                                <li><span class="feature-check"><i class="fas fa-check"></i></span><div><strong class="rynodesk-module-title">CRM / Access / Reports</strong></div></li>
+                            </ul>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="project-stats">
+                                <div class="row text-center g-2">
+                                    <div class="col-6">
+                                        <div class="p-stat-num">8</div>
+                                        <div class="p-stat-lbl">App Areas</div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="p-stat-num">Major</div>
+                                        <div class="p-stat-lbl">Contributor</div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="p-stat-num">POS</div>
+                                        <div class="p-stat-lbl">+ Web</div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="p-stat-num">Electron</div>
+                                        <div class="p-stat-lbl">Desktop</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <a href="rynodesk-demo.html" class="btn-view-demo">
+                                <i class="fas fa-eye"></i> View Full Module Demo
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ── AutoSchedula ── -->
+            <div class="project-card theme-autoschedula">
+                <div class="project-header">
+                    <div class="project-header-top">
+                        <div class="project-icon-wrap"><i class="fas fa-graduation-cap"></i></div>
+                        <div class="project-header-badges">
+                            <span class="badge-contribution">Final Year Project — 100% Solo</span>
+                            <span class="badge-company">Academic</span>
+                        </div>
+                    </div>
+                    <div class="project-name">AutoSchedula — Automated Timetable System</div>
+                    <div class="project-tagline">AI-Powered Educational Scheduling Engine with Conflict Resolution</div>
+                    <div class="tech-badges">
+                        <span class="tech-badge">Spring Boot 3.2</span>
+                        <span class="tech-badge">Angular 14</span>
+                        <span class="tech-badge">PostgreSQL</span>
+                        <span class="tech-badge">Algorithm Design</span>
+                        <span class="tech-badge">FullCalendar</span>
+                        <span class="tech-badge">JWT Auth</span>
+                    </div>
+                </div>
+                <div class="project-body">
+                    <div class="row g-4">
+                        <div class="col-md-8">
+                            <p class="project-section-label">Overview</p>
+                            <p style="font-size:0.9rem;color:#475569;line-height:1.7;margin-bottom:1.25rem;">
+                                My Final Year Project, built entirely by me. AutoSchedula solves the complex problem of educational timetable generation using a constraint-satisfaction and genetic algorithm engine — eliminating scheduling conflicts and optimizing resource allocation across teachers, sections, and rooms.
+                            </p>
+                            <p class="project-section-label">Key Features</p>
+                            <ul class="feature-list">
+                                <li><span class="feature-check"><i class="fas fa-check"></i></span> Automated timetable generation with genetic algorithm optimization</li>
+                                <li><span class="feature-check"><i class="fas fa-check"></i></span> Real-time conflict detection and automatic resolution engine</li>
+                                <li><span class="feature-check"><i class="fas fa-check"></i></span> Teacher preference matching and workload balancing</li>
+                                <li><span class="feature-check"><i class="fas fa-check"></i></span> FullCalendar interactive UI for schedule visualization and editing</li>
+                                <li><span class="feature-check"><i class="fas fa-check"></i></span> Resource allocation optimization across classrooms and time slots</li>
+                                <li><span class="feature-check"><i class="fas fa-check"></i></span> Timetable export functionality for distribution</li>
+                            </ul>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="project-stats">
+                                <div class="row text-center g-2">
+                                    <div class="col-6">
+                                        <div class="p-stat-num">95%</div>
+                                        <div class="p-stat-lbl">Efficiency Gain</div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="p-stat-num">0</div>
+                                        <div class="p-stat-lbl">Schedule Conflicts</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <a href="autoschedula-demo.html" class="btn-view-demo">
+                                <i class="fas fa-eye"></i> View Demo Details
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ── Chiltan Pure ERP ── -->
+            <div class="project-card theme-erp">
+                <div class="project-header">
+                    <div class="project-header-top">
+                        <div class="project-icon-wrap"><i class="fas fa-sitemap"></i></div>
+                        <div class="project-header-badges">
+                            <span class="badge-contribution">First Role — Migration &amp; Enhancement</span>
+                            <span class="badge-company">SecopTech</span>
+                        </div>
+                    </div>
+                    <div class="project-name">Chiltan Pure ERP — Business Management System</div>
+                    <div class="project-tagline">Legacy-to-Modern ERP Migration with New Module Development</div>
+                    <div class="tech-badges">
+                        <span class="tech-badge">Spring Boot 2.1</span>
+                        <span class="tech-badge">Angular 12</span>
+                        <span class="tech-badge">MariaDB</span>
+                        <span class="tech-badge">Liquibase</span>
+                        <span class="tech-badge">Swagger</span>
+                        <span class="tech-badge">Spring Security</span>
+                        <span class="tech-badge">iText PDF</span>
+                    </div>
+                </div>
+                <div class="project-body">
+                    <div class="row g-4">
+                        <div class="col-md-8">
+                            <p class="project-section-label">Overview</p>
+                            <p style="font-size:0.9rem;color:#475569;line-height:1.7;margin-bottom:1.25rem;">
+                                My first professional project at SecopTech. Contributed to migrating the Chiltan Pure ERP system from its legacy version to a modern Spring Boot + Angular stack. Added new backend and UI CRUDs, wrote Liquibase migrations, and delivered enhancements across multiple modules.
+                            </p>
+                            <p class="project-section-label">Contributions</p>
+                            <ul class="feature-list">
+                                <li><span class="feature-check"><i class="fas fa-check"></i></span> Migrated legacy ERP modules to Spring Boot 2.1 + Angular 12 stack</li>
+                                <li><span class="feature-check"><i class="fas fa-check"></i></span> Developed new backend CRUD APIs and corresponding Angular UI components</li>
+                                <li><span class="feature-check"><i class="fas fa-check"></i></span> Wrote Liquibase database migration scripts for schema versioning</li>
+                                <li><span class="feature-check"><i class="fas fa-check"></i></span> Implemented PDF report generation using iText for financial documents</li>
+                                <li><span class="feature-check"><i class="fas fa-check"></i></span> Added QR code generation (ZXing) for product identification</li>
+                                <li><span class="feature-check"><i class="fas fa-check"></i></span> Integrated Swagger documentation for all new API endpoints</li>
+                            </ul>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="project-stats">
+                                <div class="row text-center g-2">
+                                    <div class="col-6">
+                                        <div class="p-stat-num">10+</div>
+                                        <div class="p-stat-lbl">ERP Modules</div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="p-stat-num">New</div>
+                                        <div class="p-stat-lbl">UI &amp; APIs Added</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <a href="chiltan-demo.html" class="btn-view-demo">
+                                <i class="fas fa-eye"></i> View Demo Details
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ── Carer ── -->
+            <div class="project-card theme-carer">
+                <div class="project-header">
+                    <div class="project-header-top">
+                        <div class="project-icon-wrap"><i class="fas fa-hand-holding-heart"></i></div>
+                        <div class="project-header-badges">
+                            <span class="badge-contribution">Module Contributor</span>
+                            <span class="badge-company">SecopTech</span>
+                        </div>
+                    </div>
+                    <div class="project-name">Carer — Care Management System</div>
+                    <div class="project-tagline">Healthcare Provider Platform with Modern Angular 20 Frontend</div>
+                    <div class="tech-badges">
+                        <span class="tech-badge">Spring Boot</span>
+                        <span class="tech-badge">Angular 20</span>
+                        <span class="tech-badge">Hibernate 6</span>
+                        <span class="tech-badge">AmCharts 5</span>
+                        <span class="tech-badge">Bootstrap 5</span>
+                        <span class="tech-badge">JWT Auth</span>
+                    </div>
+                </div>
+                <div class="project-body">
+                    <div class="row g-4">
+                        <div class="col-md-8">
+                            <p class="project-section-label">Overview</p>
+                            <p style="font-size:0.9rem;color:#475569;line-height:1.7;margin-bottom:1.25rem;">
+                                Contributed to the Carer platform at SecopTech — a care management solution for healthcare providers. Worked on specific modules including role-based access features, UI components, and data management screens using the latest Angular 20 and modern Spring Boot stack.
+                            </p>
+                            <p class="project-section-label">Contributions</p>
+                            <ul class="feature-list">
+                                <li><span class="feature-check"><i class="fas fa-check"></i></span> Developed assigned modules for patient and care tracking workflows</li>
+                                <li><span class="feature-check"><i class="fas fa-check"></i></span> Built Angular 20 UI components with pagination and search filtering</li>
+                                <li><span class="feature-check"><i class="fas fa-check"></i></span> Integrated role-based access control using ngx-permissions</li>
+                                <li><span class="feature-check"><i class="fas fa-check"></i></span> Implemented AmCharts 5 dashboards for data visualization</li>
+                                <li><span class="feature-check"><i class="fas fa-check"></i></span> Connected REST APIs with Hibernate 6 backend for data management</li>
+                            </ul>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="project-stats">
+                                <div class="row text-center g-2">
+                                    <div class="col-6">
+                                        <div class="p-stat-num">v20</div>
+                                        <div class="p-stat-lbl">Angular Latest</div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="p-stat-num">RBAC</div>
+                                        <div class="p-stat-lbl">Permissions</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <a href="carer-demo.html" class="btn-view-demo">
+                                <i class="fas fa-eye"></i> View Demo Details
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ── WellnessNow ── -->
+            <div class="project-card theme-wellness">
+                <div class="project-header">
+                    <div class="project-header-top">
+                        <div class="project-icon-wrap"><i class="fas fa-heartbeat"></i></div>
+                        <div class="project-header-badges">
+                            <span class="badge-contribution">Contributor</span>
+                            <span class="badge-company">SecopTech</span>
+                        </div>
+                    </div>
+                    <div class="project-name">WellnessNow — Microservices Healthcare Platform</div>
+                    <div class="project-tagline">Spring Cloud Microservices with Service Discovery &amp; API Gateway</div>
+                    <div class="tech-badges">
+                        <span class="tech-badge">Spring Cloud</span>
+                        <span class="tech-badge">API Gateway</span>
+                        <span class="tech-badge">Eureka</span>
+                        <span class="tech-badge">Config Server</span>
+                        <span class="tech-badge">Angular 14</span>
+                        <span class="tech-badge">Java 17</span>
+                        <span class="tech-badge">MariaDB</span>
+                    </div>
+                </div>
+                <div class="project-body">
+                    <div class="row g-4">
+                        <div class="col-md-8">
+                            <p class="project-section-label">Overview</p>
+                            <p style="font-size:0.9rem;color:#475569;line-height:1.7;margin-bottom:1.25rem;">
+                                Made contributions to WellnessNow, a healthcare platform built on Spring Cloud microservices architecture. The system includes service discovery via Eureka, centralized configuration, an API gateway, and dedicated services for users, inventory, and patient screening.
+                            </p>
+                            <p class="project-section-label">Architecture Highlights</p>
+                            <ul class="feature-list">
+                                <li><span class="feature-check"><i class="fas fa-check"></i></span> 7-service microservices architecture with Spring Cloud</li>
+                                <li><span class="feature-check"><i class="fas fa-check"></i></span> Eureka service discovery for dynamic service registration</li>
+                                <li><span class="feature-check"><i class="fas fa-check"></i></span> API Gateway for centralized routing and load balancing</li>
+                                <li><span class="feature-check"><i class="fas fa-check"></i></span> Config Server for environment-specific configuration management</li>
+                                <li><span class="feature-check"><i class="fas fa-check"></i></span> JWT authentication propagated across all services</li>
+                            </ul>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="project-stats">
+                                <div class="row text-center g-2">
+                                    <div class="col-6">
+                                        <div class="p-stat-num">7</div>
+                                        <div class="p-stat-lbl">Microservices</div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="p-stat-num">Cloud</div>
+                                        <div class="p-stat-lbl">Architecture</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <a href="wellness-demo.html" class="btn-view-demo">
+                                <i class="fas fa-eye"></i> View Demo Details
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ── Chiltan Marketing ── -->
+            <div class="project-card theme-marketing">
+                <div class="project-header">
+                    <div class="project-header-top">
+                        <div class="project-icon-wrap"><i class="fas fa-bullhorn"></i></div>
+                        <div class="project-header-badges">
+                            <span class="badge-contribution">Contributor</span>
+                            <span class="badge-company">SecopTech</span>
+                        </div>
+                    </div>
+                    <div class="project-name">Chiltan Marketing — E-Marketing Platform</div>
+                    <div class="project-tagline">Email Campaign Builder with Advanced Analytics &amp; Data Visualization</div>
+                    <div class="tech-badges">
+                        <span class="tech-badge">Angular 14</span>
+                        <span class="tech-badge">Angular Email Editor</span>
+                        <span class="tech-badge">AmCharts 5</span>
+                        <span class="tech-badge">Highcharts</span>
+                        <span class="tech-badge">ApexCharts</span>
+                        <span class="tech-badge">XLSX Export</span>
+                    </div>
+                </div>
+                <div class="project-body">
+                    <div class="row g-4">
+                        <div class="col-md-8">
+                            <p class="project-section-label">Overview</p>
+                            <p style="font-size:0.9rem;color:#475569;line-height:1.7;margin-bottom:1.25rem;">
+                                Made contributions to Chiltan Marketing, an e-marketing platform featuring an email campaign builder, multi-chart analytics, and data export capabilities. The frontend leverages Angular Email Editor for drag-and-drop campaign design and multiple charting libraries for campaign analytics.
+                            </p>
+                            <p class="project-section-label">Platform Features</p>
+                            <ul class="feature-list">
+                                <li><span class="feature-check"><i class="fas fa-check"></i></span> Drag-and-drop email campaign builder (Angular Email Editor)</li>
+                                <li><span class="feature-check"><i class="fas fa-check"></i></span> Campaign analytics with AmCharts 5, Highcharts, and ApexCharts</li>
+                                <li><span class="feature-check"><i class="fas fa-check"></i></span> Excel and PDF data export functionality</li>
+                                <li><span class="feature-check"><i class="fas fa-check"></i></span> Pagination, search filtering, and SweetAlert2 notifications</li>
+                            </ul>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="project-stats">
+                                <div class="row text-center g-2">
+                                    <div class="col-6">
+                                        <div class="p-stat-num">3</div>
+                                        <div class="p-stat-lbl">Chart Libraries</div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="p-stat-num">DnD</div>
+                                        <div class="p-stat-lbl">Email Builder</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <a href="chiltan-marketing-demo.html" class="btn-view-demo">
+                                <i class="fas fa-eye"></i> View Demo Details
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -584,43 +1315,127 @@
         </div>
     </section>
 
-    <!-- Contact Section -->
-    <section id="contact" class="py-5">
+    <!-- ===== SKILLS ===== -->
+    <section id="skills" class="skills-section">
         <div class="container">
-            <h2 class="section-title">Get In Touch</h2>
-            <div class="row justify-content-center">
-                <div class="col-md-8 text-center">
-                    <p class="lead">Ready to transform your business requirements into robust, scalable applications?</p>
-                    <p>Let's discuss your project and create something amazing together!</p>
-                    <div class="mt-4">
-                        <a href="mailto:your.email@example.com" class="btn btn-primary me-3">
-                            <i class="fas fa-envelope me-2"></i>Contact Me
-                        </a>
-                        <a href="https://linkedin.com/in/yourprofile" class="btn btn-outline-primary">
-                            <i class="fab fa-linkedin me-2"></i>LinkedIn
-                        </a>
+            <div class="text-center">
+                <p class="section-eyebrow">Expertise</p>
+                <h2 class="section-heading">Technical Skills</h2>
+                <p class="section-sub">Full-stack capabilities across enterprise Java backends, Angular frontends, and relational databases.</p>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-6 col-lg-3">
+                    <div class="skill-card">
+                        <div class="skill-icon-box bg-blue"><i class="fas fa-server"></i></div>
+                        <div class="skill-card-title">Backend Development</div>
+                        <div class="skill-pills">
+                            <span class="skill-pill">Java 17</span>
+                            <span class="skill-pill">Spring Boot 3.x</span>
+                            <span class="skill-pill">Spring Security</span>
+                            <span class="skill-pill">Spring Cloud</span>
+                            <span class="skill-pill">REST APIs</span>
+                            <span class="skill-pill">Microservices</span>
+                            <span class="skill-pill">Hibernate</span>
+                            <span class="skill-pill">JPA</span>
+                            <span class="skill-pill">Lombok</span>
+                            <span class="skill-pill">MapStruct</span>
+                            <span class="skill-pill">Swagger</span>
+                            <span class="skill-pill">JWT / OAuth</span>
+                            <span class="skill-pill">WebSocket</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="skill-card">
+                        <div class="skill-icon-box bg-purple"><i class="fas fa-laptop-code"></i></div>
+                        <div class="skill-card-title">Frontend Development</div>
+                        <div class="skill-pills">
+                            <span class="skill-pill">Angular 12–20</span>
+                            <span class="skill-pill">TypeScript</span>
+                            <span class="skill-pill">JavaScript</span>
+                            <span class="skill-pill">HTML5 / CSS3</span>
+                            <span class="skill-pill">Bootstrap 5</span>
+                            <span class="skill-pill">Angular Material</span>
+                            <span class="skill-pill">RxJS</span>
+                            <span class="skill-pill">ApexCharts</span>
+                            <span class="skill-pill">AmCharts 5</span>
+                            <span class="skill-pill">Highcharts</span>
+                            <span class="skill-pill">FullCalendar</span>
+                            <span class="skill-pill">Electron.js</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="skill-card">
+                        <div class="skill-icon-box bg-green"><i class="fas fa-database"></i></div>
+                        <div class="skill-card-title">Database &amp; Storage</div>
+                        <div class="skill-pills">
+                            <span class="skill-pill">PostgreSQL</span>
+                            <span class="skill-pill">MariaDB / MySQL</span>
+                            <span class="skill-pill">Liquibase</span>
+                            <span class="skill-pill">Database Design</span>
+                            <span class="skill-pill">Schema Migration</span>
+                            <span class="skill-pill">Query Optimization</span>
+                            <span class="skill-pill">JPA Relationships</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="skill-card">
+                        <div class="skill-icon-box bg-orange"><i class="fas fa-tools"></i></div>
+                        <div class="skill-card-title">Tools &amp; Practices</div>
+                        <div class="skill-pills">
+                            <span class="skill-pill">Git / GitHub</span>
+                            <span class="skill-pill">Maven</span>
+                            <span class="skill-pill">Docker</span>
+                            <span class="skill-pill">Postman</span>
+                            <span class="skill-pill">IntelliJ IDEA</span>
+                            <span class="skill-pill">VS Code</span>
+                            <span class="skill-pill">Multi-Tenant SaaS</span>
+                            <span class="skill-pill">Algorithm Design</span>
+                            <span class="skill-pill">PDF Generation</span>
+                            <span class="skill-pill">QR / Barcode</span>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
+    <!-- ===== CONTACT ===== -->
+    <section id="contact" class="contact-section">
+        <div class="container">
+            <div class="contact-card">
+                <h2 class="contact-heading">Let's Work Together</h2>
+                <p class="contact-desc">Open to new opportunities, freelance projects, and collaborations. Feel free to reach out!</p>
+                <div class="contact-btns">
+                    <a href="mailto:afaqch5535@gmail.com" class="btn-cta btn-cta-email">
+                        <i class="fas fa-envelope"></i> afaqch5535@gmail.com
+                    </a>
+                    <a href="https://wa.me/923021005535" target="_blank" rel="noopener" class="btn-cta btn-cta-whatsapp" title="Chat on WhatsApp">
+                        <i class="fab fa-whatsapp"></i> 0302 1005535
+                    </a>
+                    <a href="https://www.linkedin.com/in/afaq-springboot-angular" target="_blank" rel="noopener" class="btn-cta btn-cta-linkedin">
+                        <i class="fab fa-linkedin"></i> LinkedIn
+                    </a>
+                    <a href="https://github.com/afaq-codes" target="_blank" rel="noopener" class="btn-cta btn-cta-github">
+                        <i class="fab fa-github"></i> GitHub
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== FOOTER ===== -->
     <footer class="footer">
         <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <h5>Full-Stack Developer Portfolio</h5>
-                    <p>Enterprise Java & Angular Specialist | Healthcare & Business Solutions Expert</p>
-                    <div class="social-links mt-3">
-                        <a href="#"><i class="fab fa-github"></i></a>
-                        <a href="#"><i class="fab fa-linkedin"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fas fa-envelope"></i></a>
-                    </div>
-                    <p class="mt-3 mb-0">&copy; 2024 Portfolio Demos. All rights reserved.</p>
-                </div>
+            <div class="footer-social">
+                <a href="https://github.com/afaq-codes" target="_blank" rel="noopener" title="GitHub"><i class="fab fa-github"></i></a>
+                <a href="https://www.linkedin.com/in/afaq-springboot-angular" target="_blank" rel="noopener" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                <a href="https://wa.me/923021005535" target="_blank" rel="noopener" title="WhatsApp: 0302 1005535"><i class="fab fa-whatsapp"></i></a>
+                <a href="mailto:afaqch5535@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
             </div>
+            <p class="mb-0"><strong>Muhammad Afaq</strong> &mdash; Full-Stack Java &amp; Angular Developer &mdash; &copy; 2025</p>
         </div>
     </footer>
 
