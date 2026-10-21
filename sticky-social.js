@@ -12,4 +12,31 @@
         '</div>';
 
     document.body.insertAdjacentHTML('beforeend', html);
+
+    function hideNearContact() {
+        var bar = document.getElementById('sticky-social');
+        if (!bar || !('IntersectionObserver' in window)) return;
+        var targets = document.querySelectorAll('.hero-section, .hero-demo, #contact, .cta-band, .site-footer');
+        if (!targets.length) return;
+        var visible = new Set();
+        var observer = new IntersectionObserver(function (entries) {
+            entries.forEach(function (entry) {
+                if (entry.isIntersecting) {
+                    visible.add(entry.target);
+                } else {
+                    visible.delete(entry.target);
+                }
+            });
+            bar.classList.toggle('is-hidden', visible.size > 0);
+        }, { threshold: 0, rootMargin: '0px 0px -120px 0px' });
+        Array.prototype.forEach.call(targets, function (el) {
+            observer.observe(el);
+        });
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', hideNearContact);
+    } else {
+        hideNearContact();
+    }
 })();

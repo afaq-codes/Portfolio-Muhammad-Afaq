@@ -36,7 +36,7 @@
 .marquee-track {
     display: flex;
     width: max-content;
-    animation: portfolio-marquee 45s linear infinite;
+    animation: portfolio-marquee 58s linear infinite;
 }
 
 .portfolio-marquee:hover .marquee-track {
@@ -89,7 +89,7 @@
         padding: 0.75rem 0;
     }
     .marquee-track {
-        animation-duration: 35s;
+        animation-duration: 46s;
     }
     .marquee-group {
         gap: 2rem;
@@ -101,5 +101,11 @@
     .portfolio-marquee::before,
     .portfolio-marquee::after {
         width: 2rem;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .marquee-track {
+        animation: none;
     }
 }

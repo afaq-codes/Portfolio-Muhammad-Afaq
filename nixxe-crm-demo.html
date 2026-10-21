@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-59XXTKP9');</script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A sales, customer-support and workforce CRM for a call-centre sales business, covering leads, attribution, QA, retention, commissions, recruitment and payroll in one product.">
+    <title>Nixxe CRM: Sales, Support and Workforce CRM | Muhammad Afaq</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="site-nav.css" rel="stylesheet">
+    <link href="typography.css" rel="stylesheet">
+    <link href="sticky-social.css" rel="stylesheet">
+    <link href="site-buttons.css" rel="stylesheet">
+    <link href="site-marquee.css" rel="stylesheet">
+    <link href="site-footer.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #4338ca;
+            --primary-dark: #1e1b4b;
+            --sales: #4338ca;
+            --support: #0d9488;
+            --quality: #7c3aed;
+            --recruit: #db2777;
+            --hr: #2563eb;
+            --access: #475569;
+            --bg: #eef2ff;
+            --card: #ffffff;
+            --text: #1e293b;
+            --muted: #475569;
+            --border: #c7d2fe;
+        }
+        html, body { overflow-x: hidden; overflow-x: clip; max-width: 100vw; }
+        body { background: var(--bg); color: var(--text); }
+        .top-nav {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            box-shadow: 0 2px 16px rgba(0,0,0,0.12);
+            padding: 0.85rem 0;
+        }
+        .top-nav .brand { font-weight: 800; color: #fff !important; font-size: 1.05rem; }
+        .top-nav .nav-link { color: rgba(255,255,255,0.9) !important; font-weight: 500; font-size: 0.875rem; }
+        .hero-demo {
+            background: linear-gradient(140deg, #1e1b4b 0%, #3730a3 50%, #312e81 100%);
+            color: white;
+            padding: 3rem 0 2.5rem;
+            text-align: center;
+        }
+        .hero-demo h1 { font-size: 2rem; font-weight: 800; }
+        .hero-demo p { color: rgba(255,255,255,0.75); max-width: 640px; margin: 0.75rem auto 0; font-size: 0.9rem; line-height: 1.65; }
+        .hero-stats { display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap; margin-top: 1.5rem; }
+        .hero-stat-num { font-size: 1.75rem; font-weight: 800; color: #a5b4fc; }
+        .hero-stat-lbl { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 1px; color: rgba(255,255,255,0.5); font-weight: 600; }
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            margin-top: 1.5rem;
+            padding: 0.5rem 1.1rem;
+            border: 1px solid rgba(255,255,255,0.35);
+            border-radius: 50px;
+            color: #fff;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: background 0.2s;
+        }
+        .back-link:hover { background: rgba(255,255,255,0.12); color: #fff; }
+        .back-link.on-light { border-color: var(--border); color: var(--primary); background: var(--card); margin-top: 0; }
+        .back-link.on-light:hover { background: var(--primary); color: #fff; border-color: var(--primary); }
+        .cap-strip { padding: 1.5rem 0 0; }
+        .demo-nav-section {
+            background: white;
+            border-bottom: 1px solid var(--border);
+            padding: 1rem 0 1.25rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+        }
+        .app-tabs { display: flex; flex-wrap: wrap; gap: 0.5rem; justify-content: center; }
+        .app-tab {
+            border: 1px solid var(--border);
+            background: var(--bg);
+            color: var(--text);
+            padding: 0.5rem 0.95rem;
+            border-radius: 10px;
+            font-size: 0.78rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+            white-space: nowrap;
+        }
+        .app-tab:hover, .app-tab.active {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+        .main-wrap { padding: 1.5rem 0 4rem; }
+        .demo-viewport {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 1.25rem;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.06);
+            min-height: 200px;
+        }
+        .panel { display: none; animation: fadeIn 0.25s ease; }
+        .panel.active { display: block; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+        .flow-bar {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 18px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        .flow-bar h5 { font-weight: 800; font-size: 0.95rem; margin-bottom: 1rem; text-align: center; }
+        .flow-steps { display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 0.4rem; }
+        .flow-step {
+            background: linear-gradient(180deg, #eef2ff, #e0e7ff);
+            border: 2px solid #a5b4fc;
+            border-radius: 12px;
+            padding: 0.85rem 1rem;
+            font-size: 0.78rem;
+            font-weight: 700;
+            text-align: center;
+            min-width: 100px;
+        }
+        .flow-step i { display: block; font-size: 1.25rem; color: var(--primary); margin-bottom: 0.35rem; }
+        .panel-banner {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 1.25rem 1.5rem;
+            margin-bottom: 1.25rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        .panel-banner-icon {
+            width: 48px; height: 48px;
+            border-radius: 12px;
+            display: flex; align-items: center; justify-content: center;
+            color: white; font-size: 1.2rem; flex-shrink: 0;
+        }
+        .panel-banner h2 { font-size: 1.2rem; font-weight: 800; margin: 0; }
+        .panel-banner p { font-size: 0.85rem; color: var(--muted); margin: 0.25rem 0 0; line-height: 1.55; }
+        .tile-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+            gap: 0.75rem;
+        }
+        .tile {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 1rem 0.75rem;
+            text-align: center;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .tile:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 24px rgba(67,56,202,0.15);
+        }
+        .tile i { font-size: 1.35rem; margin-bottom: 0.5rem; display: block; }
+        .tile span { font-size: 0.78rem; font-weight: 700; line-height: 1.3; display: block; }
+        .visual-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+        @media (max-width: 768px) {
+            .visual-row { grid-template-columns: 1fr; }
+            .hero-demo { padding: 2.25rem 0 2rem; }
+            .hero-demo h1 { font-size: 1.45rem; }
+            .hero-stats { gap: 1.25rem; }
+            .app-tabs {
+                flex-wrap: nowrap;
+                justify-content: flex-start;
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+                padding-bottom: 0.35rem;
+                scrollbar-width: none;
+            }
+            .app-tabs::-webkit-scrollbar { display: none; }
+            .demo-viewport {
+                border-width: 2px;
+                border-radius: 16px;
+                padding: 1rem;
+                box-shadow: inset 0 0 0 1px rgba(67,56,202,0.1), 0 10px 28px rgba(0,0,0,0.08);
+            }
+            .flow-steps { justify-content: flex-start; }
+            .panel-banner { flex-direction: column; align-items: flex-start; }
+        }
+        .visual-box {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 1.25rem;
+        }
+        .visual-box h6 { font-weight: 800; font-size: 0.85rem; margin-bottom: 1rem; }
+        .visual-box p { font-size: 0.85rem; color: var(--muted); line-height: 1.65; margin-bottom: 0.75rem; }
+        .pos-line {
+            display: flex;
+            justify-content: space-between;
+            gap: 1rem;
+            font-size: 0.8rem;
+            padding: 0.4rem 0;
+            border-bottom: 1px dashed #e0e7ff;
+        }
+        .pos-line span:last-child { text-align: right; color: var(--muted); }
+        .stack-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            justify-content: center;
+            margin-top: 2rem;
+        }
+        .visual-box .stack-row { justify-content: flex-start; margin-top: 0; }
+        .stack-pill {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 50px;
+            padding: 0.5rem 1rem;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        .stack-pill i { color: var(--primary); margin-right: 0.35rem; }
+        .hero-demo h1, .panel-title, .panel-banner h2 { text-wrap: balance; }
+        @media (max-width:575.98px){.hero-stats{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem 1.5rem;max-width:320px;margin-inline:auto}}
+        @media (max-width:575.98px){.hero-stats > div:last-child:nth-child(odd){grid-column:1 / -1}}
+        .hero-demo p { color: rgba(255,255,255,0.85); line-height: 1.7; }
+        .hero-stat-num { font-variant-numeric: tabular-nums; }
+        .hero-stat-lbl { color: rgba(255,255,255,0.8); }
+        .demo-nav-section { top: var(--site-nav-h, 72px); }
+        .app-tab, .back-link { cursor: pointer; }
+        .app-tab:focus-visible { outline: 3px solid var(--primary); outline-offset: 2px; }
+        .panel:focus-visible { outline: 3px solid var(--primary); outline-offset: 4px; border-radius: 14px; }
+        .main-wrap a:focus-visible, .cap-strip a:focus-visible { outline: 3px solid var(--primary); outline-offset: 3px; }
+        .hero-demo a:focus-visible, .hero-demo button:focus-visible { outline: 3px solid #fff; outline-offset: 3px; box-shadow: none; }
+        .tile span { color: var(--text); }
+        @media (max-width: 768px) {
+            .demo-nav-section { padding: 0.6rem 0; }
+            .app-tabs { padding: 5px 5px 0.4rem; margin-inline: -5px; scroll-padding-inline: 5px; }
+            .app-tab { min-height: 44px; padding-inline: 1rem; }
+            .back-link, .btn-hero-primary, .btn-hero-ghost, .hero-demo .btn { min-height: 44px; display: inline-flex; align-items: center; }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            .hero-demo *, .hero-demo *::after, .cap-strip *, .demo-shell *, .demo-shell *::after { transition: none !important; animation: none !important; scroll-behavior: auto !important; }
+            .tile:hover, .module-card:hover, .btn-hero-primary:hover, .btn-hero-ghost:hover { transform: none; }
+        }
+        @media (max-width: 768px) {
+            .flow-steps { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+            .flow-step { min-width: 0; }
+        }
+        .cta-band{background:#0b1220;padding-block:3.5rem}
+        .cta-band-inner{display:flex;flex-wrap:wrap;gap:1.5rem 2.5rem;align-items:center;justify-content:space-between;background:linear-gradient(135deg,var(--primary-dark,#0f172a) 0%,#0b1220 100%);border:1px solid rgba(255,255,255,.12);border-radius:20px;padding:2rem}
+        .cta-band-inner > div:first-child{min-width:0;flex:1 1 320px}
+        .cta-band-eyebrow{color:#a7f3d0;font-size:.78rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;margin:0 0 .5rem;display:flex;align-items:center;gap:.5rem}
+        .cta-dot{width:8px;height:8px;border-radius:50%;background:#34d399;box-shadow:0 0 0 4px rgba(52,211,153,.2);flex:0 0 8px}
+        .cta-band-title{color:#fff;font-size:clamp(1.4rem,2.6vw,2rem);margin:0 0 .5rem;text-wrap:balance}
+        .cta-band-text{color:#cbd5e1;max-width:56ch;margin:0;line-height:1.6}
+        .cta-band-actions{display:flex;flex-wrap:wrap;gap:.75rem}
+        .cta-btn{display:inline-flex;align-items:center;gap:.5rem;min-height:46px;padding:.7rem 1.3rem;border-radius:999px;font-weight:600;text-decoration:none;transition:transform .15s ease,background-color .15s ease;cursor:pointer}
+        .cta-btn-primary{background:#fff;color:var(--primary-dark,#0f172a)}
+        .cta-btn-ghost{color:#fff;border:1px solid rgba(255,255,255,.35)}
+        .cta-btn:hover{transform:translateY(-1px)}
+        .cta-btn-ghost:hover{background:rgba(255,255,255,.08);color:#fff}
+        .cta-btn:focus-visible{outline:3px solid #93c5fd;outline-offset:3px}
+        @media (prefers-reduced-motion:reduce){.cta-btn{transition:none}.cta-btn:hover{transform:none}}
+    </style>
+</head>
+<body>
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-59XXTKP9" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+    <div id="site-nav"></div>
+
+    <section class="hero-demo">
+        <div class="container">
+            <h1><i class="fas fa-headset me-2" aria-hidden="true"></i>Nixxe CRM: Sales, Support and Workforce</h1>
+            <p>A sales, customer-support and workforce CRM for Nixxe Solutions, a call-centre sales business. Leads, attribution, QA, retention, commissions, recruitment and payroll in one product. I built it and I maintain it.</p>
+            <div class="hero-stats">
+                <div><div class="hero-stat-num">20</div><div class="hero-stat-lbl">Backend Modules</div></div>
+                <div><div class="hero-stat-num">220</div><div class="hero-stat-lbl">Entities</div></div>
+                <div><div class="hero-stat-num">110</div><div class="hero-stat-lbl">REST Controllers</div></div>
+                <div><div class="hero-stat-num">363</div><div class="hero-stat-lbl">Flyway Migrations</div></div>
+            </div>
+            <a href="index.html#project-nixxe" class="back-link"><i class="fas fa-arrow-left" aria-hidden="true"></i> Back to portfolio</a>
+        </div>
+    </section>
+
+    <section class="cap-strip">
+        <div class="container">
+            <div class="flow-bar mb-0">
+                <h5><i class="fas fa-bullseye me-2" aria-hidden="true"></i>CRM capabilities</h5>
+                <div class="flow-steps">
+                    <div class="flow-step"><i class="fas fa-filter" aria-hidden="true"></i>Lead pipeline</div>
+                    <div class="flow-step"><i class="fas fa-table" aria-hidden="true"></i>Google Sheets lead sync</div>
+                    <div class="flow-step"><i class="fas fa-user-tag" aria-hidden="true"></i>Attribution</div>
+                    <div class="flow-step"><i class="fas fa-clipboard-check" aria-hidden="true"></i>QA scorecards</div>
+                    <div class="flow-step"><i class="fas fa-rotate-left" aria-hidden="true"></i>Chargebacks and winbacks</div>
+                    <div class="flow-step"><i class="fas fa-sack-dollar" aria-hidden="true"></i>Commissions</div>
+                    <div class="flow-step"><i class="fas fa-list-check" aria-hidden="true"></i>Follow-ups</div>
+                    <div class="flow-step"><i class="fas fa-user-plus" aria-hidden="true"></i>Recruitment pipeline</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="demo-shell">
+    <section class="demo-nav-section mt-4">
+        <div class="container">
+            <div class="app-tabs" role="tablist" aria-label="Nixxe CRM modules">
+                <button type="button" class="app-tab active" data-panel="panel-sales" role="tab" id="tab-sales" aria-controls="panel-sales" aria-selected="true" tabindex="0"><i class="fas fa-chart-line" aria-hidden="true"></i> Sales and Leads</button>
+                <button type="button" class="app-tab" data-panel="panel-support" role="tab" id="tab-support" aria-controls="panel-support" aria-selected="false" tabindex="-1"><i class="fas fa-headset" aria-hidden="true"></i> Customer Support and Retention</button>
+                <button type="button" class="app-tab" data-panel="panel-quality" role="tab" id="tab-quality" aria-controls="panel-quality" aria-selected="false" tabindex="-1"><i class="fas fa-clipboard-check" aria-hidden="true"></i> Quality and Performance</button>
+                <button type="button" class="app-tab" data-panel="panel-recruitment" role="tab" id="tab-recruitment" aria-controls="panel-recruitment" aria-selected="false" tabindex="-1"><i class="fas fa-user-plus" aria-hidden="true"></i> Recruitment</button>
+                <button type="button" class="app-tab" data-panel="panel-hr" role="tab" id="tab-hr" aria-controls="panel-hr" aria-selected="false" tabindex="-1"><i class="fas fa-people-group" aria-hidden="true"></i> HR and Payroll</button>
+                <button type="button" class="app-tab" data-panel="panel-platform" role="tab" id="tab-platform" aria-controls="panel-platform" aria-selected="false" tabindex="-1"><i class="fas fa-shield-halved" aria-hidden="true"></i> Platform and Access</button>
+            </div>
+        </div>
+    </section>
+
+    <div class="container main-wrap">
+        <div class="demo-viewport">
+
+        <div id="panel-sales" class="panel active" role="tabpanel" aria-labelledby="tab-sales" tabindex="0">
+            <div class="panel-banner">
+                <div class="panel-banner-icon" style="background:var(--sales)"><i class="fas fa-chart-line" aria-hidden="true"></i></div>
+                <div>
+                    <h2>Sales and Leads</h2>
+                    <p>I built the lead and sales pipeline. Leads come in from Google Sheets and a master import, get attributed to agents and teams, and feed the sales and commission reports.</p>
+                </div>
+            </div>
+            <div class="tile-grid">
+                <div class="tile" style="color:var(--sales)"><i class="fas fa-address-book" aria-hidden="true"></i><span>Leads</span></div>
+                <div class="tile" style="color:var(--sales)"><i class="fas fa-table" aria-hidden="true"></i><span>Google Sheets Lead Sync</span></div>
+                <div class="tile" style="color:var(--sales)"><i class="fas fa-file-import" aria-hidden="true"></i><span>Master Import</span></div>
+                <div class="tile" style="color:var(--sales)"><i class="fas fa-user-tag" aria-hidden="true"></i><span>Attribution</span></div>
+                <div class="tile" style="color:var(--sales)"><i class="fas fa-people-arrows" aria-hidden="true"></i><span>Closer and Fronter Roles</span></div>
+                <div class="tile" style="color:var(--sales)"><i class="fas fa-ban" aria-hidden="true"></i><span>Blacklist Lookup</span></div>
+                <div class="tile" style="color:var(--sales)"><i class="fas fa-file-export" aria-hidden="true"></i><span>Daily Sales Export</span></div>
+                <div class="tile" style="color:var(--sales)"><i class="fas fa-chart-column" aria-hidden="true"></i><span>Sales Report</span></div>
+                <div class="tile" style="color:var(--sales)"><i class="fas fa-sack-dollar" aria-hidden="true"></i><span>Commission Report</span></div>
+                <div class="tile" style="color:var(--sales)"><i class="fas fa-building" aria-hidden="true"></i><span>Admin Companies</span></div>
+                <div class="tile" style="color:var(--sales)"><i class="fas fa-gear" aria-hidden="true"></i><span>Sales Settings</span></div>
+            </div>
+            <div class="visual-row">
+                <div class="visual-box">
+                    <h6><i class="fas fa-filter me-2" aria-hidden="true"></i>Lead pipeline</h6>
+                    <div class="pos-line"><span>Lead sources</span><span>Google Sheets sync and master import</span></div>
+                    <div class="pos-line"><span>Attribution</span><span>To agents and teams</span></div>
+                    <div class="pos-line"><span>Sales roles</span><span>Closers and fronters</span></div>
+                    <div class="pos-line"><span>Blacklist</span><span>Lookup on leads</span></div>
+                    <div class="pos-line"><span>Export</span><span>Daily sales export</span></div>
+                </div>
+                <div class="visual-box">
+                    <h6><i class="fas fa-sack-dollar me-2" aria-hidden="true"></i>Commissions and reporting</h6>
+                    <div class="pos-line"><span>Commission report</span><span>Commission by team side</span></div>
+                    <div class="pos-line"><span>Sales report</span><span>By team and agent</span></div>
+                    <div class="pos-line"><span>Team leads</span><span>Team-lead totals</span></div>
+                </div>
+            </div>
+        </div>
+
+        <div id="panel-support" class="panel" role="tabpanel" aria-labelledby="tab-support" tabindex="0">
+            <div class="panel-banner">
+                <div class="panel-banner-icon" style="background:var(--support)"><i class="fas fa-headset" aria-hidden="true"></i></div>
+                <div>
+                    <h2>Customer Support and Retention</h2>
+                    <p>Revenue protection after the sale. Chargebacks, winbacks, customer follow-ups and inbound call logging, with a dashboard for the support team.</p>
+                </div>
+            </div>
+            <div class="tile-grid">
+                <div class="tile" style="color:var(--support)"><i class="fas fa-gauge-high" aria-hidden="true"></i><span>CS Dashboard</span></div>
+                <div class="tile" style="color:var(--support)"><i class="fas fa-list-check" aria-hidden="true"></i><span>Customer Follow-ups</span></div>
+                <div class="tile" style="color:var(--support)"><i class="fas fa-phone-volume" aria-hidden="true"></i><span>Inbound Calls</span></div>
+                <div class="tile" style="color:var(--support)"><i class="fas fa-rotate-left" aria-hidden="true"></i><span>Chargebacks</span></div>
+                <div class="tile" style="color:var(--support)"><i class="fas fa-handshake" aria-hidden="true"></i><span>Winbacks</span></div>
+                <div class="tile" style="color:var(--support)"><i class="fas fa-arrows-rotate" aria-hidden="true"></i><span>Winback Chargebacks</span></div>
+            </div>
+        </div>
+
+        <div id="panel-quality" class="panel" role="tabpanel" aria-labelledby="tab-quality" tabindex="0">
+            <div class="panel-banner">
+                <div class="panel-banner-icon" style="background:var(--quality)"><i class="fas fa-clipboard-check" aria-hidden="true"></i></div>
+                <div>
+                    <h2>Quality and Performance</h2>
+                    <p>QA and performance tools for the sales floor. Review forms and scorecards, mistake tracking, closer QA assignment, targets and actuals, flag bands, PIPs and leaderboards.</p>
+                </div>
+            </div>
+            <div class="tile-grid">
+                <div class="tile" style="color:var(--quality)"><i class="fas fa-clipboard-list" aria-hidden="true"></i><span>QA Forms</span></div>
+                <div class="tile" style="color:var(--quality)"><i class="fas fa-clipboard-check" aria-hidden="true"></i><span>QA Reviews</span></div>
+                <div class="tile" style="color:var(--quality)"><i class="fas fa-star-half-stroke" aria-hidden="true"></i><span>QA Scorecards</span></div>
+                <div class="tile" style="color:var(--quality)"><i class="fas fa-triangle-exclamation" aria-hidden="true"></i><span>QA Mistakes</span></div>
+                <div class="tile" style="color:var(--quality)"><i class="fas fa-chart-pie" aria-hidden="true"></i><span>QA Stats</span></div>
+                <div class="tile" style="color:var(--quality)"><i class="fas fa-user-check" aria-hidden="true"></i><span>Closer QA Assignment</span></div>
+                <div class="tile" style="color:var(--quality)"><i class="fas fa-bullseye" aria-hidden="true"></i><span>Targets</span></div>
+                <div class="tile" style="color:var(--quality)"><i class="fas fa-chart-line" aria-hidden="true"></i><span>Actuals</span></div>
+                <div class="tile" style="color:var(--quality)"><i class="fas fa-flag" aria-hidden="true"></i><span>Flag Bands</span></div>
+                <div class="tile" style="color:var(--quality)"><i class="fas fa-user-clock" aria-hidden="true"></i><span>PIPs</span></div>
+                <div class="tile" style="color:var(--quality)"><i class="fas fa-file-lines" aria-hidden="true"></i><span>Performance Reports</span></div>
+                <div class="tile" style="color:var(--quality)"><i class="fas fa-trophy" aria-hidden="true"></i><span>Leaderboards</span></div>
+            </div>
+            <div class="visual-row">
+                <div class="visual-box">
+                    <h6><i class="fas fa-clipboard-check me-2" aria-hidden="true"></i>Quality</h6>
+                    <div class="pos-line"><span>Reviews</span><span>QA forms and scorecards</span></div>
+                    <div class="pos-line"><span>Mistakes</span><span>QA mistake tracking</span></div>
+                    <div class="pos-line"><span>Assignment</span><span>Closer QA assignment</span></div>
+                    <div class="pos-line"><span>Stats</span><span>QA stats</span></div>
+                </div>
+                <div class="visual-box">
+                    <h6><i class="fas fa-trophy me-2" aria-hidden="true"></i>Performance</h6>
+                    <div class="pos-line"><span>Leaderboards</span><span>Six sales metrics</span></div>
+                    <div class="pos-line"><span>Targets</span><span>Targets and actuals</span></div>
+                    <div class="pos-line"><span>Flag bands</span><span>Performance flag bands</span></div>
+                    <div class="pos-line"><span>PIPs</span><span>Performance improvement plans</span></div>
+                </div>
+            </div>
+        </div>
+
+        <div id="panel-recruitment" class="panel" role="tabpanel" aria-labelledby="tab-recruitment" tabindex="0">
+            <div class="panel-banner">
+                <div class="panel-banner-icon" style="background:var(--recruit)"><i class="fas fa-user-plus" aria-hidden="true"></i></div>
+                <div>
+                    <h2>Recruitment</h2>
+                    <p>A hiring pipeline built like a sales pipeline. Hiring leads come in from Meta lead forms and custom sources, then move through an interview pipeline with full status history.</p>
+                </div>
+            </div>
+            <div class="tile-grid">
+                <div class="tile" style="color:var(--recruit)"><i class="fab fa-meta" aria-hidden="true"></i><span>Meta Lead-Form Leads</span></div>
+                <div class="tile" style="color:var(--recruit)"><i class="fas fa-arrows-rotate" aria-hidden="true"></i><span>Sync Logs</span></div>
+                <div class="tile" style="color:var(--recruit)"><i class="fas fa-user-plus" aria-hidden="true"></i><span>Custom Hiring Leads</span></div>
+                <div class="tile" style="color:var(--recruit)"><i class="fas fa-comments" aria-hidden="true"></i><span>Interview Pipeline</span></div>
+                <div class="tile" style="color:var(--recruit)"><i class="fas fa-list-ol" aria-hidden="true"></i><span>19 Hiring Statuses</span></div>
+                <div class="tile" style="color:var(--recruit)"><i class="fas fa-clock-rotate-left" aria-hidden="true"></i><span>Status History</span></div>
+            </div>
+            <div class="visual-row">
+                <div class="visual-box">
+                    <h6><i class="fas fa-user-plus me-2" aria-hidden="true"></i>Hiring pipeline</h6>
+                    <div class="pos-line"><span>Sources</span><span>Meta lead forms and custom leads</span></div>
+                    <div class="pos-line"><span>Sync</span><span>Sync logs for Meta leads</span></div>
+                    <div class="pos-line"><span>Interviews</span><span>19 hiring statuses</span></div>
+                    <div class="pos-line"><span>History</span><span>Interview status history</span></div>
+                </div>
+            </div>
+        </div>
+
+        <div id="panel-hr" class="panel" role="tabpanel" aria-labelledby="tab-hr" tabindex="0">
+            <div class="panel-banner">
+                <div class="panel-banner-icon" style="background:var(--hr)"><i class="fas fa-people-group" aria-hidden="true"></i></div>
+                <div>
+                    <h2>HR and Payroll</h2>
+                    <p>The workforce side of the CRM. Employees, teams, schedules, attendance, leaves, timesheets and payroll in the same product as the sales data.</p>
+                </div>
+            </div>
+            <div class="tile-grid">
+                <div class="tile" style="color:var(--hr)"><i class="fas fa-id-badge" aria-hidden="true"></i><span>Employees</span></div>
+                <div class="tile" style="color:var(--hr)"><i class="fas fa-people-group" aria-hidden="true"></i><span>Teams</span></div>
+                <div class="tile" style="color:var(--hr)"><i class="fas fa-calendar-days" aria-hidden="true"></i><span>Schedules</span></div>
+                <div class="tile" style="color:var(--hr)"><i class="fas fa-calendar-check" aria-hidden="true"></i><span>Attendance</span></div>
+                <div class="tile" style="color:var(--hr)"><i class="fas fa-umbrella-beach" aria-hidden="true"></i><span>Leaves</span></div>
+                <div class="tile" style="color:var(--hr)"><i class="fas fa-circle-minus" aria-hidden="true"></i><span>Exemptions</span></div>
+                <div class="tile" style="color:var(--hr)"><i class="fas fa-table-list" aria-hidden="true"></i><span>Timesheets</span></div>
+                <div class="tile" style="color:var(--hr)"><i class="fas fa-money-check-dollar" aria-hidden="true"></i><span>Payroll Runs</span></div>
+                <div class="tile" style="color:var(--hr)"><i class="fas fa-scale-balanced" aria-hidden="true"></i><span>Payroll Rules</span></div>
+                <div class="tile" style="color:var(--hr)"><i class="fas fa-arrow-trend-up" aria-hidden="true"></i><span>Salary Increments</span></div>
+                <div class="tile" style="color:var(--hr)"><i class="fas fa-hand-holding-dollar" aria-hidden="true"></i><span>Loans</span></div>
+                <div class="tile" style="color:var(--hr)"><i class="fas fa-calendar-day" aria-hidden="true"></i><span>Public Holidays</span></div>
+            </div>
+            <div class="visual-row">
+                <div class="visual-box">
+                    <h6><i class="fas fa-calendar-check me-2" aria-hidden="true"></i>Attendance and schedules</h6>
+                    <div class="pos-line"><span>Schedules</span><span>Automatic breaks</span></div>
+                    <div class="pos-line"><span>Long break</span><span>Applied automatically</span></div>
+                    <div class="pos-line"><span>On call</span><span>On-call extension</span></div>
+                    <div class="pos-line"><span>Audit</span><span>Attendance audit history</span></div>
+                </div>
+                <div class="visual-box">
+                    <h6><i class="fas fa-money-check-dollar me-2" aria-hidden="true"></i>Leaves and payroll</h6>
+                    <div class="pos-line"><span>Leaves</span><span>Approval SLA</span></div>
+                    <div class="pos-line"><span>Payroll</span><span>Payable-day rules</span></div>
+                    <div class="pos-line"><span>Increments</span><span>Salary increments</span></div>
+                    <div class="pos-line"><span>Loans</span><span>Employee loans</span></div>
+                </div>
+            </div>
+        </div>
+
+        <div id="panel-platform" class="panel" role="tabpanel" aria-labelledby="tab-platform" tabindex="0">
+            <div class="panel-banner">
+                <div class="panel-banner-icon" style="background:var(--access)"><i class="fas fa-shield-halved" aria-hidden="true"></i></div>
+                <div>
+                    <h2>Platform and Access</h2>
+                    <p>The shared platform under the CRM. Dashboards, messaging, mail, announcements, expense and assets, with real-time updates and 700+ permission checks.</p>
+                </div>
+            </div>
+            <div class="tile-grid">
+                <div class="tile" style="color:var(--access)"><i class="fas fa-chart-pie" aria-hidden="true"></i><span>Dashboards</span></div>
+                <div class="tile" style="color:var(--access)"><i class="fas fa-message" aria-hidden="true"></i><span>Messaging</span></div>
+                <div class="tile" style="color:var(--access)"><i class="fas fa-envelope" aria-hidden="true"></i><span>Mail</span></div>
+                <div class="tile" style="color:var(--access)"><i class="fas fa-bullhorn" aria-hidden="true"></i><span>Announcements</span></div>
+                <div class="tile" style="color:var(--access)"><i class="fas fa-receipt" aria-hidden="true"></i><span>Expense</span></div>
+                <div class="tile" style="color:var(--access)"><i class="fas fa-laptop" aria-hidden="true"></i><span>Assets</span></div>
+                <div class="tile" style="color:var(--access)"><i class="fas fa-bolt" aria-hidden="true"></i><span>STOMP WebSocket</span></div>
+                <div class="tile" style="color:var(--access)"><i class="fas fa-shield-halved" aria-hidden="true"></i><span>700+ Permission Checks</span></div>
+            </div>
+        </div>
+
+        </div>
+
+        <div class="visual-row">
+            <div class="visual-box">
+                <h6><i class="fas fa-layer-group me-2" aria-hidden="true"></i>Tech stack</h6>
+                <div class="stack-row">
+                    <span class="stack-pill"><i class="fab fa-java" aria-hidden="true"></i> Java 17</span>
+                    <span class="stack-pill"><i class="fas fa-server" aria-hidden="true"></i> Spring Boot 3.2</span>
+                    <span class="stack-pill"><i class="fas fa-database" aria-hidden="true"></i> PostgreSQL</span>
+                    <span class="stack-pill"><i class="fas fa-code-branch" aria-hidden="true"></i> Flyway</span>
+                    <span class="stack-pill"><i class="fab fa-angular" aria-hidden="true"></i> Angular 14</span>
+                    <span class="stack-pill"><i class="fas fa-palette" aria-hidden="true"></i> Angular Material</span>
+                    <span class="stack-pill"><i class="fas fa-bolt" aria-hidden="true"></i> STOMP WebSocket</span>
+                    <span class="stack-pill"><i class="fab fa-docker" aria-hidden="true"></i> Docker</span>
+                    <span class="stack-pill"><i class="fas fa-network-wired" aria-hidden="true"></i> nginx</span>
+                </div>
+            </div>
+            <div class="visual-box">
+                <h6><i class="fas fa-user-gear me-2" aria-hidden="true"></i>My role</h6>
+                <p>I built Nixxe CRM and I maintain it, effectively solo. I built it on the CareMD platform core. In September 2026 I split it into its own product and repository: I removed the billing modules and kept and extended the CRM modules.</p>
+                <a href="index.html#project-nixxe" class="back-link on-light"><i class="fas fa-arrow-left" aria-hidden="true"></i> Back to Nixxe CRM in the portfolio</a>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    <section class="cta-band" aria-labelledby="cta-band-title">
+      <div class="container">
+        <div class="cta-band-inner">
+          <div>
+            <p class="cta-band-eyebrow"><span class="cta-dot" aria-hidden="true"></span> Open to remote projects</p>
+            <h2 id="cta-band-title" class="cta-band-title">Need something like this built?</h2>
+            <p class="cta-band-text">I build CRM systems, AI integrations and multi-tenant SaaS on Spring Boot and Angular. Tell me what you need and let's plan it.</p>
+          </div>
+          <div class="cta-band-actions">
+            <a class="cta-btn cta-btn-primary" href="index.html#contact"><i class="fas fa-paper-plane" aria-hidden="true"></i> Start a project</a>
+            <a class="cta-btn cta-btn-ghost" href="index.html#projects"><i class="fas fa-th-large" aria-hidden="true"></i> All projects</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="site-nav.js"></script>
+    <script src="site-marquee.js"></script>
+    <div id="site-footer"></div>
+
+    <script src="sticky-social.js"></script>
+    <script src="site-footer.js"></script>
+    <script>
+        (function () {
+            var tabs = Array.prototype.slice.call(document.querySelectorAll('.app-tab'));
+            var bar = document.querySelector('.demo-nav-section');
+            var view = document.querySelector('.demo-viewport');
+            var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            function activate(tab, focus) {
+                tabs.forEach(function (t) {
+                    var on = t === tab;
+                    t.classList.toggle('active', on);
+                    t.setAttribute('aria-selected', on ? 'true' : 'false');
+                    t.tabIndex = on ? 0 : -1;
+                    var panel = document.getElementById(t.getAttribute('data-panel'));
+                    if (panel) panel.classList.toggle('active', on);
+                });
+                if (focus) tab.focus();
+                var strip = tab.parentNode;
+                if (strip.scrollWidth > strip.clientWidth) {
+                    strip.scrollTo({ left: tab.offsetLeft - strip.offsetLeft - 16, behavior: reduce ? 'auto' : 'smooth' });
+                }
+                if (bar && view) {
+                    var gap = view.getBoundingClientRect().top - bar.getBoundingClientRect().bottom;
+                    if (gap < 0) window.scrollTo({ top: window.pageYOffset + gap - 12, behavior: reduce ? 'auto' : 'smooth' });
+                }
+            }
+            tabs.forEach(function (tab, i) {
+                tab.addEventListener('click', function () { activate(tab, false); });
+                tab.addEventListener('keydown', function (e) {
+                    var next = null;
+                    if (e.key === 'ArrowRight') next = (i + 1) % tabs.length;
+                    else if (e.key === 'ArrowLeft') next = (i - 1 + tabs.length) % tabs.length;
+                    else if (e.key === 'Home') next = 0;
+                    else if (e.key === 'End') next = tabs.length - 1;
+                    if (next === null) return;
+                    e.preventDefault();
+                    activate(tabs[next], true);
+                });
+            });
+        })();
+    </script>
+</body>
+</html>

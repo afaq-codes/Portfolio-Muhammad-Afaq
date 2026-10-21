@@ -10,7 +10,8 @@
     <!-- End Google Tag Manager -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AutoSchedula - Educational Management System</title>
+    <title>AutoSchedula: Automated Timetable System | Muhammad Afaq</title>
+    <meta name="description" content="My final-year project: automated university timetable generation on Spring Boot 3.2 and Angular 14, built solo.">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link href="site-nav.css" rel="stylesheet">
@@ -28,8 +29,9 @@
             --danger-color: #e74c3c;
             --info-color: #3498db;
             --light-bg: #f8f9fa;
+            --ring: #3a0ca3;
         }
-        
+
         body {
             background-color: #ffffff;
         }
@@ -62,14 +64,14 @@
         .timetable-sidebar {
             background: white;
             border-right: 1px solid #e9ecef;
-            height: 100vh;
-            overflow-y: auto;
+            height: auto;
+            overflow: visible;
         }
         
         .timetable-main {
             background: white;
-            height: 100vh;
-            overflow-y: auto;
+            height: auto;
+            overflow: visible;
         }
         
         .timetable-grid {
@@ -107,7 +109,7 @@
         }
         
         .schedule-item {
-            background: linear-gradient(135deg, var(--info-color), var(--success-color));
+            background: linear-gradient(135deg, #2471a3, #1e8449);
             color: white;
             padding: 0.5rem;
             border-radius: 5px;
@@ -214,7 +216,7 @@
         }
         
         .algorithm-status {
-            background: linear-gradient(135deg, var(--success-color), var(--info-color));
+            background: linear-gradient(135deg, #1e8449, #2471a3);
             color: white;
             padding: 1.5rem;
             border-radius: 15px;
@@ -223,6 +225,7 @@
         
         .optimization-metrics {
             background: white;
+            color: #212529;
             border-radius: 15px;
             padding: 1.5rem;
             box-shadow: 0 5px 20px rgba(0,0,0,0.1);
@@ -244,6 +247,66 @@
             font-weight: 700;
             color: var(--primary-color);
         }
+
+        .timetable-container > .row { margin-left: 0; margin-right: 0; }
+        .demo-app a, .demo-app button, .demo-app .btn { cursor: pointer; }
+        .demo-app :is(a, button, input, select, textarea, [tabindex]):focus-visible { outline: 3px solid var(--ring); outline-offset: 2px; box-shadow: none; }
+        .demo-app .text-warning { color: #a15c07 !important; }
+        .demo-app .badge.bg-warning { color: #212529; }
+        .timetable-scroll { overflow-x: auto; border-radius: 0 0 15px 15px; }
+        .timetable-grid { min-width: 800px; }
+        .timetable-grid .time-slot { position: sticky; left: 0; z-index: 1; }
+
+        .teacher-card .rounded-circle { flex: 0 0 40px; }
+
+        @media (max-width: 991.98px) {
+            .timetable-sidebar { border-right: 0; border-bottom: 1px solid #e9ecef; }
+        }
+
+        @media (max-width: 767.98px) {
+            .demo-app .btn { min-height: 44px; display: inline-flex; align-items: center; justify-content: center; }
+            .stat-card { padding: 1.25rem 1rem; }
+            .stat-number { font-size: 2rem; }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .demo-app *, .demo-app *::before, .demo-app *::after { transition: none !important; animation: none !important; }
+            .schedule-item:hover, .stat-card:hover { transform: none; }
+        }
+
+        .hero-demo { background: linear-gradient(140deg, #1f0a4d 0%, #3a0ca3 50%, #5a0890 100%); color: white; padding: 3rem 0 2.5rem; text-align: center; }
+        .hero-demo h1 { font-size: 2rem; font-weight: 800; text-wrap: balance; }
+        .hero-demo p { color: rgba(255,255,255,0.85); max-width: 640px; margin: 0.75rem auto 0; font-size: 0.9rem; line-height: 1.7; }
+        .back-link { display: inline-flex; align-items: center; gap: 0.4rem; margin-top: 1.5rem; padding: 0.5rem 1.1rem; border: 1px solid rgba(255,255,255,0.35); border-radius: 50px; color: #fff; font-size: 0.8rem; font-weight: 600; text-decoration: none; transition: background 0.2s; cursor: pointer; }
+        .back-link:hover { background: rgba(255,255,255,0.12); color: #fff; }
+        .hero-demo a:focus-visible { outline: 3px solid #fff; outline-offset: 3px; box-shadow: none; }
+        .mock-strip { padding: 1rem 0 0.75rem; }
+        .mock-chip { display: inline-flex; align-items: center; gap: 0.45rem; padding: 0.35rem 0.85rem; border-radius: 999px; background: #f3e8ff; color: #3a0ca3; border: 1px solid #d8b4fe; font-size: 0.78rem; font-weight: 600; line-height: 1.4; }
+        @media (max-width: 768px) {
+            .hero-demo { padding: 2.25rem 0 2rem; }
+            .hero-demo h1 { font-size: 1.45rem; }
+            .back-link { min-height: 44px; }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            .hero-demo *, .hero-demo *::after { transition: none !important; animation: none !important; }
+        }
+
+        .cta-band{background:#0b1220;padding-block:3.5rem}
+        .cta-band-inner{display:flex;flex-wrap:wrap;gap:1.5rem 2.5rem;align-items:center;justify-content:space-between;background:linear-gradient(135deg,var(--primary-dark,#0f172a) 0%,#0b1220 100%);border:1px solid rgba(255,255,255,.12);border-radius:20px;padding:2rem}
+        .cta-band-inner > div:first-child{min-width:0;flex:1 1 320px}
+        .cta-band-eyebrow{color:#a7f3d0;font-size:.78rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;margin:0 0 .5rem;display:flex;align-items:center;gap:.5rem}
+        .cta-dot{width:8px;height:8px;border-radius:50%;background:#34d399;box-shadow:0 0 0 4px rgba(52,211,153,.2);flex:0 0 8px}
+        .cta-band-title{color:#fff;font-size:clamp(1.4rem,2.6vw,2rem);margin:0 0 .5rem;text-wrap:balance}
+        .cta-band-text{color:#cbd5e1;max-width:56ch;margin:0;line-height:1.6}
+        .cta-band-actions{display:flex;flex-wrap:wrap;gap:.75rem}
+        .cta-btn{display:inline-flex;align-items:center;gap:.5rem;min-height:46px;padding:.7rem 1.3rem;border-radius:999px;font-weight:600;text-decoration:none;transition:transform .15s ease,background-color .15s ease;cursor:pointer}
+        .cta-btn-primary{background:#fff;color:var(--primary-dark,#0f172a)}
+        .cta-btn-ghost{color:#fff;border:1px solid rgba(255,255,255,.35)}
+        .cta-btn:hover{transform:translateY(-1px)}
+        .cta-btn-ghost:hover{background:rgba(255,255,255,.08);color:#fff}
+        .cta-btn:focus-visible{outline:3px solid #93c5fd;outline-offset:3px}
+        @media (prefers-reduced-motion:reduce){.cta-btn{transition:none}.cta-btn:hover{transform:none}}
+        .cta-band{--primary-dark:#3a0ca3}
     </style>
 </head>
 <body>
@@ -253,10 +316,24 @@
     <!-- End Google Tag Manager (noscript) -->
     <div id="site-nav"></div>
 
-    <div class="container-fluid timetable-container">
+    <section class="hero-demo">
+        <div class="container">
+            <h1><i class="fas fa-calendar-alt me-2" aria-hidden="true"></i>AutoSchedula</h1>
+            <p>My final-year project: automated university timetable generation on Spring Boot 3.2 and Angular 14, built solo.</p>
+            <a href="index.html#project-autoschedula" class="back-link"><i class="fas fa-arrow-left" aria-hidden="true"></i> Back to portfolio</a>
+        </div>
+    </section>
+
+    <div class="mock-strip">
+        <div class="container-fluid">
+            <span class="mock-chip"><i class="fas fa-flask" aria-hidden="true"></i> Interactive mock-up · sample data</span>
+        </div>
+    </div>
+
+    <div class="container-fluid timetable-container demo-app">
         <div class="row">
             <!-- Sidebar -->
-            <div class="col-md-3 timetable-sidebar">
+            <div class="col-lg-4 col-xl-3 timetable-sidebar">
                 <div class="p-3">
                     <h5 class="mb-3">
                         <i class="fas fa-cogs me-2"></i>
@@ -353,29 +430,29 @@
             </div>
 
             <!-- Main Timetable Area -->
-            <div class="col-md-9 timetable-main">
+            <div class="col-lg-8 col-xl-9 timetable-main">
                 <div class="p-3">
                     <!-- Dashboard Stats -->
-                    <div class="row mb-4">
-                        <div class="col-md-3">
+                    <div class="row g-3 mb-4">
+                        <div class="col-6 col-md-3">
                             <div class="stat-card">
                                 <div class="stat-number">15</div>
                                 <div class="stat-label">Teachers</div>
                             </div>
                         </div>
-                        <div class="col-md-3">
+                        <div class="col-6 col-md-3">
                             <div class="stat-card">
                                 <div class="stat-number">8</div>
                                 <div class="stat-label">Sections</div>
                             </div>
                         </div>
-                        <div class="col-md-3">
+                        <div class="col-6 col-md-3">
                             <div class="stat-card">
                                 <div class="stat-number">0</div>
                                 <div class="stat-label">Conflicts</div>
                             </div>
                         </div>
-                        <div class="col-md-3">
+                        <div class="col-6 col-md-3">
                             <div class="stat-card">
                                 <div class="stat-number">95%</div>
                                 <div class="stat-label">Efficiency</div>
@@ -388,10 +465,10 @@
                         <div class="dashboard-header">
                             <h5 class="mb-0">
                                 <i class="fas fa-calendar-alt me-2"></i>
-                                Weekly Timetable - Spring 2024
+                                Weekly Timetable, Spring 2024
                             </h5>
                         </div>
-                        <div class="card-body p-0">
+                        <div class="card-body p-0 timetable-scroll" tabindex="0" role="region" aria-label="Weekly timetable">
                             <div class="timetable-grid">
                                 <!-- Time Column -->
                                 <div class="time-slot">Time</div>
@@ -689,6 +766,22 @@
             </div>
         </div>
     </div>
+
+    <section class="cta-band" aria-labelledby="cta-band-title">
+      <div class="container">
+        <div class="cta-band-inner">
+          <div>
+            <p class="cta-band-eyebrow"><span class="cta-dot" aria-hidden="true"></span> Open to remote projects</p>
+            <h2 id="cta-band-title" class="cta-band-title">Need something like this built?</h2>
+            <p class="cta-band-text">I build CRM systems, AI integrations and multi-tenant SaaS on Spring Boot and Angular. Tell me what you need and let's plan it.</p>
+          </div>
+          <div class="cta-band-actions">
+            <a class="cta-btn cta-btn-primary" href="index.html#contact"><i class="fas fa-paper-plane" aria-hidden="true"></i> Start a project</a>
+            <a class="cta-btn cta-btn-ghost" href="index.html#projects"><i class="fas fa-th-large" aria-hidden="true"></i> All projects</a>
+          </div>
+        </div>
+      </div>
+    </section>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="site-nav.js"></script>

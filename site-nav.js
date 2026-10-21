@@ -25,10 +25,15 @@
 
     var projects = [
         { label: 'CareMD', demo: 'caremd-demo.html', hash: '#project-caremd' },
+        { label: 'Nixxe CRM', demo: 'nixxe-crm-demo.html', hash: '#project-nixxe' },
+        { label: 'RynoChat', demo: 'rynochat-demo.html', hash: '#project-rynochat' },
         { label: 'RynoDesk', demo: 'rynodesk-demo.html', hash: '#project-rynodesk' },
+        { label: 'Orderyfy', demo: 'orderyfy-demo.html', hash: '#project-orderyfy' },
+        { label: 'Nyrovi', demo: 'nyrovi-demo.html', hash: '#project-nyrovi' },
+        { label: 'StockFlow', demo: 'stockflow-demo.html', hash: '#project-stockflow' },
+        { label: 'Carer', demo: 'carer-demo.html', hash: '#project-carer' },
         { label: 'AutoSchedula', demo: 'autoschedula-demo.html', hash: '#project-autoschedula' },
         { label: 'Chiltan Pure ERP', demo: 'chiltan-demo.html', hash: '#project-erp' },
-        { label: 'Carer', demo: 'carer-demo.html', hash: '#project-carer' },
         { label: 'WellnessNow', demo: 'wellness-demo.html', hash: '#project-wellness' },
         { label: 'Chiltan Marketing', demo: 'chiltan-marketing-demo.html', hash: '#project-marketing' }
     ];
@@ -48,10 +53,10 @@
         '<nav class="navbar navbar-expand-lg site-navbar navbar-dark">' +
             '<div class="container">' +
                 '<a class="navbar-brand" href="index.html">' +
-                    '<img src="afaq.png" alt="Muhammad Afaq" class="site-nav-avatar" width="36" height="36">' +
+                    '<img src="afaq-72.png" alt="Muhammad Afaq" class="site-nav-avatar" width="36" height="36">' +
                     '<span class="brand-text">' +
                         '<span class="brand-name">Muhammad <span class="accent">Afaq</span></span>' +
-                        '<span class="brand-subtitle">Full Stack Software Engineer</span>' +
+                        '<span class="brand-subtitle">Full Stack Engineer, CRM and AI</span>' +
                     '</span>' +
                 '</a>' +
                 '<button class="navbar-toggler border-0 d-lg-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#mobileNav" aria-controls="mobileNav" aria-label="Open menu">' +
@@ -59,6 +64,7 @@
                 '</button>' +
                 '<ul class="navbar-nav ms-auto gap-1 d-none d-lg-flex align-items-center">' +
                     '<li class="nav-item"><a class="nav-link" href="' + pageUrl('#about') + '">About</a></li>' +
+                    '<li class="nav-item"><a class="nav-link" href="' + pageUrl('#expertise') + '">Expertise</a></li>' +
                     '<li class="nav-item"><a class="nav-link" href="' + pageUrl('#experience') + '">Experience</a></li>' +
                     '<li class="nav-item dropdown dropdown-hover">' +
                         '<a class="nav-link dropdown-toggle" href="' + pageUrl('#projects') + '" role="button" aria-expanded="false">Projects</a>' +
@@ -79,6 +85,7 @@
             '<div class="offcanvas-body">' +
                 '<nav class="d-flex flex-column gap-1">' +
                     '<a class="mobile-nav-link" href="' + pageUrl('#about') + '"><i class="fas fa-user"></i> About</a>' +
+                    '<a class="mobile-nav-link" href="' + pageUrl('#expertise') + '"><i class="fas fa-bullseye"></i> Expertise</a>' +
                     '<a class="mobile-nav-link" href="' + pageUrl('#experience') + '"><i class="fas fa-briefcase"></i> Experience</a>' +
                     '<div class="mobile-nav-submenu">' +
                         '<button class="mobile-nav-link mobile-nav-toggle" type="button" data-bs-toggle="collapse" data-bs-target="#mobileProjectsMenu" aria-expanded="false" aria-controls="mobileProjectsMenu">' +
@@ -90,7 +97,7 @@
                     '<a class="mobile-nav-link" href="' + pageUrl('#contact') + '"><i class="fas fa-envelope"></i> Contact</a>' +
                 '</nav>' +
                 '<a href="tel:+923021005535" class="mobile-nav-phone">' +
-                    '<i class="fas fa-phone"></i><span>0302 1005535</span>' +
+                    '<i class="fas fa-phone"></i><span>+92 302 1005535</span>' +
                 '</a>' +
             '</div>' +
         '</div>';
@@ -125,7 +132,8 @@
         if (!hash || hash.charAt(0) !== '#') return false;
         var target = document.querySelector(hash);
         if (!target) return false;
-        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        target.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'start' });
         if (history.replaceState) {
             history.replaceState(null, '', hash);
         } else {

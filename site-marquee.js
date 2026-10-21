@@ -5,24 +5,30 @@
     if (!hero) return;
 
     var items = [
-        { icon: 'fa-code', text: 'Full Stack Developer' },
+        { icon: 'fa-code', text: 'Full Stack Engineer' },
+        { icon: 'fa-address-book', text: 'CRM Systems' },
+        { icon: 'fa-robot', text: 'AI Chatbots' },
+        { icon: 'fa-robot', text: 'LLM Applications' },
         { icon: 'fa-server', text: 'Java & Spring Boot' },
         { icon: 'fa-laptop-code', text: 'Angular & TypeScript' },
+        { icon: 'fa-headset', text: 'Nixxe CRM' },
+        { icon: 'fa-comments', text: 'RynoChat' },
+        { icon: 'fa-store', text: 'Orderyfy' },
         { icon: 'fa-hospital', text: 'CareMD Healthcare SaaS' },
         { icon: 'fa-cash-register', text: 'RynoDesk POS Platform' },
-        { icon: 'fa-sitemap', text: 'Enterprise ERP Systems' },
+        { icon: 'fa-sitemap', text: 'ERP Migration' },
         { icon: 'fa-database', text: 'PostgreSQL & Flyway' },
         { icon: 'fa-cloud', text: 'Multi-Tenant Architecture' },
-        { icon: 'fa-plug', text: 'REST APIs & Microservices' },
-        { icon: 'fa-briefcase', text: '3+ Years Experience' },
-        { icon: 'fa-layer-group', text: '7 Production Projects' },
+        { icon: 'fa-plug', text: 'REST APIs & Webhooks' },
+        { icon: 'fa-briefcase', text: '3.5+ Years Experience' },
+        { icon: 'fa-layer-group', text: '12 Projects' },
         { icon: 'fa-building', text: 'SecopTech & CareMD' },
         { icon: 'fa-heartbeat', text: 'Healthcare & RCM' },
-        { icon: 'fa-store', text: 'Retail & E-Commerce' },
+        { icon: 'fa-shopping-bag', text: 'Retail & E-Commerce' },
         { icon: 'fa-graduation-cap', text: 'Education Management' },
         { icon: 'fa-shield-halved', text: 'JWT & Role-Based Access' },
         { icon: 'fa-bolt', text: 'WebSocket Real-Time' },
-        { icon: 'fa-map-marker-alt', text: 'Based in Pakistan' }
+        { icon: 'fa-map-marker-alt', text: 'Based in Lahore, Pakistan' }
     ];
 
     function buildGroup() {

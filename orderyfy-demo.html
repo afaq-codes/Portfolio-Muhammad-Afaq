@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-59XXTKP9');</script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Multi-vendor marketplace on Laravel 13 with a Claude-powered AI sales assistant that helps customers find products, fill their cart and check out.">
+    <title>Orderyfy: Marketplace with an AI Sales Assistant | Muhammad Afaq</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="site-nav.css" rel="stylesheet">
+    <link href="typography.css" rel="stylesheet">
+    <link href="sticky-social.css" rel="stylesheet">
+    <link href="site-buttons.css" rel="stylesheet">
+    <link href="site-marquee.css" rel="stylesheet">
+    <link href="site-footer.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #be185d;
+            --primary-dark: #831843;
+            --ai: #be185d;
+            --market: #7c3aed;
+            --vendor: #0d9488;
+            --admin: #475569;
+            --platform: #2563eb;
+            --bg: #fdf2f8;
+            --card: #ffffff;
+            --text: #1e293b;
+            --muted: #475569;
+            --border: #fbcfe8;
+        }
+        html, body { overflow-x: hidden; overflow-x: clip; max-width: 100vw; }
+        body { background: var(--bg); color: var(--text); }
+        .top-nav {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            box-shadow: 0 2px 16px rgba(0,0,0,0.12);
+            padding: 0.85rem 0;
+        }
+        .top-nav .brand { font-weight: 800; color: #fff !important; font-size: 1.05rem; }
+        .top-nav .nav-link { color: rgba(255,255,255,0.9) !important; font-weight: 500; font-size: 0.875rem; }
+        .hero-demo {
+            background: linear-gradient(140deg, #500724 0%, #9d174d 50%, #4c0519 100%);
+            color: white;
+            padding: 3rem 0 2.5rem;
+            text-align: center;
+        }
+        .hero-demo h1 { font-size: 2rem; font-weight: 800; }
+        .hero-demo p { color: rgba(255,255,255,0.75); max-width: 520px; margin: 0.75rem auto 0; font-size: 0.9rem; }
+        .hero-actions { display: flex; justify-content: center; gap: 0.75rem; flex-wrap: wrap; margin-top: 1.5rem; }
+        .btn-hero-primary {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-decoration: none;
+            transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
+        }
+        .btn-hero-primary:hover {
+            background: var(--primary-dark);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(190,24,93,0.45);
+        }
+        .btn-hero-ghost {
+            background: rgba(255,255,255,0.08);
+            color: white;
+            border: 1.5px solid rgba(255,255,255,0.25);
+            padding: 0.8rem 1.75rem;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-decoration: none;
+            transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
+        }
+        .btn-hero-ghost:hover {
+            border-color: white;
+            background: rgba(255,255,255,0.15);
+            color: white;
+            transform: translateY(-2px);
+        }
+        .hero-stats { display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap; margin-top: 1.5rem; }
+        .hero-stat-num { font-size: 1.75rem; font-weight: 800; color: #f9a8d4; }
+        .hero-stat-lbl { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 1px; color: rgba(255,255,255,0.5); font-weight: 600; }
+        .demo-nav-section {
+            background: white;
+            border-bottom: 1px solid var(--border);
+            padding: 1rem 0 1.25rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+        }
+        .app-tabs { display: flex; flex-wrap: wrap; gap: 0.5rem; justify-content: center; }
+        .app-tab {
+            border: 1px solid var(--border);
+            background: var(--bg);
+            color: var(--text);
+            padding: 0.5rem 0.95rem;
+            border-radius: 10px;
+            font-size: 0.78rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+            white-space: nowrap;
+        }
+        .app-tab:hover, .app-tab.active {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+        .main-wrap { padding: 1.5rem 0 4rem; }
+        .demo-viewport {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 1.25rem;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.06);
+            min-height: 200px;
+        }
+        .panel { display: none; animation: fadeIn 0.25s ease; }
+        .panel.active { display: block; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+        .flow-bar {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 18px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        .flow-bar h5 { font-weight: 800; font-size: 0.95rem; margin-bottom: 1rem; text-align: center; }
+        .tool-chips { display: flex; flex-wrap: wrap; gap: 0.5rem; justify-content: center; }
+        .tool-chip {
+            background: linear-gradient(180deg, #fdf2f8, #fce7f3);
+            border: 2px solid #f9a8d4;
+            border-radius: 50px;
+            padding: 0.5rem 1rem;
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: var(--primary-dark);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+        .tool-chip i { color: var(--primary); }
+        .msg-flow {
+            list-style: none;
+            counter-reset: step;
+            padding: 0;
+            margin: 0;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 0.75rem;
+        }
+        .msg-flow li {
+            counter-increment: step;
+            background: linear-gradient(180deg, #fdf2f8, #fce7f3);
+            border: 2px solid #f9a8d4;
+            border-radius: 12px;
+            padding: 0.85rem 1rem;
+            font-size: 0.78rem;
+        }
+        .msg-flow li::before {
+            content: counter(step);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 26px; height: 26px;
+            border-radius: 50%;
+            background: var(--primary);
+            color: white;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+        }
+        .msg-flow strong { display: block; font-weight: 800; margin-bottom: 0.25rem; }
+        .msg-flow span { display: block; color: var(--muted); line-height: 1.45; }
+        .panel-banner {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 1.25rem 1.5rem;
+            margin-bottom: 1.25rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        .panel-banner-icon {
+            width: 48px; height: 48px;
+            border-radius: 12px;
+            display: flex; align-items: center; justify-content: center;
+            color: white; font-size: 1.2rem; flex-shrink: 0;
+        }
+        .panel-banner h2 { font-size: 1.2rem; font-weight: 800; margin: 0; }
+        .panel-banner p { font-size: 0.85rem; color: var(--muted); margin: 0.35rem 0 0; line-height: 1.55; }
+        .tile-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+            gap: 0.75rem;
+        }
+        .tile {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 1rem 0.75rem;
+            text-align: center;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .tile:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 24px rgba(190,24,93,0.15);
+        }
+        .tile i { font-size: 1.35rem; margin-bottom: 0.5rem; display: block; }
+        .tile span { font-size: 0.78rem; font-weight: 700; line-height: 1.3; display: block; }
+        .visual-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+        @media (max-width: 768px) {
+            .visual-row { grid-template-columns: 1fr; }
+            .msg-flow { grid-template-columns: 1fr; }
+            .hero-demo { padding: 2.25rem 0 2rem; }
+            .hero-demo h1 { font-size: 1.45rem; }
+            .app-tabs {
+                flex-wrap: nowrap;
+                justify-content: flex-start;
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+                padding-bottom: 0.35rem;
+                scrollbar-width: none;
+            }
+            .app-tabs::-webkit-scrollbar { display: none; }
+            .demo-viewport {
+                border-width: 2px;
+                border-radius: 16px;
+                padding: 1rem;
+                box-shadow: inset 0 0 0 1px rgba(190,24,93,0.1), 0 10px 28px rgba(0,0,0,0.08);
+            }
+            .panel-banner { align-items: flex-start; padding: 1rem; }
+            .tool-chips { justify-content: flex-start; }
+        }
+        .visual-box {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 1.25rem;
+        }
+        .visual-box h6 { font-weight: 800; font-size: 0.85rem; margin-bottom: 1rem; }
+        .visual-box h6 i { color: var(--primary); }
+        .visual-box p { font-size: 0.82rem; color: var(--muted); line-height: 1.55; margin-bottom: 0.75rem; }
+        .visual-box p:last-child { margin-bottom: 0; }
+        .pos-line {
+            display: flex;
+            justify-content: space-between;
+            gap: 1rem;
+            font-size: 0.8rem;
+            padding: 0.4rem 0;
+            border-bottom: 1px dashed #fce7f3;
+        }
+        .pos-line span:last-child { text-align: right; font-weight: 600; }
+        .pos-line a { color: var(--primary); font-weight: 700; text-decoration: none; }
+        .pos-line a:hover { color: var(--primary-dark); text-decoration: underline; }
+        .meter { height: 10px; background: #fce7f3; border-radius: 50px; overflow: hidden; margin-top: 0.85rem; }
+        .meter-fill { height: 100%; width: 42%; background: linear-gradient(90deg, var(--primary), var(--primary-dark)); border-radius: 50px; }
+        .meter-lbl { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 1px; color: var(--muted); font-weight: 700; margin-top: 0.4rem; }
+        .stack-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            justify-content: center;
+            margin-top: 2rem;
+        }
+        .visual-box .stack-row { justify-content: flex-start; margin-top: 0; }
+        .stack-pill {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 50px;
+            padding: 0.5rem 1rem;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        .stack-pill i { color: var(--primary); margin-right: 0.35rem; }
+        .back-row { text-align: center; margin-top: 2rem; }
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            margin-top: 1.5rem;
+            padding: 0.5rem 1.1rem;
+            border: 1px solid rgba(255,255,255,0.35);
+            border-radius: 50px;
+            color: #fff;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: background 0.2s;
+        }
+        .back-link:hover { background: rgba(255,255,255,0.12); color: #fff; }
+        .back-link.on-light { border-color: var(--border); color: var(--primary); background: var(--card); margin-top: 0; }
+        .back-link.on-light:hover { background: var(--primary); color: #fff; border-color: var(--primary); }
+        .hero-actions .back-link { margin-top: 0; }
+        .hero-demo h1, .panel-title, .panel-banner h2 { text-wrap: balance; }
+        @media (max-width:575.98px){.hero-stats{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem 1.5rem;max-width:320px;margin-inline:auto}}
+        @media (max-width:575.98px){.hero-stats > div:last-child:nth-child(odd){grid-column:1 / -1}}
+        .hero-demo p { color: rgba(255,255,255,0.85); line-height: 1.7; }
+        .hero-stat-num { font-variant-numeric: tabular-nums; }
+        .hero-stat-lbl { color: rgba(255,255,255,0.8); }
+        .demo-nav-section { top: var(--site-nav-h, 72px); }
+        .app-tab, .back-link { cursor: pointer; }
+        .app-tab:focus-visible { outline: 3px solid var(--primary); outline-offset: 2px; }
+        .panel:focus-visible { outline: 3px solid var(--primary); outline-offset: 4px; border-radius: 14px; }
+        .main-wrap a:focus-visible, .cap-strip a:focus-visible { outline: 3px solid var(--primary); outline-offset: 3px; }
+        .hero-demo a:focus-visible, .hero-demo button:focus-visible { outline: 3px solid #fff; outline-offset: 3px; box-shadow: none; }
+        .tile span { color: var(--text); }
+        @media (max-width: 768px) {
+            .demo-nav-section { padding: 0.6rem 0; }
+            .app-tabs { padding: 5px 5px 0.4rem; margin-inline: -5px; scroll-padding-inline: 5px; }
+            .app-tab { min-height: 44px; padding-inline: 1rem; }
+            .back-link, .btn-hero-primary, .btn-hero-ghost, .hero-demo .btn { min-height: 44px; display: inline-flex; align-items: center; }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            .hero-demo *, .hero-demo *::after, .cap-strip *, .demo-shell *, .demo-shell *::after { transition: none !important; animation: none !important; scroll-behavior: auto !important; }
+            .tile:hover, .module-card:hover, .btn-hero-primary:hover, .btn-hero-ghost:hover { transform: none; }
+        }
+        @media (max-width: 768px) {
+            .pos-line a { display: inline-flex; align-items: center; min-height: 44px; }
+        }
+        .cta-band{background:#0b1220;padding-block:3.5rem}
+        .cta-band-inner{display:flex;flex-wrap:wrap;gap:1.5rem 2.5rem;align-items:center;justify-content:space-between;background:linear-gradient(135deg,var(--primary-dark,#0f172a) 0%,#0b1220 100%);border:1px solid rgba(255,255,255,.12);border-radius:20px;padding:2rem}
+        .cta-band-inner > div:first-child{min-width:0;flex:1 1 320px}
+        .cta-band-eyebrow{color:#a7f3d0;font-size:.78rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;margin:0 0 .5rem;display:flex;align-items:center;gap:.5rem}
+        .cta-dot{width:8px;height:8px;border-radius:50%;background:#34d399;box-shadow:0 0 0 4px rgba(52,211,153,.2);flex:0 0 8px}
+        .cta-band-title{color:#fff;font-size:clamp(1.4rem,2.6vw,2rem);margin:0 0 .5rem;text-wrap:balance}
+        .cta-band-text{color:#cbd5e1;max-width:56ch;margin:0;line-height:1.6}
+        .cta-band-actions{display:flex;flex-wrap:wrap;gap:.75rem}
+        .cta-btn{display:inline-flex;align-items:center;gap:.5rem;min-height:46px;padding:.7rem 1.3rem;border-radius:999px;font-weight:600;text-decoration:none;transition:transform .15s ease,background-color .15s ease;cursor:pointer}
+        .cta-btn-primary{background:#fff;color:var(--primary-dark,#0f172a)}
+        .cta-btn-ghost{color:#fff;border:1px solid rgba(255,255,255,.35)}
+        .cta-btn:hover{transform:translateY(-1px)}
+        .cta-btn-ghost:hover{background:rgba(255,255,255,.08);color:#fff}
+        .cta-btn:focus-visible{outline:3px solid #93c5fd;outline-offset:3px}
+        @media (prefers-reduced-motion:reduce){.cta-btn{transition:none}.cta-btn:hover{transform:none}}
+    </style>
+</head>
+<body>
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-59XXTKP9" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+    <div id="site-nav"></div>
+
+    <section class="hero-demo">
+        <div class="container">
+            <h1><i class="fas fa-robot me-2" aria-hidden="true"></i>Orderyfy</h1>
+            <p>Multi-vendor marketplace on Laravel 13 with a Claude-powered AI sales assistant. Customers chat with it to find products, fill their cart and check out. I am the freelance lead developer.</p>
+            <div class="hero-stats">
+                <div><div class="hero-stat-num">6</div><div class="hero-stat-lbl">AI Tools</div></div>
+                <div><div class="hero-stat-num">3</div><div class="hero-stat-lbl">AI Providers</div></div>
+                <div><div class="hero-stat-num">~120</div><div class="hero-stat-lbl">Commits</div></div>
+            </div>
+            <div class="hero-actions">
+                <a href="https://orderyfy.com" class="btn-hero-primary" target="_blank" rel="noopener noreferrer"><i class="fas fa-globe" aria-hidden="true"></i> Visit live site</a>
+                <a href="index.html#project-orderyfy" class="back-link"><i class="fas fa-arrow-left" aria-hidden="true"></i> Back to portfolio</a>
+            </div>
+        </div>
+    </section>
+
+    <div class="demo-shell">
+    <section class="demo-nav-section">
+        <div class="container">
+            <div class="app-tabs" role="tablist" aria-label="Orderyfy modules">
+                <button type="button" class="app-tab active" data-panel="panel-ai" role="tab" id="tab-ai" aria-controls="panel-ai" aria-selected="true" tabindex="0"><i class="fas fa-robot" aria-hidden="true"></i> AI Sales Assistant</button>
+                <button type="button" class="app-tab" data-panel="panel-market" role="tab" id="tab-market" aria-controls="panel-market" aria-selected="false" tabindex="-1"><i class="fas fa-bag-shopping" aria-hidden="true"></i> Marketplace and Orders</button>
+                <button type="button" class="app-tab" data-panel="panel-vendors" role="tab" id="tab-vendors" aria-controls="panel-vendors" aria-selected="false" tabindex="-1"><i class="fas fa-motorcycle" aria-hidden="true"></i> Vendors and Riders</button>
+                <button type="button" class="app-tab" data-panel="panel-admin" role="tab" id="tab-admin" aria-controls="panel-admin" aria-selected="false" tabindex="-1"><i class="fas fa-user-shield" aria-hidden="true"></i> Admin Panel</button>
+                <button type="button" class="app-tab" data-panel="panel-platform" role="tab" id="tab-platform" aria-controls="panel-platform" aria-selected="false" tabindex="-1"><i class="fas fa-server" aria-hidden="true"></i> Platform and Delivery</button>
+            </div>
+        </div>
+    </section>
+
+    <div class="container main-wrap">
+        <div class="demo-viewport">
+
+        <div id="panel-ai" class="panel active" role="tabpanel" aria-labelledby="tab-ai" tabindex="0">
+            <div class="panel-banner">
+                <div class="panel-banner-icon" style="background:var(--ai)"><i class="fas fa-robot" aria-hidden="true"></i></div>
+                <div>
+                    <h2>AI Sales Assistant</h2>
+                    <p>I built a sales assistant that chats with customers on the marketplace website. It runs on Claude with tool calling. The model does not only write text: it asks the app to run a tool, such as a product search or a cart update, and answers with the real result.</p>
+                </div>
+            </div>
+
+            <div class="flow-bar">
+                <h5><i class="fas fa-screwdriver-wrench me-2" aria-hidden="true"></i>Six tools the model can call</h5>
+                <div class="tool-chips">
+                    <span class="tool-chip"><i class="fas fa-magnifying-glass" aria-hidden="true"></i> Search products</span>
+                    <span class="tool-chip"><i class="fas fa-cart-plus" aria-hidden="true"></i> Update cart</span>
+                    <span class="tool-chip"><i class="fas fa-file-invoice" aria-hidden="true"></i> Show checkout form</span>
+                    <span class="tool-chip"><i class="fas fa-store" aria-hidden="true"></i> Show shop choices</span>
+                    <span class="tool-chip"><i class="fas fa-phone" aria-hidden="true"></i> Show call button</span>
+                    <span class="tool-chip"><i class="fas fa-people-group" aria-hidden="true"></i> Ask the team</span>
+                </div>
+            </div>
+
+            <div class="flow-bar">
+                <h5><i class="fas fa-route me-2" aria-hidden="true"></i>How a message flows</h5>
+                <ol class="msg-flow" role="list">
+                    <li><strong>Customer message</strong><span>Typed text, or a voice note that Gemini turns into text.</span></li>
+                    <li><strong>Model with tools</strong><span>Claude reads it with the cached rules and knowledge snapshot, and picks a tool when it needs one.</span></li>
+                    <li><strong>Tool result</strong><span>The app runs the tool and hands the result back to the model.</span></li>
+                    <li><strong>Reply</strong><span>The customer gets an answer with product cards, quick replies or an updated cart.</span></li>
+                </ol>
+            </div>
+
+            <div class="visual-row">
+                <div class="visual-box">
+                    <h6><i class="fas fa-bolt me-2" aria-hidden="true"></i>Prompt caching</h6>
+                    <p>The rules and a knowledge snapshot built for each conversation are cached. Later turns in the same conversation reuse them instead of processing the same long prompt again, which keeps each reply cheaper and quicker.</p>
+                    <div class="pos-line"><span>Assistant rules</span><span>Cached</span></div>
+                    <div class="pos-line"><span>Knowledge snapshot</span><span>Cached per conversation</span></div>
+                    <div class="pos-line"><span>Customer message</span><span>New each turn</span></div>
+                </div>
+                <div class="visual-box">
+                    <h6><i class="fas fa-gauge-high me-2" aria-hidden="true"></i>Cost controls</h6>
+                    <p>An assistant open to the public needs a ceiling on spend. I added three limits and a meter that shows usage.</p>
+                    <div class="pos-line"><span>Monthly budget</span><span><i class="fas fa-check text-success" aria-hidden="true"></i></span></div>
+                    <div class="pos-line"><span>Per-conversation cap</span><span><i class="fas fa-check text-success" aria-hidden="true"></i></span></div>
+                    <div class="pos-line"><span>Spend limit</span><span><i class="fas fa-check text-success" aria-hidden="true"></i></span></div>
+                    <div class="meter" aria-hidden="true"><div class="meter-fill"></div></div>
+                    <div class="meter-lbl">Usage meter</div>
+                </div>
+            </div>
+
+            <div class="visual-row">
+                <div class="visual-box">
+                    <h6><i class="fas fa-microphone me-2" aria-hidden="true"></i>Voice notes</h6>
+                    <p>Customers can send a voice note instead of typing. Google Gemini transcribes it, and the assistant answers the text.</p>
+                </div>
+                <div class="visual-box">
+                    <h6><i class="fas fa-people-group me-2" aria-hidden="true"></i>Human handoff</h6>
+                    <p>When a question needs a person, the assistant calls the ask-the-team tool and hands the conversation to the team.</p>
+                </div>
+            </div>
+
+            <div class="visual-row">
+                <div class="visual-box">
+                    <h6><i class="fas fa-sliders me-2" aria-hidden="true"></i>Provider settings</h6>
+                    <p>Settings cover three AI providers.</p>
+                    <div class="stack-row">
+                        <span class="stack-pill"><i class="fas fa-robot" aria-hidden="true"></i> Claude</span>
+                        <span class="stack-pill"><i class="fas fa-wand-magic-sparkles" aria-hidden="true"></i> Gemini</span>
+                        <span class="stack-pill"><i class="fas fa-microchip" aria-hidden="true"></i> Grok</span>
+                    </div>
+                </div>
+                <div class="visual-box">
+                    <h6><i class="fas fa-plug me-2" aria-hidden="true"></i>APIs used</h6>
+                    <div class="pos-line"><span>Chat and tool calling</span><span>Anthropic Claude API</span></div>
+                    <div class="pos-line"><span>Voice note transcription</span><span>Google Gemini API</span></div>
+                </div>
+            </div>
+        </div>
+
+        <div id="panel-market" class="panel" role="tabpanel" aria-labelledby="tab-market" tabindex="0">
+            <div class="panel-banner">
+                <div class="panel-banner-icon" style="background:var(--market)"><i class="fas fa-bag-shopping" aria-hidden="true"></i></div>
+                <div>
+                    <h2>Marketplace and Orders</h2>
+                    <p>A multi-vendor food and shop marketplace. Customers use one web app to order from many shops.</p>
+                </div>
+            </div>
+            <div class="tile-grid">
+                <div class="tile" style="color:var(--market)"><i class="fas fa-mobile-screen" aria-hidden="true"></i><span>Customer Web App</span></div>
+                <div class="tile" style="color:var(--market)"><i class="fas fa-utensils" aria-hidden="true"></i><span>Food and Shops</span></div>
+                <div class="tile" style="color:var(--market)"><i class="fas fa-cart-shopping" aria-hidden="true"></i><span>Order Flow</span></div>
+                <div class="tile" style="color:var(--market)"><i class="fas fa-star" aria-hidden="true"></i><span>Loyalty</span></div>
+                <div class="tile" style="color:var(--market)"><i class="fab fa-google" aria-hidden="true"></i><span>Google Sign-in</span></div>
+                <div class="tile" style="color:var(--market)"><i class="fas fa-bell" aria-hidden="true"></i><span>Web Push</span></div>
+                <div class="tile" style="color:var(--market)"><i class="fas fa-mobile-screen-button" aria-hidden="true"></i><span>Mobile Redesign</span></div>
+                <div class="tile" style="color:var(--market)"><i class="fas fa-robot" aria-hidden="true"></i><span>AI Sales Assistant</span></div>
+            </div>
+        </div>
+
+        <div id="panel-vendors" class="panel" role="tabpanel" aria-labelledby="tab-vendors" tabindex="0">
+            <div class="panel-banner">
+                <div class="panel-banner-icon" style="background:var(--vendor)"><i class="fas fa-motorcycle" aria-hidden="true"></i></div>
+                <div>
+                    <h2>Vendors and Riders</h2>
+                    <p>Shops and riders each have their own flows. Shops can have their own riders. The money side covers weekly settlement for shops and rider cash handling.</p>
+                </div>
+            </div>
+            <div class="tile-grid">
+                <div class="tile" style="color:var(--vendor)"><i class="fas fa-store" aria-hidden="true"></i><span>Vendor Flows</span></div>
+                <div class="tile" style="color:var(--vendor)"><i class="fas fa-motorcycle" aria-hidden="true"></i><span>Rider Flows</span></div>
+                <div class="tile" style="color:var(--vendor)"><i class="fas fa-people-carry-box" aria-hidden="true"></i><span>Shops With Own Riders</span></div>
+                <div class="tile" style="color:var(--vendor)"><i class="fas fa-money-bill-wave" aria-hidden="true"></i><span>Rider Cash Handling</span></div>
+                <div class="tile" style="color:var(--vendor)"><i class="fas fa-calendar-week" aria-hidden="true"></i><span>Weekly Settlement</span></div>
+                <div class="tile" style="color:var(--vendor)"><i class="fas fa-file-csv" aria-hidden="true"></i><span>CSV Catalogue Import</span></div>
+                <div class="tile" style="color:var(--vendor)"><i class="fas fa-camera" aria-hidden="true"></i><span>Photo Upload</span></div>
+            </div>
+        </div>
+
+        <div id="panel-admin" class="panel" role="tabpanel" aria-labelledby="tab-admin" tabindex="0">
+            <div class="panel-banner">
+                <div class="panel-banner-icon" style="background:var(--admin)"><i class="fas fa-user-shield" aria-hidden="true"></i></div>
+                <div>
+                    <h2>Admin Panel</h2>
+                    <p>The admin panel is built on Filament 5, with Spatie packages for media, permissions and translatable content.</p>
+                </div>
+            </div>
+            <div class="tile-grid">
+                <div class="tile" style="color:var(--admin)"><i class="fas fa-table-columns" aria-hidden="true"></i><span>Filament 5 Admin</span></div>
+                <div class="tile" style="color:var(--admin)"><i class="fas fa-photo-film" aria-hidden="true"></i><span>Media Library</span></div>
+                <div class="tile" style="color:var(--admin)"><i class="fas fa-user-lock" aria-hidden="true"></i><span>Permissions</span></div>
+                <div class="tile" style="color:var(--admin)"><i class="fas fa-language" aria-hidden="true"></i><span>Translatable Content</span></div>
+            </div>
+        </div>
+
+        <div id="panel-platform" class="panel" role="tabpanel" aria-labelledby="tab-platform" tabindex="0">
+            <div class="panel-banner">
+                <div class="panel-banner-icon" style="background:var(--platform)"><i class="fas fa-server" aria-hidden="true"></i></div>
+                <div>
+                    <h2>Platform and Delivery</h2>
+                    <p>Laravel 13 on PHP 8.3. Work runs through a QA-tracked Jira workflow, and deployments are scripted and reversible.</p>
+                </div>
+            </div>
+            <div class="tile-grid">
+                <div class="tile" style="color:var(--platform)"><i class="fab fa-laravel" aria-hidden="true"></i><span>Laravel 13</span></div>
+                <div class="tile" style="color:var(--platform)"><i class="fab fa-php" aria-hidden="true"></i><span>PHP 8.3</span></div>
+                <div class="tile" style="color:var(--platform)"><i class="fab fa-jira" aria-hidden="true"></i><span>QA-tracked Jira</span></div>
+                <div class="tile" style="color:var(--platform)"><i class="fas fa-terminal" aria-hidden="true"></i><span>Scripted Deployments</span></div>
+                <div class="tile" style="color:var(--platform)"><i class="fas fa-rotate-left" aria-hidden="true"></i><span>Reversible Deployments</span></div>
+            </div>
+            <div class="visual-row">
+                <div class="visual-box">
+                    <h6><i class="fas fa-layer-group me-2" aria-hidden="true"></i>Platform</h6>
+                    <div class="pos-line"><span>Language</span><span>PHP 8.3</span></div>
+                    <div class="pos-line"><span>Framework</span><span>Laravel 13</span></div>
+                    <div class="pos-line"><span>Admin</span><span>Filament 5</span></div>
+                    <div class="pos-line"><span>Sign-in</span><span>Google via Laravel Socialite</span></div>
+                    <div class="pos-line"><span>Notifications</span><span>Web push</span></div>
+                </div>
+                <div class="visual-box">
+                    <h6><i class="fas fa-truck-fast me-2" aria-hidden="true"></i>Delivery</h6>
+                    <div class="pos-line"><span>Tickets</span><span>Jira</span></div>
+                    <div class="pos-line"><span>QA</span><span>Tracked in Jira</span></div>
+                    <div class="pos-line"><span>Deployments</span><span>Scripted</span></div>
+                    <div class="pos-line"><span>Rollback</span><span>Reversible</span></div>
+                </div>
+            </div>
+        </div>
+
+        </div>
+
+        <div class="visual-row">
+            <div class="visual-box">
+                <h6><i class="fas fa-code me-2" aria-hidden="true"></i>Tech stack</h6>
+                <div class="stack-row">
+                    <span class="stack-pill"><i class="fab fa-php" aria-hidden="true"></i> PHP 8.3</span>
+                    <span class="stack-pill"><i class="fab fa-laravel" aria-hidden="true"></i> Laravel 13</span>
+                    <span class="stack-pill"><i class="fas fa-table-columns" aria-hidden="true"></i> Filament 5</span>
+                    <span class="stack-pill"><i class="fas fa-photo-film" aria-hidden="true"></i> Spatie Media Library</span>
+                    <span class="stack-pill"><i class="fas fa-user-lock" aria-hidden="true"></i> Spatie Permission</span>
+                    <span class="stack-pill"><i class="fas fa-language" aria-hidden="true"></i> Spatie Translatable</span>
+                    <span class="stack-pill"><i class="fab fa-google" aria-hidden="true"></i> Laravel Socialite</span>
+                    <span class="stack-pill"><i class="fas fa-bell" aria-hidden="true"></i> Web Push</span>
+                    <span class="stack-pill"><i class="fas fa-robot" aria-hidden="true"></i> Anthropic Claude API</span>
+                    <span class="stack-pill"><i class="fas fa-wand-magic-sparkles" aria-hidden="true"></i> Google Gemini API</span>
+                </div>
+            </div>
+            <div class="visual-box">
+                <h6><i class="fas fa-user-tie me-2" aria-hidden="true"></i>My role</h6>
+                <div class="pos-line"><span>Role</span><span>Freelance lead developer</span></div>
+                <div class="pos-line"><span>When</span><span>October 2026</span></div>
+                <div class="pos-line"><span>Commits</span><span>About 120</span></div>
+                <div class="pos-line"><span>Live</span><span><a href="https://orderyfy.com" target="_blank" rel="noopener noreferrer">orderyfy.com</a></span></div>
+                <p class="mt-3">I built the AI sales assistant and led the work on orders, settlement, rider cash, loyalty, catalogue import, the mobile redesign and deployments.</p>
+            </div>
+        </div>
+
+        <div class="back-row">
+            <a href="index.html#project-orderyfy" class="back-link on-light"><i class="fas fa-arrow-left" aria-hidden="true"></i> Back to all projects</a>
+        </div>
+    </div>
+    </div>
+
+    <section class="cta-band" aria-labelledby="cta-band-title">
+      <div class="container">
+        <div class="cta-band-inner">
+          <div>
+            <p class="cta-band-eyebrow"><span class="cta-dot" aria-hidden="true"></span> Open to remote projects</p>
+            <h2 id="cta-band-title" class="cta-band-title">Need something like this built?</h2>
+            <p class="cta-band-text">I build CRM systems, AI integrations and multi-tenant SaaS on Spring Boot and Angular. Tell me what you need and let's plan it.</p>
+          </div>
+          <div class="cta-band-actions">
+            <a class="cta-btn cta-btn-primary" href="index.html#contact"><i class="fas fa-paper-plane" aria-hidden="true"></i> Start a project</a>
+            <a class="cta-btn cta-btn-ghost" href="index.html#projects"><i class="fas fa-th-large" aria-hidden="true"></i> All projects</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="site-nav.js"></script>
+    <script src="site-marquee.js"></script>
+    <div id="site-footer"></div>
+
+    <script src="sticky-social.js"></script>
+    <script src="site-footer.js"></script>
+    <script>
+        (function () {
+            var tabs = Array.prototype.slice.call(document.querySelectorAll('.app-tab'));
+            var bar = document.querySelector('.demo-nav-section');
+            var view = document.querySelector('.demo-viewport');
+            var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            function activate(tab, focus) {
+                tabs.forEach(function (t) {
+                    var on = t === tab;
+                    t.classList.toggle('active', on);
+                    t.setAttribute('aria-selected', on ? 'true' : 'false');
+                    t.tabIndex = on ? 0 : -1;
+                    var panel = document.getElementById(t.getAttribute('data-panel'));
+                    if (panel) panel.classList.toggle('active', on);
+                });
+                if (focus) tab.focus();
+                var strip = tab.parentNode;
+                if (strip.scrollWidth > strip.clientWidth) {
+                    strip.scrollTo({ left: tab.offsetLeft - strip.offsetLeft - 16, behavior: reduce ? 'auto' : 'smooth' });
+                }
+                if (bar && view) {
+                    var gap = view.getBoundingClientRect().top - bar.getBoundingClientRect().bottom;
+                    if (gap < 0) window.scrollTo({ top: window.pageYOffset + gap - 12, behavior: reduce ? 'auto' : 'smooth' });
+                }
+            }
+            tabs.forEach(function (tab, i) {
+                tab.addEventListener('click', function () { activate(tab, false); });
+                tab.addEventListener('keydown', function (e) {
+                    var next = null;
+                    if (e.key === 'ArrowRight') next = (i + 1) % tabs.length;
+                    else if (e.key === 'ArrowLeft') next = (i - 1 + tabs.length) % tabs.length;
+                    else if (e.key === 'Home') next = 0;
+                    else if (e.key === 'End') next = tabs.length - 1;
+                    if (next === null) return;
+                    e.preventDefault();
+                    activate(tabs[next], true);
+                });
+            });
+        })();
+    </script>
+</body>
+</html>

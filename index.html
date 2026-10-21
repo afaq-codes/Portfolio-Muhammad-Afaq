@@ -10,10 +10,15 @@
     <!-- End Google Tag Manager -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Muhammad Afaq, Full Stack Java and Angular Developer. Portfolio showcasing enterprise healthcare, ERP, POS, and educational management systems.">
-    <meta property="og:title" content="Muhammad Afaq | Full Stack Java and Angular Developer">
-    <meta property="og:description" content="Portfolio of Muhammad Afaq, Full-Stack Developer specializing in Java Spring Boot & Angular enterprise applications.">
-    <title>Muhammad Afaq | Full Stack Developer</title>
+    <meta name="description" content="Full Stack Engineer building custom CRM systems and LLM applications, such as Claude tool calling and chatbot flows, on Java Spring Boot and Angular. 12 projects, 3.5+ years.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://muhammadafaqportfolio.netlify.app/">
+    <meta property="og:title" content="Muhammad Afaq | Full Stack Engineer: CRM Systems and LLM Applications">
+    <meta property="og:description" content="Full Stack Engineer building custom CRM systems and LLM applications, such as Claude tool calling and chatbot flows, on Java Spring Boot and Angular. 12 projects, 3.5+ years.">
+    <meta property="og:image" content="https://muhammadafaqportfolio.netlify.app/afaq.png">
+    <meta name="twitter:card" content="summary">
+    <link rel="canonical" href="https://muhammadafaqportfolio.netlify.app/">
+    <title>Muhammad Afaq | Full Stack Engineer: CRM Systems and LLM Applications</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <link href="site-nav.css" rel="stylesheet">
@@ -28,19 +33,28 @@
             --text-dark: #1e293b;
             --text-muted: #64748b;
             --border-light: #e2e8f0;
+            --section-pad: 5.5rem;
         }
 
         /* Per-project color themes applied to each .project-card */
         .theme-caremd     { --p1: #0066cc; --p2: #003d99; }
-        .theme-rynodesk    { --p1: #e85d04; --p2: #9d0208; }
+        .theme-rynodesk    { --p1: #c2410c; --p2: #9d0208; }
         .theme-autoschedula { --p1: #7209b7; --p2: #3a0ca3; }
         .theme-erp        { --p1: #1e3a5f; --p2: #2c6fad; }
         .theme-carer      { --p1: #0891b2; --p2: #065f74; }
         .theme-wellness   { --p1: #16a34a; --p2: #14532d; }
         .theme-marketing  { --p1: #9b2226; --p2: #6a0572; }
+        .theme-nixxe      { --p1: #4338ca; --p2: #1e1b4b; }
+        .theme-rynochat   { --p1: #1d4b84; --p2: #0b2545; }
+        .theme-orderyfy   { --p1: #be185d; --p2: #831843; }
+        .theme-nyrovi     { --p1: #b45309; --p2: #78350f; }
+        .theme-stockflow  { --p1: #0f766e; --p2: #134e4a; }
 
-        html { scroll-behavior: smooth; overflow-x: hidden; }
-        #about, #experience, #projects, #skills, #contact,
+        html { overflow-x: hidden; }
+        @media (prefers-reduced-motion: no-preference) {
+            html { scroll-behavior: smooth; }
+        }
+        #featured, #about, #expertise, #experience, #projects, #skills, #contact,
         [id^="project-"] { scroll-margin-top: 5.5rem; }
 
         body {
@@ -49,130 +63,382 @@
             overflow-x: hidden;
             max-width: 100vw;
         }
+        a, button { cursor: pointer; }
+        :where(a:focus-visible, button:focus-visible) {
+            outline: 3px solid #93c5fd;
+            outline-offset: 3px;
+        }
 
         /* ===== HERO ===== */
         .hero-section {
+            --hero-gap: 3.5rem;
             background: linear-gradient(140deg, #0f172a 0%, #1e3a5f 55%, #0f3460 100%);
-            color: white;
-            padding: 6rem 0 5rem;
-            text-align: center;
+            color: #fff;
+            padding: 6rem 0 4.75rem;
             position: relative;
             overflow: hidden;
         }
         .hero-section::before {
             content: '';
             position: absolute;
-            width: 700px; height: 700px;
-            background: radial-gradient(circle, rgba(96,165,250,0.07) 0%, transparent 70%);
-            top: -250px; right: -150px;
+            width: 780px; height: 780px;
+            background: radial-gradient(circle, rgba(96,165,250,0.13) 0%, transparent 68%);
+            top: -160px; right: -180px;
             border-radius: 50%;
             pointer-events: none;
         }
         .hero-section::after {
             content: '';
             position: absolute;
-            width: 400px; height: 400px;
+            width: 420px; height: 420px;
             background: radial-gradient(circle, rgba(167,139,250,0.06) 0%, transparent 70%);
-            bottom: -100px; left: -100px;
+            bottom: -140px; left: -120px;
             border-radius: 50%;
             pointer-events: none;
         }
-        .hero-title {
-            font-size: 3.75rem;
-            font-weight: 800;
-            margin-bottom: 0.75rem;
-            letter-spacing: -1.5px;
-            line-height: 1.1;
-            color: white;
-        }
-        .hero-role {
-            font-size: 1.25rem;
-            color: rgba(255,255,255,0.65);
-            font-weight: 400;
-            margin-bottom: 1.75rem;
-        }
-        .hero-role strong { color: #60a5fa; font-weight: 600; }
-        .hero-chips {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-            margin-bottom: 2.5rem;
-            flex-wrap: wrap;
-        }
-        .hero-chip {
-            display: inline-flex;
+        .hero-grid {
+            display: grid;
+            grid-template-columns: minmax(0, 1.08fr) minmax(0, 0.92fr);
+            gap: 4rem;
             align-items: center;
-            gap: 0.45rem;
-            background: rgba(255,255,255,0.08);
-            border: 1px solid rgba(255,255,255,0.15);
-            color: rgba(255,255,255,0.8);
-            padding: 0.45rem 1rem;
-            border-radius: 50px;
-            font-size: 0.85rem;
-            font-weight: 500;
         }
-        .hero-chip i { color: #60a5fa; font-size: 0.8rem; }
-        .hero-chip .chip-value {
+        .hero-eyebrow {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.65rem;
+            margin: 0 0 1.4rem;
+            font-size: 0.875rem;
+            line-height: 1.5;
+            color: rgba(255,255,255,0.76);
+        }
+        .hero-eyebrow strong { color: #fff; font-weight: 600; }
+        .avail-dot {
+            flex: 0 0 8px;
+            width: 8px; height: 8px;
+            margin-top: 0.42em;
+            border-radius: 50%;
+            background: #22c55e;
+            box-shadow: 0 0 0 4px rgba(34,197,94,0.2);
+        }
+        .hero-title {
+            font-size: clamp(1.75rem, 3.1vw, 2.85rem);
+            line-height: 1.12;
+            letter-spacing: 0;
+            margin: 0 0 1rem;
+            color: #fff;
+            text-wrap: balance;
+        }
+        .hero-title .hl { color: #60a5fa; }
+        .hero-title .nowrap { white-space: nowrap; }
+        .hero-sub {
+            font-size: 1.125rem;
+            line-height: 1.6;
+            color: rgba(255,255,255,0.78);
+            margin: 0 0 2rem;
+            max-width: 50ch;
+        }
+        .proof-bar {
+            list-style: none;
+            margin: 0 0 2.25rem;
+            padding: 1.1rem 0 0;
+            display: grid;
+            grid-template-columns: repeat(5, auto);
+            justify-content: space-between;
+            border-top: 1px solid rgba(255,255,255,0.12);
+        }
+        .proof-item {
+            min-width: 0;
+            padding: 0 1rem;
+            border-left: 1px solid rgba(255,255,255,0.12);
+        }
+        .proof-item:first-child { padding-left: 0; border-left: 0; }
+        .proof-num {
             display: block;
+            font-size: clamp(1.25rem, 1.85vw, 1.65rem);
             font-weight: 700;
-            color: white;
-            font-size: 0.95rem;
-            line-height: 1.2;
+            line-height: 1.1;
+            color: #fff;
         }
-        .hero-chip .chip-label {
+        .proof-lbl {
             display: block;
-            font-size: 0.7rem;
-            color: rgba(255,255,255,0.55);
-            font-weight: 500;
-            text-transform: uppercase;
-            letter-spacing: 0.4px;
+            margin-top: 0.3rem;
+            font-size: 0.75rem;
+            line-height: 1.35;
+            color: rgba(255,255,255,0.7);
         }
-        .hero-chip .chip-mobile { display: none; }
         .hero-actions {
             display: flex;
-            justify-content: center;
-            gap: 0.875rem;
             flex-wrap: wrap;
+            align-items: center;
+            gap: 0.75rem;
         }
         .btn-hero-primary {
             background: #2563eb;
-            color: white;
-            border: none;
-            padding: 0.8rem 2rem;
+            color: #fff;
+            border: 1.5px solid #2563eb;
+            min-height: 48px;
+            padding: 0.7rem 1.6rem;
             border-radius: 50px;
             font-weight: 600;
-            font-size: 0.9rem;
+            font-size: 0.925rem;
             text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            transition: all 0.25s;
+            transition: background 0.2s, border-color 0.2s, box-shadow 0.2s, transform 0.2s;
         }
         .btn-hero-primary:hover {
             background: #1d4ed8;
-            color: white;
-            transform: translateY(-2px);
-            box-shadow: 0 10px 30px rgba(37,99,235,0.45);
+            border-color: #1d4ed8;
+            color: #fff;
+            transform: translateY(-1px);
+            box-shadow: 0 10px 28px rgba(37,99,235,0.4);
         }
         .btn-hero-ghost {
-            background: rgba(255,255,255,0.08);
-            color: white;
-            border: 1.5px solid rgba(255,255,255,0.25);
-            padding: 0.8rem 1.75rem;
+            background: rgba(255,255,255,0.06);
+            color: #fff;
+            border: 1.5px solid rgba(255,255,255,0.3);
+            min-height: 48px;
+            padding: 0.7rem 1.5rem;
             border-radius: 50px;
             font-weight: 600;
-            font-size: 0.9rem;
+            font-size: 0.925rem;
             text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            transition: all 0.25s;
+            transition: background 0.2s, border-color 0.2s, transform 0.2s;
         }
         .btn-hero-ghost:hover {
-            border-color: white;
-            background: rgba(255,255,255,0.15);
-            color: white;
-            transform: translateY(-2px);
+            border-color: #fff;
+            background: rgba(255,255,255,0.12);
+            color: #fff;
+            transform: translateY(-1px);
+        }
+        .hero-social { display: inline-flex; gap: 0.5rem; margin-left: 0.25rem; }
+        .hero-icon-link {
+            width: 48px; height: 48px;
+            border-radius: 50%;
+            display: inline-flex; align-items: center; justify-content: center;
+            color: rgba(255,255,255,0.85);
+            border: 1.5px solid rgba(255,255,255,0.22);
+            text-decoration: none;
+            font-size: 1.1rem;
+            transition: color 0.2s, border-color 0.2s, background 0.2s;
+        }
+        .hero-icon-link:hover { color: #fff; border-color: rgba(255,255,255,0.6); background: rgba(255,255,255,0.08); }
+
+        /* ===== HERO VISUAL: product windows ===== */
+        .hero-visual {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        .hero-visual::before {
+            content: '';
+            position: absolute;
+            inset: -2.5rem -3rem;
+            background-image: radial-gradient(rgba(148,163,184,0.22) 1px, transparent 1.4px);
+            background-size: 22px 22px;
+            -webkit-mask-image: radial-gradient(ellipse at center, #000 30%, transparent 72%);
+            mask-image: radial-gradient(ellipse at center, #000 30%, transparent 72%);
+            pointer-events: none;
+        }
+        .pw {
+            position: relative;
+            background: #fff;
+            color: #0f172a;
+            border-radius: 16px;
+            box-shadow: 0 0 0 1px rgba(255,255,255,0.1), 0 28px 60px -18px rgba(2,6,23,0.7);
+            overflow: hidden;
+        }
+        .pw p { margin: 0; }
+        .pw-chat { width: 86%; }
+        .pw-crm { width: 78%; align-self: flex-end; }
+        .pw-bar {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            padding: 0.6rem 0.9rem;
+            background: #f8fafc;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        .pw-dots { display: inline-flex; gap: 5px; margin-right: 0.3rem; }
+        .pw-dots i { width: 9px; height: 9px; border-radius: 50%; background: #cbd5e1; }
+        .pw-avatar {
+            flex: 0 0 28px;
+            width: 28px; height: 28px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #2563eb, #1e3a8a);
+            color: #fff;
+            display: inline-flex; align-items: center; justify-content: center;
+            font-size: 0.72rem;
+        }
+        .pw-title { display: flex; flex-direction: column; min-width: 0; line-height: 1.25; }
+        .pw-title b { font-size: 0.82rem; font-weight: 600; white-space: nowrap; }
+        .pw-title small {
+            display: inline-flex; align-items: center; gap: 0.3rem;
+            font-size: 0.68rem; color: #15803d;
+        }
+        .pw-title small::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: #22c55e; }
+        .pw-badge {
+            margin-left: auto;
+            padding: 0.15rem 0.55rem;
+            border: 1px solid #c7d2fe;
+            border-radius: 999px;
+            background: #eef2ff;
+            color: #3730a3;
+            font-size: 0.66rem;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+        .pw-thread { display: flex; flex-direction: column; gap: 0.6rem; padding: 1rem 1rem 0.85rem; }
+        .pw-msg {
+            max-width: 80%;
+            padding: 0.55rem 0.8rem;
+            border-radius: 14px;
+            font-size: 0.82rem;
+            line-height: 1.45;
+        }
+        .pw-msg-user { align-self: flex-end; background: #2563eb; color: #fff; border-bottom-right-radius: 4px; }
+        .pw-msg-bot { background: #f1f5f9; color: #0f172a; border-bottom-left-radius: 4px; }
+        .pw-tool {
+            align-self: flex-start;
+            display: inline-flex; flex-wrap: wrap; align-items: center;
+            gap: 0.3rem 0.5rem;
+            max-width: 88%;
+            padding: 0.3rem 0.65rem 0.3rem 0.3rem;
+            border: 1px solid #c7d2fe;
+            border-radius: 10px;
+            background: #eef2ff;
+            font-size: 0.72rem;
+            color: #475569;
+        }
+        .pw-tool code {
+            display: inline-flex; align-items: center; gap: 0.35rem;
+            padding: 0.15rem 0.45rem;
+            border: 1px solid #c7d2fe;
+            border-radius: 6px;
+            background: #fff;
+            color: #3730a3;
+            font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+            font-size: 0.7rem;
+            font-weight: 600;
+        }
+        .pw-tool code i { font-size: 0.62rem; }
+        .pw-tool-ok { border-color: #a7f3d0; background: #ecfdf5; color: #065f46; }
+        .pw-tool-ok code { border-color: #a7f3d0; color: #065f46; }
+        .pw-product {
+            align-self: flex-start;
+            display: flex; align-items: center; gap: 0.7rem;
+            width: min(80%, 300px);
+            padding: 0.5rem 0.75rem 0.5rem 0.5rem;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            box-shadow: 0 1px 2px rgba(15,23,42,0.06);
+        }
+        .pw-product-img {
+            flex: 0 0 44px;
+            width: 44px; height: 44px;
+            border-radius: 10px;
+            background: linear-gradient(135deg, #fde68a, #fb923c);
+            color: #7c2d12;
+            display: inline-flex; align-items: center; justify-content: center;
+            font-size: 1.05rem;
+        }
+        .pw-product-info { display: flex; flex-direction: column; min-width: 0; line-height: 1.3; }
+        .pw-product-info b { font-size: 0.8rem; font-weight: 600; }
+        .pw-product-info span { font-size: 0.72rem; color: #64748b; }
+        .pw-price { margin-left: auto; font-size: 0.8rem; font-weight: 700; white-space: nowrap; }
+        .pw-reply { display: grid; justify-items: start; }
+        .pw-reply > * { grid-area: 1 / 1; }
+        .pw-typing {
+            visibility: hidden;
+            display: inline-flex; gap: 4px;
+            padding: 0.75rem 0.85rem;
+            border-radius: 14px;
+            border-bottom-left-radius: 4px;
+            background: #f1f5f9;
+        }
+        .pw-typing i { width: 6px; height: 6px; border-radius: 50%; background: #94a3b8; }
+        .pw-input {
+            display: flex; align-items: center; gap: 0.65rem;
+            margin: 0 1rem 1rem;
+            padding: 0.35rem 0.35rem 0.35rem 0.95rem;
+            border: 1px solid #e2e8f0;
+            border-radius: 999px;
+            font-size: 0.78rem;
+            color: #64748b;
+        }
+        .pw-input .fa-microphone { margin-left: auto; }
+        .pw-send {
+            width: 30px; height: 30px;
+            border-radius: 50%;
+            background: #2563eb;
+            color: #fff;
+            display: inline-flex; align-items: center; justify-content: center;
+            font-size: 0.72rem;
+        }
+        .pw-crm-head {
+            display: flex; align-items: center; justify-content: space-between; gap: 0.75rem;
+            padding: 0.7rem 1rem;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        .pw-crm-title { display: inline-flex; align-items: center; gap: 0.5rem; font-size: 0.82rem; font-weight: 600; }
+        .pw-crm-title i { color: #4338ca; font-size: 0.78rem; }
+        .pw-crm-meta { font-size: 0.7rem; color: #64748b; }
+        .pw-cols {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 0.65rem;
+            padding: 0.8rem 0.9rem 0.9rem;
+            background: #f8fafc;
+        }
+        .pw-col { min-width: 0; }
+        .pw-col-head {
+            display: flex; align-items: center; justify-content: space-between; gap: 0.3rem;
+            padding-bottom: 0.4rem;
+            border-bottom: 2px solid var(--stage, #94a3b8);
+            font-size: 0.7rem;
+            font-weight: 600;
+            color: #334155;
+            white-space: nowrap;
+        }
+        .pw-count {
+            padding: 0.05rem 0.4rem;
+            border-radius: 999px;
+            background: #e2e8f0;
+            color: #475569;
+            font-size: 0.64rem;
+            font-weight: 600;
+        }
+        .pw-card {
+            margin-top: 0.45rem;
+            padding: 0.4rem 0.5rem;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            background: #fff;
+            line-height: 1.25;
+        }
+        .pw-card b { display: block; font-size: 0.7rem; font-weight: 600; }
+        .pw-card span { display: block; font-size: 0.66rem; color: #64748b; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .pw-card-won { border-color: #bbf7d0; background: #f0fdf4; }
+        .pw-card-won span { color: #15803d; }
+        .proof-num, .pw-price, .pw-count, .pw-card b, .stat-card-num { font-variant-numeric: tabular-nums lining-nums; }
+
+        @media (prefers-reduced-motion: no-preference) {
+            .pw-in {
+                animation: pw-rise 0.45s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+                animation-delay: var(--d, 0ms);
+            }
+            .pw-typing {
+                animation: pw-typing 0.4s linear 1;
+                animation-delay: var(--d, 0ms);
+            }
+        }
+        @keyframes pw-rise {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: none; }
+        }
+        @keyframes pw-typing {
+            from { visibility: visible; opacity: 0; }
+            30% { visibility: visible; opacity: 1; }
+            to { visibility: visible; opacity: 1; }
         }
 
         /* ===== SECTION HEADERS ===== */
@@ -190,67 +456,194 @@
             color: var(--text-dark);
             margin-bottom: 0.6rem;
             letter-spacing: -0.5px;
+            text-wrap: balance;
         }
         .section-sub {
             color: var(--text-muted);
             font-size: 1rem;
-            max-width: 580px;
-            margin: 0 auto 3.5rem;
+            line-height: 1.65;
+            max-width: 62ch;
+            margin: 0 0 3rem;
         }
+
+        /* ===== FEATURED WORK ===== */
+        .featured-section {
+            padding: var(--section-pad) 0;
+            background: var(--body-bg);
+            border-bottom: 1px solid var(--border-light);
+        }
+        .featured-head {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: flex-end;
+            justify-content: space-between;
+            gap: 1rem 2rem;
+            margin-bottom: 2.5rem;
+        }
+        .featured-head .section-heading { margin-bottom: 0.5rem; }
+        .featured-head .section-sub { margin: 0; }
+        .featured-all {
+            display: inline-flex; align-items: center; gap: 0.45rem;
+            min-height: 44px;
+            color: #1d4ed8;
+            font-weight: 600;
+            font-size: 0.925rem;
+            text-decoration: none;
+        }
+        .featured-all:hover { color: #1e3a8a; text-decoration: underline; text-underline-offset: 3px; }
+        .feat-tile {
+            position: relative;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            padding: 1.9rem 1.75rem 1.5rem;
+            background: #fff;
+            border: 1px solid var(--border-light);
+            border-radius: 18px;
+            box-shadow: 0 1px 2px rgba(15,23,42,0.04);
+            overflow: hidden;
+            transition: box-shadow 0.25s, transform 0.25s, border-color 0.25s;
+        }
+        .feat-tile::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, var(--p1), var(--p2));
+        }
+        .feat-tile:hover {
+            transform: translateY(-3px);
+            border-color: #cbd5e1;
+            box-shadow: 0 22px 44px -22px rgba(15,23,42,0.3);
+        }
+        .feat-tile:focus-within { outline: 3px solid #93c5fd; outline-offset: 3px; }
+        .feat-top { display: flex; align-items: center; gap: 0.8rem; margin-bottom: 1.25rem; }
+        .feat-icon {
+            flex: 0 0 46px;
+            width: 46px; height: 46px;
+            border-radius: 13px;
+            background: linear-gradient(135deg, var(--p1), var(--p2));
+            color: #fff;
+            display: inline-flex; align-items: center; justify-content: center;
+            font-size: 1.15rem;
+        }
+        .feat-kind {
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--p1);
+        }
+        .feat-name { font-size: 1.4rem; line-height: 1.2; color: #0f172a; margin: 0 0 0.3rem; }
+        .feat-role { font-size: 0.82rem; color: var(--text-muted); margin: 0 0 1rem; }
+        .feat-outcome { font-size: 0.975rem; color: #334155; line-height: 1.6; margin: 0 0 1.25rem; }
+        .feat-tags { list-style: none; padding: 0; margin: 0 0 1.5rem; display: flex; flex-wrap: wrap; gap: 0.4rem; }
+        .feat-tags li {
+            padding: 0.25rem 0.7rem;
+            border: 1px solid var(--border-light);
+            border-radius: 999px;
+            background: #f8fafc;
+            color: #334155;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+        .feat-link {
+            margin-top: auto;
+            align-self: flex-start;
+            display: inline-flex; align-items: center; gap: 0.5rem;
+            min-height: 44px;
+            color: var(--p1);
+            font-weight: 700;
+            font-size: 0.925rem;
+            text-decoration: none;
+        }
+        .feat-link::after { content: ''; position: absolute; inset: 0; }
+        .feat-link:focus-visible { outline: none; }
+        .feat-link i { transition: transform 0.2s; font-size: 0.85em; }
+        .feat-tile:hover .feat-link i { transform: translateX(3px); }
 
         /* ===== ABOUT / STATS ===== */
         .about-section {
-            background: white;
-            padding: 4.5rem 0;
+            background: #fff;
+            padding: var(--section-pad) 0;
             border-bottom: 1px solid var(--border-light);
         }
         .about-text {
             font-size: 1.05rem;
-            color: var(--text-muted);
+            color: #475569;
             line-height: 1.75;
-            max-width: 700px;
+            max-width: 65ch;
         }
         .about-text strong { color: var(--text-dark); }
         .stat-card {
-            background: var(--body-bg);
-            border-radius: 18px;
-            padding: 1.75rem 1.25rem;
-            text-align: center;
-            border: 1px solid var(--border-light);
-            transition: all 0.3s;
             height: 100%;
+            padding: 1.15rem 0 0.25rem;
+            border-top: 1px solid #cbd5e1;
         }
-        .stat-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 12px 35px rgba(0,0,0,0.08);
-            border-color: #93c5fd;
-        }
-        .stat-card-icon {
-            width: 50px; height: 50px;
-            background: linear-gradient(135deg, #2563eb, #1d4ed8);
-            border-radius: 14px;
-            display: flex; align-items: center; justify-content: center;
-            margin: 0 auto 1rem;
-        }
-        .stat-card-icon i { color: white; font-size: 1.2rem; }
         .stat-card-num {
-            font-size: 2.25rem;
-            font-weight: 800;
-            color: var(--text-dark);
+            font-size: clamp(2.25rem, 3.4vw, 3rem);
+            color: #0f172a;
             line-height: 1;
-            margin-bottom: 0.3rem;
+            margin-bottom: 0.5rem;
         }
         .stat-card-lbl {
-            font-size: 0.8rem;
+            font-size: 0.875rem;
             color: var(--text-muted);
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
         }
 
-        /* ===== EXPERIENCE TIMELINE ===== */
+        /* ===== EXPERTISE ===== */
+        .expertise-section {
+            padding: var(--section-pad) 0;
+            background: var(--body-bg);
+            border-bottom: 1px solid var(--border-light);
+        }
+        .expertise-card { display: flex; flex-direction: column; }
+        .expertise-intro {
+            font-size: 0.9rem;
+            color: #475569;
+            line-height: 1.65;
+            margin-bottom: 1rem;
+        }
+        .expertise-card .feature-list { margin-bottom: 0; }
+        .expertise-more { margin: 0 0 1.1rem; }
+        .expertise-more > summary {
+            display: flex; align-items: center; gap: 0.5rem;
+            min-height: 44px;
+            list-style: none;
+            cursor: pointer;
+            color: #1d4ed8;
+            font-size: 0.875rem;
+            font-weight: 600;
+            border-top: 1px solid #f1f5f9;
+        }
+        .expertise-more > summary::-webkit-details-marker { display: none; }
+        .expertise-more > summary::after {
+            content: "\f078";
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+            font-size: 0.7em;
+            transition: transform 0.2s;
+        }
+        .expertise-more[open] > summary::after { transform: rotate(180deg); }
+        .expertise-more > summary:hover { color: #1e3a8a; }
+        .expertise-more > summary:focus-visible { outline: 3px solid #93c5fd; outline-offset: 2px; border-radius: 6px; }
+        .expertise-more .more-less, .expertise-more[open] .more-more { display: none; }
+        .expertise-more[open] .more-less { display: inline; }
+        .expertise-more .feature-list li:first-child { border-top: 1px solid #f1f5f9; }
+        .expertise-built {
+            margin-top: auto;
+            padding-top: 1rem;
+            border-top: 1px solid #f1f5f9;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+        .expertise-built strong { color: var(--text-dark); font-weight: 700; }
+        .expertise-built a { color: #2563eb; font-weight: 600; text-decoration: none; }
+        .expertise-built a:hover { text-decoration: underline; }
+
         /* ===== EXPERIENCE CARDS ===== */
-        .experience-section { padding: 5rem 0; background: var(--body-bg); }
+        .experience-section { padding: var(--section-pad) 0; background: #fff; border-bottom: 1px solid var(--border-light); }
         .exp-card {
             background: white;
             border-radius: 22px;
@@ -281,6 +674,7 @@
         }
         .exp-top-secoptech { background: linear-gradient(140deg, #1e3a5f 0%, #2c6fad 100%); }
         .exp-top-caremd    { background: linear-gradient(140deg, #0f172a 0%, #1e3a5f 55%, #0f3460 100%); }
+        .exp-top-freelance { background: linear-gradient(140deg, #134e4a 0%, #0f766e 55%, #0d9488 100%); }
         .exp-top-row { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1.25rem; }
         .exp-icon {
             width: 54px; height: 54px;
@@ -291,7 +685,7 @@
         }
         .exp-icon i { font-size: 1.45rem; color: white; }
         .current-pill {
-            background: #22c55e;
+            background: #15803d;
             color: white;
             padding: 0.3rem 0.85rem;
             border-radius: 50px;
@@ -346,15 +740,16 @@
 
         /* ===== PROJECT CARDS ===== */
         .projects-section {
-            padding: 5rem 0;
-            background: white;
+            padding: var(--section-pad) 0;
+            background: var(--body-bg);
+            border-bottom: 1px solid var(--border-light);
         }
         .project-card {
             border: 1px solid var(--border-light);
             border-radius: 22px;
             overflow: hidden;
             transition: all 0.3s ease;
-            margin-bottom: 2.25rem;
+            margin-bottom: 1.75rem;
             background: white;
             box-shadow: 0 2px 15px rgba(0,0,0,0.04);
         }
@@ -378,7 +773,7 @@
         }
         .project-header-badges { display: flex; gap: 0.5rem; flex-wrap: wrap; }
         .badge-contribution {
-            background: rgba(255,255,255,0.22);
+            background: rgba(0,0,0,0.22);
             color: white;
             padding: 0.25rem 0.8rem;
             border-radius: 50px;
@@ -417,7 +812,7 @@
         }
         .tech-badges { display: flex; flex-wrap: wrap; gap: 0.35rem; }
         .tech-badge {
-            background: rgba(255,255,255,0.15);
+            background: rgba(0,0,0,0.18);
             color: white;
             padding: 0.2rem 0.65rem;
             border-radius: 50px;
@@ -530,22 +925,64 @@
             filter: brightness(1.1);
         }
 
+        .more-projects-title {
+            font-size: 1.5rem;
+            color: var(--text-dark);
+            margin: 3.25rem 0 1.5rem;
+        }
+        .project-card-compact {
+            height: 100%;
+            margin-bottom: 0;
+            display: flex;
+            flex-direction: column;
+        }
+        .project-card-compact .project-header { padding: 1.5rem 1.5rem 1.35rem; }
+        .project-card-compact .project-header-top { margin-bottom: 0.9rem; }
+        .project-card-compact .project-icon-wrap { width: 40px; height: 40px; border-radius: 11px; }
+        .project-card-compact .project-icon-wrap i { font-size: 1.1rem; }
+        .project-card-compact .project-name { font-size: 1.2rem; }
+        .project-card-compact .project-tagline { font-size: 0.85rem; margin-bottom: 0.85rem; }
+        .project-card-compact .project-body {
+            flex: 1 1 auto;
+            display: flex;
+            flex-direction: column;
+            padding: 1.25rem 1.5rem 1.5rem;
+        }
+        .compact-summary { font-size: 0.875rem; color: #475569; line-height: 1.6; margin: 0 0 1rem; }
+        .compact-stats {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, max-content));
+            gap: 0.75rem 1.5rem;
+            margin: 0 0 1.25rem;
+        }
+        @media (min-width: 992px) {
+            .project-card:not(.project-card-compact) .feature-list {
+                display: grid;
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                column-gap: 1.75rem;
+            }
+            .project-card:not(.project-card-compact) .feature-list li:nth-last-child(2):nth-child(odd) { border-bottom: none; }
+        }
+        .compact-stats .p-stat-num { font-size: 1.4rem; }
+        .project-card-compact .btn-view-demo { margin-top: auto; }
+
         /* ===== SKILLS ===== */
         .skills-section {
-            padding: 5rem 0;
-            background: var(--body-bg);
+            padding: var(--section-pad) 0;
+            background: #fff;
         }
         .skills-grid {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
+            grid-template-columns: repeat(3, minmax(0, 1fr));
             gap: 1.5rem;
-            max-width: 960px;
-            margin: 0 auto;
+        }
+        @media (max-width: 991.98px) {
+            .skills-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
         }
         @media (max-width: 576px) {
             .skills-grid {
+                grid-template-columns: minmax(0, 1fr);
                 gap: 0.85rem;
-                max-width: 100%;
             }
             .skills-section .skill-card {
                 padding: 1.25rem 1rem;
@@ -582,6 +1019,8 @@
         .bg-green  { background: linear-gradient(135deg, #16a34a, #14532d); }
         .bg-purple { background: linear-gradient(135deg, #7c3aed, #5b21b6); }
         .bg-orange { background: linear-gradient(135deg, #ea580c, #9a3412); }
+        .bg-indigo { background: linear-gradient(135deg, #4338ca, #1e1b4b); }
+        .bg-rose   { background: linear-gradient(135deg, #be185d, #831843); }
         .skill-card-title {
             font-weight: 700;
             font-size: 1rem;
@@ -600,51 +1039,76 @@
         }
 
         /* ===== RESPONSIVE ===== */
-        @media (max-width: 992px) {
-            .hero-title { font-size: 2.75rem; }
+        @media (max-width: 1199.98px) {
+            .hero-grid { gap: 2.75rem; }
+            .pw-chat { width: 94%; }
+            .pw-crm { width: 88%; }
         }
-        @media (max-width: 768px) {
-            .hero-chip .chip-desktop { display: none !important; }
-            .hero-chip .chip-mobile { display: flex !important; flex-direction: column; }
+        @media (max-width: 991.98px) {
+            .hero-grid { grid-template-columns: minmax(0, 1fr); gap: 3.25rem; }
+            .hero-visual { width: 100%; max-width: 580px; margin: 0 auto; }
+            .hero-title { font-size: clamp(2rem, 5.6vw, 2.85rem); }
+        }
+        @media (max-width: 767.98px) {
+            :root { --section-pad: 3.75rem; }
+            .hero-section { --hero-gap: 2rem; padding-bottom: 3.5rem; }
             .hero-section::before,
             .hero-section::after { display: none; }
-            .hero-section { padding: 4rem 0 3.5rem; }
-            .hero-title { font-size: 2.25rem; }
-            .hero-role { font-size: 1rem; padding: 0 0.5rem; }
-            .hero-chips {
-                display: grid;
-                grid-template-columns: 1fr 1fr;
-                gap: 0.65rem;
-                max-width: 100%;
-                padding: 0 0.25rem;
+            .hero-eyebrow { font-size: 0.8rem; margin-bottom: 1.1rem; }
+            .hero-title { font-size: clamp(1.75rem, 8.2vw, 2.1rem); }
+            .hero-sub { font-size: 1rem; margin-bottom: 1.5rem; }
+            .proof-bar {
+                grid-template-columns: repeat(6, minmax(0, 1fr));
+                justify-content: stretch;
+                gap: 0.5rem;
+                padding-top: 0;
+                border-top: 0;
+                margin-bottom: 1.75rem;
             }
-            .hero-chip {
-                flex-direction: column;
-                align-items: flex-start;
-                text-align: left;
-                border-radius: 12px;
+            .proof-item,
+            .proof-item:first-child {
+                grid-column: span 2;
+                padding: 0.65rem 0.75rem;
                 border: 1px solid rgba(255,255,255,0.12);
-                border-left: 3px solid #60a5fa;
-                background: rgba(15,23,42,0.45);
-                padding: 0.75rem 0.85rem;
-                gap: 0.35rem;
+                border-radius: 12px;
+                background: rgba(255,255,255,0.05);
             }
-            .hero-chip i {
-                font-size: 0.95rem;
-                margin-bottom: 0.15rem;
-            }
-            .hero-actions { flex-direction: column; align-items: stretch; padding: 0 0.5rem; }
-            .hero-actions a { justify-content: center; }
+            .proof-item:nth-child(n+4) { grid-column: span 3; }
+            .proof-num { font-size: 1.3rem; }
+            .proof-lbl { font-size: 0.72rem; }
+            .hero-actions .btn-hero-primary,
+            .hero-actions .btn-hero-ghost { flex: 1 1 100%; justify-content: center; }
+            .hero-social { margin-left: 0; }
+            .hero-visual { gap: 0.85rem; }
+            .hero-visual::before { inset: -1.5rem -1rem; }
+            .pw-chat, .pw-crm { width: 100%; }
+            .pw-thread { padding: 0.85rem 0.85rem 0.75rem; }
+            .pw-input { margin: 0 0.85rem 0.85rem; }
+            .pw-msg { max-width: 86%; font-size: 0.8rem; }
+            .pw-product { width: min(88%, 300px); }
+            .pw-cols { gap: 0.5rem; padding: 0.7rem; }
+            .featured-head { margin-bottom: 1.75rem; }
+            .feat-tile { padding: 1.6rem 1.35rem 1.25rem; }
             .caremd-modules .caremd-module-title,
             .rynodesk-modules .rynodesk-module-title { white-space: normal; }
             .project-header, .project-body { padding: 1.35rem; }
+            .expertise-built a { display: inline-flex; align-items: center; min-height: 44px; }
+            .more-projects-title { margin-top: 2.5rem; }
             .exp-top, .exp-body { padding: 1.35rem; }
             .container { padding-left: 1rem; padding-right: 1rem; }
         }
         @media (max-width: 576px) {
-            .hero-title { font-size: 2rem; }
             .section-heading { font-size: 1.75rem; }
-            .hero-chips { grid-template-columns: 1fr; }
+            .stat-card-num { font-size: 2.25rem; }
+        }
+        @media (max-width: 480px) {
+            .pw-dots { display: none; }
+            .pw-bar { padding: 0.55rem 0.75rem; }
+        }
+        @media (max-width: 339.98px) {
+            .pw-title { flex: 1 1 auto; overflow: hidden; }
+            .pw-title b { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+            .pw-badge { display: none; }
         }
     </style>
 </head>
@@ -657,26 +1121,146 @@
     <div id="site-nav"></div>
 
     <!-- ===== HERO ===== -->
-    <section class="hero-section">
+    <section class="hero-section" aria-labelledby="hero-title">
         <div class="container position-relative">
-            <h1 class="hero-title">Full Stack Developer</h1>
-            <p class="hero-role">I build production apps with <strong>Java Spring Boot</strong> and <strong>Angular</strong> for healthcare, ERP, and retail teams.</p>
-            <div class="hero-chips">
-                <span class="hero-chip"><i class="fas fa-briefcase"></i><span class="chip-desktop">3+ Years Experience</span><span class="chip-mobile"><span class="chip-value">3+ Years</span><span class="chip-label">Experience</span></span></span>
-                <span class="hero-chip"><i class="fas fa-layer-group"></i><span class="chip-desktop">7 Projects Delivered</span><span class="chip-mobile"><span class="chip-value">7 Projects</span><span class="chip-label">Delivered</span></span></span>
-                <span class="hero-chip"><i class="fas fa-building"></i><span class="chip-desktop">CareMD, Current</span><span class="chip-mobile"><span class="chip-value">CareMD</span><span class="chip-label">Current Role</span></span></span>
-                <span class="hero-chip"><i class="fas fa-map-marker-alt"></i><span class="chip-desktop">Pakistan</span><span class="chip-mobile"><span class="chip-value">Pakistan</span><span class="chip-label">Based In</span></span></span>
+            <div class="hero-grid">
+                <div class="hero-copy">
+                    <p class="hero-eyebrow"><span class="avail-dot" aria-hidden="true"></span><span><strong>Muhammad Afaq</strong> · Full Stack Engineer, CRM and AI · Lahore, open to remote projects</span></p>
+                    <h1 id="hero-title" class="hero-title">I build <span class="hl">CRMs</span> and <span class="hl nowrap">AI-powered</span> products.</h1>
+                    <p class="hero-sub">Custom CRM systems and LLM applications, built on Spring Boot and Angular from database to deployment.</p>
+                    <ul class="proof-bar" aria-label="Career highlights">
+                        <li class="proof-item"><span class="proof-num">3.5+</span><span class="proof-lbl">Years experience</span></li>
+                        <li class="proof-item"><span class="proof-num">12</span><span class="proof-lbl">Projects</span></li>
+                        <li class="proof-item"><span class="proof-num">3,500+</span><span class="proof-lbl">Commits</span></li>
+                        <li class="proof-item"><span class="proof-num">4</span><span class="proof-lbl">CRM products</span></li>
+                        <li class="proof-item"><span class="proof-num">2</span><span class="proof-lbl">AI chatbots</span></li>
+                    </ul>
+                    <div class="hero-actions">
+                        <a href="#contact" class="btn-hero-primary"><i class="fas fa-paper-plane" aria-hidden="true"></i> Start a project</a>
+                        <a href="#featured" class="btn-hero-ghost"><i class="fas fa-layer-group" aria-hidden="true"></i> See CRM and AI work</a>
+                        <span class="hero-social">
+                            <a href="https://github.com/afaq-codes" target="_blank" rel="noopener" class="hero-icon-link" aria-label="GitHub profile" title="GitHub"><i class="fab fa-github" aria-hidden="true"></i></a>
+                            <a href="https://www.linkedin.com/in/afaq-springboot-angular" target="_blank" rel="noopener" class="hero-icon-link" aria-label="LinkedIn profile" title="LinkedIn"><i class="fab fa-linkedin-in" aria-hidden="true"></i></a>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="hero-visual" role="img" aria-label="Illustration of two products I build: an AI sales assistant chat that calls the search_products and update_cart tools, and a CRM sales pipeline with Lead, Qualified and Closed Won columns">
+                    <div class="pw pw-chat pw-in" style="--d:0ms">
+                        <div class="pw-bar">
+                            <span class="pw-dots"><i></i><i></i><i></i></span>
+                            <span class="pw-avatar"><i class="fas fa-robot"></i></span>
+                            <span class="pw-title"><b>AI sales assistant</b><small>Online</small></span>
+                            <span class="pw-badge">Claude · tool calling</span>
+                        </div>
+                        <div class="pw-thread">
+                            <p class="pw-msg pw-msg-user pw-in" style="--d:350ms">Large pizza for 4, under Rs 2,500? Add one to my cart.</p>
+                            <div class="pw-tool pw-in" style="--d:650ms"><code><i class="fas fa-magnifying-glass"></i>search_products</code><span>3 matches under Rs 2,500</span></div>
+                            <div class="pw-product pw-in" style="--d:950ms">
+                                <span class="pw-product-img"><i class="fas fa-pizza-slice"></i></span>
+                                <span class="pw-product-info"><b>Chicken Tikka Pizza</b><span>Large, serves 4</span></span>
+                                <span class="pw-price">Rs 2,199</span>
+                            </div>
+                            <div class="pw-tool pw-tool-ok pw-in" style="--d:1250ms"><code><i class="fas fa-cart-plus"></i>update_cart</code><span><i class="fas fa-check"></i> 1 item added</span></div>
+                            <div class="pw-reply">
+                                <span class="pw-typing" style="--d:1450ms"><i></i><i></i><i></i></span>
+                                <p class="pw-msg pw-msg-bot pw-in" style="--d:1850ms">Added to your cart. Shall I open the checkout form?</p>
+                            </div>
+                        </div>
+                        <div class="pw-input"><span>Type or send a voice note</span><i class="fas fa-microphone"></i><span class="pw-send"><i class="fas fa-paper-plane"></i></span></div>
+                    </div>
+
+                    <div class="pw pw-crm pw-in" style="--d:150ms">
+                        <div class="pw-crm-head">
+                            <span class="pw-crm-title"><i class="fas fa-filter"></i>Sales pipeline</span>
+                            <span class="pw-crm-meta">This week</span>
+                        </div>
+                        <div class="pw-cols">
+                            <div class="pw-col" style="--stage:#94a3b8">
+                                <div class="pw-col-head"><span>Lead</span><span class="pw-count">24</span></div>
+                                <div class="pw-card"><b>#2041</b><span>Sheets sync</span></div>
+                                <div class="pw-card"><b>#2038</b><span>Master import</span></div>
+                            </div>
+                            <div class="pw-col" style="--stage:#3b82f6">
+                                <div class="pw-col-head"><span>Qualified</span><span class="pw-count">9</span></div>
+                                <div class="pw-card"><b>#2033</b><span>QA passed</span></div>
+                                <div class="pw-card"><b>#2029</b><span>Callback</span></div>
+                            </div>
+                            <div class="pw-col" style="--stage:#16a34a">
+                                <div class="pw-col-head"><span>Closed Won</span><span class="pw-count">4</span></div>
+                                <div class="pw-card pw-card-won"><b>#2017</b><span>Agent A</span></div>
+                                <div class="pw-card pw-card-won"><b>#2012</b><span>Agent B</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="hero-actions">
-                <a href="#projects" class="btn-hero-primary">
-                    <i class="fas fa-folder-open"></i> View Projects
-                </a>
-                <a href="https://github.com/afaq-codes" target="_blank" rel="noopener" class="btn-hero-ghost">
-                    <i class="fab fa-github"></i> GitHub
-                </a>
-                <a href="https://www.linkedin.com/in/afaq-springboot-angular" target="_blank" rel="noopener" class="btn-hero-ghost">
-                    <i class="fab fa-linkedin"></i> LinkedIn
-                </a>
+        </div>
+    </section>
+
+    <!-- ===== FEATURED WORK ===== -->
+    <section id="featured" class="featured-section" aria-labelledby="featured-title">
+        <div class="container">
+            <div class="featured-head">
+                <div>
+                    <p class="section-eyebrow">Best fit</p>
+                    <h2 id="featured-title" class="section-heading">Featured work for CRM and AI</h2>
+                    <p class="section-sub">Three products I built or led, closest to CRM and AI engineering work.</p>
+                </div>
+                <a href="#projects" class="featured-all">All 12 projects <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
+            </div>
+            <div class="row g-4">
+                <div class="col-lg-4">
+                    <article class="feat-tile theme-nixxe">
+                        <div class="feat-top">
+                            <span class="feat-icon"><i class="fas fa-headset" aria-hidden="true"></i></span>
+                            <span class="feat-kind">Sales CRM</span>
+                        </div>
+                        <h3 class="feat-name">Nixxe CRM</h3>
+                        <p class="feat-role">Built and maintained, effectively solo</p>
+                        <p class="feat-outcome">One CRM that runs a call-centre sales business, from lead import and attribution to QA, commissions, winbacks and payroll.</p>
+                        <ul class="feat-tags">
+                            <li>Lead pipelines</li>
+                            <li>QA scorecards</li>
+                            <li>Commissions</li>
+                        </ul>
+                        <a href="nixxe-crm-demo.html" class="feat-link">View demo <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
+                    </article>
+                </div>
+                <div class="col-lg-4">
+                    <article class="feat-tile theme-rynochat">
+                        <div class="feat-top">
+                            <span class="feat-icon"><i class="fas fa-comments" aria-hidden="true"></i></span>
+                            <span class="feat-kind">Messaging CRM and AI</span>
+                        </div>
+                        <h3 class="feat-name">RynoChat</h3>
+                        <p class="feat-role">Lead developer, about 80% of commits</p>
+                        <p class="feat-outcome">One shared inbox for WhatsApp, Instagram and Messenger, with AI chatbot flows and handoff to a human agent.</p>
+                        <ul class="feat-tags">
+                            <li>Meta Graph API</li>
+                            <li>LLM flow builder</li>
+                            <li>Multi-provider AI</li>
+                        </ul>
+                        <a href="rynochat-demo.html" class="feat-link">View demo <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
+                    </article>
+                </div>
+                <div class="col-lg-4">
+                    <article class="feat-tile theme-orderyfy">
+                        <div class="feat-top">
+                            <span class="feat-icon"><i class="fas fa-robot" aria-hidden="true"></i></span>
+                            <span class="feat-kind">AI chatbot</span>
+                        </div>
+                        <h3 class="feat-name">Orderyfy AI assistant</h3>
+                        <p class="feat-role">Freelance lead developer, live in production</p>
+                        <p class="feat-outcome">A Claude-powered sales assistant that searches products, fills the cart and asks the team, inside a monthly budget.</p>
+                        <ul class="feat-tags">
+                            <li>Claude tool calling</li>
+                            <li>Prompt caching</li>
+                            <li>Voice notes</li>
+                        </ul>
+                        <a href="orderyfy-demo.html" class="feat-link">View demo <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
+                    </article>
+                </div>
             </div>
         </div>
     </section>
@@ -684,45 +1268,41 @@
     <!-- ===== ABOUT / STATS ===== -->
     <section id="about" class="about-section">
         <div class="container">
-            <div class="row align-items-center g-5">
+            <div class="row align-items-center g-4 g-lg-5">
                 <div class="col-lg-6">
                     <p class="section-eyebrow">About Me</p>
-                    <h2 class="section-heading" style="margin-bottom:1rem;">Building Enterprise Software That Scales</h2>
+                    <h2 class="section-heading" style="margin-bottom:1rem;">CRM Systems and LLM Applications on Spring Boot and Angular</h2>
                     <p class="about-text">
-                        I'm a <strong>full stack Java and Angular developer</strong> with hands on experience shipping real enterprise software. My work spans ERP systems, POS platforms, and healthcare SaaS products used in production.
+                        I'm a <strong>full stack engineer</strong> working with <strong>Java Spring Boot</strong> and <strong>Angular</strong> since December 2022. My focus is custom <strong>CRM systems</strong> and <strong>AI integrations</strong> built on multi-tenant SaaS. I have built or co-built four CRM products, with lead pipelines, QA scorecards, commissions, retention and omnichannel inboxes, and two AI chatbots with LLM steps, tool calling and human handoff.
                     </p>
                     <p class="about-text mt-3">
-                        I started at <strong>SecopTech</strong>, contributing to ERP migration, a POS product with marketplace integration, and a care management platform. I later joined <strong>CareMD</strong>, where I built a medical practice management system from the ground up. I owned architecture, backend APIs, Angular UI, and database design with guidance from my project manager.
+                        At <strong>CareMD</strong> I am the primary developer of a medical billing platform I built from scratch. I built <strong>Nixxe CRM</strong>, a sales, support and workforce CRM, on the CareMD core and then split it into its own product. At <strong>SecopTech</strong> I worked on ERP migration, the RynoDesk POS and commerce platform and Carer, and I led <strong>RynoChat</strong>, a messaging CRM for WhatsApp, Instagram and Messenger. I also take freelance work, like the <strong>Orderyfy</strong> marketplace and its AI sales assistant, and I build my own products, <strong>Nyrovi</strong> and <strong>StockFlow</strong>.
                     </p>
                 </div>
-                <div class="col-lg-6">
-                    <div class="row g-3">
+                <div class="col-lg-5 offset-lg-1">
+                    <div class="row g-4">
                         <div class="col-6">
                             <div class="stat-card">
-                                <div class="stat-card-icon"><i class="fas fa-calendar-alt"></i></div>
-                                <div class="stat-card-num">3+</div>
-                                <div class="stat-card-lbl">Years Experience</div>
+                                <div class="stat-card-num">~2,600</div>
+                                <div class="stat-card-lbl">CareMD commits</div>
                             </div>
                         </div>
                         <div class="col-6">
                             <div class="stat-card">
-                                <div class="stat-card-icon"><i class="fas fa-project-diagram"></i></div>
-                                <div class="stat-card-num">7</div>
-                                <div class="stat-card-lbl">Projects Delivered</div>
+                                <div class="stat-card-num">900+</div>
+                                <div class="stat-card-lbl">Permission checks</div>
                             </div>
                         </div>
                         <div class="col-6">
                             <div class="stat-card">
-                                <div class="stat-card-icon"><i class="fas fa-cubes"></i></div>
-                                <div class="stat-card-num">30+</div>
-                                <div class="stat-card-lbl">Modules Built</div>
+                                <div class="stat-card-num">80%</div>
+                                <div class="stat-card-lbl">of RynoChat commits</div>
                             </div>
                         </div>
                         <div class="col-6">
                             <div class="stat-card">
-                                <div class="stat-card-icon"><i class="fas fa-code-branch"></i></div>
-                                <div class="stat-card-num">Full</div>
-                                <div class="stat-card-lbl">Stack Developer</div>
+                                <div class="stat-card-num">377</div>
+                                <div class="stat-card-lbl">Flyway migrations</div>
                             </div>
                         </div>
                     </div>
@@ -731,55 +1311,104 @@
         </div>
     </section>
 
+    <!-- ===== EXPERTISE ===== -->
+    <section id="expertise" class="expertise-section">
+        <div class="container">
+            <div class="section-head">
+                <p class="section-eyebrow">Expertise</p>
+                <h2 class="section-heading">What I Build</h2>
+                <p class="section-sub">Three areas I go deep in. Each one is backed by projects on this page.</p>
+            </div>
+            <div class="row g-4 align-items-stretch">
+
+                <!-- ── CRM Systems ── -->
+                <div class="col-lg-4">
+                    <div class="skill-card expertise-card">
+                        <div class="skill-icon-box bg-blue"><i class="fas fa-handshake"></i></div>
+                        <div class="skill-card-title">CRM Systems</div>
+                        <p class="expertise-intro">Custom CRM engineering is my core specialism. I have built or co-built four CRM products for sales, support, messaging, commerce and care teams.</p>
+                        <ul class="feature-list">
+                            <li><span class="feature-check"><i class="fas fa-check"></i></span><span><strong>Lead and sales pipelines:</strong> lead capture and Google Sheets import, attribution to agents and teams, closer and fronter roles, blacklist lookup, daily sales export</span></li>
+                            <li><span class="feature-check"><i class="fas fa-check"></i></span><span><strong>Quality and performance:</strong> QA review forms and scorecards, mistake tracking, closer QA assignment, targets, PIPs and leaderboards</span></li>
+                            <li><span class="feature-check"><i class="fas fa-check"></i></span><span><strong>Retention and commissions:</strong> chargebacks, winbacks, customer follow-ups, inbound call logging, commission and sales reports by team and agent</span></li>
+                            <li><span class="feature-check"><i class="fas fa-check"></i></span><span><strong>Recruitment pipeline:</strong> hiring leads from Meta lead forms and custom sources, interview pipeline with status history and sync logs</span></li>
+                        </ul>
+                        <details class="expertise-more">
+                            <summary><span class="more-more">Show more</span><span class="more-less">Show less</span></summary>
+                            <ul class="feature-list">
+                                <li><span class="feature-check"><i class="fas fa-check"></i></span><span><strong>Omnichannel inbox:</strong> WhatsApp, Instagram and Messenger in one inbox through the Meta Graph API, with agents, automation and chatbot flows</span></li>
+                                <li><span class="feature-check"><i class="fas fa-check"></i></span><span><strong>Commerce CRM:</strong> customer blacklist with automatic order cancellation, order to customer linking, CRM dashboard and WhatsApp inbox</span></li>
+                                <li><span class="feature-check"><i class="fas fa-check"></i></span><span><strong>Client CRM:</strong> clients, care plans, staff and shift rotation for care agencies; practice contacts, portal requests and assignment pools with daily follow-ups for healthcare billing</span></li>
+                            </ul>
+                        </details>
+                        <p class="expertise-built"><strong>Built in:</strong> <a href="#project-nixxe">Nixxe CRM</a>, <a href="#project-rynochat">RynoChat</a>, <a href="#project-rynodesk">RynoDesk</a>, <a href="#project-carer">Carer</a>, <a href="#project-caremd">CareMD</a></p>
+                    </div>
+                </div>
+
+                <!-- ── AI Integrations ── -->
+                <div class="col-lg-4">
+                    <div class="skill-card expertise-card">
+                        <div class="skill-icon-box bg-purple"><i class="fas fa-robot"></i></div>
+                        <div class="skill-card-title">AI Integrations</div>
+                        <p class="expertise-intro">I build LLM applications and AI integrations inside real products. I work with hosted models through their APIs and focus on tool calling, cost control and a clean handoff to people.</p>
+                        <ul class="feature-list">
+                            <li><span class="feature-check"><i class="fas fa-check"></i></span><span><strong>AI sales assistant:</strong> a Claude-powered chatbot on the Orderyfy marketplace that uses tool calling to search products, update the cart, show the checkout form and ask the team</span></li>
+                            <li><span class="feature-check"><i class="fas fa-check"></i></span><span><strong>Prompt caching and cost controls:</strong> cached rules and a per-conversation knowledge snapshot, a monthly budget, per-conversation caps and spend limits with a usage meter</span></li>
+                            <li><span class="feature-check"><i class="fas fa-check"></i></span><span><strong>Multi-provider AI layer:</strong> one provider layer over Anthropic Claude, Groq and Google Gemini in RynoChat, and provider settings for Claude, Gemini and Grok in Orderyfy</span></li>
+                            <li><span class="feature-check"><i class="fas fa-check"></i></span><span><strong>Speech-to-text:</strong> WhatsApp voice notes transcribed through Groq in RynoChat, customer voice notes transcribed with Gemini in Orderyfy</span></li>
+                        </ul>
+                        <details class="expertise-more">
+                            <summary><span class="more-more">Show more</span><span class="more-less">Show less</span></summary>
+                            <ul class="feature-list">
+                                <li><span class="feature-check"><i class="fas fa-check"></i></span><span><strong>Chatbot flow builder:</strong> a visual Angular builder with Start, Send message, Send media, Ask question, Set variable, Condition, Webhook, LLM and Handoff nodes, run per conversation by a backend flow engine</span></li>
+                                <li><span class="feature-check"><i class="fas fa-check"></i></span><span><strong>AI services:</strong> contributions to the Groq and Google Gemini AI services used by RynoDesk</span></li>
+                                <li><span class="feature-check"><i class="fas fa-check"></i></span><span><strong>AI-assisted engineering:</strong> Claude Code and Cursor every day, parallel coding agents working against written conventions, design records and verification checks, every change reviewed and tested</span></li>
+                            </ul>
+                        </details>
+                        <p class="expertise-built"><strong>Built in:</strong> <a href="#project-orderyfy">Orderyfy</a>, <a href="#project-rynochat">RynoChat</a>, <a href="#project-rynodesk">RynoDesk</a>, <a href="#project-nyrovi">Nyrovi</a></p>
+                    </div>
+                </div>
+
+                <!-- ── Multi-Tenant SaaS ── -->
+                <div class="col-lg-4">
+                    <div class="skill-card expertise-card">
+                        <div class="skill-icon-box bg-green"><i class="fas fa-layer-group"></i></div>
+                        <div class="skill-card-title">Multi-Tenant SaaS</div>
+                        <p class="expertise-intro">I build multi-tenant SaaS on Spring Boot and Angular, from tenant isolation and permissions to deployment and monitoring.</p>
+                        <ul class="feature-list">
+                            <li><span class="feature-check"><i class="fas fa-check"></i></span><span><strong>Tenant isolation:</strong> Hibernate tenant discriminator plus a practice-scope filter, and tenant-isolation tests with non-root users</span></li>
+                            <li><span class="feature-check"><i class="fas fa-check"></i></span><span><strong>Permission tree:</strong> module, entity and feature permissions, with 900+ method-level checks in CareMD</span></li>
+                            <li><span class="feature-check"><i class="fas fa-check"></i></span><span><strong>Auth and sessions:</strong> JWT access and refresh tokens with server-side session revocation</span></li>
+                            <li><span class="feature-check"><i class="fas fa-check"></i></span><span><strong>Schema management:</strong> Flyway-managed PostgreSQL schemas, 377 migrations in CareMD alone</span></li>
+                        </ul>
+                        <details class="expertise-more">
+                            <summary><span class="more-more">Show more</span><span class="more-less">Show less</span></summary>
+                            <ul class="feature-list">
+                                <li><span class="feature-check"><i class="fas fa-check"></i></span><span><strong>Real-time and background work:</strong> STOMP WebSockets, web push notifications and scheduled jobs</span></li>
+                                <li><span class="feature-check"><i class="fas fa-check"></i></span><span><strong>Deployment and monitoring:</strong> Docker and nginx deployments with GitLab CI and New Relic monitoring</span></li>
+                            </ul>
+                        </details>
+                        <p class="expertise-built"><strong>Built in:</strong> <a href="#project-caremd">CareMD</a>, <a href="#project-nixxe">Nixxe CRM</a>, <a href="#project-rynochat">RynoChat</a>, <a href="#project-nyrovi">Nyrovi</a></p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
     <!-- ===== EXPERIENCE TIMELINE ===== -->
     <section id="experience" class="experience-section">
         <div class="container">
-            <div class="text-center">
+            <div class="section-head">
                 <p class="section-eyebrow">Career Journey</p>
                 <h2 class="section-heading">Professional Experience</h2>
-                <p class="section-sub">From ERP migration work to building a healthcare SaaS platform. Each project pushed my skills further.</p>
+                <p class="section-sub">From ERP migration work to a healthcare SaaS platform, four CRM products and two AI chatbots.</p>
             </div>
 
             <div class="row g-4 align-items-stretch">
 
-                <!-- ── SecopTech ── -->
-                <div class="col-lg-6">
-                    <div class="exp-card">
-                        <div class="exp-top exp-top-secoptech">
-                            <div class="exp-top-row">
-                                <div class="exp-icon"><i class="fas fa-building"></i></div>
-                                <span style="background:rgba(255,255,255,0.15);color:white;padding:0.25rem 0.8rem;border-radius:50px;font-size:0.72rem;border:1px solid rgba(255,255,255,0.25);">First Role</span>
-                            </div>
-                            <div class="exp-company">SecopTech</div>
-                            <div class="exp-role">Software Engineer, Full Stack</div>
-                            <div class="exp-chips">
-                                <span class="exp-chip"><i class="fas fa-briefcase"></i> 5 Products</span>
-                                <span class="exp-chip"><i class="fas fa-map-marker-alt"></i> Pakistan</span>
-                                <span class="exp-chip"><i class="fas fa-layer-group"></i> Java &amp; Angular</span>
-                            </div>
-                        </div>
-                        <div class="exp-body">
-                            <ul class="exp-highlights">
-                                <li><span class="exp-check"><i class="fas fa-check"></i></span>Migrated Chiltan Pure ERP from legacy system to modern Spring Boot + Angular stack</li>
-                                <li><span class="exp-check"><i class="fas fa-check"></i></span>Major contributor to RynoDesk POS, working across inventory, billing, marketplace, and related modules</li>
-                                <li><span class="exp-check"><i class="fas fa-check"></i></span>Built backend CRUDs and Angular UI components across multiple products</li>
-                                <li><span class="exp-check"><i class="fas fa-check"></i></span>Contributed modules to Carer care management and WellnessNow microservices platform</li>
-                                <li><span class="exp-check"><i class="fas fa-check"></i></span>Wrote Liquibase database migration scripts and integrated Swagger API documentation</li>
-                            </ul>
-                            <div class="exp-proj-label">Projects</div>
-                            <div class="exp-proj-tags">
-                                <span class="exp-proj-tag major">RynoDesk</span>
-                                <span class="exp-proj-tag major">Chiltan ERP</span>
-                                <span class="exp-proj-tag">Carer</span>
-                                <span class="exp-proj-tag">WellnessNow</span>
-                                <span class="exp-proj-tag">Chiltan Marketing</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
                 <!-- ── CareMD ── -->
-                <div class="col-lg-6">
+                <div class="col-lg-4">
                     <div class="exp-card">
                         <div class="exp-top exp-top-caremd">
                             <div class="exp-top-row">
@@ -789,24 +1418,98 @@
                             <div class="exp-company">CareMD</div>
                             <div class="exp-role">Software Engineer, Full Stack (Primary Developer)</div>
                             <div class="exp-chips">
-                                <span class="exp-chip"><i class="fas fa-star"></i> 90%+ Solo Built</span>
+                                <span class="exp-chip"><i class="fas fa-star"></i> Primary Developer</span>
                                 <span class="exp-chip"><i class="fas fa-map-marker-alt"></i> Pakistan</span>
                                 <span class="exp-chip"><i class="fas fa-shield-alt"></i> Healthcare SaaS</span>
                             </div>
                         </div>
                         <div class="exp-body">
                             <ul class="exp-highlights">
-                                <li><span class="exp-check"><i class="fas fa-check"></i></span>Built the entire CareMD medical practice management platform from scratch as the primary developer</li>
+                                <li><span class="exp-check"><i class="fas fa-check"></i></span>Built the CareMD medical billing platform from scratch</li>
                                 <li><span class="exp-check"><i class="fas fa-check"></i></span>Designed and implemented multi-tenant SaaS architecture with full data isolation per practice</li>
-                                <li><span class="exp-check"><i class="fas fa-check"></i></span>Responsible for 90%+ of the codebase, including backend APIs, Angular frontend, and database schema</li>
-                                <li><span class="exp-check"><i class="fas fa-check"></i></span>Delivered 58+ domain entities, 136+ Flyway migrations, and real-time WebSocket messaging</li>
-                                <li><span class="exp-check"><i class="fas fa-check"></i></span>Working under mentorship and guidance of project manager to deliver production-grade quality</li>
+                                <li><span class="exp-check"><i class="fas fa-check"></i></span>Wrote 95%+ of the commits across the backend APIs, Angular frontend and database schema</li>
+                                <li><span class="exp-check"><i class="fas fa-check"></i></span>Delivered 17 backend modules, 188 entities, 134 REST controllers, 377 Flyway migrations, 900+ permission checks and about 494 Angular components, with real-time WebSocket messaging and web push</li>
+                                <li><span class="exp-check"><i class="fas fa-check"></i></span>Built Nixxe CRM, a sales, support and workforce CRM, on the CareMD core, then split it into its own product and repository</li>
+                                <li><span class="exp-check"><i class="fas fa-check"></i></span>Run releases end to end: Flyway migrations, Docker builds through GitLab CI, nginx and New Relic monitoring</li>
                             </ul>
-                            <div class="exp-proj-label">Project</div>
+                            <div class="exp-proj-label">Projects</div>
                             <div class="exp-proj-tags">
                                 <span class="exp-proj-tag primary">CareMD Platform</span>
-                                <span class="exp-proj-tag primary">Multi-Tenant SaaS</span>
-                                <span class="exp-proj-tag primary">Built from Scratch</span>
+                                <span class="exp-proj-tag primary">Nixxe CRM</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ── Freelance and Own Products ── -->
+                <div class="col-lg-4">
+                    <div class="exp-card">
+                        <div class="exp-top exp-top-freelance">
+                            <div class="exp-top-row">
+                                <div class="exp-icon"><i class="fas fa-rocket"></i></div>
+                                <span style="background:rgba(255,255,255,0.15);color:white;padding:0.25rem 0.8rem;border-radius:50px;font-size:0.72rem;border:1px solid rgba(255,255,255,0.25);">Independent</span>
+                            </div>
+                            <div class="exp-company">Freelance and Own Products</div>
+                            <div class="exp-role">Freelance Lead Developer and Product Builder</div>
+                            <div class="exp-chips">
+                                <span class="exp-chip"><i class="fas fa-briefcase"></i> 3 Products</span>
+                                <span class="exp-chip"><i class="fas fa-layer-group"></i> Laravel, Spring Boot, Electron</span>
+                                <span class="exp-chip"><i class="fas fa-robot"></i> AI Sales Assistant</span>
+                            </div>
+                        </div>
+                        <div class="exp-body">
+                            <ul class="exp-highlights">
+                                <li><span class="exp-check"><i class="fas fa-check"></i></span>Lead developer on Orderyfy, a live multi-vendor food and shop marketplace with customer, vendor, rider and admin flows on Laravel 13 and Filament 5</li>
+                                <li><span class="exp-check"><i class="fas fa-check"></i></span>Built the Orderyfy AI sales assistant on the Claude API with tool calling, prompt caching, budget caps and Gemini voice-note transcription</li>
+                                <li><span class="exp-check"><i class="fas fa-check"></i></span>Added weekly shop settlement, rider cash handling, loyalty, CSV catalogue import, Google sign-in and web push to Orderyfy</li>
+                                <li><span class="exp-check"><i class="fas fa-check"></i></span>Building Nyrovi, my own multi-tenant EPOS for UK phone and repair shops, with IMEI-level stock, repairs, CRM, VAT margin scheme and GDPR tools</li>
+                                <li><span class="exp-check"><i class="fas fa-check"></i></span>Built Nyrovi with design records, tenant-isolation tests and parallel AI coding agents, reviewing and verifying every change</li>
+                                <li><span class="exp-check"><i class="fas fa-check"></i></span>Built StockFlow solo, an offline Electron and Angular desktop POS on SQLite with FIFO lot costing and Ed25519-signed licence keys</li>
+                            </ul>
+                            <div class="exp-proj-label">Projects</div>
+                            <div class="exp-proj-tags">
+                                <span class="exp-proj-tag primary">Orderyfy</span>
+                                <span class="exp-proj-tag primary">Nyrovi</span>
+                                <span class="exp-proj-tag primary">StockFlow</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ── SecopTech ── -->
+                <div class="col-lg-4">
+                    <div class="exp-card">
+                        <div class="exp-top exp-top-secoptech">
+                            <div class="exp-top-row">
+                                <div class="exp-icon"><i class="fas fa-building"></i></div>
+                                <span style="background:rgba(255,255,255,0.15);color:white;padding:0.25rem 0.8rem;border-radius:50px;font-size:0.72rem;border:1px solid rgba(255,255,255,0.25);">First Role</span>
+                            </div>
+                            <div class="exp-company">SecopTech</div>
+                            <div class="exp-role">Software Engineer, Full Stack</div>
+                            <div class="exp-chips">
+                                <span class="exp-chip"><i class="fas fa-briefcase"></i> 6 Products</span>
+                                <span class="exp-chip"><i class="fas fa-map-marker-alt"></i> Pakistan</span>
+                                <span class="exp-chip"><i class="fas fa-layer-group"></i> Java &amp; Angular</span>
+                            </div>
+                        </div>
+                        <div class="exp-body">
+                            <ul class="exp-highlights">
+                                <li><span class="exp-check"><i class="fas fa-check"></i></span>Led RynoChat, a multi-tenant messaging CRM for WhatsApp, Instagram and Messenger with AI chatbot flows, as lead developer with about 80% of the commits</li>
+                                <li><span class="exp-check"><i class="fas fa-check"></i></span>Migrated Chiltan Pure ERP from legacy system to modern Spring Boot + Angular stack</li>
+                                <li><span class="exp-check"><i class="fas fa-check"></i></span>Major contributor to RynoDesk POS, working across inventory, billing, marketplace, and related modules</li>
+                                <li><span class="exp-check"><i class="fas fa-check"></i></span>Built RynoDesk receipt and payment vouchers on the journal-voucher ledger, CRM features such as a customer blacklist and order to customer linking, and contributed to its Groq and Gemini AI services</li>
+                                <li><span class="exp-check"><i class="fas fa-check"></i></span>Built backend CRUDs and Angular UI components across multiple products</li>
+                                <li><span class="exp-check"><i class="fas fa-check"></i></span>Refactored Carer's CRM and shift-rotation logic and contributed Angular UI work to WellnessNow</li>
+                                <li><span class="exp-check"><i class="fas fa-check"></i></span>Wrote Liquibase database migration scripts and integrated Swagger API documentation</li>
+                            </ul>
+                            <div class="exp-proj-label">Projects</div>
+                            <div class="exp-proj-tags">
+                                <span class="exp-proj-tag major">RynoChat</span>
+                                <span class="exp-proj-tag major">RynoDesk</span>
+                                <span class="exp-proj-tag major">Chiltan ERP</span>
+                                <span class="exp-proj-tag">Carer</span>
+                                <span class="exp-proj-tag">WellnessNow</span>
+                                <span class="exp-proj-tag">Chiltan Marketing</span>
                             </div>
                         </div>
                     </div>
@@ -819,10 +1522,10 @@
     <!-- ===== PROJECTS ===== -->
     <section id="projects" class="projects-section">
         <div class="container">
-            <div class="text-center">
+            <div class="section-head">
                 <p class="section-eyebrow">Portfolio</p>
                 <h2 class="section-heading">Featured Projects</h2>
-                <p class="section-sub">7 production and academic projects spanning healthcare, ERP, POS, e-commerce, and education management.</p>
+                <p class="section-sub">12 projects spanning healthcare, CRM, AI chatbots, POS, e-commerce and education.</p>
             </div>
 
             <!-- ── CareMD ── -->
@@ -831,12 +1534,12 @@
                     <div class="project-header-top">
                         <div class="project-icon-wrap"><i class="fas fa-hospital-alt"></i></div>
                         <div class="project-header-badges">
-                            <span class="badge-contribution">Solo Built &bull; 90%+</span>
+                            <span class="badge-contribution">Primary Developer &bull; 95%+ of commits</span>
                             <span class="badge-company">CareMD</span>
                         </div>
                     </div>
-                    <div class="project-name">CareMD Medical Practice Management</div>
-                    <div class="project-tagline">Enterprise multi tenant SaaS for billing, HR, assets, access, and reports</div>
+                    <div class="project-name">CareMD Medical Billing Platform</div>
+                    <div class="project-tagline">Multi-tenant medical billing SaaS: claims, AR, portal, HR, payroll and reports</div>
                     <div class="tech-badges">
                         <span class="tech-badge">Java 17</span>
                         <span class="tech-badge">Spring Boot 3.2</span>
@@ -853,67 +1556,70 @@
                         <div class="col-md-8">
                             <p class="project-section-label">Overview</p>
                             <p style="font-size:0.9rem;color:#475569;line-height:1.7;margin-bottom:1.25rem;">
-                                I built the CareMD platform from scratch as the primary developer. It is a multi tenant medical billing and practice management SaaS with six main areas: clinical and RCM, HR operations, assets, access control, reports, and notifications. Stack includes Spring Boot REST APIs, Angular lazy loaded modules, and PostgreSQL with 136+ Flyway migrations.
+                                I built the CareMD platform from scratch as the primary developer. It is a multi-tenant medical billing SaaS with 17 backend modules, 188 entities, 134 REST controllers and 377 Flyway migrations, secured by 900+ method-level permission checks. The Angular 14 frontend has about 494 components. I have authored about 1,070 backend and 1,550 frontend commits.
                             </p>
                             <p class="project-section-label">Platform Modules</p>
                             <ul class="feature-list caremd-modules">
-                                <li><span class="feature-check"><i class="fas fa-check"></i></span><div><strong class="caremd-module-title">Billing / Clinical</strong><span class="caremd-module-desc">Practices, Patients, Appointments, Claims, Payments, Flagged Claims, Negative Balance, Setup</span></div></li>
-                                <li><span class="feature-check"><i class="fas fa-check"></i></span><div><strong class="caremd-module-title">HR / Operations</strong><span class="caremd-module-desc">Attendance, Leaves, Loans, Timesheets, Teams, Schedules, Employees, Recruiting</span></div></li>
-                                <li><span class="feature-check"><i class="fas fa-check"></i></span><div><strong class="caremd-module-title">Assets</strong><span class="caremd-module-desc">Inventory, Assignments, Categories, Summary Dashboard</span></div></li>
-                                <li><span class="feature-check"><i class="fas fa-check"></i></span><div><strong class="caremd-module-title">Access</strong><span class="caremd-module-desc">Users, Roles, Packages, Tenants, Real-Time Messaging</span></div></li>
-                                <li><span class="feature-check"><i class="fas fa-check"></i></span><div><strong class="caremd-module-title">Reports</strong><span class="caremd-module-desc">Clinical RCM Analytics, HR Attendance And Payroll, Activity Logs</span></div></li>
-                                <li><span class="feature-check"><i class="fas fa-check"></i></span><div><strong class="caremd-module-title">Notifications</strong><span class="caremd-module-desc">System-Wide Notification Center With Live Delivery</span></div></li>
+                                <li><span class="feature-check"><i class="fas fa-check"></i></span><div><strong class="caremd-module-title">Claims and Billing</strong><span class="caremd-module-desc">Claims, denial management, payment posting</span></div></li>
+                                <li><span class="feature-check"><i class="fas fa-check"></i></span><div><strong class="caremd-module-title">AR Workspace</strong><span class="caremd-module-desc">Daily follow-up generation, assignment pools with per-user daily limits</span></div></li>
+                                <li><span class="feature-check"><i class="fas fa-check"></i></span><div><strong class="caremd-module-title">Patients and Coverage</strong><span class="caremd-module-desc">Patient eligibility, insurance, authorizations, qualification rules, payer intelligence</span></div></li>
+                                <li><span class="feature-check"><i class="fas fa-check"></i></span><div><strong class="caremd-module-title">Reports</strong><span class="caremd-module-desc">Monthly billing summary, data quality checks</span></div></li>
+                                <li><span class="feature-check"><i class="fas fa-check"></i></span><div><strong class="caremd-module-title">Client Portal and Mailbox</strong><span class="caremd-module-desc">Request workflows, case flow, secure links, per-practice templates</span></div></li>
+                                <li><span class="feature-check"><i class="fas fa-check"></i></span><div><strong class="caremd-module-title">Messaging and Notifications</strong><span class="caremd-module-desc">Groups and media, web push, user presence</span></div></li>
+                                <li><span class="feature-check"><i class="fas fa-check"></i></span><div><strong class="caremd-module-title">HR and Operations</strong><span class="caremd-module-desc">HR, attendance, payroll, assets, expenses, access control</span></div></li>
                             </ul>
                         </div>
                         <div class="col-md-4">
                             <div class="project-stats">
                                 <div class="row text-center g-2">
                                     <div class="col-6">
-                                        <div class="p-stat-num">58+</div>
+                                        <div class="p-stat-num">188</div>
                                         <div class="p-stat-lbl">Entities</div>
                                     </div>
                                     <div class="col-6">
-                                        <div class="p-stat-num">136+</div>
+                                        <div class="p-stat-num">377</div>
                                         <div class="p-stat-lbl">Migrations</div>
                                     </div>
                                     <div class="col-6">
-                                        <div class="p-stat-num">34+</div>
+                                        <div class="p-stat-num">134</div>
                                         <div class="p-stat-lbl">Controllers</div>
                                     </div>
                                     <div class="col-6">
-                                        <div class="p-stat-num">6</div>
-                                        <div class="p-stat-lbl">App Areas</div>
+                                        <div class="p-stat-num">17</div>
+                                        <div class="p-stat-lbl">Modules</div>
                                     </div>
                                 </div>
                             </div>
                             <a href="caremd-demo.html" class="btn-view-demo">
-                                <i class="fas fa-eye"></i> View Full Module Demo
+                                <i class="fas fa-eye" aria-hidden="true"></i> View demo
                             </a>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- ── RynoDesk ── -->
-            <div id="project-rynodesk" class="project-card theme-rynodesk">
+            <!-- ── Nixxe CRM ── -->
+            <div id="project-nixxe" class="project-card theme-nixxe">
                 <div class="project-header">
                     <div class="project-header-top">
-                        <div class="project-icon-wrap"><i class="fas fa-cash-register"></i></div>
+                        <div class="project-icon-wrap"><i class="fas fa-headset"></i></div>
                         <div class="project-header-badges">
-                            <span class="badge-contribution">Major Contributor</span>
-                            <span class="badge-company">SecopTech</span>
+                            <span class="badge-contribution">Built and Maintained</span>
+                            <span class="badge-company">Nixxe Solutions</span>
                         </div>
                     </div>
-                    <div class="project-name">RynoDesk POS and E commerce Platform</div>
-                    <div class="project-tagline">POS, Inventory, Marketplace Sync &amp; Electron Desktop</div>
+                    <div class="project-name">Nixxe CRM Sales, Support and Workforce CRM</div>
+                    <div class="project-tagline">Lead pipelines, QA, commissions, winbacks, recruitment, HR and payroll for a call-centre sales business</div>
                     <div class="tech-badges">
+                        <span class="tech-badge">Java 17</span>
                         <span class="tech-badge">Spring Boot 3.2</span>
-                        <span class="tech-badge">Angular 17</span>
+                        <span class="tech-badge">Angular 14</span>
+                        <span class="tech-badge">Angular Material</span>
                         <span class="tech-badge">PostgreSQL</span>
-                        <span class="tech-badge">Electron.js</span>
-                        <span class="tech-badge">Daraz / Wix API</span>
-                        <span class="tech-badge">ApexCharts</span>
-                        <span class="tech-badge">PDF / QR</span>
+                        <span class="tech-badge">Flyway</span>
+                        <span class="tech-badge">STOMP WebSocket</span>
+                        <span class="tech-badge">Docker</span>
+                        <span class="tech-badge">nginx</span>
                     </div>
                 </div>
                 <div class="project-body">
@@ -921,66 +1627,69 @@
                         <div class="col-md-8">
                             <p class="project-section-label">Overview</p>
                             <p style="font-size:0.9rem;color:#475569;line-height:1.7;margin-bottom:1.25rem;">
-                                I was a major contributor on RynoDesk, a retail POS and e commerce platform. My work covered sales, inventory, products, finance, and integrations on web and desktop.
+                                I built Nixxe CRM for Nixxe Solutions, a call-centre sales business, and I maintain it. It started on the CareMD platform core. I then split it into its own product and repository, removed the billing modules, and kept and extended the CRM modules. It now has 20 backend modules, 220 entities and 700+ permission checks.
                             </p>
-                            <p class="project-section-label">Platform Areas</p>
-                            <ul class="feature-list rynodesk-modules">
-                                <li><span class="feature-check"><i class="fas fa-check"></i></span><div><strong class="rynodesk-module-title">Sales / Orders</strong></div></li>
-                                <li><span class="feature-check"><i class="fas fa-check"></i></span><div><strong class="rynodesk-module-title">Products</strong></div></li>
-                                <li><span class="feature-check"><i class="fas fa-check"></i></span><div><strong class="rynodesk-module-title">Inventory</strong></div></li>
-                                <li><span class="feature-check"><i class="fas fa-check"></i></span><div><strong class="rynodesk-module-title">Integrations</strong></div></li>
-                                <li><span class="feature-check"><i class="fas fa-check"></i></span><div><strong class="rynodesk-module-title">Finance</strong></div></li>
-                                <li><span class="feature-check"><i class="fas fa-check"></i></span><div><strong class="rynodesk-module-title">CRM / Access / Reports</strong></div></li>
+                            <p class="project-section-label">CRM Modules</p>
+                            <ul class="feature-list">
+                                <li><span class="feature-check"><i class="fas fa-check"></i></span> Sales pipeline with Google Sheets lead sync, master import, attribution, blacklist lookup, chargebacks and daily export</li>
+                                <li><span class="feature-check"><i class="fas fa-check"></i></span> Commission and sales reports by team and agent, with team-lead totals and commission by team side</li>
+                                <li><span class="feature-check"><i class="fas fa-check"></i></span> Customer support with a CS dashboard, customer follow-ups, inbound calls, winbacks and winback chargebacks</li>
+                                <li><span class="feature-check"><i class="fas fa-check"></i></span> Quality and performance: QA forms, reviews and mistakes, closer QA assignment, targets, PIPs and leaderboards for six sales metrics</li>
+                                <li><span class="feature-check"><i class="fas fa-check"></i></span> Recruitment from Meta lead forms and custom sources, with sync logs and an interview pipeline of 19 hiring statuses</li>
+                                <li><span class="feature-check"><i class="fas fa-check"></i></span> HR and payroll: schedules with automatic breaks, attendance with audit history, leaves with approval SLA, payroll with payable-day rules</li>
                             </ul>
                         </div>
                         <div class="col-md-4">
                             <div class="project-stats">
                                 <div class="row text-center g-2">
                                     <div class="col-6">
-                                        <div class="p-stat-num">8</div>
-                                        <div class="p-stat-lbl">App Areas</div>
+                                        <div class="p-stat-num">20</div>
+                                        <div class="p-stat-lbl">Modules</div>
                                     </div>
                                     <div class="col-6">
-                                        <div class="p-stat-num">Major</div>
-                                        <div class="p-stat-lbl">Contributor</div>
+                                        <div class="p-stat-num">220</div>
+                                        <div class="p-stat-lbl">Entities</div>
                                     </div>
                                     <div class="col-6">
-                                        <div class="p-stat-num">POS</div>
-                                        <div class="p-stat-lbl">+ Web</div>
+                                        <div class="p-stat-num">110</div>
+                                        <div class="p-stat-lbl">Controllers</div>
                                     </div>
                                     <div class="col-6">
-                                        <div class="p-stat-num">Electron</div>
-                                        <div class="p-stat-lbl">Desktop</div>
+                                        <div class="p-stat-num">363</div>
+                                        <div class="p-stat-lbl">Migrations</div>
                                     </div>
                                 </div>
                             </div>
-                            <a href="rynodesk-demo.html" class="btn-view-demo">
-                                <i class="fas fa-eye"></i> View Full Module Demo
+                            <a href="nixxe-crm-demo.html" class="btn-view-demo">
+                                <i class="fas fa-eye" aria-hidden="true"></i> View demo
                             </a>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- ── AutoSchedula ── -->
-            <div id="project-autoschedula" class="project-card theme-autoschedula">
+            <!-- ── RynoChat ── -->
+            <div id="project-rynochat" class="project-card theme-rynochat">
                 <div class="project-header">
                     <div class="project-header-top">
-                        <div class="project-icon-wrap"><i class="fas fa-graduation-cap"></i></div>
+                        <div class="project-icon-wrap"><i class="fas fa-comments"></i></div>
                         <div class="project-header-badges">
-                            <span class="badge-contribution">Final Year Project, 100% Solo</span>
-                            <span class="badge-company">Academic</span>
+                            <span class="badge-contribution">Lead Developer &bull; About 80%</span>
+                            <span class="badge-company">SecopTech</span>
                         </div>
                     </div>
-                    <div class="project-name">AutoSchedula Automated Timetable System</div>
-                    <div class="project-tagline">AI-Powered Educational Scheduling Engine with Conflict Resolution</div>
+                    <div class="project-name">RynoChat Omnichannel Messaging CRM</div>
+                    <div class="project-tagline">One inbox for WhatsApp, Instagram and Messenger with agents, automation and AI chatbot flows</div>
                     <div class="tech-badges">
-                        <span class="tech-badge">Spring Boot 3.2</span>
-                        <span class="tech-badge">Angular 14</span>
+                        <span class="tech-badge">Java 17</span>
+                        <span class="tech-badge">Spring Boot</span>
+                        <span class="tech-badge">Angular 17</span>
                         <span class="tech-badge">PostgreSQL</span>
-                        <span class="tech-badge">Algorithm Design</span>
-                        <span class="tech-badge">FullCalendar</span>
-                        <span class="tech-badge">JWT Auth</span>
+                        <span class="tech-badge">Redis</span>
+                        <span class="tech-badge">Flyway</span>
+                        <span class="tech-badge">Meta Graph API</span>
+                        <span class="tech-badge">Prometheus</span>
+                        <span class="tech-badge">Docker</span>
                     </div>
                 </div>
                 <div class="project-body">
@@ -988,59 +1697,68 @@
                         <div class="col-md-8">
                             <p class="project-section-label">Overview</p>
                             <p style="font-size:0.9rem;color:#475569;line-height:1.7;margin-bottom:1.25rem;">
-                                My final year project, built entirely by me. AutoSchedula automates school timetable generation using constraint solving and a genetic algorithm. It reduces scheduling conflicts and balances teachers, sections, and rooms.
+                                I led development of RynoChat at SecopTech, with about 80% of the commits. It is a multi-tenant customer messaging and conversational CRM. Businesses connect WhatsApp, Instagram and Messenger through the Meta Graph API and work every conversation from one shared inbox, with agents, automation and AI chatbot flows.
                             </p>
                             <p class="project-section-label">Key Features</p>
                             <ul class="feature-list">
-                                <li><span class="feature-check"><i class="fas fa-check"></i></span> Automated timetable generation with genetic algorithm optimization</li>
-                                <li><span class="feature-check"><i class="fas fa-check"></i></span> Real-time conflict detection and automatic resolution engine</li>
-                                <li><span class="feature-check"><i class="fas fa-check"></i></span> Teacher preference matching and workload balancing</li>
-                                <li><span class="feature-check"><i class="fas fa-check"></i></span> FullCalendar interactive UI for schedule visualization and editing</li>
-                                <li><span class="feature-check"><i class="fas fa-check"></i></span> Resource allocation optimization across classrooms and time slots</li>
-                                <li><span class="feature-check"><i class="fas fa-check"></i></span> Timetable export functionality for distribution</li>
+                                <li><span class="feature-check"><i class="fas fa-check"></i></span> WhatsApp onboarding per tenant through Meta Embedded Signup, Instagram via Instagram Login, Messenger via Facebook Pages</li>
+                                <li><span class="feature-check"><i class="fas fa-check"></i></span> Webhook processing into a shared inbox with per-agent unread counts and push notifications</li>
+                                <li><span class="feature-check"><i class="fas fa-check"></i></span> Visual chatbot flow builder with an LLM node and handoff to a human agent</li>
+                                <li><span class="feature-check"><i class="fas fa-check"></i></span> Multi-provider AI over Claude, Groq and Gemini, with voice-note transcription</li>
+                                <li><span class="feature-check"><i class="fas fa-check"></i></span> Media handling, retention and bulk delete, PDF export and audit</li>
+                                <li><span class="feature-check"><i class="fas fa-check"></i></span> Automation, plus Spring Actuator with Prometheus metrics</li>
                             </ul>
                         </div>
                         <div class="col-md-4">
                             <div class="project-stats">
                                 <div class="row text-center g-2">
                                     <div class="col-6">
-                                        <div class="p-stat-num">95%</div>
-                                        <div class="p-stat-lbl">Efficiency Gain</div>
+                                        <div class="p-stat-num">13</div>
+                                        <div class="p-stat-lbl">Modules</div>
                                     </div>
                                     <div class="col-6">
-                                        <div class="p-stat-num">0</div>
-                                        <div class="p-stat-lbl">Schedule Conflicts</div>
+                                        <div class="p-stat-num">129</div>
+                                        <div class="p-stat-lbl">Entities</div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="p-stat-num">84</div>
+                                        <div class="p-stat-lbl">Controllers</div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="p-stat-num">219</div>
+                                        <div class="p-stat-lbl">Migrations</div>
                                     </div>
                                 </div>
                             </div>
-                            <a href="autoschedula-demo.html" class="btn-view-demo">
-                                <i class="fas fa-eye"></i> View Demo Details
+                            <a href="rynochat-demo.html" class="btn-view-demo">
+                                <i class="fas fa-eye" aria-hidden="true"></i> View demo
                             </a>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- ── Chiltan Pure ERP ── -->
-            <div id="project-erp" class="project-card theme-erp">
+            <!-- ── Orderyfy ── -->
+            <div id="project-orderyfy" class="project-card theme-orderyfy">
                 <div class="project-header">
                     <div class="project-header-top">
-                        <div class="project-icon-wrap"><i class="fas fa-sitemap"></i></div>
+                        <div class="project-icon-wrap"><i class="fas fa-store"></i></div>
                         <div class="project-header-badges">
-                            <span class="badge-contribution">First Role, Migration and Enhancement</span>
-                            <span class="badge-company">SecopTech</span>
+                            <span class="badge-contribution">Freelance Lead Developer</span>
+                            <span class="badge-company">Live in production</span>
                         </div>
                     </div>
-                    <div class="project-name">Chiltan Pure ERP Business Management System</div>
-                    <div class="project-tagline">Legacy-to-Modern ERP Migration with New Module Development</div>
+                    <div class="project-name">Orderyfy Multi-Vendor Marketplace</div>
+                    <div class="project-tagline">Food and shop marketplace with vendor and rider flows, an admin panel and an AI sales assistant</div>
                     <div class="tech-badges">
-                        <span class="tech-badge">Spring Boot 2.1</span>
-                        <span class="tech-badge">Angular 12</span>
-                        <span class="tech-badge">MariaDB</span>
-                        <span class="tech-badge">Liquibase</span>
-                        <span class="tech-badge">Swagger</span>
-                        <span class="tech-badge">Spring Security</span>
-                        <span class="tech-badge">iText PDF</span>
+                        <span class="tech-badge">PHP 8.3</span>
+                        <span class="tech-badge">Laravel 13</span>
+                        <span class="tech-badge">Filament 5</span>
+                        <span class="tech-badge">Spatie</span>
+                        <span class="tech-badge">Socialite</span>
+                        <span class="tech-badge">Web Push</span>
+                        <span class="tech-badge">Claude API</span>
+                        <span class="tech-badge">Gemini API</span>
                     </div>
                 </div>
                 <div class="project-body">
@@ -1048,208 +1766,302 @@
                         <div class="col-md-8">
                             <p class="project-section-label">Overview</p>
                             <p style="font-size:0.9rem;color:#475569;line-height:1.7;margin-bottom:1.25rem;">
-                                My first professional project at SecopTech. Contributed to migrating the Chiltan Pure ERP system from its legacy version to a modern Spring Boot + Angular stack. Added new backend and UI CRUDs, wrote Liquibase migrations, and delivered enhancements across multiple modules.
+                                I am the freelance lead developer of Orderyfy, a multi-vendor food and shop marketplace for a local town in Pakistan. It has a customer web app, vendor and rider flows and an admin panel, and it is live at <a href="https://orderyfy.com" target="_blank" rel="noopener">orderyfy.com</a>. I also built its Claude-powered AI sales assistant.
                             </p>
-                            <p class="project-section-label">Contributions</p>
+                            <p class="project-section-label">Key Features</p>
                             <ul class="feature-list">
-                                <li><span class="feature-check"><i class="fas fa-check"></i></span> Migrated legacy ERP modules to Spring Boot 2.1 + Angular 12 stack</li>
-                                <li><span class="feature-check"><i class="fas fa-check"></i></span> Developed new backend CRUD APIs and corresponding Angular UI components</li>
-                                <li><span class="feature-check"><i class="fas fa-check"></i></span> Wrote Liquibase database migration scripts for schema versioning</li>
-                                <li><span class="feature-check"><i class="fas fa-check"></i></span> Implemented PDF report generation using iText for financial documents</li>
-                                <li><span class="feature-check"><i class="fas fa-check"></i></span> Added QR code generation (ZXing) for product identification</li>
-                                <li><span class="feature-check"><i class="fas fa-check"></i></span> Integrated Swagger documentation for all new API endpoints</li>
+                                <li><span class="feature-check"><i class="fas fa-check"></i></span> AI sales assistant with tool calling to search products, update the cart, show the checkout form, show shop choices, show a call button and ask the team</li>
+                                <li><span class="feature-check"><i class="fas fa-check"></i></span> Prompt caching on the rules and a per-conversation knowledge snapshot, with a monthly budget, per-conversation caps and a usage meter</li>
+                                <li><span class="feature-check"><i class="fas fa-check"></i></span> Customer voice notes transcribed with Google Gemini</li>
+                                <li><span class="feature-check"><i class="fas fa-check"></i></span> Order flow, weekly settlement for shops, rider cash handling and loyalty</li>
+                                <li><span class="feature-check"><i class="fas fa-check"></i></span> Shops with their own riders, CSV catalogue import with photo upload and a mobile redesign</li>
+                                <li><span class="feature-check"><i class="fas fa-check"></i></span> Google sign-in, web push, and a QA-tracked Jira workflow with scripted, reversible deployments</li>
                             </ul>
                         </div>
                         <div class="col-md-4">
                             <div class="project-stats">
                                 <div class="row text-center g-2">
-                                    <div class="col-6">
-                                        <div class="p-stat-num">10+</div>
-                                        <div class="p-stat-lbl">ERP Modules</div>
+                                    <div class="col-4">
+                                        <div class="p-stat-num">~120</div>
+                                        <div class="p-stat-lbl">Commits</div>
                                     </div>
-                                    <div class="col-6">
-                                        <div class="p-stat-num">New</div>
-                                        <div class="p-stat-lbl">UI &amp; APIs Added</div>
+                                    <div class="col-4">
+                                        <div class="p-stat-num">6</div>
+                                        <div class="p-stat-lbl">AI Tools</div>
                                     </div>
-                                </div>
-                            </div>
-                            <a href="chiltan-demo.html" class="btn-view-demo">
-                                <i class="fas fa-eye"></i> View Demo Details
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- ── Carer ── -->
-            <div id="project-carer" class="project-card theme-carer">
-                <div class="project-header">
-                    <div class="project-header-top">
-                        <div class="project-icon-wrap"><i class="fas fa-hand-holding-heart"></i></div>
-                        <div class="project-header-badges">
-                            <span class="badge-contribution">Module Contributor</span>
-                            <span class="badge-company">SecopTech</span>
-                        </div>
-                    </div>
-                    <div class="project-name">Carer Care Management System</div>
-                    <div class="project-tagline">Healthcare Provider Platform with Modern Angular 20 Frontend</div>
-                    <div class="tech-badges">
-                        <span class="tech-badge">Spring Boot</span>
-                        <span class="tech-badge">Angular 20</span>
-                        <span class="tech-badge">Hibernate 6</span>
-                        <span class="tech-badge">AmCharts 5</span>
-                        <span class="tech-badge">Bootstrap 5</span>
-                        <span class="tech-badge">JWT Auth</span>
-                    </div>
-                </div>
-                <div class="project-body">
-                    <div class="row g-4">
-                        <div class="col-md-8">
-                            <p class="project-section-label">Overview</p>
-                            <p style="font-size:0.9rem;color:#475569;line-height:1.7;margin-bottom:1.25rem;">
-                                I contributed to the Carer platform at SecopTech, a care management product for healthcare providers. My work included role based access, UI screens, and data management modules using Angular 20 and Spring Boot.
-                            </p>
-                            <p class="project-section-label">Contributions</p>
-                            <ul class="feature-list">
-                                <li><span class="feature-check"><i class="fas fa-check"></i></span> Developed assigned modules for patient and care tracking workflows</li>
-                                <li><span class="feature-check"><i class="fas fa-check"></i></span> Built Angular 20 UI components with pagination and search filtering</li>
-                                <li><span class="feature-check"><i class="fas fa-check"></i></span> Integrated role-based access control using ngx-permissions</li>
-                                <li><span class="feature-check"><i class="fas fa-check"></i></span> Implemented AmCharts 5 dashboards for data visualization</li>
-                                <li><span class="feature-check"><i class="fas fa-check"></i></span> Connected REST APIs with Hibernate 6 backend for data management</li>
-                            </ul>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="project-stats">
-                                <div class="row text-center g-2">
-                                    <div class="col-6">
-                                        <div class="p-stat-num">v20</div>
-                                        <div class="p-stat-lbl">Angular Latest</div>
-                                    </div>
-                                    <div class="col-6">
-                                        <div class="p-stat-num">RBAC</div>
-                                        <div class="p-stat-lbl">Permissions</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <a href="carer-demo.html" class="btn-view-demo">
-                                <i class="fas fa-eye"></i> View Demo Details
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- ── WellnessNow ── -->
-            <div id="project-wellness" class="project-card theme-wellness">
-                <div class="project-header">
-                    <div class="project-header-top">
-                        <div class="project-icon-wrap"><i class="fas fa-heartbeat"></i></div>
-                        <div class="project-header-badges">
-                            <span class="badge-contribution">Contributor</span>
-                            <span class="badge-company">SecopTech</span>
-                        </div>
-                    </div>
-                    <div class="project-name">WellnessNow Microservices Healthcare Platform</div>
-                    <div class="project-tagline">Spring Cloud Microservices with Service Discovery &amp; API Gateway</div>
-                    <div class="tech-badges">
-                        <span class="tech-badge">Spring Cloud</span>
-                        <span class="tech-badge">API Gateway</span>
-                        <span class="tech-badge">Eureka</span>
-                        <span class="tech-badge">Config Server</span>
-                        <span class="tech-badge">Angular 14</span>
-                        <span class="tech-badge">Java 17</span>
-                        <span class="tech-badge">MariaDB</span>
-                    </div>
-                </div>
-                <div class="project-body">
-                    <div class="row g-4">
-                        <div class="col-md-8">
-                            <p class="project-section-label">Overview</p>
-                            <p style="font-size:0.9rem;color:#475569;line-height:1.7;margin-bottom:1.25rem;">
-                                Made contributions to WellnessNow, a healthcare platform built on Spring Cloud microservices architecture. The system includes service discovery via Eureka, centralized configuration, an API gateway, and dedicated services for users, inventory, and patient screening.
-                            </p>
-                            <p class="project-section-label">Architecture Highlights</p>
-                            <ul class="feature-list">
-                                <li><span class="feature-check"><i class="fas fa-check"></i></span> 7-service microservices architecture with Spring Cloud</li>
-                                <li><span class="feature-check"><i class="fas fa-check"></i></span> Eureka service discovery for dynamic service registration</li>
-                                <li><span class="feature-check"><i class="fas fa-check"></i></span> API Gateway for centralized routing and load balancing</li>
-                                <li><span class="feature-check"><i class="fas fa-check"></i></span> Config Server for environment-specific configuration management</li>
-                                <li><span class="feature-check"><i class="fas fa-check"></i></span> JWT authentication propagated across all services</li>
-                            </ul>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="project-stats">
-                                <div class="row text-center g-2">
-                                    <div class="col-6">
-                                        <div class="p-stat-num">7</div>
-                                        <div class="p-stat-lbl">Microservices</div>
-                                    </div>
-                                    <div class="col-6">
-                                        <div class="p-stat-num">Cloud</div>
-                                        <div class="p-stat-lbl">Architecture</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <a href="wellness-demo.html" class="btn-view-demo">
-                                <i class="fas fa-eye"></i> View Demo Details
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- ── Chiltan Marketing ── -->
-            <div id="project-marketing" class="project-card theme-marketing">
-                <div class="project-header">
-                    <div class="project-header-top">
-                        <div class="project-icon-wrap"><i class="fas fa-bullhorn"></i></div>
-                        <div class="project-header-badges">
-                            <span class="badge-contribution">Contributor</span>
-                            <span class="badge-company">SecopTech</span>
-                        </div>
-                    </div>
-                    <div class="project-name">Chiltan Marketing E Marketing Platform</div>
-                    <div class="project-tagline">Email Campaign Builder with Advanced Analytics &amp; Data Visualization</div>
-                    <div class="tech-badges">
-                        <span class="tech-badge">Angular 14</span>
-                        <span class="tech-badge">Angular Email Editor</span>
-                        <span class="tech-badge">AmCharts 5</span>
-                        <span class="tech-badge">Highcharts</span>
-                        <span class="tech-badge">ApexCharts</span>
-                        <span class="tech-badge">XLSX Export</span>
-                    </div>
-                </div>
-                <div class="project-body">
-                    <div class="row g-4">
-                        <div class="col-md-8">
-                            <p class="project-section-label">Overview</p>
-                            <p style="font-size:0.9rem;color:#475569;line-height:1.7;margin-bottom:1.25rem;">
-                                Made contributions to Chiltan Marketing, an e-marketing platform featuring an email campaign builder, multi-chart analytics, and data export capabilities. The frontend leverages Angular Email Editor for drag-and-drop campaign design and multiple charting libraries for campaign analytics.
-                            </p>
-                            <p class="project-section-label">Platform Features</p>
-                            <ul class="feature-list">
-                                <li><span class="feature-check"><i class="fas fa-check"></i></span> Drag-and-drop email campaign builder (Angular Email Editor)</li>
-                                <li><span class="feature-check"><i class="fas fa-check"></i></span> Campaign analytics with AmCharts 5, Highcharts, and ApexCharts</li>
-                                <li><span class="feature-check"><i class="fas fa-check"></i></span> Excel and PDF data export functionality</li>
-                                <li><span class="feature-check"><i class="fas fa-check"></i></span> Pagination, search filtering, and SweetAlert2 notifications</li>
-                            </ul>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="project-stats">
-                                <div class="row text-center g-2">
-                                    <div class="col-6">
+                                    <div class="col-4">
                                         <div class="p-stat-num">3</div>
-                                        <div class="p-stat-lbl">Chart Libraries</div>
-                                    </div>
-                                    <div class="col-6">
-                                        <div class="p-stat-num">DnD</div>
-                                        <div class="p-stat-lbl">Email Builder</div>
+                                        <div class="p-stat-lbl">AI Providers</div>
                                     </div>
                                 </div>
                             </div>
-                            <a href="chiltan-marketing-demo.html" class="btn-view-demo">
-                                <i class="fas fa-eye"></i> View Demo Details
+                            <a href="orderyfy-demo.html" class="btn-view-demo">
+                                <i class="fas fa-eye" aria-hidden="true"></i> View demo
                             </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <h3 class="more-projects-title">More projects</h3>
+            <div class="row g-4">
+                <!-- ── RynoDesk ── -->
+                <div class="col-md-6 col-lg-4">
+                    <div id="project-rynodesk" class="project-card project-card-compact theme-rynodesk">
+                        <div class="project-header">
+                            <div class="project-header-top">
+                                <div class="project-icon-wrap"><i class="fas fa-cash-register"></i></div>
+                                <div class="project-header-badges">
+                                    <span class="badge-contribution">Major Contributor</span>
+                                    <span class="badge-company">SecopTech</span>
+                                </div>
+                            </div>
+                            <div class="project-name">RynoDesk POS and E-commerce Platform</div>
+                            <div class="project-tagline">POS, Inventory, Ledger, CRM, Marketplace Sync &amp; Electron Desktop</div>
+                            <div class="tech-badges">
+                                <span class="tech-badge">Spring Boot 3.4</span>
+                                <span class="tech-badge">Angular 17</span>
+                                <span class="tech-badge">PostgreSQL</span>
+                                <span class="tech-badge">Redis</span>
+                                <span class="tech-badge">Electron.js</span>
+                                <span class="tech-badge">Daraz / Wix API</span>
+                                <span class="tech-badge">Groq / Gemini</span>
+                                <span class="tech-badge">ApexCharts</span>
+                                <span class="tech-badge">PDF / QR</span>
+                            </div>
+                        </div>
+                        <div class="project-body">
+                            <p class="compact-summary">I built receipt and payment vouchers on the journal-voucher ledger, CRM features and a WhatsApp inbox, and contributed to its Groq and Gemini AI services.</p>
+                            <div class="compact-stats">
+                                <div><div class="p-stat-num">7</div><div class="p-stat-lbl">App Areas</div></div>
+                                <div><div class="p-stat-num">30%</div><div class="p-stat-lbl">Backend commits</div></div>
+                                <div><div class="p-stat-num">36%</div><div class="p-stat-lbl">Frontend commits</div></div>
+                            </div>
+                            <a href="rynodesk-demo.html" class="btn-view-demo"><i class="fas fa-eye" aria-hidden="true"></i> View demo</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- ── Nyrovi ── -->
+                <div class="col-md-6 col-lg-4">
+                    <div id="project-nyrovi" class="project-card project-card-compact theme-nyrovi">
+                        <div class="project-header">
+                            <div class="project-header-top">
+                                <div class="project-icon-wrap"><i class="fas fa-mobile-alt"></i></div>
+                                <div class="project-header-badges">
+                                    <span class="badge-contribution">Own Product, In Development</span>
+                                    <span class="badge-company">Independent</span>
+                                </div>
+                            </div>
+                            <div class="project-name">Nyrovi EPOS for UK Phone Shops</div>
+                            <div class="project-tagline">Multi-tenant point of sale and shop management for mobile phone and repair shops</div>
+                            <div class="tech-badges">
+                                <span class="tech-badge">Java 17</span>
+                                <span class="tech-badge">Spring Boot</span>
+                                <span class="tech-badge">Angular 21</span>
+                                <span class="tech-badge">PostgreSQL 17</span>
+                                <span class="tech-badge">Flyway</span>
+                                <span class="tech-badge">Redis</span>
+                                <span class="tech-badge">Integration Tests</span>
+                            </div>
+                        </div>
+                        <div class="project-body">
+                            <p class="compact-summary">My own multi-tenant EPOS, in development. I build it with design records, tenant-isolation tests and parallel AI coding agents.</p>
+                            <div class="compact-stats">
+                                <div><div class="p-stat-num">12</div><div class="p-stat-lbl">Modules</div></div>
+                                <div><div class="p-stat-num">128</div><div class="p-stat-lbl">Entities</div></div>
+                                <div><div class="p-stat-num">256</div><div class="p-stat-lbl">Migrations</div></div>
+                            </div>
+                            <a href="nyrovi-demo.html" class="btn-view-demo"><i class="fas fa-eye" aria-hidden="true"></i> View demo</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- ── StockFlow ── -->
+                <div class="col-md-6 col-lg-4">
+                    <div id="project-stockflow" class="project-card project-card-compact theme-stockflow">
+                        <div class="project-header">
+                            <div class="project-header-top">
+                                <div class="project-icon-wrap"><i class="fas fa-boxes"></i></div>
+                                <div class="project-header-badges">
+                                    <span class="badge-contribution">Own Product, 100% Solo</span>
+                                    <span class="badge-company">Independent</span>
+                                </div>
+                            </div>
+                            <div class="project-name">StockFlow Desktop POS and Inventory</div>
+                            <div class="project-tagline">Offline point of sale and inventory desktop app for small shops</div>
+                            <div class="tech-badges">
+                                <span class="tech-badge">Electron</span>
+                                <span class="tech-badge">Angular 17</span>
+                                <span class="tech-badge">Angular Material</span>
+                                <span class="tech-badge">SQLite (sql.js)</span>
+                                <span class="tech-badge">Bootstrap 5</span>
+                                <span class="tech-badge">SheetJS</span>
+                            </div>
+                        </div>
+                        <div class="project-body">
+                            <p class="compact-summary">My own product, built solo: an offline Electron and Angular POS with FIFO lot costing and Ed25519-signed licence keys.</p>
+                            <div class="compact-stats">
+                                <div><div class="p-stat-num">56</div><div class="p-stat-lbl">Commits</div></div>
+                                <div><div class="p-stat-num">100%</div><div class="p-stat-lbl">Solo built</div></div>
+                            </div>
+                            <a href="stockflow-demo.html" class="btn-view-demo"><i class="fas fa-eye" aria-hidden="true"></i> View demo</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- ── Carer ── -->
+                <div class="col-md-6 col-lg-4">
+                    <div id="project-carer" class="project-card project-card-compact theme-carer">
+                        <div class="project-header">
+                            <div class="project-header-top">
+                                <div class="project-icon-wrap"><i class="fas fa-hand-holding-heart"></i></div>
+                                <div class="project-header-badges">
+                                    <span class="badge-contribution">Module Contributor</span>
+                                    <span class="badge-company">SecopTech</span>
+                                </div>
+                            </div>
+                            <div class="project-name">Carer Care Management System</div>
+                            <div class="project-tagline">Care-Agency Management with Access, CRM and HRM Modules</div>
+                            <div class="tech-badges">
+                                <span class="tech-badge">Spring Boot</span>
+                                <span class="tech-badge">Angular 20</span>
+                                <span class="tech-badge">Hibernate 6</span>
+                                <span class="tech-badge">AmCharts 5</span>
+                                <span class="tech-badge">Bootstrap 5</span>
+                                <span class="tech-badge">JWT Auth</span>
+                            </div>
+                        </div>
+                        <div class="project-body">
+                            <p class="compact-summary">I contributed to Carer at SecopTech, a care-agency management product on Spring Boot and Angular 20 with access, CRM and HRM modules. I refactored the CRM and shift-rotation logic and fixed staff and care-plan flows.</p>
+                            <div class="compact-stats">
+                                <div><div class="p-stat-num">v20</div><div class="p-stat-lbl">Angular</div></div>
+                            </div>
+                            <a href="carer-demo.html" class="btn-view-demo"><i class="fas fa-eye" aria-hidden="true"></i> View demo</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- ── AutoSchedula ── -->
+                <div class="col-md-6 col-lg-4">
+                    <div id="project-autoschedula" class="project-card project-card-compact theme-autoschedula">
+                        <div class="project-header">
+                            <div class="project-header-top">
+                                <div class="project-icon-wrap"><i class="fas fa-graduation-cap"></i></div>
+                                <div class="project-header-badges">
+                                    <span class="badge-contribution">Final Year Project, 100% Solo</span>
+                                    <span class="badge-company">Academic</span>
+                                </div>
+                            </div>
+                            <div class="project-name">AutoSchedula Automated Timetable System</div>
+                            <div class="project-tagline">AI-Powered Educational Scheduling Engine with Conflict Resolution</div>
+                            <div class="tech-badges">
+                                <span class="tech-badge">Spring Boot 3.2</span>
+                                <span class="tech-badge">Angular 14</span>
+                                <span class="tech-badge">PostgreSQL</span>
+                                <span class="tech-badge">Algorithm Design</span>
+                                <span class="tech-badge">FullCalendar</span>
+                                <span class="tech-badge">JWT Auth</span>
+                            </div>
+                        </div>
+                        <div class="project-body">
+                            <p class="compact-summary">My final year project, built solo: school timetable generation with constraint solving and a genetic algorithm.</p>
+                            <div class="compact-stats">
+                                <div><div class="p-stat-num">95%</div><div class="p-stat-lbl">Efficiency Gain</div></div>
+                                <div><div class="p-stat-num">0</div><div class="p-stat-lbl">Schedule Conflicts</div></div>
+                            </div>
+                            <a href="autoschedula-demo.html" class="btn-view-demo"><i class="fas fa-eye" aria-hidden="true"></i> View demo</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- ── Chiltan Pure ERP ── -->
+                <div class="col-md-6 col-lg-4">
+                    <div id="project-erp" class="project-card project-card-compact theme-erp">
+                        <div class="project-header">
+                            <div class="project-header-top">
+                                <div class="project-icon-wrap"><i class="fas fa-sitemap"></i></div>
+                                <div class="project-header-badges">
+                                    <span class="badge-contribution">First Role, Migration and Enhancement</span>
+                                    <span class="badge-company">SecopTech</span>
+                                </div>
+                            </div>
+                            <div class="project-name">Chiltan Pure ERP Business Management System</div>
+                            <div class="project-tagline">Legacy-to-Modern ERP Migration with New Module Development</div>
+                            <div class="tech-badges">
+                                <span class="tech-badge">Spring Boot 2.1</span>
+                                <span class="tech-badge">Angular 12</span>
+                                <span class="tech-badge">MariaDB</span>
+                                <span class="tech-badge">Liquibase</span>
+                                <span class="tech-badge">Swagger</span>
+                                <span class="tech-badge">Spring Security</span>
+                                <span class="tech-badge">iText PDF</span>
+                            </div>
+                        </div>
+                        <div class="project-body">
+                            <p class="compact-summary">My first professional project. I helped migrate Chiltan Pure ERP to Spring Boot and Angular, with new CRUD APIs, Liquibase migrations and PDF reports.</p>
+                            <div class="compact-stats">
+                                <div><div class="p-stat-num">10+</div><div class="p-stat-lbl">ERP Modules</div></div>
+                            </div>
+                            <a href="chiltan-demo.html" class="btn-view-demo"><i class="fas fa-eye" aria-hidden="true"></i> View demo</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- ── WellnessNow ── -->
+                <div class="col-md-6 col-lg-4">
+                    <div id="project-wellness" class="project-card project-card-compact theme-wellness">
+                        <div class="project-header">
+                            <div class="project-header-top">
+                                <div class="project-icon-wrap"><i class="fas fa-heartbeat"></i></div>
+                                <div class="project-header-badges">
+                                    <span class="badge-contribution">Contributor</span>
+                                    <span class="badge-company">SecopTech</span>
+                                </div>
+                            </div>
+                            <div class="project-name">WellnessNow Microservices Healthcare Platform</div>
+                            <div class="project-tagline">Spring Cloud Microservices with Service Discovery &amp; API Gateway</div>
+                            <div class="tech-badges">
+                                <span class="tech-badge">Spring Cloud</span>
+                                <span class="tech-badge">API Gateway</span>
+                                <span class="tech-badge">Eureka</span>
+                                <span class="tech-badge">Config Server</span>
+                                <span class="tech-badge">Angular 14</span>
+                                <span class="tech-badge">Java 17</span>
+                                <span class="tech-badge">MariaDB</span>
+                            </div>
+                        </div>
+                        <div class="project-body">
+                            <p class="compact-summary">I contributed to WellnessNow, a healthcare platform on Spring Cloud microservices with Eureka discovery, a config server and an API gateway.</p>
+                            <div class="compact-stats">
+                                <div><div class="p-stat-num">7</div><div class="p-stat-lbl">Microservices</div></div>
+                            </div>
+                            <a href="wellness-demo.html" class="btn-view-demo"><i class="fas fa-eye" aria-hidden="true"></i> View demo</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- ── Chiltan Marketing ── -->
+                <div class="col-md-6 col-lg-4">
+                    <div id="project-marketing" class="project-card project-card-compact theme-marketing">
+                        <div class="project-header">
+                            <div class="project-header-top">
+                                <div class="project-icon-wrap"><i class="fas fa-bullhorn"></i></div>
+                                <div class="project-header-badges">
+                                    <span class="badge-contribution">Contributor</span>
+                                    <span class="badge-company">SecopTech</span>
+                                </div>
+                            </div>
+                            <div class="project-name">Chiltan Marketing E-Marketing Platform</div>
+                            <div class="project-tagline">Email Campaign Builder with Campaign Analytics &amp; Data Visualization</div>
+                            <div class="tech-badges">
+                                <span class="tech-badge">Angular 14</span>
+                                <span class="tech-badge">Angular Email Editor</span>
+                                <span class="tech-badge">AmCharts 5</span>
+                                <span class="tech-badge">Highcharts</span>
+                                <span class="tech-badge">ApexCharts</span>
+                                <span class="tech-badge">XLSX Export</span>
+                            </div>
+                        </div>
+                        <div class="project-body">
+                            <p class="compact-summary">I contributed to Chiltan Marketing, an e-marketing platform with a drag-and-drop email campaign builder and multi-chart campaign analytics.</p>
+                            <div class="compact-stats">
+                                <div><div class="p-stat-num">3</div><div class="p-stat-lbl">Chart Libraries</div></div>
+                            </div>
+                            <a href="chiltan-marketing-demo.html" class="btn-view-demo"><i class="fas fa-eye" aria-hidden="true"></i> View demo</a>
                         </div>
                     </div>
                 </div>
@@ -1260,12 +2072,50 @@
     <!-- ===== SKILLS ===== -->
     <section id="skills" class="skills-section">
         <div class="container">
-            <div class="text-center">
-                <p class="section-eyebrow">Expertise</p>
+            <div class="section-head">
+                <p class="section-eyebrow">Toolkit</p>
                 <h2 class="section-heading">Technical Skills</h2>
                 <p class="section-sub">Full-stack capabilities across enterprise Java backends, Angular frontends, and relational databases.</p>
             </div>
             <div class="skills-grid">
+                    <div class="skill-card">
+                        <div class="skill-icon-box bg-indigo"><i class="fas fa-handshake"></i></div>
+                        <div class="skill-card-title">CRM and Integrations</div>
+                        <div class="skill-pills">
+                            <span class="skill-pill">Custom CRM Development</span>
+                            <span class="skill-pill">Lead Pipelines</span>
+                            <span class="skill-pill">Lead Attribution</span>
+                            <span class="skill-pill">QA Scorecards</span>
+                            <span class="skill-pill">Commissions</span>
+                            <span class="skill-pill">Chargebacks and Winbacks</span>
+                            <span class="skill-pill">Recruitment Pipelines</span>
+                            <span class="skill-pill">Omnichannel Inbox</span>
+                            <span class="skill-pill">Meta WhatsApp Cloud API</span>
+                            <span class="skill-pill">Instagram and Messenger API</span>
+                            <span class="skill-pill">Meta Lead Forms</span>
+                            <span class="skill-pill">Google Sheets Sync</span>
+                            <span class="skill-pill">Webhooks</span>
+                        </div>
+                    </div>
+                    <div class="skill-card">
+                        <div class="skill-icon-box bg-rose"><i class="fas fa-robot"></i></div>
+                        <div class="skill-card-title">AI and LLM</div>
+                        <div class="skill-pills">
+                            <span class="skill-pill">LLM Applications</span>
+                            <span class="skill-pill">Claude API</span>
+                            <span class="skill-pill">Tool Calling</span>
+                            <span class="skill-pill">Prompt Caching</span>
+                            <span class="skill-pill">Gemini API</span>
+                            <span class="skill-pill">Groq</span>
+                            <span class="skill-pill">Multi-Provider AI</span>
+                            <span class="skill-pill">Speech-to-Text</span>
+                            <span class="skill-pill">Chatbot Flow Builder</span>
+                            <span class="skill-pill">Human Handoff</span>
+                            <span class="skill-pill">AI Cost Controls</span>
+                            <span class="skill-pill">Claude Code Agents</span>
+                            <span class="skill-pill">Cursor</span>
+                        </div>
+                    </div>
                     <div class="skill-card">
                         <div class="skill-icon-box bg-blue"><i class="fas fa-server"></i></div>
                         <div class="skill-card-title">Backend Development</div>
@@ -1273,9 +2123,7 @@
                             <span class="skill-pill">Java 17</span>
                             <span class="skill-pill">Spring Boot 3.x</span>
                             <span class="skill-pill">Spring Security</span>
-                            <span class="skill-pill">Spring Cloud</span>
                             <span class="skill-pill">REST APIs</span>
-                            <span class="skill-pill">Microservices</span>
                             <span class="skill-pill">Hibernate</span>
                             <span class="skill-pill">JPA</span>
                             <span class="skill-pill">Lombok</span>
@@ -1283,13 +2131,15 @@
                             <span class="skill-pill">Swagger</span>
                             <span class="skill-pill">JWT / OAuth</span>
                             <span class="skill-pill">WebSocket</span>
+                            <span class="skill-pill">PHP</span>
+                            <span class="skill-pill">Laravel</span>
                         </div>
                     </div>
                     <div class="skill-card">
                         <div class="skill-icon-box bg-purple"><i class="fas fa-laptop-code"></i></div>
                         <div class="skill-card-title">Frontend Development</div>
                         <div class="skill-pills">
-                            <span class="skill-pill">Angular 12 to 20</span>
+                            <span class="skill-pill">Angular 12 to 21</span>
                             <span class="skill-pill">TypeScript</span>
                             <span class="skill-pill">JavaScript</span>
                             <span class="skill-pill">HTML5 / CSS3</span>
@@ -1300,7 +2150,7 @@
                             <span class="skill-pill">AmCharts 5</span>
                             <span class="skill-pill">Highcharts</span>
                             <span class="skill-pill">FullCalendar</span>
-                            <span class="skill-pill">Electron.js</span>
+                            <span class="skill-pill">Electron</span>
                         </div>
                     </div>
                     <div class="skill-card">
@@ -1309,6 +2159,8 @@
                         <div class="skill-pills">
                             <span class="skill-pill">PostgreSQL</span>
                             <span class="skill-pill">MariaDB / MySQL</span>
+                            <span class="skill-pill">SQLite</span>
+                            <span class="skill-pill">Redis</span>
                             <span class="skill-pill">Liquibase</span>
                             <span class="skill-pill">Database Design</span>
                             <span class="skill-pill">Schema Migration</span>
@@ -1332,6 +2184,33 @@
                             <span class="skill-pill">QR / Barcode</span>
                         </div>
                     </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== CONTACT ===== -->
+    <section id="contact" class="contact-band" aria-labelledby="contact-title">
+        <div class="container">
+            <div class="contact-band-grid">
+                <div class="contact-band-copy">
+                    <p class="contact-avail"><span class="contact-avail-dot" aria-hidden="true"></span>Open to remote projects · Lahore, Pakistan (UTC+5)</p>
+                    <h2 id="contact-title" class="contact-heading">Have a CRM or AI project? Let<span class="contact-apos">'</span>s build it.</h2>
+                    <p class="contact-desc">I build CRM systems, AI chatbots and multi-tenant SaaS on Spring Boot and Angular. Tell me what you need and let's plan it.</p>
+                </div>
+                <div class="contact-panel">
+                    <p class="contact-label">Email</p>
+                    <div class="contact-email">
+                        <span class="contact-email-text" id="contact-email-text">afaqch5535@gmail.com</span>
+                        <button type="button" class="contact-copy" data-copy="afaqch5535@gmail.com" data-copy-source="contact-email-text"><i class="far fa-copy" aria-hidden="true"></i><span class="contact-copy-label">Copy</span><span class="visually-hidden"> email address</span></button>
+                    </div>
+                    <p class="contact-copy-status" role="status" aria-live="polite"></p>
+                    <div class="contact-btns">
+                        <a href="mailto:afaqch5535@gmail.com" class="btn-cta btn-cta-email"><i class="fas fa-envelope" aria-hidden="true"></i> Email me</a>
+                        <a href="https://wa.me/923021005535" target="_blank" rel="noopener noreferrer" class="btn-cta btn-cta-whatsapp" title="Chat on WhatsApp"><i class="fab fa-whatsapp" aria-hidden="true"></i> +92 302 1005535</a>
+                        <a href="https://www.linkedin.com/in/afaq-springboot-angular" target="_blank" rel="noopener noreferrer" class="btn-cta btn-cta-linkedin"><i class="fab fa-linkedin" aria-hidden="true"></i> LinkedIn</a>
+                        <a href="https://github.com/afaq-codes" target="_blank" rel="noopener noreferrer" class="btn-cta btn-cta-github"><i class="fab fa-github" aria-hidden="true"></i> GitHub</a>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
