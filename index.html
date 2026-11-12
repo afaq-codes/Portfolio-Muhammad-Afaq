@@ -1,1444 +1,815 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- Google Tag Manager -->
-    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','GTM-59XXTKP9');</script>
-    <!-- End Google Tag Manager -->
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Muhammad Afaq — Full-Stack Java & Angular Developer. Portfolio showcasing enterprise healthcare, ERP, POS, and educational management systems.">
-    <meta property="og:title" content="Muhammad Afaq — Full-Stack Java & Angular Developer">
-    <meta property="og:description" content="Portfolio of Muhammad Afaq, Full-Stack Developer specializing in Java Spring Boot & Angular enterprise applications.">
-    <title>Muhammad Afaq — Full-Stack Developer</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --body-bg: #f8fafc;
-            --text-dark: #1e293b;
-            --text-muted: #64748b;
-            --border-light: #e2e8f0;
-        }
-
-        /* Per-project color themes applied to each .project-card */
-        .theme-caremd     { --p1: #0066cc; --p2: #003d99; }
-        .theme-rynodesk    { --p1: #e85d04; --p2: #9d0208; }
-        .theme-autoschedula { --p1: #7209b7; --p2: #3a0ca3; }
-        .theme-erp        { --p1: #1e3a5f; --p2: #2c6fad; }
-        .theme-carer      { --p1: #0891b2; --p2: #065f74; }
-        .theme-wellness   { --p1: #16a34a; --p2: #14532d; }
-        .theme-marketing  { --p1: #9b2226; --p2: #6a0572; }
-
-        html { scroll-behavior: smooth; }
-
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: var(--body-bg);
-            color: var(--text-dark);
-        }
-
-        /* ===== NAVBAR ===== */
-        .navbar {
-            background: linear-gradient(135deg, #0f172a, #1e293b);
-            box-shadow: 0 2px 20px rgba(0,0,0,0.2);
-            padding: 0.9rem 0;
-        }
-        .navbar-brand {
-            font-weight: 800;
-            font-size: 1.2rem;
-            color: white !important;
-            letter-spacing: -0.5px;
-        }
-        .navbar-brand .accent { color: #60a5fa; }
-        .nav-link {
-            color: rgba(255,255,255,0.75) !important;
-            font-weight: 500;
-            font-size: 0.875rem;
-            padding: 0.45rem 0.9rem !important;
-            border-radius: 8px;
-            transition: all 0.2s;
-        }
-        .nav-link:hover {
-            color: white !important;
-            background: rgba(255,255,255,0.08);
-        }
-
-        /* ===== HERO ===== */
-        .hero-section {
-            background: linear-gradient(140deg, #0f172a 0%, #1e3a5f 55%, #0f3460 100%);
-            color: white;
-            padding: 6rem 0 5rem;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-        .hero-section::before {
-            content: '';
-            position: absolute;
-            width: 700px; height: 700px;
-            background: radial-gradient(circle, rgba(96,165,250,0.07) 0%, transparent 70%);
-            top: -250px; right: -150px;
-            border-radius: 50%;
-            pointer-events: none;
-        }
-        .hero-section::after {
-            content: '';
-            position: absolute;
-            width: 400px; height: 400px;
-            background: radial-gradient(circle, rgba(167,139,250,0.06) 0%, transparent 70%);
-            bottom: -100px; left: -100px;
-            border-radius: 50%;
-            pointer-events: none;
-        }
-        .hero-greeting {
-            font-size: 0.9rem;
-            color: #93c5fd;
-            font-weight: 600;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            margin-bottom: 0.75rem;
-        }
-        .hero-name {
-            font-size: 3.75rem;
-            font-weight: 800;
-            margin-bottom: 0.5rem;
-            letter-spacing: -1.5px;
-            line-height: 1.1;
-        }
-        .hero-role {
-            font-size: 1.25rem;
-            color: rgba(255,255,255,0.65);
-            font-weight: 400;
-            margin-bottom: 1.75rem;
-        }
-        .hero-role strong { color: #60a5fa; font-weight: 600; }
-        .hero-chips {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-            margin-bottom: 2.5rem;
-            flex-wrap: wrap;
-        }
-        .hero-chip {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.45rem;
-            background: rgba(255,255,255,0.08);
-            border: 1px solid rgba(255,255,255,0.15);
-            color: rgba(255,255,255,0.8);
-            padding: 0.45rem 1rem;
-            border-radius: 50px;
-            font-size: 0.85rem;
-            font-weight: 500;
-        }
-        .hero-chip i { color: #60a5fa; font-size: 0.8rem; }
-        .hero-actions {
-            display: flex;
-            justify-content: center;
-            gap: 0.875rem;
-            flex-wrap: wrap;
-        }
-        .btn-hero-primary {
-            background: #2563eb;
-            color: white;
-            border: none;
-            padding: 0.8rem 2rem;
-            border-radius: 50px;
-            font-weight: 600;
-            font-size: 0.9rem;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            transition: all 0.25s;
-        }
-        .btn-hero-primary:hover {
-            background: #1d4ed8;
-            color: white;
-            transform: translateY(-2px);
-            box-shadow: 0 10px 30px rgba(37,99,235,0.45);
-        }
-        .btn-hero-ghost {
-            background: rgba(255,255,255,0.08);
-            color: white;
-            border: 1.5px solid rgba(255,255,255,0.25);
-            padding: 0.8rem 1.75rem;
-            border-radius: 50px;
-            font-weight: 600;
-            font-size: 0.9rem;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            transition: all 0.25s;
-        }
-        .btn-hero-ghost:hover {
-            border-color: white;
-            background: rgba(255,255,255,0.15);
-            color: white;
-            transform: translateY(-2px);
-        }
-
-        /* ===== SECTION HEADERS ===== */
-        .section-eyebrow {
-            font-size: 0.8rem;
-            font-weight: 700;
-            letter-spacing: 2.5px;
-            text-transform: uppercase;
-            color: #2563eb;
-            margin-bottom: 0.4rem;
-        }
-        .section-heading {
-            font-size: 2.2rem;
-            font-weight: 800;
-            color: var(--text-dark);
-            margin-bottom: 0.6rem;
-            letter-spacing: -0.5px;
-        }
-        .section-sub {
-            color: var(--text-muted);
-            font-size: 1rem;
-            max-width: 580px;
-            margin: 0 auto 3.5rem;
-        }
-
-        /* ===== ABOUT / STATS ===== */
-        .about-section {
-            background: white;
-            padding: 4.5rem 0;
-            border-bottom: 1px solid var(--border-light);
-        }
-        .about-text {
-            font-size: 1.05rem;
-            color: var(--text-muted);
-            line-height: 1.75;
-            max-width: 700px;
-        }
-        .about-text strong { color: var(--text-dark); }
-        .stat-card {
-            background: var(--body-bg);
-            border-radius: 18px;
-            padding: 1.75rem 1.25rem;
-            text-align: center;
-            border: 1px solid var(--border-light);
-            transition: all 0.3s;
-            height: 100%;
-        }
-        .stat-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 12px 35px rgba(0,0,0,0.08);
-            border-color: #93c5fd;
-        }
-        .stat-card-icon {
-            width: 50px; height: 50px;
-            background: linear-gradient(135deg, #2563eb, #1d4ed8);
-            border-radius: 14px;
-            display: flex; align-items: center; justify-content: center;
-            margin: 0 auto 1rem;
-        }
-        .stat-card-icon i { color: white; font-size: 1.2rem; }
-        .stat-card-num {
-            font-size: 2.25rem;
-            font-weight: 800;
-            color: var(--text-dark);
-            line-height: 1;
-            margin-bottom: 0.3rem;
-        }
-        .stat-card-lbl {
-            font-size: 0.8rem;
-            color: var(--text-muted);
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        /* ===== EXPERIENCE TIMELINE ===== */
-        /* ===== EXPERIENCE CARDS ===== */
-        .experience-section { padding: 5rem 0; background: var(--body-bg); }
-        .exp-card {
-            background: white;
-            border-radius: 22px;
-            border: 1px solid var(--border-light);
-            box-shadow: 0 2px 15px rgba(0,0,0,0.05);
-            overflow: hidden;
-            height: 100%;
-            transition: all 0.3s;
-        }
-        .exp-card:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 20px 50px rgba(0,0,0,0.1);
-        }
-        .exp-top {
-            padding: 2rem;
-            color: white;
-            position: relative;
-            overflow: hidden;
-        }
-        .exp-top::before {
-            content: '';
-            position: absolute;
-            width: 220px; height: 220px;
-            background: radial-gradient(circle, rgba(255,255,255,0.07) 0%, transparent 70%);
-            top: -70px; right: -50px;
-            border-radius: 50%;
-            pointer-events: none;
-        }
-        .exp-top-secoptech { background: linear-gradient(140deg, #1e3a5f 0%, #2c6fad 100%); }
-        .exp-top-caremd    { background: linear-gradient(140deg, #0f172a 0%, #1e3a5f 55%, #0f3460 100%); }
-        .exp-top-row { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1.25rem; }
-        .exp-icon {
-            width: 54px; height: 54px;
-            background: rgba(255,255,255,0.15);
-            border-radius: 16px;
-            display: flex; align-items: center; justify-content: center;
-            border: 1px solid rgba(255,255,255,0.2);
-        }
-        .exp-icon i { font-size: 1.45rem; color: white; }
-        .current-pill {
-            background: #22c55e;
-            color: white;
-            padding: 0.3rem 0.85rem;
-            border-radius: 50px;
-            font-size: 0.7rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            display: inline-flex; align-items: center; gap: 0.35rem;
-        }
-        .exp-company { font-size: 1.65rem; font-weight: 800; margin-bottom: 0.3rem; letter-spacing: -0.5px; }
-        .exp-role { font-size: 0.875rem; opacity: 0.8; margin-bottom: 1.1rem; line-height: 1.4; }
-        .exp-chips { display: flex; gap: 0.5rem; flex-wrap: wrap; }
-        .exp-chip {
-            background: rgba(255,255,255,0.12);
-            border: 1px solid rgba(255,255,255,0.2);
-            color: rgba(255,255,255,0.85);
-            padding: 0.25rem 0.75rem;
-            border-radius: 50px;
-            font-size: 0.75rem;
-            font-weight: 500;
-            display: inline-flex; align-items: center; gap: 0.35rem;
-        }
-        .exp-chip i { font-size: 0.65rem; opacity: 0.75; }
-        .exp-body { padding: 2rem; }
-        .exp-highlights { list-style: none; padding: 0; margin: 0 0 1.75rem; }
-        .exp-highlights li {
-            display: flex; align-items: flex-start; gap: 0.7rem;
-            padding: 0.5rem 0; border-bottom: 1px solid #f1f5f9;
-            font-size: 0.875rem; color: #334155; line-height: 1.55;
-        }
-        .exp-highlights li:last-child { border-bottom: none; }
-        .exp-check {
-            width: 20px; height: 20px; flex-shrink: 0;
-            background: #d1fae5; border-radius: 50%;
-            display: flex; align-items: center; justify-content: center;
-            margin-top: 2px;
-        }
-        .exp-check i { color: #059669; font-size: 0.6rem; }
-        .exp-proj-label {
-            font-size: 0.72rem; font-weight: 700;
-            text-transform: uppercase; letter-spacing: 1px;
-            color: var(--text-muted); margin-bottom: 0.65rem;
-        }
-        .exp-proj-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
-        .exp-proj-tag {
-            background: #f1f5f9; color: #475569;
-            padding: 0.25rem 0.75rem; border-radius: 50px;
-            font-size: 0.75rem; font-weight: 600; border: 1px solid #e2e8f0;
-        }
-        .exp-proj-tag.major  { background: #fef3c7; color: #92400e; border-color: #fde68a; }
-        .exp-proj-tag.primary { background: #dbeafe; color: #1e40af; border-color: #bfdbfe; }
-
-        /* ===== PROJECT CARDS ===== */
-        .projects-section {
-            padding: 5rem 0;
-            background: white;
-        }
-        .project-card {
-            border: 1px solid var(--border-light);
-            border-radius: 22px;
-            overflow: hidden;
-            transition: all 0.3s ease;
-            margin-bottom: 2.25rem;
-            background: white;
-            box-shadow: 0 2px 15px rgba(0,0,0,0.04);
-        }
-        .project-card:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 22px 55px rgba(0,0,0,0.11);
-            border-color: transparent;
-        }
-        .project-header {
-            background: linear-gradient(140deg, var(--p1), var(--p2));
-            color: white;
-            padding: 2rem 2rem 1.75rem;
-        }
-        .project-header-top {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            gap: 0.75rem;
-            margin-bottom: 1.1rem;
-            flex-wrap: wrap;
-        }
-        .project-header-badges { display: flex; gap: 0.5rem; flex-wrap: wrap; }
-        .badge-contribution {
-            background: rgba(255,255,255,0.22);
-            color: white;
-            padding: 0.25rem 0.8rem;
-            border-radius: 50px;
-            font-size: 0.72rem;
-            font-weight: 700;
-            border: 1px solid rgba(255,255,255,0.3);
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-        .badge-company {
-            background: rgba(0,0,0,0.2);
-            color: rgba(255,255,255,0.9);
-            padding: 0.25rem 0.8rem;
-            border-radius: 50px;
-            font-size: 0.72rem;
-            font-weight: 600;
-            letter-spacing: 0.3px;
-        }
-        .project-icon-wrap {
-            width: 46px; height: 46px;
-            background: rgba(255,255,255,0.15);
-            border-radius: 13px;
-            display: flex; align-items: center; justify-content: center;
-        }
-        .project-icon-wrap i { font-size: 1.35rem; color: white; }
-        .project-name {
-            font-size: 1.45rem;
-            font-weight: 700;
-            margin-bottom: 0.3rem;
-            line-height: 1.2;
-        }
-        .project-tagline {
-            font-size: 0.9rem;
-            opacity: 0.82;
-            margin-bottom: 1rem;
-        }
-        .tech-badges { display: flex; flex-wrap: wrap; gap: 0.35rem; }
-        .tech-badge {
-            background: rgba(255,255,255,0.15);
-            color: white;
-            padding: 0.2rem 0.65rem;
-            border-radius: 50px;
-            font-size: 0.75rem;
-            font-weight: 500;
-            border: 1px solid rgba(255,255,255,0.2);
-        }
-        .project-body { padding: 2rem; }
-        .project-section-label {
-            font-size: 0.75rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            color: var(--text-muted);
-            margin-bottom: 0.75rem;
-        }
-        .feature-list {
-            list-style: none;
-            padding: 0; margin: 0;
-        }
-        .feature-list li {
-            padding: 0.55rem 0;
-            border-bottom: 1px solid #f1f5f9;
-            display: flex;
-            align-items: flex-start;
-            gap: 0.75rem;
-            font-size: 0.875rem;
-            color: #334155;
-            line-height: 1.5;
-        }
-        .feature-list li:last-child { border-bottom: none; }
-        .feature-check {
-            width: 20px; height: 20px;
-            background: #d1fae5;
-            border-radius: 50%;
-            display: flex; align-items: center; justify-content: center;
-            flex-shrink: 0;
-            margin-top: 1px;
-        }
-        .feature-check i { color: #059669; font-size: 0.6rem; }
-        .caremd-modules .caremd-module-title {
-            display: block;
-            white-space: nowrap;
-            color: var(--text-dark);
-            font-size: 0.875rem;
-            margin-bottom: 0.2rem;
-        }
-        .caremd-modules .caremd-module-desc {
-            display: block;
-            font-size: 0.8rem;
-            color: #64748b;
-            line-height: 1.5;
-            font-weight: 400;
-        }
-        .rynodesk-modules .rynodesk-module-title {
-            display: block;
-            white-space: nowrap;
-            color: var(--text-dark);
-            font-size: 0.875rem;
-            margin-bottom: 0.2rem;
-        }
-        .rynodesk-modules .rynodesk-module-desc {
-            display: block;
-            font-size: 0.8rem;
-            color: #64748b;
-            line-height: 1.5;
-            font-weight: 400;
-        }
-        .project-stats {
-            background: var(--body-bg);
-            border-radius: 14px;
-            padding: 1.25rem;
-            margin-bottom: 1.25rem;
-            border: 1px solid var(--border-light);
-        }
-        .p-stat-num {
-            font-size: 1.75rem;
-            font-weight: 800;
-            color: var(--p1);
-            line-height: 1;
-        }
-        .p-stat-lbl {
-            font-size: 0.72rem;
-            color: var(--text-muted);
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.3px;
-            margin-top: 0.2rem;
-        }
-        .btn-view-demo {
-            background: linear-gradient(135deg, var(--p1), var(--p2));
-            color: white;
-            border: none;
-            padding: 0.75rem 1.5rem;
-            border-radius: 50px;
-            font-weight: 600;
-            font-size: 0.85rem;
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.5rem;
-            transition: all 0.25s;
-            width: 100%;
-        }
-        .btn-view-demo:hover {
-            color: white;
-            transform: translateY(-2px);
-            box-shadow: 0 8px 22px rgba(0,0,0,0.28);
-            filter: brightness(1.1);
-        }
-
-        /* ===== SKILLS ===== */
-        .skills-section {
-            padding: 5rem 0;
-            background: var(--body-bg);
-        }
-        .skill-card {
-            background: white;
-            border-radius: 20px;
-            padding: 2rem 1.75rem;
-            border: 1px solid var(--border-light);
-            height: 100%;
-            transition: all 0.3s;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.04);
-        }
-        .skill-card:hover {
-            box-shadow: 0 12px 35px rgba(0,0,0,0.08);
-            transform: translateY(-4px);
-        }
-        .skill-icon-box {
-            width: 50px; height: 50px;
-            border-radius: 14px;
-            display: flex; align-items: center; justify-content: center;
-            margin-bottom: 1.25rem;
-        }
-        .skill-icon-box i { font-size: 1.3rem; color: white; }
-        .bg-blue   { background: linear-gradient(135deg, #2563eb, #1d4ed8); }
-        .bg-green  { background: linear-gradient(135deg, #16a34a, #14532d); }
-        .bg-purple { background: linear-gradient(135deg, #7c3aed, #5b21b6); }
-        .bg-orange { background: linear-gradient(135deg, #ea580c, #9a3412); }
-        .skill-card-title {
-            font-weight: 700;
-            font-size: 1rem;
-            color: var(--text-dark);
-            margin-bottom: 1rem;
-        }
-        .skill-pills { display: flex; flex-wrap: wrap; gap: 0.5rem; }
-        .skill-pill {
-            background: #f1f5f9;
-            color: #334155;
-            padding: 0.3rem 0.75rem;
-            border-radius: 50px;
-            font-size: 0.775rem;
-            font-weight: 500;
-            border: 1px solid #e2e8f0;
-        }
-
-        /* ===== CONTACT ===== */
-        .contact-section {
-            padding: 5rem 0;
-            background: white;
-        }
-        .contact-card {
-            background: linear-gradient(140deg, #0f172a 0%, #1e3a5f 60%, #0f3460 100%);
-            color: white;
-            border-radius: 26px;
-            padding: 4rem 3rem;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-        .contact-card::before {
-            content: '';
-            position: absolute;
-            width: 400px; height: 400px;
-            background: radial-gradient(circle, rgba(96,165,250,0.09) 0%, transparent 70%);
-            top: -150px; right: -80px;
-            border-radius: 50%;
-            pointer-events: none;
-        }
-        .contact-heading {
-            font-size: 2.1rem;
-            font-weight: 800;
-            margin-bottom: 0.75rem;
-            position: relative;
-        }
-        .contact-desc {
-            color: rgba(255,255,255,0.65);
-            font-size: 1.05rem;
-            margin-bottom: 2.5rem;
-            max-width: 520px;
-            margin-left: auto;
-            margin-right: auto;
-            position: relative;
-        }
-        .contact-btns {
-            display: flex;
-            justify-content: center;
-            gap: 0.875rem;
-            flex-wrap: wrap;
-            position: relative;
-        }
-        .btn-cta {
-            padding: 0.8rem 1.75rem;
-            border-radius: 50px;
-            font-weight: 600;
-            font-size: 0.875rem;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            transition: all 0.25s;
-            border: none;
-        }
-        .btn-cta-email   { background: #2563eb; color: white; }
-        .btn-cta-email:hover { background: #1d4ed8; color: white; transform: translateY(-2px); box-shadow: 0 8px 25px rgba(37,99,235,0.45); }
-        .btn-cta-linkedin { background: #0077b5; color: white; }
-        .btn-cta-linkedin:hover { background: #005e8a; color: white; transform: translateY(-2px); box-shadow: 0 8px 25px rgba(0,119,181,0.45); }
-        .btn-cta-github  { background: rgba(255,255,255,0.1); color: white; border: 1.5px solid rgba(255,255,255,0.25); }
-        .btn-cta-github:hover { background: rgba(255,255,255,0.18); color: white; transform: translateY(-2px); }
-        .btn-cta-whatsapp { background: #25d366; color: white; }
-        .btn-cta-whatsapp:hover { background: #1da851; color: white; transform: translateY(-2px); box-shadow: 0 8px 25px rgba(37,211,102,0.45); }
-
-        /* ===== FOOTER ===== */
-        .footer {
-            background: linear-gradient(135deg, #0f172a, #1e293b);
-            color: rgba(255,255,255,0.55);
-            padding: 2rem 0;
-            text-align: center;
-            font-size: 0.85rem;
-        }
-        .footer-social {
-            display: flex;
-            justify-content: center;
-            gap: 1.25rem;
-            margin-bottom: 0.75rem;
-        }
-        .footer-social a {
-            color: rgba(255,255,255,0.5);
-            font-size: 1.15rem;
-            text-decoration: none;
-            transition: color 0.2s;
-        }
-        .footer-social a:hover { color: #60a5fa; }
-        .footer strong { color: rgba(255,255,255,0.85); }
-
-        /* ===== RESPONSIVE ===== */
-        @media (max-width: 992px) {
-            .hero-name { font-size: 2.75rem; }
-        }
-        @media (max-width: 576px) {
-            .hero-name { font-size: 2.1rem; }
-            .section-heading { font-size: 1.75rem; }
-            .contact-card { padding: 2.5rem 1.5rem; }
-            .contact-heading { font-size: 1.65rem; }
-        }
-    </style>
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-59XXTKP9');</script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Muhammad Afaq | Full-stack developer for AI products, CRMs and POS systems</title>
+  <meta name="description" content="Full-stack developer in Lahore building AI products, CRMs and POS systems on Spring Boot, Angular, Laravel and Flutter. FamTill and Orderyfy are live.">
+  <meta name="author" content="Muhammad Afaq">
+  <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" content="#ffffff">
+  <link rel="canonical" href="https://muhammadafaqportfolio.netlify.app/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Muhammad Afaq">
+  <meta property="og:url" content="https://muhammadafaqportfolio.netlify.app/">
+  <meta property="og:title" content="Muhammad Afaq | Full-stack developer for AI products, CRMs and POS systems">
+  <meta property="og:description" content="I build AI products, CRMs and POS systems on Spring Boot, Angular, Laravel and Flutter. FamTill and Orderyfy are live.">
+  <meta property="og:image" content="https://muhammadafaqportfolio.netlify.app/afaq.png">
+  <meta property="og:image:width" content="402">
+  <meta property="og:image:height" content="362">
+  <meta property="og:image:alt" content="Portrait of Muhammad Afaq">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Muhammad Afaq | Full-stack developer">
+  <meta name="twitter:description" content="AI products, CRMs and POS systems on Spring Boot, Angular, Laravel and Flutter.">
+  <meta name="twitter:image" content="https://muhammadafaqportfolio.netlify.app/afaq.png">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%234f63e7'/%3E%3Cstop offset='1' stop-color='%230f9a91'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='64' height='64' rx='16' fill='url(%23g)'/%3E%3Ctext x='32' y='42' font-family='Arial,sans-serif' font-size='28' font-weight='700' fill='white' text-anchor='middle'%3EMA%3C/text%3E%3C/svg%3E">
+  <link rel="apple-touch-icon" href="afaq-72.png">
+  <script>(function(){var t=null;try{t=localStorage.getItem('theme')}catch(e){}if(t!=='light'&&t!=='dark'){t=window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'}document.documentElement.setAttribute('data-theme',t)})();</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700;800&display=swap">
+  <link rel="stylesheet" href="assets/site.css?v=20261112">
+  <script src="assets/site.js?v=20261112" defer></script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Muhammad Afaq",
+    "jobTitle": "Full-stack developer",
+    "url": "https://muhammadafaqportfolio.netlify.app/",
+    "image": "https://muhammadafaqportfolio.netlify.app/afaq.png",
+    "address": { "@type": "PostalAddress", "addressLocality": "Lahore", "addressCountry": "PK" },
+    "alumniOf": { "@type": "CollegeOrUniversity", "name": "University of Education, Lahore" },
+    "knowsAbout": ["Spring Boot", "Angular", "Laravel", "Flutter", "Claude API", "CRM development", "POS systems", "Multi-tenant SaaS"],
+    "sameAs": [
+      "https://github.com/afaq-codes",
+      "https://www.linkedin.com/in/afaq-springboot-angular",
+      "https://www.upwork.com/freelancers/~0177755392fb22d5d5"
+    ]
+  }
+  </script>
 </head>
-<body>
-    <!-- Google Tag Manager (noscript) -->
-    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-59XXTKP9"
-    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-    <!-- End Google Tag Manager (noscript) -->
-
-    <!-- ===== NAVBAR ===== -->
-    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
-        <div class="container">
-            <a class="navbar-brand" href="#">
-                <i class="fas fa-code me-2"></i>Muhammad <span class="accent">Afaq</span>
-            </a>
-            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto gap-1">
-                    <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#experience">Experience</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#skills">Skills</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
-                </ul>
-            </div>
-        </div>
+<body data-page="home">
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-59XXTKP9" height="0" width="0" style="display:none;visibility:hidden" title="Analytics"></iframe></noscript>
+  <div data-site-header></div>
+  <noscript>
+    <nav class="container" aria-label="Main" style="padding-top:20px;display:flex;gap:18px;flex-wrap:wrap">
+      <a href="#work">Work</a><a href="#ai">AI</a><a href="#skills">Skills</a><a href="#experience">Experience</a><a href="#contact">Contact</a>
     </nav>
+  </noscript>
 
-    <!-- ===== HERO ===== -->
-    <section class="hero-section">
-        <div class="container position-relative">
-            <p class="hero-greeting">Full-Stack Developer</p>
-            <h1 class="hero-name">Muhammad Afaq</h1>
-            <p class="hero-role">Specializing in <strong>Java Spring Boot</strong> &amp; <strong>Angular</strong> Enterprise Applications</p>
-            <div class="hero-chips">
-                <span class="hero-chip"><i class="fas fa-briefcase"></i> 3+ Years Experience</span>
-                <span class="hero-chip"><i class="fas fa-layer-group"></i> 7 Projects Delivered</span>
-                <span class="hero-chip"><i class="fas fa-building"></i> CareMD — Current</span>
-                <span class="hero-chip"><i class="fas fa-map-marker-alt"></i> Pakistan</span>
-            </div>
-            <div class="hero-actions">
-                <a href="#projects" class="btn-hero-primary">
-                    <i class="fas fa-folder-open"></i> View Projects
-                </a>
-                <a href="https://github.com/afaq-codes" target="_blank" rel="noopener" class="btn-hero-ghost">
-                    <i class="fab fa-github"></i> GitHub
-                </a>
-                <a href="https://www.linkedin.com/in/afaq-springboot-angular" target="_blank" rel="noopener" class="btn-hero-ghost">
-                    <i class="fab fa-linkedin"></i> LinkedIn
-                </a>
-            </div>
+  <main id="main">
+    <section class="hero" id="top" aria-labelledby="hero-title" data-tilt-area>
+      <div class="hero__bg" aria-hidden="true">
+        <div class="bg-grid"></div>
+        <div class="bg-glow bg-glow--a"></div>
+        <div class="bg-glow bg-glow--b"></div>
+      </div>
+      <div class="container">
+        <div class="hero__copy">
+          <a class="announce hero__in" style="--d:0" href="https://famtill.com" target="_blank" rel="noopener">
+            <span class="announce__tag"><span class="live-dot" aria-hidden="true"></span>Live</span>
+            <span>FamTill, my EPOS for UK phone shops, launched 11 Nov</span>
+            <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"/></svg>
+          </a>
+          <p class="eyebrow hero__in" style="--d:1">Muhammad Afaq · Lahore, Pakistan</p>
+          <h1 class="hero__title hero__in" style="--d:2" id="hero-title">Full-stack developer building <span class="text-gradient">AI products, CRMs and POS systems.</span></h1>
+          <p class="hero__lead hero__in" style="--d:3">I take products from the database to the live server on Spring Boot, Angular, Laravel and Flutter. Two are public and live: <strong>FamTill</strong> and <strong>Orderyfy</strong>. I'm also the primary developer of <strong>CareMD</strong>, a medical billing platform.</p>
+          <div class="hero__actions hero__in" style="--d:4">
+            <a class="btn btn--primary btn--lg" href="#work" data-magnetic>View work <svg class="icon btn__arrow" aria-hidden="true"><use href="#i-arrow-right"/></svg></a>
+            <a class="btn btn--secondary btn--lg" href="#contact">Contact</a>
+          </div>
+          <ul class="hero__meta hero__in" style="--d:5">
+            <li><svg class="icon" aria-hidden="true"><use href="#i-pin"/></svg>Lahore, UTC+5</li>
+            <li><svg class="icon" aria-hidden="true"><use href="#i-clock"/></svg>3.5+ years full stack</li>
+            <li><svg class="icon" aria-hidden="true"><use href="#i-briefcase"/></svg>Open to remote work</li>
+          </ul>
         </div>
+
+        <div class="hero__stage hero__in" style="--d:6">
+          <div class="scene-tilt" role="img" aria-label="Illustration with sample data: the FamTill till ringing up a phone sale, the RynoChat Flutter app showing a WhatsApp, Instagram and Messenger inbox, and the Orderyfy AI assistant adding a pizza to the cart.">
+            <div class="scene" aria-hidden="true">
+              <div class="scene__win float" style="--depth:8">
+                <div>
+                  <p class="scene__label" style="--c:#188ae2"><i></i>FamTill · web EPOS</p>
+                  <div class="win">
+                    <div class="win__bar">
+                      <span class="win__dots"><i></i><i></i><i></i></span>
+                      <span class="win__url"><svg class="icon"><use href="#i-lock"/></svg>app.famtill.com</span>
+                      <span class="live-dot"></span>
+                    </div>
+                    <div class="win__body">
+                      <div class="mini-split" style="margin-bottom:1em">
+                        <div><p class="ui-title">Till</p><p class="ui-sub">Shop 1 · Register A</p></div>
+                        <span class="ui-badge" style="--c:#2fbf71;--c-ink:var(--green-ink)">Till open</span>
+                      </div>
+                      <div class="till">
+                        <div class="till__grid">
+                          <div class="ui-tile" style="--c:#188ae2"><i></i><p class="ui-title" style="font-size:.85em">Phones</p><p class="ui-sub">IMEI stock</p></div>
+                          <div class="ui-tile" style="--c:#6b5eae"><i></i><p class="ui-title" style="font-size:.85em">Repairs</p><p class="ui-sub">6 open</p></div>
+                          <div class="ui-tile" style="--c:#2fbf71"><i></i><p class="ui-title" style="font-size:.85em">Cases</p><p class="ui-sub">from £7.99</p></div>
+                          <div class="ui-tile" style="--c:#f2a93b"><i></i><p class="ui-title" style="font-size:.85em">Chargers</p><p class="ui-sub">from £12.99</p></div>
+                          <div class="ui-tile" style="--c:#4f63e7"><i></i><p class="ui-title" style="font-size:.85em">Screens</p><p class="ui-sub">from £9.99</p></div>
+                          <div class="ui-tile" style="--c:#0f9a91"><i></i><p class="ui-title" style="font-size:.85em">Trade</p><p class="ui-sub">price list</p></div>
+                        </div>
+                        <div class="till__sale">
+                          <div class="till__line" style="--k:0"><b>iPhone 13 128GB, Grade A</b><span>£329.00</span><small>IMEI ···4821</small></div>
+                          <div class="till__line" style="--k:1"><b>Tempered glass</b><span>£9.99</span><small>SKU 10442</small></div>
+                          <div class="till__line" style="--k:2"><b>Screen repair, labour</b><span>£45.00</span><small>Job R-1042</small></div>
+                          <div class="till__total"><span>Total</span><b>£383.99</b></div>
+                          <span class="ui-btn till__pay">Paid by card <svg class="icon"><use href="#i-check"/></svg></span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="scene__phone float float--bob" style="--depth:22">
+                <div>
+                  <p class="scene__label" style="--c:#25d366"><i></i>RynoChat · Flutter</p>
+                  <div class="phone">
+                    <div class="phone__screen">
+                      <div class="inbox">
+                        <div class="inbox__head"><p class="ui-title">Inbox</p><span class="ui-badge" style="--c:#2fbf71;--c-ink:var(--green-ink)">Available</span></div>
+                        <div class="inbox__tabs"><span>All</span><span>Mine</span><span>Groups</span></div>
+                        <div class="inbox__row"><span class="ui-avatar" style="--c:#4f63e7">AK<span class="ch ch--wa"></span></span><div><p class="ui-title" style="font-size:.78em">Is my order shipped?</p><span class="ui-line" style="--w:80%"></span></div><span class="inbox__count">2</span></div>
+                        <div class="inbox__row"><span class="ui-avatar" style="--c:#d62976">SR<span class="ch ch--ig"></span></span><div><p class="ui-title" style="font-size:.78em">Price for the blue one?</p><span class="ui-line" style="--w:62%"></span></div><span class="inbox__count">1</span></div>
+                        <div class="inbox__row"><span class="ui-avatar" style="--c:#1877f2">MN<span class="ch ch--fb"></span></span><div><p class="ui-title" style="font-size:.78em">Can I change the address?</p><span class="ui-line" style="--w:70%"></span></div><span class="inbox__pin">Pinned</span></div>
+                        <div class="inbox__row"><span class="ui-avatar" style="--c:#0f9a91">ZB<span class="ch ch--wa"></span></span><div><p class="ui-title" style="font-size:.78em">Voice note · 0:14</p><span class="ui-line" style="--w:55%"></span></div><span class="inbox__pin">2m</span></div>
+                        <div class="inbox__row"><span class="ui-avatar" style="--c:#f2a93b">HF<span class="ch ch--wa"></span></span><div><p class="ui-title" style="font-size:.78em">Thanks, received</p><span class="ui-line" style="--w:45%"></span></div><span class="inbox__pin">9m</span></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="scene__chat float float--bob-late" style="--depth:26">
+                <div>
+                  <p class="scene__label" style="--c:#be185d"><i></i>Orderyfy · AI assistant</p>
+                  <div class="glass chat-card">
+                    <div class="chat-card__head">
+                      <span class="ui-avatar">AI</span>
+                      <div><p class="ui-title" style="font-size:.9em">Shop assistant</p><p class="ui-sub">Claude · tool calling</p></div>
+                    </div>
+                    <p class="ui-bubble ui-bubble--me">Large pizza for 4, under Rs 2,500? Add one.</p>
+                    <span class="ui-chip" style="--k:0">search_products → 3 matches</span>
+                    <span class="ui-chip" style="--k:1;--c:var(--brand)">update_cart → 1 item</span>
+                    <p class="ui-bubble" style="--k:2">Added a large Chicken Tikka pizza, Rs 2,199. Open checkout?</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="scene__toast float" style="--depth:18">
+                <div class="glass toast">
+                  <span class="live-dot"></span>
+                  <div><b>famtill.com is live</b><span class="ui-sub">Since 11 Nov 2026</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
 
-    <!-- ===== ABOUT / STATS ===== -->
-    <section id="about" class="about-section">
-        <div class="container">
-            <div class="row align-items-center g-5">
-                <div class="col-lg-6">
-                    <p class="section-eyebrow">About Me</p>
-                    <h2 class="section-heading" style="margin-bottom:1rem;">Building Enterprise Software That Scales</h2>
-                    <p class="about-text">
-                        I'm a <strong>Full-Stack Java &amp; Angular Developer</strong> with hands-on experience building and delivering production-grade enterprise applications — from ERP systems and POS platforms to healthcare SaaS products.
-                    </p>
-                    <p class="about-text mt-3">
-                        Starting at <strong>SecopTech</strong>, I worked across multiple products including ERP migration, a Point-of-Sale system with marketplace integration, and a care management platform. I then joined <strong>CareMD</strong>, where I built a full medical practice management system from scratch — handling architecture, backend, frontend, and database design under the guidance of my project manager.
-                    </p>
-                </div>
-                <div class="col-lg-6">
-                    <div class="row g-3">
-                        <div class="col-6">
-                            <div class="stat-card">
-                                <div class="stat-card-icon"><i class="fas fa-calendar-alt"></i></div>
-                                <div class="stat-card-num">3+</div>
-                                <div class="stat-card-lbl">Years Experience</div>
-                            </div>
-                        </div>
-                        <div class="col-6">
-                            <div class="stat-card">
-                                <div class="stat-card-icon"><i class="fas fa-project-diagram"></i></div>
-                                <div class="stat-card-num">7</div>
-                                <div class="stat-card-lbl">Projects Delivered</div>
-                            </div>
-                        </div>
-                        <div class="col-6">
-                            <div class="stat-card">
-                                <div class="stat-card-icon"><i class="fas fa-cubes"></i></div>
-                                <div class="stat-card-num">30+</div>
-                                <div class="stat-card-lbl">Modules Built</div>
-                            </div>
-                        </div>
-                        <div class="col-6">
-                            <div class="stat-card">
-                                <div class="stat-card-icon"><i class="fas fa-code-branch"></i></div>
-                                <div class="stat-card-num">Full</div>
-                                <div class="stat-card-lbl">Stack Developer</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+    <section class="strip" aria-label="At a glance">
+      <div class="container">
+        <ul class="strip__list" data-stagger>
+          <li class="strip__item">
+            <span class="metric__value"><span data-count="3.5" data-decimals="1">3.5</span>+</span>
+            <span class="metric__label">years building full-stack products</span>
+          </li>
+          <li class="strip__item">
+            <span class="metric__value">2</span>
+            <span class="metric__label">public products live: <b>FamTill</b> and <b>Orderyfy</b></span>
+          </li>
+          <li class="strip__item">
+            <span class="metric__value"><span data-count="2900">2,900</span>+</span>
+            <span class="metric__label">commits on CareMD, <b>95%+</b> of them mine</span>
+          </li>
+          <li class="strip__item">
+            <span class="metric__value">3</span>
+            <span class="metric__label">platforms: web, desktop with Electron, mobile with Flutter</span>
+          </li>
+        </ul>
+      </div>
     </section>
 
-    <!-- ===== EXPERIENCE TIMELINE ===== -->
-    <section id="experience" class="experience-section">
-        <div class="container">
-            <div class="text-center">
-                <p class="section-eyebrow">Career Journey</p>
-                <h2 class="section-heading">Professional Experience</h2>
-                <p class="section-sub">From enterprise ERP migration to building a full healthcare SaaS platform — growing through every project.</p>
-            </div>
+    <section class="section" id="work" aria-labelledby="work-title">
+      <div class="container">
+        <header class="section-head section-head--split" data-reveal>
+          <div>
+            <p class="eyebrow">Selected work</p>
+            <h2 class="section-title" id="work-title">Products I’ve built <span class="text-gradient">and shipped.</span></h2>
+          </div>
+          <p class="section-lead">My own products, the healthcare platform I lead, and the CRMs, desktop apps and mobile app around them. Each card opens a case study.</p>
+        </header>
 
-            <div class="row g-4 align-items-stretch">
-
-                <!-- ── SecopTech ── -->
-                <div class="col-lg-6">
-                    <div class="exp-card">
-                        <div class="exp-top exp-top-secoptech">
-                            <div class="exp-top-row">
-                                <div class="exp-icon"><i class="fas fa-building"></i></div>
-                                <span style="background:rgba(255,255,255,0.15);color:white;padding:0.25rem 0.8rem;border-radius:50px;font-size:0.72rem;font-weight:700;border:1px solid rgba(255,255,255,0.25);">First Role</span>
-                            </div>
-                            <div class="exp-company">SecopTech</div>
-                            <div class="exp-role">Software Engineer &mdash; Full-Stack</div>
-                            <div class="exp-chips">
-                                <span class="exp-chip"><i class="fas fa-briefcase"></i> 5 Products</span>
-                                <span class="exp-chip"><i class="fas fa-map-marker-alt"></i> Pakistan</span>
-                                <span class="exp-chip"><i class="fas fa-layer-group"></i> Java &amp; Angular</span>
-                            </div>
-                        </div>
-                        <div class="exp-body">
-                            <ul class="exp-highlights">
-                                <li><span class="exp-check"><i class="fas fa-check"></i></span>Migrated Chiltan Pure ERP from legacy system to modern Spring Boot + Angular stack</li>
-                                <li><span class="exp-check"><i class="fas fa-check"></i></span>Major contributor to RynoDesk POS — worked on almost every module including inventory, billing, and marketplace</li>
-                                <li><span class="exp-check"><i class="fas fa-check"></i></span>Built backend CRUDs and Angular UI components across multiple products</li>
-                                <li><span class="exp-check"><i class="fas fa-check"></i></span>Contributed modules to Carer care management and WellnessNow microservices platform</li>
-                                <li><span class="exp-check"><i class="fas fa-check"></i></span>Wrote Liquibase database migration scripts and integrated Swagger API documentation</li>
-                            </ul>
-                            <div class="exp-proj-label">Projects</div>
-                            <div class="exp-proj-tags">
-                                <span class="exp-proj-tag major">RynoDesk</span>
-                                <span class="exp-proj-tag major">Chiltan ERP</span>
-                                <span class="exp-proj-tag">Carer</span>
-                                <span class="exp-proj-tag">WellnessNow</span>
-                                <span class="exp-proj-tag">Chiltan Marketing</span>
-                            </div>
-                        </div>
+        <div class="work-grid" data-stagger>
+          <article class="work-card work-card--wide card card--spot card--lift" data-spot>
+            <div class="work-card__stage" style="--c:#188ae2;--c-2:#6b5eae">
+              <div class="mini" aria-hidden="true">
+                <div class="win">
+                  <div class="win__bar">
+                    <span class="win__dots"><i></i><i></i><i></i></span>
+                    <span class="win__url"><svg class="icon"><use href="#i-lock"/></svg>app.famtill.com</span>
+                  </div>
+                  <div class="win__body mini-grid">
+                    <div class="mini-stack">
+                      <div class="mini-split"><p class="ui-title">Repairs</p><span class="ui-sub">Today</span></div>
+                      <div class="mini-ticket"><div class="mini-split"><b>R-1042</b><span class="ui-badge" style="--c:#2fbf71;--c-ink:var(--green-ink)">Ready</span></div><span class="ui-sub">iPhone 12 · screen</span></div>
+                      <div class="mini-ticket"><div class="mini-split"><b>R-1043</b><span class="ui-badge" style="--c:#6b5eae">Diagnosing</span></div><span class="ui-sub">Galaxy S21 · battery</span></div>
+                      <div class="mini-ticket"><div class="mini-split"><b>R-1044</b><span class="ui-badge" style="--c:#188ae2">Booked in</span></div><span class="ui-sub">Pixel 7 · charging port</span></div>
                     </div>
-                </div>
-
-                <!-- ── CareMD ── -->
-                <div class="col-lg-6">
-                    <div class="exp-card">
-                        <div class="exp-top exp-top-caremd">
-                            <div class="exp-top-row">
-                                <div class="exp-icon"><i class="fas fa-hospital-alt"></i></div>
-                                <span class="current-pill"><i class="fas fa-circle" style="font-size:0.45rem;"></i> Current</span>
-                            </div>
-                            <div class="exp-company">CareMD</div>
-                            <div class="exp-role">Software Engineer &mdash; Full-Stack (Primary Developer)</div>
-                            <div class="exp-chips">
-                                <span class="exp-chip"><i class="fas fa-star"></i> 90%+ Solo Built</span>
-                                <span class="exp-chip"><i class="fas fa-map-marker-alt"></i> Pakistan</span>
-                                <span class="exp-chip"><i class="fas fa-shield-alt"></i> Healthcare SaaS</span>
-                            </div>
-                        </div>
-                        <div class="exp-body">
-                            <ul class="exp-highlights">
-                                <li><span class="exp-check"><i class="fas fa-check"></i></span>Built the entire CareMD medical practice management platform from scratch as the primary developer</li>
-                                <li><span class="exp-check"><i class="fas fa-check"></i></span>Designed and implemented multi-tenant SaaS architecture with full data isolation per practice</li>
-                                <li><span class="exp-check"><i class="fas fa-check"></i></span>Responsible for 90%+ of the codebase — backend APIs, Angular frontend, and database schema</li>
-                                <li><span class="exp-check"><i class="fas fa-check"></i></span>Delivered 15+ domain entities, 34+ Liquibase migrations, and real-time WebSocket messaging</li>
-                                <li><span class="exp-check"><i class="fas fa-check"></i></span>Working under mentorship and guidance of project manager to deliver production-grade quality</li>
-                            </ul>
-                            <div class="exp-proj-label">Project</div>
-                            <div class="exp-proj-tags">
-                                <span class="exp-proj-tag primary">CareMD Platform</span>
-                                <span class="exp-proj-tag primary">Multi-Tenant SaaS</span>
-                                <span class="exp-proj-tag primary">Built from Scratch</span>
-                            </div>
-                        </div>
+                    <div class="mini-stack">
+                      <p class="ui-bubble ui-bubble--me">What did we sell today?</p>
+                      <div class="mini-grid">
+                        <div class="ui-tile"><b>£1,284</b><span>sales</span></div>
+                        <div class="ui-tile"><b>4</b><span>phones sold</span></div>
+                      </div>
+                      <div class="ui-bars" style="--h:3.4em;--c:#188ae2"><i style="--v:.35"></i><i style="--v:.5"></i><i style="--v:.42"></i><i style="--v:.7"></i><i style="--v:.58"></i><i style="--v:.9"></i><i style="--v:.66"></i></div>
                     </div>
+                  </div>
                 </div>
-
+              </div>
             </div>
+            <div class="work-card__body">
+              <div class="work-card__meta">
+                <span class="pill pill--live"><span class="live-dot" aria-hidden="true"></span>Live since 11 Nov 2026</span>
+                <span class="pill pill--brand">Own product</span>
+                <span class="pill pill--outline">Formerly Nyrovi</span>
+              </div>
+              <h3 class="work-card__title"><a href="famtill-demo.html">FamTill</a></h3>
+              <p class="work-card__kind">Cloud EPOS and repair software for UK phone shops</p>
+              <p class="work-card__text">Run the counter and the workshop on one screen. A till that scans IMEIs, repairs from booking to collection, double-entry books with a VAT return, and an AI assistant that answers questions about the shop. I built and shipped it with Claude Code as my pair.</p>
+              <p class="work-card__facts"><span><b>13</b> modules</span><span><b>120</b> entities</span><span><b>276</b> migrations</span><span><b>34</b> read-only AI tools</span></p>
+              <ul class="stack-chips">
+                <li>Spring Boot 3.2</li><li>Angular 21</li><li>PostgreSQL 17</li><li>Redis</li><li>Claude Haiku</li><li>Docker</li><li>GitHub Actions</li>
+              </ul>
+              <div class="work-card__foot">
+                <span class="work-card__more">Read the case study <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"/></svg></span>
+                <div class="work-card__links">
+                  <a class="btn btn--secondary btn--sm" href="https://famtill.com" target="_blank" rel="noopener">famtill.com <svg class="icon" aria-hidden="true"><use href="#i-arrow-up-right"/></svg><span class="sr-only">(opens in a new tab)</span></a>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="work-card card card--spot card--lift" data-spot>
+            <div class="work-card__stage" style="--c:#0066cc">
+              <div class="mini" aria-hidden="true">
+                <div class="win">
+                  <div class="win__bar"><span class="win__dots"><i></i><i></i><i></i></span><span class="win__url">AR Workspace</span></div>
+                  <div class="win__body mini-stack">
+                    <div class="mini-table">
+                      <div><span>Claim</span><span>Payer</span><span>Amount</span><span>Status</span></div>
+                      <div><span>CLM-20418</span><span>Payer A</span><span>$412.00</span><span class="ui-badge" style="--c:#2fbf71;--c-ink:var(--green-ink)">Paid</span></div>
+                      <div><span>CLM-20419</span><span>Payer B</span><span>$188.50</span><span class="ui-badge" style="--c:#e5484d;--c-ink:var(--red-ink)">Denied</span></div>
+                      <div><span>CLM-20422</span><span>Payer A</span><span>$96.00</span><span class="ui-badge" style="--c:#f2a93b;--c-ink:var(--amber-ink)">Follow-up</span></div>
+                      <div><span>CLM-20425</span><span>Payer C</span><span>$1,240.00</span><span class="ui-badge">Submitted</span></div>
+                    </div>
+                    <div class="mini-grid">
+                      <div class="ui-tile"><b>48</b><span>follow-ups due today</span></div>
+                      <div class="ui-tile"><b>0</b><span>duplicates on re-run</span></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="work-card__body">
+              <div class="work-card__meta">
+                <span class="pill pill--live">In production</span>
+                <span class="pill pill--brand">Primary developer</span>
+              </div>
+              <h3 class="work-card__title"><a href="caremd-demo.html">CareMD</a></h3>
+              <p class="work-card__kind">Multi-tenant medical billing SaaS</p>
+              <p class="work-card__text">I built it from scratch: claims, payment posting, AR follow-ups, denials, a client portal, phone, mail, HR and payroll. Each practice's data stays separate.</p>
+              <p class="work-card__facts"><span><b>18</b> modules</span><span><b>200+</b> entities</span><span><b>410+</b> migrations</span><span><b>1,000+</b> permission checks</span></p>
+              <ul class="stack-chips">
+                <li>Java 17</li><li>Spring Boot 3.2</li><li>Angular 14</li><li>PostgreSQL</li><li>WebSocket</li><li>New Relic</li>
+              </ul>
+              <div class="work-card__foot"><span class="work-card__more">Read the case study <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"/></svg></span></div>
+            </div>
+          </article>
+
+          <article class="work-card card card--spot card--lift" data-spot>
+            <div class="work-card__stage" style="--c:#be185d;--c-2:#f2a93b">
+              <div class="mini" aria-hidden="true" style="max-width:24em">
+                <div class="glass chat-card">
+                  <div class="chat-card__head">
+                    <span class="ui-avatar">AI</span>
+                    <div><p class="ui-title" style="font-size:.9em">Orderyfy assistant</p><p class="ui-sub">Claude · 7 tools</p></div>
+                  </div>
+                  <p class="ui-bubble ui-bubble--me">Fresh mangoes, 2 kg, delivered today?</p>
+                  <span class="ui-chip">search_products → 2 shops</span>
+                  <span class="ui-chip" style="--c:var(--brand)">show_shop_choices</span>
+                  <p class="ui-bubble">Two fruit shops deliver to your village today. Pick one and I'll add it to your cart.</p>
+                  <div class="mini-split ui-sub"><span>AI budget this month</span><span>31%</span></div>
+                  <div class="mini-meter" style="--v:.31"><i></i></div>
+                </div>
+              </div>
+            </div>
+            <div class="work-card__body">
+              <div class="work-card__meta">
+                <span class="pill pill--live"><span class="live-dot" aria-hidden="true"></span>Live</span>
+                <span class="pill pill--brand">Lead developer</span>
+              </div>
+              <h3 class="work-card__title"><a href="orderyfy-demo.html">Orderyfy</a></h3>
+              <p class="work-card__kind">Food and shop delivery marketplace</p>
+              <p class="work-card__text">Customers, vendors, riders and admins in one Laravel app, in English and Urdu. Its Claude sales assistant searches products, fills the real cart and places the order, inside a monthly budget.</p>
+              <p class="work-card__facts"><span><b>7</b> AI tools</span><span><b>55</b> models</span><span><b>107</b> migrations</span><span><b>~2,100</b> test cases</span></p>
+              <ul class="stack-chips">
+                <li>PHP 8.3</li><li>Laravel 13</li><li>Filament 5</li><li>MySQL</li><li>Claude API</li><li>Gemini</li>
+              </ul>
+              <div class="work-card__foot">
+                <span class="work-card__more">Read the case study <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"/></svg></span>
+                <div class="work-card__links">
+                  <a class="btn btn--secondary btn--sm" href="https://orderyfy.com" target="_blank" rel="noopener">orderyfy.com <svg class="icon" aria-hidden="true"><use href="#i-arrow-up-right"/></svg><span class="sr-only">(opens in a new tab)</span></a>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="work-card card card--spot card--lift" data-spot>
+            <div class="work-card__stage" style="--c:#4338ca;--c-2:#7b5ce0">
+              <div class="mini" aria-hidden="true">
+                <div class="mini-grid" style="--cols:3">
+                  <div class="mini-lane">
+                    <div class="mini-lane__head"><span>Lead</span><b>24</b></div>
+                    <div class="mini-ticket"><b>#2041</b><span class="ui-sub">Sheets import</span></div>
+                    <div class="mini-ticket"><b>#2038</b><span class="ui-sub">Master import</span></div>
+                  </div>
+                  <div class="mini-lane">
+                    <div class="mini-lane__head"><span>Qualified</span><b>9</b></div>
+                    <div class="mini-ticket"><b>#2033</b><span class="ui-badge" style="--c:#2fbf71;--c-ink:var(--green-ink)">QA passed</span></div>
+                    <div class="mini-ticket"><b>#2029</b><span class="ui-sub">Callback 3 pm</span></div>
+                  </div>
+                  <div class="mini-lane">
+                    <div class="mini-lane__head"><span>Won</span><b>4</b></div>
+                    <div class="mini-ticket"><b>#2017</b><span class="ui-sub">Agent A</span></div>
+                    <div class="mini-ticket"><b>Target</b><div class="mini-meter" style="--v:.68"><i></i></div></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="work-card__body">
+              <div class="work-card__meta">
+                <span class="pill pill--brand">Builder and maintainer</span>
+              </div>
+              <h3 class="work-card__title"><a href="nixxe-crm-demo.html">Nixxe CRM</a></h3>
+              <p class="work-card__kind">Sales, support and workforce CRM</p>
+              <p class="work-card__text">Runs a call-centre sales business: lead imports and attribution, QA scorecards, targets and PIPs, winbacks, hiring, HR and payroll. I split it from the CareMD core in Sep 2026 and have written every commit since.</p>
+              <p class="work-card__facts"><span><b>16</b> CRM modules</span><span><b>229</b> entities</span><span><b>377</b> migrations</span><span><b>764</b> permission checks</span></p>
+              <ul class="stack-chips">
+                <li>Spring Boot 3.2</li><li>Angular 14</li><li>PostgreSQL</li><li>STOMP WebSocket</li><li>Docker</li>
+              </ul>
+              <div class="work-card__foot"><span class="work-card__more">Read the case study <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"/></svg></span></div>
+            </div>
+          </article>
+
+          <article class="work-card card card--spot card--lift" data-spot>
+            <div class="work-card__stage" style="--c:#0f9a91;--c-2:#4f63e7">
+              <div class="mini" aria-hidden="true">
+                <div class="win">
+                  <div class="win__bar"><span class="win__dots"><i></i><i></i><i></i></span><span class="win__url">Monitoring · Board</span></div>
+                  <div class="win__body mini-grid">
+                    <div class="mini-stack">
+                      <div class="mini-screen"><span class="ui-line" style="--w:70%"></span><span class="ui-line" style="--w:50%"></span><span class="redact">Payment area hidden on the laptop</span></div>
+                      <div class="ui-row ui-sub"><span class="ch" style="background:#2fbf71"></span>Device 01 · Active</div>
+                    </div>
+                    <div class="mini-stack">
+                      <div class="mini-screen"><span class="ui-line" style="--w:80%"></span><span class="ui-line" style="--w:60%"></span><span class="ui-line" style="--w:40%"></span></div>
+                      <div class="ui-row ui-sub"><span class="ch" style="background:#f2a93b"></span>Device 02 · Idle 6m</div>
+                    </div>
+                    <div class="mini-stack">
+                      <div class="mini-screen"><span class="ui-line" style="--w:55%"></span><span class="ui-line" style="--w:75%"></span></div>
+                      <div class="ui-row ui-sub"><span class="ch" style="background:#2fbf71"></span>Device 03 · Live view</div>
+                    </div>
+                    <div class="mini-stack">
+                      <div class="mini-ticket"><b>Consent</b><span class="ui-sub">Notice acknowledged</span></div>
+                      <div class="mini-ticket"><b>Shutdown</b><span class="ui-sub">Needs a signed admin token</span></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="work-card__body">
+              <div class="work-card__meta">
+                <span class="pill pill--brand">Built by me</span>
+                <span class="pill pill--outline">v1.0.5</span>
+              </div>
+              <h3 class="work-card__title"><a href="nixxe-monitoring-demo.html">Nixxe Monitoring</a></h3>
+              <p class="work-card__kind">Consent-first workforce monitoring</p>
+              <p class="work-card__text">A Windows tray agent plus admin screens in the CRM. Staff read a notice and agree before anything is captured. Live view runs over WebRTC, and payment areas are blacked out on the laptop before upload.</p>
+              <p class="work-card__facts"><span><b>Electron 38</b> agent</span><span><b>Ed25519</b> shutdown tokens</span><span><b>45-day</b> default retention</span></p>
+              <ul class="stack-chips">
+                <li>Electron</li><li>Node.js</li><li>WebRTC</li><li>Spring Boot</li><li>Angular</li>
+              </ul>
+              <div class="work-card__foot"><span class="work-card__more">Read the case study <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"/></svg></span></div>
+            </div>
+          </article>
+
+          <article class="work-card work-card--wide card card--spot card--lift" data-spot>
+            <div class="work-card__stage" style="--c:#d97706;--c-2:#0f9a91">
+              <div class="mini" aria-hidden="true">
+                <div class="win">
+                  <div class="win__bar"><span class="win__dots"><i></i><i></i><i></i></span><span class="win__url">OmniStock · works offline</span></div>
+                  <div class="win__body mini-grid">
+                    <div class="mini-stack">
+                      <div class="mini-split"><p class="ui-title">Rack A</p><span class="ui-sub">Bins by stock</span></div>
+                      <div class="rack" style="--c:#d97706">
+                        <i style="--v:.9"></i><i style="--v:.55"></i><i style="--v:.3"></i><i style="--v:.75"></i><i style="--v:.15"></i><i style="--v:.6"></i>
+                        <i style="--v:.4"></i><i style="--v:.85"></i><i style="--v:.2"></i><i style="--v:.5"></i><i style="--v:.7"></i><i style="--v:.25"></i>
+                        <i style="--v:.65"></i><i style="--v:.3"></i><i style="--v:.95"></i><i style="--v:.45"></i><i style="--v:.12"></i><i style="--v:.8"></i>
+                      </div>
+                      <div class="ui-row ui-sub"><span class="ch" style="background:#2fbf71"></span>Pick list sorted by walking path</div>
+                    </div>
+                    <div class="mini-stack">
+                      <div class="mini-ticket">
+                        <div class="mini-split"><b>Shopify #1042</b><span class="ui-badge" style="--c:#d97706;--c-ink:var(--amber-ink)">COD</span></div>
+                        <span class="ui-sub">Risk low · TCS booked · stock reserved</span>
+                      </div>
+                      <div class="mini-split ui-sub"><span>Real profit after returns, courier and ads</span></div>
+                      <div class="ui-bars" style="--h:3.6em;--c:#0f9a91"><i style="--v:.4"></i><i style="--v:.62"></i><i style="--v:.5"></i><i style="--v:.8"></i><i style="--v:.66"></i><i style="--v:.92"></i></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="work-card__body">
+              <div class="work-card__meta">
+                <span class="pill pill--brand">Solo build</span>
+                <span class="pill pill--amber">Setting up for its first shop</span>
+              </div>
+              <h3 class="work-card__title"><a href="omnistock-demo.html">OmniStock</a></h3>
+              <p class="work-card__kind">Offline desktop app for a cash-on-delivery online shop</p>
+              <p class="work-card__text">Racks and bins, Shopify orders, TCS and PostEx bookings, Meta ad spend and real profit in one window. It keeps working with no internet and syncs when Wi-Fi is back. It grew out of StockFlow, my offline POS from April 2026.</p>
+              <p class="work-card__facts"><span><b>60</b> SQLite tables</span><span><b>22</b> feature modules</span><span><b>128</b> components</span><span><b>12</b> read-only AI tools</span></p>
+              <ul class="stack-chips">
+                <li>Electron 38</li><li>Angular 17</li><li>SQLite</li><li>Shopify GraphQL</li><li>Meta Graph API</li><li>Claude Agent SDK</li>
+              </ul>
+              <div class="work-card__foot"><span class="work-card__more">Read the case study <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"/></svg></span></div>
+            </div>
+          </article>
+
+          <article class="work-card card card--spot card--lift" data-spot>
+            <div class="work-card__stage" style="--c:#25d366;--c-2:#4f63e7">
+              <div class="mini" aria-hidden="true">
+                <div class="mini-grid" style="grid-template-columns:minmax(0,1fr) 12em;align-items:center">
+                  <div class="flow">
+                    <div class="flow__node" style="--c:#2fbf71"><i></i>Start: new chat</div>
+                    <div class="flow__link"></div>
+                    <div class="flow__node" style="--c:#188ae2"><i></i>Ask a question</div>
+                    <div class="flow__link"></div>
+                    <div class="flow__node" style="--c:#7b5ce0"><i></i>LLM step</div>
+                    <div class="flow__link"></div>
+                    <div class="flow__node" style="--c:#f2a93b"><i></i>Hand off to agent</div>
+                  </div>
+                  <div class="phone">
+                    <div class="phone__screen">
+                      <div class="inbox">
+                        <div class="inbox__head"><p class="ui-title" style="font-size:.9em">Inbox</p></div>
+                        <div class="inbox__row"><span class="ui-avatar" style="--c:#4f63e7">AK<span class="ch ch--wa"></span></span><div><span class="ui-line" style="--w:85%"></span><span class="ui-line" style="--w:55%"></span></div><span class="inbox__count">2</span></div>
+                        <div class="inbox__row"><span class="ui-avatar" style="--c:#d62976">SR<span class="ch ch--ig"></span></span><div><span class="ui-line" style="--w:70%"></span><span class="ui-line" style="--w:45%"></span></div><span class="inbox__count">1</span></div>
+                        <div class="inbox__row"><span class="ui-avatar" style="--c:#1877f2">MN<span class="ch ch--fb"></span></span><div><span class="ui-line" style="--w:75%"></span><span class="ui-line" style="--w:40%"></span></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="work-card__body">
+              <div class="work-card__meta">
+                <span class="pill pill--brand">Lead developer</span>
+                <span class="pill pill--teal">Web + Flutter app</span>
+              </div>
+              <h3 class="work-card__title"><a href="rynochat-demo.html">RynoChat</a></h3>
+              <p class="work-card__kind">Team inbox with AI chatbot flows</p>
+              <p class="work-card__text">WhatsApp, Instagram and Messenger in one inbox, with a visual flow builder that has LLM and handoff steps. I led the web app with about 80% of the commits, then built the Android app in Flutter on my own in two weeks.</p>
+              <p class="work-card__facts"><span><b>50</b> app screens</span><span><b>287</b> Dart files</span><span><b>129</b> entities</span><span><b>222</b> migrations</span></p>
+              <ul class="stack-chips">
+                <li>Flutter</li><li>Riverpod</li><li>Firebase Messaging</li><li>Spring Boot</li><li>Angular 17</li><li>Meta Graph API</li>
+              </ul>
+              <div class="work-card__foot"><span class="work-card__more">Read the case study <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"/></svg></span></div>
+            </div>
+          </article>
+
+          <article class="work-card card card--spot card--lift" data-spot>
+            <div class="work-card__stage" style="--c:#c2410c;--c-2:#f2a93b">
+              <div class="mini" aria-hidden="true">
+                <div class="hub" style="--c:#c2410c">
+                  <div class="hub__core"><i></i>RynoDesk POS and ledger</div>
+                  <div class="hub__item"><b>Shopify</b><span class="ui-badge" style="--c:#2fbf71;--c-ink:var(--green-ink)">main</span></div>
+                  <div class="hub__item"><b>WooCommerce</b><span class="ui-badge" style="--c:#2fbf71;--c-ink:var(--green-ink)">main</span></div>
+                  <div class="hub__item"><b>Daraz</b><span class="ui-badge" style="--c:#2fbf71;--c-ink:var(--green-ink)">main</span></div>
+                  <div class="hub__item"><b>eBay</b><span class="ui-badge" style="--c:#f2a93b;--c-ink:var(--amber-ink)">branch</span></div>
+                  <div class="hub__item"><b>Etsy</b><span class="ui-badge" style="--c:#f2a93b;--c-ink:var(--amber-ink)">branch</span></div>
+                  <div class="hub__item"><b>Wix</b><span class="ui-badge" style="--c:#f2a93b;--c-ink:var(--amber-ink)">branch</span></div>
+                  <div class="mini-ticket" style="grid-column:1/-1"><div class="mini-split"><b>Receipt voucher RV-0192</b><span class="ui-badge">Posted</span></div><span class="ui-sub">Journal entry written to the ledger</span></div>
+                </div>
+              </div>
+            </div>
+            <div class="work-card__body">
+              <div class="work-card__meta">
+                <span class="pill pill--brand">Major contributor</span>
+              </div>
+              <h3 class="work-card__title"><a href="rynodesk-demo.html">RynoDesk</a></h3>
+              <p class="work-card__kind">POS, inventory and e-commerce platform</p>
+              <p class="work-card__text">Retail POS with a ledger, marketplace sync and an Electron desktop app. I built receipt and payment vouchers on the journal ledger and CRM features like a customer blacklist, plus eBay and Etsy integrations on feature branches.</p>
+              <p class="work-card__facts"><span><b>46%</b> of frontend commits</span><span><b>38%</b> of backend commits</span></p>
+              <ul class="stack-chips">
+                <li>Spring Boot 3</li><li>Angular 17</li><li>PostgreSQL</li><li>Redis</li><li>Electron</li>
+              </ul>
+              <div class="work-card__foot"><span class="work-card__more">Read the case study <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"/></svg></span></div>
+            </div>
+          </article>
         </div>
+      </div>
     </section>
 
-    <!-- ===== PROJECTS ===== -->
-    <section id="projects" class="projects-section">
-        <div class="container">
-            <div class="text-center">
-                <p class="section-eyebrow">Portfolio</p>
-                <h2 class="section-heading">Featured Projects</h2>
-                <p class="section-sub">7 production and academic projects spanning healthcare, ERP, POS, e-commerce, and education management.</p>
-            </div>
-
-            <!-- ── CareMD ── -->
-            <div class="project-card theme-caremd">
-                <div class="project-header">
-                    <div class="project-header-top">
-                        <div class="project-icon-wrap"><i class="fas fa-hospital-alt"></i></div>
-                        <div class="project-header-badges">
-                            <span class="badge-contribution">Solo Built &bull; 90%+</span>
-                            <span class="badge-company">CareMD</span>
-                        </div>
-                    </div>
-                    <div class="project-name">CareMD — Medical Practice Management</div>
-                    <div class="project-tagline">Enterprise Multi-Tenant SaaS — Billing, HR, Assets, Access &amp; Reports</div>
-                    <div class="tech-badges">
-                        <span class="tech-badge">Java 17</span>
-                        <span class="tech-badge">Spring Boot 3.2</span>
-                        <span class="tech-badge">Angular 14</span>
-                        <span class="tech-badge">PostgreSQL</span>
-                        <span class="tech-badge">Flyway</span>
-                        <span class="tech-badge">WebSocket</span>
-                        <span class="tech-badge">MapStruct</span>
-                        <span class="tech-badge">JWT</span>
-                    </div>
-                </div>
-                <div class="project-body">
-                    <div class="row g-4">
-                        <div class="col-md-8">
-                            <p class="project-section-label">Overview</p>
-                            <p style="font-size:0.9rem;color:#475569;line-height:1.7;margin-bottom:1.25rem;">
-                                Built the entire CareMD platform from scratch as primary developer — a multi-tenant medical billing and practice-management SaaS spanning six application areas: Clinical/RCM, HR Operations, Assets, Access Control, Reports, and Notifications. Spring Boot REST API, Angular lazy-loaded modules, PostgreSQL with 136+ Flyway migrations.
-                            </p>
-                            <p class="project-section-label">Platform Modules</p>
-                            <ul class="feature-list caremd-modules">
-                                <li><span class="feature-check"><i class="fas fa-check"></i></span><div><strong class="caremd-module-title">Billing / Clinical</strong><span class="caremd-module-desc">Practices, Patients, Appointments, Claims, Payments, Flagged Claims, Negative Balance, Setup</span></div></li>
-                                <li><span class="feature-check"><i class="fas fa-check"></i></span><div><strong class="caremd-module-title">HR / Operations</strong><span class="caremd-module-desc">Attendance, Leaves, Loans, Timesheets, Teams, Schedules, Employees, Recruiting</span></div></li>
-                                <li><span class="feature-check"><i class="fas fa-check"></i></span><div><strong class="caremd-module-title">Assets</strong><span class="caremd-module-desc">Inventory, Assignments, Categories, Summary Dashboard</span></div></li>
-                                <li><span class="feature-check"><i class="fas fa-check"></i></span><div><strong class="caremd-module-title">Access</strong><span class="caremd-module-desc">Users, Roles, Packages, Tenants, Real-Time Messaging</span></div></li>
-                                <li><span class="feature-check"><i class="fas fa-check"></i></span><div><strong class="caremd-module-title">Reports</strong><span class="caremd-module-desc">Clinical RCM Analytics, HR Attendance And Payroll, Activity Logs</span></div></li>
-                                <li><span class="feature-check"><i class="fas fa-check"></i></span><div><strong class="caremd-module-title">Notifications</strong><span class="caremd-module-desc">System-Wide Notification Center With Live Delivery</span></div></li>
-                            </ul>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="project-stats">
-                                <div class="row text-center g-2">
-                                    <div class="col-6">
-                                        <div class="p-stat-num">58+</div>
-                                        <div class="p-stat-lbl">Entities</div>
-                                    </div>
-                                    <div class="col-6">
-                                        <div class="p-stat-num">136+</div>
-                                        <div class="p-stat-lbl">Migrations</div>
-                                    </div>
-                                    <div class="col-6">
-                                        <div class="p-stat-num">34+</div>
-                                        <div class="p-stat-lbl">Controllers</div>
-                                    </div>
-                                    <div class="col-6">
-                                        <div class="p-stat-num">6</div>
-                                        <div class="p-stat-lbl">App Areas</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <a href="caremd-demo.html" class="btn-view-demo">
-                                <i class="fas fa-eye"></i> View Full Module Demo
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- ── RynoDesk ── -->
-            <div class="project-card theme-rynodesk">
-                <div class="project-header">
-                    <div class="project-header-top">
-                        <div class="project-icon-wrap"><i class="fas fa-cash-register"></i></div>
-                        <div class="project-header-badges">
-                            <span class="badge-contribution">Major Contributor</span>
-                            <span class="badge-company">SecopTech</span>
-                        </div>
-                    </div>
-                    <div class="project-name">RynoDesk — POS &amp; E-commerce Platform</div>
-                    <div class="project-tagline">POS, Inventory, Marketplace Sync &amp; Electron Desktop</div>
-                    <div class="tech-badges">
-                        <span class="tech-badge">Spring Boot 3.2</span>
-                        <span class="tech-badge">Angular 17</span>
-                        <span class="tech-badge">PostgreSQL</span>
-                        <span class="tech-badge">Electron.js</span>
-                        <span class="tech-badge">Daraz / Wix API</span>
-                        <span class="tech-badge">ApexCharts</span>
-                        <span class="tech-badge">PDF / QR</span>
-                    </div>
-                </div>
-                <div class="project-body">
-                    <div class="row g-4">
-                        <div class="col-md-8">
-                            <p class="project-section-label">Overview</p>
-                            <p style="font-size:0.9rem;color:#475569;line-height:1.7;margin-bottom:1.25rem;">
-                                Major contributor on RynoDesk — retail POS and e-commerce platform. Worked across sales, inventory, products, finance, and integrations (web + desktop).
-                            </p>
-                            <p class="project-section-label">Platform Areas</p>
-                            <ul class="feature-list rynodesk-modules">
-                                <li><span class="feature-check"><i class="fas fa-check"></i></span><div><strong class="rynodesk-module-title">Sales / Orders</strong></div></li>
-                                <li><span class="feature-check"><i class="fas fa-check"></i></span><div><strong class="rynodesk-module-title">Products</strong></div></li>
-                                <li><span class="feature-check"><i class="fas fa-check"></i></span><div><strong class="rynodesk-module-title">Inventory</strong></div></li>
-                                <li><span class="feature-check"><i class="fas fa-check"></i></span><div><strong class="rynodesk-module-title">Integrations</strong></div></li>
-                                <li><span class="feature-check"><i class="fas fa-check"></i></span><div><strong class="rynodesk-module-title">Finance</strong></div></li>
-                                <li><span class="feature-check"><i class="fas fa-check"></i></span><div><strong class="rynodesk-module-title">CRM / Access / Reports</strong></div></li>
-                            </ul>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="project-stats">
-                                <div class="row text-center g-2">
-                                    <div class="col-6">
-                                        <div class="p-stat-num">8</div>
-                                        <div class="p-stat-lbl">App Areas</div>
-                                    </div>
-                                    <div class="col-6">
-                                        <div class="p-stat-num">Major</div>
-                                        <div class="p-stat-lbl">Contributor</div>
-                                    </div>
-                                    <div class="col-6">
-                                        <div class="p-stat-num">POS</div>
-                                        <div class="p-stat-lbl">+ Web</div>
-                                    </div>
-                                    <div class="col-6">
-                                        <div class="p-stat-num">Electron</div>
-                                        <div class="p-stat-lbl">Desktop</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <a href="rynodesk-demo.html" class="btn-view-demo">
-                                <i class="fas fa-eye"></i> View Full Module Demo
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- ── AutoSchedula ── -->
-            <div class="project-card theme-autoschedula">
-                <div class="project-header">
-                    <div class="project-header-top">
-                        <div class="project-icon-wrap"><i class="fas fa-graduation-cap"></i></div>
-                        <div class="project-header-badges">
-                            <span class="badge-contribution">Final Year Project — 100% Solo</span>
-                            <span class="badge-company">Academic</span>
-                        </div>
-                    </div>
-                    <div class="project-name">AutoSchedula — Automated Timetable System</div>
-                    <div class="project-tagline">AI-Powered Educational Scheduling Engine with Conflict Resolution</div>
-                    <div class="tech-badges">
-                        <span class="tech-badge">Spring Boot 3.2</span>
-                        <span class="tech-badge">Angular 14</span>
-                        <span class="tech-badge">PostgreSQL</span>
-                        <span class="tech-badge">Algorithm Design</span>
-                        <span class="tech-badge">FullCalendar</span>
-                        <span class="tech-badge">JWT Auth</span>
-                    </div>
-                </div>
-                <div class="project-body">
-                    <div class="row g-4">
-                        <div class="col-md-8">
-                            <p class="project-section-label">Overview</p>
-                            <p style="font-size:0.9rem;color:#475569;line-height:1.7;margin-bottom:1.25rem;">
-                                My Final Year Project, built entirely by me. AutoSchedula solves the complex problem of educational timetable generation using a constraint-satisfaction and genetic algorithm engine — eliminating scheduling conflicts and optimizing resource allocation across teachers, sections, and rooms.
-                            </p>
-                            <p class="project-section-label">Key Features</p>
-                            <ul class="feature-list">
-                                <li><span class="feature-check"><i class="fas fa-check"></i></span> Automated timetable generation with genetic algorithm optimization</li>
-                                <li><span class="feature-check"><i class="fas fa-check"></i></span> Real-time conflict detection and automatic resolution engine</li>
-                                <li><span class="feature-check"><i class="fas fa-check"></i></span> Teacher preference matching and workload balancing</li>
-                                <li><span class="feature-check"><i class="fas fa-check"></i></span> FullCalendar interactive UI for schedule visualization and editing</li>
-                                <li><span class="feature-check"><i class="fas fa-check"></i></span> Resource allocation optimization across classrooms and time slots</li>
-                                <li><span class="feature-check"><i class="fas fa-check"></i></span> Timetable export functionality for distribution</li>
-                            </ul>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="project-stats">
-                                <div class="row text-center g-2">
-                                    <div class="col-6">
-                                        <div class="p-stat-num">95%</div>
-                                        <div class="p-stat-lbl">Efficiency Gain</div>
-                                    </div>
-                                    <div class="col-6">
-                                        <div class="p-stat-num">0</div>
-                                        <div class="p-stat-lbl">Schedule Conflicts</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <a href="autoschedula-demo.html" class="btn-view-demo">
-                                <i class="fas fa-eye"></i> View Demo Details
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- ── Chiltan Pure ERP ── -->
-            <div class="project-card theme-erp">
-                <div class="project-header">
-                    <div class="project-header-top">
-                        <div class="project-icon-wrap"><i class="fas fa-sitemap"></i></div>
-                        <div class="project-header-badges">
-                            <span class="badge-contribution">First Role — Migration &amp; Enhancement</span>
-                            <span class="badge-company">SecopTech</span>
-                        </div>
-                    </div>
-                    <div class="project-name">Chiltan Pure ERP — Business Management System</div>
-                    <div class="project-tagline">Legacy-to-Modern ERP Migration with New Module Development</div>
-                    <div class="tech-badges">
-                        <span class="tech-badge">Spring Boot 2.1</span>
-                        <span class="tech-badge">Angular 12</span>
-                        <span class="tech-badge">MariaDB</span>
-                        <span class="tech-badge">Liquibase</span>
-                        <span class="tech-badge">Swagger</span>
-                        <span class="tech-badge">Spring Security</span>
-                        <span class="tech-badge">iText PDF</span>
-                    </div>
-                </div>
-                <div class="project-body">
-                    <div class="row g-4">
-                        <div class="col-md-8">
-                            <p class="project-section-label">Overview</p>
-                            <p style="font-size:0.9rem;color:#475569;line-height:1.7;margin-bottom:1.25rem;">
-                                My first professional project at SecopTech. Contributed to migrating the Chiltan Pure ERP system from its legacy version to a modern Spring Boot + Angular stack. Added new backend and UI CRUDs, wrote Liquibase migrations, and delivered enhancements across multiple modules.
-                            </p>
-                            <p class="project-section-label">Contributions</p>
-                            <ul class="feature-list">
-                                <li><span class="feature-check"><i class="fas fa-check"></i></span> Migrated legacy ERP modules to Spring Boot 2.1 + Angular 12 stack</li>
-                                <li><span class="feature-check"><i class="fas fa-check"></i></span> Developed new backend CRUD APIs and corresponding Angular UI components</li>
-                                <li><span class="feature-check"><i class="fas fa-check"></i></span> Wrote Liquibase database migration scripts for schema versioning</li>
-                                <li><span class="feature-check"><i class="fas fa-check"></i></span> Implemented PDF report generation using iText for financial documents</li>
-                                <li><span class="feature-check"><i class="fas fa-check"></i></span> Added QR code generation (ZXing) for product identification</li>
-                                <li><span class="feature-check"><i class="fas fa-check"></i></span> Integrated Swagger documentation for all new API endpoints</li>
-                            </ul>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="project-stats">
-                                <div class="row text-center g-2">
-                                    <div class="col-6">
-                                        <div class="p-stat-num">10+</div>
-                                        <div class="p-stat-lbl">ERP Modules</div>
-                                    </div>
-                                    <div class="col-6">
-                                        <div class="p-stat-num">New</div>
-                                        <div class="p-stat-lbl">UI &amp; APIs Added</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <a href="chiltan-demo.html" class="btn-view-demo">
-                                <i class="fas fa-eye"></i> View Demo Details
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- ── Carer ── -->
-            <div class="project-card theme-carer">
-                <div class="project-header">
-                    <div class="project-header-top">
-                        <div class="project-icon-wrap"><i class="fas fa-hand-holding-heart"></i></div>
-                        <div class="project-header-badges">
-                            <span class="badge-contribution">Module Contributor</span>
-                            <span class="badge-company">SecopTech</span>
-                        </div>
-                    </div>
-                    <div class="project-name">Carer — Care Management System</div>
-                    <div class="project-tagline">Healthcare Provider Platform with Modern Angular 20 Frontend</div>
-                    <div class="tech-badges">
-                        <span class="tech-badge">Spring Boot</span>
-                        <span class="tech-badge">Angular 20</span>
-                        <span class="tech-badge">Hibernate 6</span>
-                        <span class="tech-badge">AmCharts 5</span>
-                        <span class="tech-badge">Bootstrap 5</span>
-                        <span class="tech-badge">JWT Auth</span>
-                    </div>
-                </div>
-                <div class="project-body">
-                    <div class="row g-4">
-                        <div class="col-md-8">
-                            <p class="project-section-label">Overview</p>
-                            <p style="font-size:0.9rem;color:#475569;line-height:1.7;margin-bottom:1.25rem;">
-                                Contributed to the Carer platform at SecopTech — a care management solution for healthcare providers. Worked on specific modules including role-based access features, UI components, and data management screens using the latest Angular 20 and modern Spring Boot stack.
-                            </p>
-                            <p class="project-section-label">Contributions</p>
-                            <ul class="feature-list">
-                                <li><span class="feature-check"><i class="fas fa-check"></i></span> Developed assigned modules for patient and care tracking workflows</li>
-                                <li><span class="feature-check"><i class="fas fa-check"></i></span> Built Angular 20 UI components with pagination and search filtering</li>
-                                <li><span class="feature-check"><i class="fas fa-check"></i></span> Integrated role-based access control using ngx-permissions</li>
-                                <li><span class="feature-check"><i class="fas fa-check"></i></span> Implemented AmCharts 5 dashboards for data visualization</li>
-                                <li><span class="feature-check"><i class="fas fa-check"></i></span> Connected REST APIs with Hibernate 6 backend for data management</li>
-                            </ul>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="project-stats">
-                                <div class="row text-center g-2">
-                                    <div class="col-6">
-                                        <div class="p-stat-num">v20</div>
-                                        <div class="p-stat-lbl">Angular Latest</div>
-                                    </div>
-                                    <div class="col-6">
-                                        <div class="p-stat-num">RBAC</div>
-                                        <div class="p-stat-lbl">Permissions</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <a href="carer-demo.html" class="btn-view-demo">
-                                <i class="fas fa-eye"></i> View Demo Details
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- ── WellnessNow ── -->
-            <div class="project-card theme-wellness">
-                <div class="project-header">
-                    <div class="project-header-top">
-                        <div class="project-icon-wrap"><i class="fas fa-heartbeat"></i></div>
-                        <div class="project-header-badges">
-                            <span class="badge-contribution">Contributor</span>
-                            <span class="badge-company">SecopTech</span>
-                        </div>
-                    </div>
-                    <div class="project-name">WellnessNow — Microservices Healthcare Platform</div>
-                    <div class="project-tagline">Spring Cloud Microservices with Service Discovery &amp; API Gateway</div>
-                    <div class="tech-badges">
-                        <span class="tech-badge">Spring Cloud</span>
-                        <span class="tech-badge">API Gateway</span>
-                        <span class="tech-badge">Eureka</span>
-                        <span class="tech-badge">Config Server</span>
-                        <span class="tech-badge">Angular 14</span>
-                        <span class="tech-badge">Java 17</span>
-                        <span class="tech-badge">MariaDB</span>
-                    </div>
-                </div>
-                <div class="project-body">
-                    <div class="row g-4">
-                        <div class="col-md-8">
-                            <p class="project-section-label">Overview</p>
-                            <p style="font-size:0.9rem;color:#475569;line-height:1.7;margin-bottom:1.25rem;">
-                                Made contributions to WellnessNow, a healthcare platform built on Spring Cloud microservices architecture. The system includes service discovery via Eureka, centralized configuration, an API gateway, and dedicated services for users, inventory, and patient screening.
-                            </p>
-                            <p class="project-section-label">Architecture Highlights</p>
-                            <ul class="feature-list">
-                                <li><span class="feature-check"><i class="fas fa-check"></i></span> 7-service microservices architecture with Spring Cloud</li>
-                                <li><span class="feature-check"><i class="fas fa-check"></i></span> Eureka service discovery for dynamic service registration</li>
-                                <li><span class="feature-check"><i class="fas fa-check"></i></span> API Gateway for centralized routing and load balancing</li>
-                                <li><span class="feature-check"><i class="fas fa-check"></i></span> Config Server for environment-specific configuration management</li>
-                                <li><span class="feature-check"><i class="fas fa-check"></i></span> JWT authentication propagated across all services</li>
-                            </ul>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="project-stats">
-                                <div class="row text-center g-2">
-                                    <div class="col-6">
-                                        <div class="p-stat-num">7</div>
-                                        <div class="p-stat-lbl">Microservices</div>
-                                    </div>
-                                    <div class="col-6">
-                                        <div class="p-stat-num">Cloud</div>
-                                        <div class="p-stat-lbl">Architecture</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <a href="wellness-demo.html" class="btn-view-demo">
-                                <i class="fas fa-eye"></i> View Demo Details
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- ── Chiltan Marketing ── -->
-            <div class="project-card theme-marketing">
-                <div class="project-header">
-                    <div class="project-header-top">
-                        <div class="project-icon-wrap"><i class="fas fa-bullhorn"></i></div>
-                        <div class="project-header-badges">
-                            <span class="badge-contribution">Contributor</span>
-                            <span class="badge-company">SecopTech</span>
-                        </div>
-                    </div>
-                    <div class="project-name">Chiltan Marketing — E-Marketing Platform</div>
-                    <div class="project-tagline">Email Campaign Builder with Advanced Analytics &amp; Data Visualization</div>
-                    <div class="tech-badges">
-                        <span class="tech-badge">Angular 14</span>
-                        <span class="tech-badge">Angular Email Editor</span>
-                        <span class="tech-badge">AmCharts 5</span>
-                        <span class="tech-badge">Highcharts</span>
-                        <span class="tech-badge">ApexCharts</span>
-                        <span class="tech-badge">XLSX Export</span>
-                    </div>
-                </div>
-                <div class="project-body">
-                    <div class="row g-4">
-                        <div class="col-md-8">
-                            <p class="project-section-label">Overview</p>
-                            <p style="font-size:0.9rem;color:#475569;line-height:1.7;margin-bottom:1.25rem;">
-                                Made contributions to Chiltan Marketing, an e-marketing platform featuring an email campaign builder, multi-chart analytics, and data export capabilities. The frontend leverages Angular Email Editor for drag-and-drop campaign design and multiple charting libraries for campaign analytics.
-                            </p>
-                            <p class="project-section-label">Platform Features</p>
-                            <ul class="feature-list">
-                                <li><span class="feature-check"><i class="fas fa-check"></i></span> Drag-and-drop email campaign builder (Angular Email Editor)</li>
-                                <li><span class="feature-check"><i class="fas fa-check"></i></span> Campaign analytics with AmCharts 5, Highcharts, and ApexCharts</li>
-                                <li><span class="feature-check"><i class="fas fa-check"></i></span> Excel and PDF data export functionality</li>
-                                <li><span class="feature-check"><i class="fas fa-check"></i></span> Pagination, search filtering, and SweetAlert2 notifications</li>
-                            </ul>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="project-stats">
-                                <div class="row text-center g-2">
-                                    <div class="col-6">
-                                        <div class="p-stat-num">3</div>
-                                        <div class="p-stat-lbl">Chart Libraries</div>
-                                    </div>
-                                    <div class="col-6">
-                                        <div class="p-stat-num">DnD</div>
-                                        <div class="p-stat-lbl">Email Builder</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <a href="chiltan-marketing-demo.html" class="btn-view-demo">
-                                <i class="fas fa-eye"></i> View Demo Details
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+    <section class="section section--tight" id="more" aria-labelledby="more-title">
+      <div class="container">
+        <header class="section-head section-head--left" data-reveal>
+          <p class="eyebrow">Earlier work</p>
+          <h2 class="section-title" id="more-title" style="font-size:clamp(1.75rem,1.3rem + 1.6vw,2.5rem)">More projects</h2>
+        </header>
+        <ul class="project-list" data-stagger>
+          <li class="project-list__item">
+            <p class="project-list__name"><a href="carer-demo.html">Carer</a><small>Care-agency management</small></p>
+            <p class="project-list__role">Contributor, SecopTech<span>2025 to 2026 · CRM and shift-rotation refactor</span></p>
+            <p class="project-list__stack">Spring Boot 3.2, Angular 20, PostgreSQL</p>
+            <span class="project-list__arrow" aria-hidden="true"><svg class="icon"><use href="#i-arrow-right"/></svg></span>
+          </li>
+          <li class="project-list__item">
+            <p class="project-list__name"><a href="chiltan-marketing-demo.html">Chiltan Marketing</a><small>Email campaigns for Shopify stores</small></p>
+            <p class="project-list__role">Contributor, full stack<span>2023 to 2024 · tenants, access tree, SMTP and store setup</span></p>
+            <p class="project-list__stack">Spring Boot 3.0, Angular 14</p>
+            <span class="project-list__arrow" aria-hidden="true"><svg class="icon"><use href="#i-arrow-right"/></svg></span>
+          </li>
+          <li class="project-list__item">
+            <p class="project-list__name"><a href="chiltan-demo.html">Chiltan Pure ERP</a><small>Business management system</small></p>
+            <p class="project-list__role">Contributor, first role<span>SecopTech · move to Spring Boot and Angular</span></p>
+            <p class="project-list__stack">Spring Boot 2.1, Angular 12, MariaDB</p>
+            <span class="project-list__arrow" aria-hidden="true"><svg class="icon"><use href="#i-arrow-right"/></svg></span>
+          </li>
+          <li class="project-list__item">
+            <p class="project-list__name"><a href="autoschedula-demo.html">AutoSchedula</a><small>School timetables, final-year project</small></p>
+            <p class="project-list__role">Built solo<span>2024 · multi-tenant, clash check per room and slot</span></p>
+            <p class="project-list__stack">Spring Boot 3.2, Angular 14, PostgreSQL</p>
+            <span class="project-list__arrow" aria-hidden="true"><svg class="icon"><use href="#i-arrow-right"/></svg></span>
+          </li>
+          <li class="project-list__item">
+            <p class="project-list__name"><a href="wellness-demo.html">WellnessNow</a><small>Healthcare platform</small></p>
+            <p class="project-list__role">UI fixes<span>2023 · Angular pipes and layout fixes</span></p>
+            <p class="project-list__stack">Angular 14</p>
+            <span class="project-list__arrow" aria-hidden="true"><svg class="icon"><use href="#i-arrow-right"/></svg></span>
+          </li>
+        </ul>
+      </div>
     </section>
 
-    <!-- ===== SKILLS ===== -->
-    <section id="skills" class="skills-section">
-        <div class="container">
-            <div class="text-center">
-                <p class="section-eyebrow">Expertise</p>
-                <h2 class="section-heading">Technical Skills</h2>
-                <p class="section-sub">Full-stack capabilities across enterprise Java backends, Angular frontends, and relational databases.</p>
-            </div>
-            <div class="row g-4">
-                <div class="col-md-6 col-lg-3">
-                    <div class="skill-card">
-                        <div class="skill-icon-box bg-blue"><i class="fas fa-server"></i></div>
-                        <div class="skill-card-title">Backend Development</div>
-                        <div class="skill-pills">
-                            <span class="skill-pill">Java 17</span>
-                            <span class="skill-pill">Spring Boot 3.x</span>
-                            <span class="skill-pill">Spring Security</span>
-                            <span class="skill-pill">Spring Cloud</span>
-                            <span class="skill-pill">REST APIs</span>
-                            <span class="skill-pill">Microservices</span>
-                            <span class="skill-pill">Hibernate</span>
-                            <span class="skill-pill">JPA</span>
-                            <span class="skill-pill">Lombok</span>
-                            <span class="skill-pill">MapStruct</span>
-                            <span class="skill-pill">Swagger</span>
-                            <span class="skill-pill">JWT / OAuth</span>
-                            <span class="skill-pill">WebSocket</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-3">
-                    <div class="skill-card">
-                        <div class="skill-icon-box bg-purple"><i class="fas fa-laptop-code"></i></div>
-                        <div class="skill-card-title">Frontend Development</div>
-                        <div class="skill-pills">
-                            <span class="skill-pill">Angular 12–20</span>
-                            <span class="skill-pill">TypeScript</span>
-                            <span class="skill-pill">JavaScript</span>
-                            <span class="skill-pill">HTML5 / CSS3</span>
-                            <span class="skill-pill">Bootstrap 5</span>
-                            <span class="skill-pill">Angular Material</span>
-                            <span class="skill-pill">RxJS</span>
-                            <span class="skill-pill">ApexCharts</span>
-                            <span class="skill-pill">AmCharts 5</span>
-                            <span class="skill-pill">Highcharts</span>
-                            <span class="skill-pill">FullCalendar</span>
-                            <span class="skill-pill">Electron.js</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-3">
-                    <div class="skill-card">
-                        <div class="skill-icon-box bg-green"><i class="fas fa-database"></i></div>
-                        <div class="skill-card-title">Database &amp; Storage</div>
-                        <div class="skill-pills">
-                            <span class="skill-pill">PostgreSQL</span>
-                            <span class="skill-pill">MariaDB / MySQL</span>
-                            <span class="skill-pill">Liquibase</span>
-                            <span class="skill-pill">Database Design</span>
-                            <span class="skill-pill">Schema Migration</span>
-                            <span class="skill-pill">Query Optimization</span>
-                            <span class="skill-pill">JPA Relationships</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-3">
-                    <div class="skill-card">
-                        <div class="skill-icon-box bg-orange"><i class="fas fa-tools"></i></div>
-                        <div class="skill-card-title">Tools &amp; Practices</div>
-                        <div class="skill-pills">
-                            <span class="skill-pill">Git / GitHub</span>
-                            <span class="skill-pill">Maven</span>
-                            <span class="skill-pill">Docker</span>
-                            <span class="skill-pill">Postman</span>
-                            <span class="skill-pill">IntelliJ IDEA</span>
-                            <span class="skill-pill">VS Code</span>
-                            <span class="skill-pill">Multi-Tenant SaaS</span>
-                            <span class="skill-pill">Algorithm Design</span>
-                            <span class="skill-pill">PDF Generation</span>
-                            <span class="skill-pill">QR / Barcode</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
+    <section class="dark-panel section" id="ai" aria-labelledby="ai-title">
+      <div class="dark-panel__bg" aria-hidden="true"></div>
+      <div class="container ai">
+        <div data-reveal>
+          <p class="eyebrow"><svg class="icon" aria-hidden="true"><use href="#i-sparkles"/></svg>AI inside the product</p>
+          <h2 class="section-title" id="ai-title">Assistants that do real work, <span class="text-gradient">with limits.</span></h2>
+          <p class="section-lead">I add AI where it saves someone a click or a call. The model gets tools it can use, a spend cap, and a person to hand over to.</p>
+          <ul class="ai__points" data-stagger>
+            <li class="ai__point">
+              <span class="ai__point-icon"><svg class="icon" aria-hidden="true"><use href="#i-sparkles"/></svg></span>
+              <div><b>FamTill <span class="pill pill--live">Live</span></b><p>Claude Haiku with 34 read-only tools. Typed or spoken questions about sales, stock, repairs and VAT come back as tiles, tables and charts.</p></div>
+            </li>
+            <li class="ai__point">
+              <span class="ai__point-icon"><svg class="icon" aria-hidden="true"><use href="#i-wallet"/></svg></span>
+              <div><b>Orderyfy <span class="pill pill--live">Live</span></b><p>7 tools that search products, fill the real cart and place the order. A cached prompt, a monthly budget guard, and a team inbox for questions it can't answer.</p></div>
+            </li>
+            <li class="ai__point">
+              <span class="ai__point-icon"><svg class="icon" aria-hidden="true"><use href="#i-database"/></svg></span>
+              <div><b>OmniStock</b><p>Claude Agent SDK with 12 read-only tools. Its SQL runs in a separate worker that only allows SELECT.</p></div>
+            </li>
+            <li class="ai__point">
+              <span class="ai__point-icon"><svg class="icon" aria-hidden="true"><use href="#i-users"/></svg></span>
+              <div><b>RynoChat</b><p>A flow builder with LLM and handoff steps, one provider layer over Claude, Groq and Gemini, and voice notes turned into text.</p></div>
+            </li>
+            <li class="ai__point">
+              <span class="ai__point-icon"><svg class="icon" aria-hidden="true"><use href="#i-mic"/></svg></span>
+              <div><b>CareMD <span class="pill pill--amber">Built</span></b><p>Groq transcribes recorded calls, and AI call notes land on the matching call record.</p></div>
+            </li>
+          </ul>
         </div>
+
+        <div data-reveal>
+          <div class="ai-demo" data-ai-demo>
+            <div class="ai-demo__tabs" role="group" aria-label="Pick an assistant">
+              <button class="ai-demo__tab" type="button" aria-pressed="true" data-turn-tab>FamTill<i class="ai-demo__progress" aria-hidden="true"></i></button>
+              <button class="ai-demo__tab" type="button" aria-pressed="false" data-turn-tab>Orderyfy<i class="ai-demo__progress" aria-hidden="true"></i></button>
+              <button class="ai-demo__tab" type="button" aria-pressed="false" data-turn-tab>OmniStock<i class="ai-demo__progress" aria-hidden="true"></i></button>
+            </div>
+            <div class="ai-demo__stage">
+              <div class="ai-turn is-active" data-turn>
+                <p class="ai-turn__product"><span class="live-dot" aria-hidden="true"></span>FamTill assistant · sample shop</p>
+                <p class="ai-turn__q" data-step data-type>What did we sell today?</p>
+                <div class="ai-dots" aria-hidden="true"><i></i><i></i><i></i></div>
+                <div class="ai-turn__tools" data-step><span class="ui-chip">read · sales today</span><span class="ui-chip" style="--c:#a3adff">read · repairs today</span></div>
+                <div class="ai-turn__a" data-step>
+                  <p>Here's today so far:</p>
+                  <div class="ai-turn__tiles">
+                    <div><b>£1,284.50</b><span>sales</span></div>
+                    <div><b>4</b><span>phones sold</span></div>
+                    <div><b>6</b><span>repairs booked</span></div>
+                  </div>
+                  <p class="ai-turn__note">Read-only. It can show data but never change it.</p>
+                </div>
+              </div>
+              <div class="ai-turn" data-turn aria-hidden="true">
+                <p class="ai-turn__product"><span class="live-dot" aria-hidden="true"></span>Orderyfy sales assistant · sample order</p>
+                <p class="ai-turn__q" data-step data-type>Large pizza for 4, under Rs 2,500? Add one.</p>
+                <div class="ai-dots" aria-hidden="true"><i></i><i></i><i></i></div>
+                <div class="ai-turn__tools" data-step><span class="ui-chip">search_products</span><span class="ui-chip" style="--c:#a3adff">update_cart</span><span class="ui-chip" style="--c:#f5c26f">show_checkout_form</span></div>
+                <div class="ai-turn__a" data-step>
+                  <p>Added a large Chicken Tikka pizza (serves 4) for Rs 2,199. Put your name, phone and village in the form below and I'll place the order.</p>
+                  <p class="ai-turn__note">Monthly budget guard, $20 by default. Unsure questions go to the team.</p>
+                </div>
+              </div>
+              <div class="ai-turn" data-turn aria-hidden="true">
+                <p class="ai-turn__product">OmniStock assistant · sample shop</p>
+                <p class="ai-turn__q" data-step data-type>Which products lost the most to returns last month?</p>
+                <div class="ai-dots" aria-hidden="true"><i></i><i></i><i></i></div>
+                <div class="ai-turn__tools" data-step><span class="ui-chip">sql · SELECT only</span></div>
+                <div class="ai-turn__a" data-step>
+                  <div class="ai-turn__bars">
+                    <div><span>Product A</span><i style="--v:.92"></i><span>−Rs 4,120</span></div>
+                    <div><span>Product B</span><i style="--v:.64"></i><span>−Rs 2,860</span></div>
+                    <div><span>Product C</span><i style="--v:.28"></i><span>−Rs 1,240</span></div>
+                  </div>
+                  <p class="ai-turn__note">Runs in a separate worker. Only SELECT and WITH queries run.</p>
+                </div>
+              </div>
+            </div>
+            <p class="ai-demo__foot">Sample questions and numbers. The tool flow matches the real assistants.</p>
+          </div>
+        </div>
+      </div>
     </section>
 
-    <!-- ===== CONTACT ===== -->
-    <section id="contact" class="contact-section">
-        <div class="container">
-            <div class="contact-card">
-                <h2 class="contact-heading">Let's Work Together</h2>
-                <p class="contact-desc">Open to new opportunities, freelance projects, and collaborations. Feel free to reach out!</p>
-                <div class="contact-btns">
-                    <a href="mailto:afaqch5535@gmail.com" class="btn-cta btn-cta-email">
-                        <i class="fas fa-envelope"></i> afaqch5535@gmail.com
-                    </a>
-                    <a href="https://wa.me/923021005535" target="_blank" rel="noopener" class="btn-cta btn-cta-whatsapp" title="Chat on WhatsApp">
-                        <i class="fab fa-whatsapp"></i> 0302 1005535
-                    </a>
-                    <a href="https://www.linkedin.com/in/afaq-springboot-angular" target="_blank" rel="noopener" class="btn-cta btn-cta-linkedin">
-                        <i class="fab fa-linkedin"></i> LinkedIn
-                    </a>
-                    <a href="https://github.com/afaq-codes" target="_blank" rel="noopener" class="btn-cta btn-cta-github">
-                        <i class="fab fa-github"></i> GitHub
-                    </a>
-                </div>
-            </div>
+    <section class="section" id="skills" aria-labelledby="skills-title">
+      <div class="container">
+        <header class="section-head" data-reveal>
+          <p class="eyebrow">Skills</p>
+          <h2 class="section-title" id="skills-title">The stack I ship with.</h2>
+          <p class="section-lead">Grouped by where it runs. Every item here is used in at least one project on this page.</p>
+        </header>
+        <div class="skills" data-stagger>
+          <article class="skill-group card">
+            <div class="skill-group__head"><span class="icon-tile"><svg class="icon" aria-hidden="true"><use href="#i-server"/></svg></span><h3>Backend</h3></div>
+            <ul class="stack-chips">
+              <li>Java 17</li><li>Spring Boot 3</li><li>Spring Security</li><li>JPA / Hibernate</li><li>PHP 8.3</li><li>Laravel 13</li><li>Filament 5</li><li>Node.js</li><li>REST APIs</li><li>WebSocket</li><li>JWT auth</li>
+            </ul>
+            <p>Spring Boot for SaaS backends, Laravel for Orderyfy, Node.js inside the Electron agent and desktop apps.</p>
+          </article>
+          <article class="skill-group card">
+            <div class="skill-group__head"><span class="icon-tile"><svg class="icon" aria-hidden="true"><use href="#i-layout"/></svg></span><h3>Frontend</h3></div>
+            <ul class="stack-chips">
+              <li>Angular 14 to 21</li><li>TypeScript</li><li>RxJS</li><li>Angular Material</li><li>Bootstrap 5</li><li>Tailwind 4</li><li>Blade</li><li>ApexCharts</li><li>ECharts</li>
+            </ul>
+            <p>Admin apps with hundreds of screens, and fast public pages like this one.</p>
+          </article>
+          <article class="skill-group card">
+            <div class="skill-group__head"><span class="icon-tile"><svg class="icon" aria-hidden="true"><use href="#i-phone"/></svg></span><h3>Mobile and desktop</h3></div>
+            <ul class="stack-chips">
+              <li>Flutter</li><li>Dart</li><li>Riverpod</li><li>Dio</li><li>Hive</li><li>Firebase Messaging</li><li>Electron</li><li>PWA</li><li>Web Push</li>
+            </ul>
+            <p>The RynoChat Android app in Flutter. OmniStock, StockFlow and the Nixxe agent on Electron.</p>
+          </article>
+          <article class="skill-group card">
+            <div class="skill-group__head"><span class="icon-tile"><svg class="icon" aria-hidden="true"><use href="#i-sparkles"/></svg></span><h3>AI</h3></div>
+            <ul class="stack-chips">
+              <li>Claude API</li><li>Claude Agent SDK</li><li>Tool calling</li><li>Prompt caching</li><li>Gemini</li><li>Groq</li><li>Speech to text</li><li>Chatbot flows</li><li>Claude Code</li><li>Cursor</li>
+            </ul>
+            <p>Assistants with tools, budgets and handoff. I build with Claude Code and Cursor every day and review what they write.</p>
+          </article>
+          <article class="skill-group card">
+            <div class="skill-group__head"><span class="icon-tile"><svg class="icon" aria-hidden="true"><use href="#i-database"/></svg></span><h3>Data</h3></div>
+            <ul class="stack-chips">
+              <li>PostgreSQL</li><li>MySQL</li><li>MariaDB</li><li>SQLite</li><li>Redis</li><li>Flyway</li><li>Laravel migrations</li><li>Excel import / export</li>
+            </ul>
+            <p>Schemas that grow by migration. CareMD alone has more than 410 Flyway files.</p>
+          </article>
+          <article class="skill-group card">
+            <div class="skill-group__head"><span class="icon-tile"><svg class="icon" aria-hidden="true"><use href="#i-terminal"/></svg></span><h3>DevOps and integrations</h3></div>
+            <ul class="stack-chips">
+              <li>Docker</li><li>nginx</li><li>Caddy</li><li>GitLab CI</li><li>GitHub Actions</li><li>New Relic</li><li>DigitalOcean</li><li>Meta Graph API</li><li>Shopify GraphQL</li><li>RingCentral</li><li>WebRTC</li>
+            </ul>
+            <p>I deploy what I build, watch it after release, and connect it to the services a business already uses.</p>
+          </article>
         </div>
+      </div>
     </section>
 
-    <!-- ===== FOOTER ===== -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-social">
-                <a href="https://github.com/afaq-codes" target="_blank" rel="noopener" title="GitHub"><i class="fab fa-github"></i></a>
-                <a href="https://www.linkedin.com/in/afaq-springboot-angular" target="_blank" rel="noopener" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
-                <a href="https://wa.me/923021005535" target="_blank" rel="noopener" title="WhatsApp: 0302 1005535"><i class="fab fa-whatsapp"></i></a>
-                <a href="mailto:afaqch5535@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
-            </div>
-            <p class="mb-0"><strong>Muhammad Afaq</strong> &mdash; Full-Stack Java &amp; Angular Developer &mdash; &copy; 2025</p>
-        </div>
-    </footer>
+    <section class="section section--wash" id="experience" aria-labelledby="experience-title">
+      <div class="container container--narrow">
+        <header class="section-head" data-reveal>
+          <p class="eyebrow">Experience</p>
+          <h2 class="section-title" id="experience-title">Where I've worked.</h2>
+          <p class="section-lead">3.5+ years of full-stack work, from a first role at SecopTech to leading a healthcare platform and launching my own products.</p>
+        </header>
+        <ol class="timeline" data-stagger>
+          <li class="timeline__item">
+            <p class="timeline__when">Feb 2025 to now<br><span class="pill pill--live">Current</span></p>
+            <article class="timeline__card card">
+              <h3>CareMD</h3>
+              <p class="timeline__role">Software Engineer, Full Stack (Primary Developer)</p>
+              <ul>
+                <li>Built the CareMD medical billing platform from scratch and wrote 95%+ of its commits.</li>
+                <li>Shipped the payment ledger, the client portal, Case Flow and the RingCentral phone module to production.</li>
+                <li>Built Nixxe CRM on the CareMD core and split it into its own product in Sep 2026.</li>
+                <li>Run releases end to end: Flyway, Docker, GitLab CI, nginx and New Relic.</li>
+              </ul>
+              <ul class="stack-chips">
+                <li><a href="caremd-demo.html">CareMD</a></li><li><a href="nixxe-crm-demo.html">Nixxe CRM</a></li><li><a href="nixxe-monitoring-demo.html">Nixxe Monitoring</a></li>
+              </ul>
+            </article>
+          </li>
+          <li class="timeline__item">
+            <p class="timeline__when">2026 to now<br><span class="pill pill--brand">Independent</span></p>
+            <article class="timeline__card card">
+              <h3>Own products and freelance</h3>
+              <p class="timeline__role">Product builder and lead developer</p>
+              <ul>
+                <li>Built and launched FamTill, my EPOS for UK phone shops. Live since 11 Nov 2026.</li>
+                <li>Lead developer on Orderyfy, a live marketplace on Laravel 13 with a Claude sales assistant. Launched 5 Nov 2026.</li>
+                <li>Built StockFlow and then OmniStock, offline Electron apps for small shops.</li>
+              </ul>
+              <ul class="stack-chips">
+                <li><a href="famtill-demo.html">FamTill</a></li><li><a href="orderyfy-demo.html">Orderyfy</a></li><li><a href="omnistock-demo.html">OmniStock</a></li>
+              </ul>
+            </article>
+          </li>
+          <li class="timeline__item">
+            <p class="timeline__when">First role<br><span class="pill">RynoChat: Jun to Oct 2026</span></p>
+            <article class="timeline__card card">
+              <h3>SecopTech</h3>
+              <p class="timeline__role">Software Engineer, Full Stack</p>
+              <ul>
+                <li>Led RynoChat with about 80% of the web commits, and built its Flutter app on my own.</li>
+                <li>Major contributor to RynoDesk: vouchers on the journal ledger, CRM features and marketplace integrations.</li>
+                <li>Worked on Chiltan Pure ERP, Chiltan Marketing, Carer and WellnessNow.</li>
+              </ul>
+              <ul class="stack-chips">
+                <li><a href="rynochat-demo.html">RynoChat</a></li><li><a href="rynodesk-demo.html">RynoDesk</a></li><li><a href="carer-demo.html">Carer</a></li><li><a href="chiltan-demo.html">Chiltan ERP</a></li>
+              </ul>
+            </article>
+          </li>
+          <li class="timeline__item timeline__item--past">
+            <p class="timeline__when">2020 to 2024</p>
+            <article class="timeline__card card">
+              <h3>University of Education, Lahore</h3>
+              <p class="timeline__role">BS Information Technology</p>
+              <ul>
+                <li>Final-year project: AutoSchedula, a school timetable system I built on my own.</li>
+              </ul>
+              <ul class="stack-chips">
+                <li><a href="autoschedula-demo.html">AutoSchedula</a></li>
+              </ul>
+            </article>
+          </li>
+        </ol>
+      </div>
+    </section>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <section class="cta-panel" id="contact" aria-labelledby="contact-title">
+      <div class="cta-panel__bg" aria-hidden="true"></div>
+      <div class="container" data-reveal>
+        <p class="eyebrow">Contact</p>
+        <h2 class="section-title" id="contact-title">Have a product to build? <span class="text-gradient">Let's talk.</span></h2>
+        <p class="section-lead">A CRM, an AI assistant inside your product, a POS or a mobile app for your team. Tell me what you need and I'll tell you how I'd build it.</p>
+        <div class="contact-email">
+          <a href="mailto:afaqch5535@gmail.com">afaqch5535@gmail.com</a>
+          <button class="btn btn--on-dark btn--sm" type="button" data-copy="afaqch5535@gmail.com"><svg class="icon" aria-hidden="true"><use href="#i-copy"/></svg><span class="copy-label">Copy</span></button>
+        </div>
+        <span class="sr-only" aria-live="polite" data-copy-status></span>
+        <div class="contact-links">
+          <a class="btn btn--primary btn--lg" href="mailto:afaqch5535@gmail.com" data-magnetic><svg class="icon" aria-hidden="true"><use href="#i-mail"/></svg>Email me</a>
+          <a class="btn btn--on-dark btn--lg" href="https://wa.me/923021005535" target="_blank" rel="noopener noreferrer"><svg class="icon" aria-hidden="true"><use href="#i-whatsapp"/></svg>WhatsApp</a>
+          <a class="btn btn--on-dark btn--lg" href="https://www.linkedin.com/in/afaq-springboot-angular" target="_blank" rel="noopener noreferrer"><svg class="icon" aria-hidden="true"><use href="#i-linkedin"/></svg>LinkedIn</a>
+          <a class="btn btn--on-dark btn--lg" href="https://github.com/afaq-codes" target="_blank" rel="noopener noreferrer"><svg class="icon" aria-hidden="true"><use href="#i-github"/></svg>GitHub</a>
+          <a class="btn btn--on-dark btn--lg" href="https://www.upwork.com/freelancers/~0177755392fb22d5d5" target="_blank" rel="noopener noreferrer"><svg class="icon" aria-hidden="true"><use href="#i-briefcase"/></svg>Upwork</a>
+        </div>
+        <ul class="contact-meta">
+          <li><svg class="icon" aria-hidden="true"><use href="#i-pin"/></svg>Lahore, Pakistan (UTC+5)</li>
+          <li><svg class="icon" aria-hidden="true"><use href="#i-clock"/></svg>30+ hours a week</li>
+          <li><svg class="icon" aria-hidden="true"><use href="#i-briefcase"/></svg>Open to remote work</li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <div data-site-footer></div>
 </body>
 </html>

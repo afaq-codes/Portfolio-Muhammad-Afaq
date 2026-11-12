@@ -1,654 +1,126 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- Google Tag Manager -->
-    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','GTM-59XXTKP9');</script>
-    <!-- End Google Tag Manager -->
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chiltan Pure ERP - Business Management System</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --primary-color: #1e3a5f;
-            --secondary-color: #2c6fad;
-            --success-color: #27ae60;
-            --warning-color: #f39c12;
-            --danger-color: #e74c3c;
-            --info-color: #3498db;
-            --light-bg: #f8f9fa;
-        }
-        
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #ffffff;
-        }
-        
-        .navbar {
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        }
-        
-        .navbar-brand {
-            font-weight: 700;
-            color: white !important;
-        }
-        
-        .nav-link {
-            color: rgba(255,255,255,0.9) !important;
-            font-weight: 500;
-        }
-        
-        .nav-link:hover {
-            color: white !important;
-        }
-        
-        .erp-container {
-            background: #f8f9fa;
-            min-height: 100vh;
-            padding: 0;
-        }
-        
-        .erp-sidebar {
-            background: white;
-            border-right: 1px solid #e9ecef;
-            height: 100vh;
-            overflow-y: auto;
-        }
-        
-        .erp-main {
-            background: white;
-            height: 100vh;
-            overflow-y: auto;
-        }
-        
-        .module-card {
-            border: 1px solid #e9ecef;
-            border-radius: 10px;
-            padding: 1rem;
-            margin-bottom: 1rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-        
-        .module-card:hover {
-            border-color: var(--primary-color);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-        }
-        
-        .module-card.active {
-            border-color: var(--primary-color);
-            background: linear-gradient(135deg, rgba(176, 47, 51, 0.1), rgba(44, 62, 80, 0.1));
-        }
-        
-        .dashboard-card {
-            border: none;
-            border-radius: 15px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-            margin-bottom: 2rem;
-        }
-        
-        .dashboard-header {
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            color: white;
-            padding: 1.5rem;
-            border-radius: 15px 15px 0 0;
-        }
-        
-        .stat-card {
-            background: white;
-            border-radius: 15px;
-            padding: 1.5rem;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-            text-align: center;
-            transition: transform 0.3s ease;
-        }
-        
-        .stat-card:hover {
-            transform: translateY(-5px);
-        }
-        
-        .stat-number {
-            font-size: 2.5rem;
-            font-weight: 700;
-            color: var(--primary-color);
-        }
-        
-        .stat-label {
-            color: #666;
-            font-size: 0.9rem;
-            margin-top: 0.5rem;
-        }
-        
-        .btn-primary {
-            background: var(--primary-color);
-            border: none;
-            border-radius: 25px;
-            padding: 0.75rem 2rem;
-            font-weight: 600;
-        }
-        
-        .btn-primary:hover {
-            background: #1a3456;
-        }
-        
-        .data-table {
-            background: white;
-            border-radius: 10px;
-            overflow: hidden;
-        }
-        
-        .table {
-            margin-bottom: 0;
-        }
-        
-        .table thead {
-            background: var(--primary-color);
-            color: white;
-        }
-        
-        .table tbody tr:hover {
-            background-color: #f8f9fa;
-        }
-        
-        .status-badge {
-            padding: 0.25rem 0.75rem;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: 600;
-        }
-        
-        .status-active {
-            background: #d4edda;
-            color: #155724;
-        }
-        
-        .status-pending {
-            background: #fff3cd;
-            color: #856404;
-        }
-        
-        .status-inactive {
-            background: #f8d7da;
-            color: #721c24;
-        }
-        
-        .chart-container {
-            background: white;
-            border-radius: 15px;
-            padding: 1.5rem;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-        }
-        
-        .api-documentation {
-            background: #f8f9fa;
-            border-radius: 10px;
-            padding: 1.5rem;
-            margin: 1rem 0;
-        }
-        
-        .endpoint-item {
-            background: white;
-            border: 1px solid #e9ecef;
-            border-radius: 8px;
-            padding: 1rem;
-            margin-bottom: 1rem;
-        }
-        
-        .endpoint-method {
-            display: inline-block;
-            padding: 0.25rem 0.75rem;
-            border-radius: 5px;
-            font-size: 0.8rem;
-            font-weight: 600;
-            margin-right: 0.5rem;
-        }
-        
-        .method-get {
-            background: #d4edda;
-            color: #155724;
-        }
-        
-        .method-post {
-            background: #d1ecf1;
-            color: #0c5460;
-        }
-        
-        .method-put {
-            background: #fff3cd;
-            color: #856404;
-        }
-        
-        .method-delete {
-            background: #f8d7da;
-            color: #721c24;
-        }
-    </style>
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-59XXTKP9');</script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Chiltan Pure ERP | Muhammad Afaq</title>
+  <meta name="description" content="The ERP behind a products business in Pakistan: online orders and couriers, shop tills, stock, production, purchasing and staff. My first role, moving it to Spring Boot and Angular.">
+  <meta name="author" content="Muhammad Afaq">
+  <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" content="#ffffff">
+  <link rel="canonical" href="https://muhammadafaqportfolio.netlify.app/chiltan-demo">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Muhammad Afaq">
+  <meta property="og:title" content="Chiltan Pure ERP | Muhammad Afaq">
+  <meta property="og:description" content="Orders, couriers, shop tills, stock, production and staff in one ERP. My first role, on the move to Spring Boot and Angular.">
+  <meta property="og:image" content="https://muhammadafaqportfolio.netlify.app/afaq.png">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%234f63e7'/%3E%3Cstop offset='1' stop-color='%230f9a91'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='64' height='64' rx='16' fill='url(%23g)'/%3E%3Ctext x='32' y='42' font-family='Arial,sans-serif' font-size='28' font-weight='700' fill='white' text-anchor='middle'%3EMA%3C/text%3E%3C/svg%3E">
+  <link rel="apple-touch-icon" href="afaq-72.png">
+  <script>(function(){var t=null;try{t=localStorage.getItem('theme')}catch(e){}if(t!=='light'&&t!=='dark'){t=window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'}document.documentElement.setAttribute('data-theme',t)})();</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700;800&display=swap">
+  <link rel="stylesheet" href="assets/site.css?v=20261112">
+  <script src="assets/site.js?v=20261112" defer></script>
+  <style>
+    .erp-hub .hub__item { min-width: 0; }
+    .erp-hub .hub__item .ui-sub { line-height: 1.3; }
+    .erp-metrics { max-width: 520px; }
+  </style>
 </head>
 <body>
-    <!-- Google Tag Manager (noscript) -->
-    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-59XXTKP9"
-    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-    <!-- End Google Tag Manager (noscript) -->
-    <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-dark">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="#">
-                <i class="fas fa-building me-2"></i>
-                Chiltan Pure ERP
-            </a>
-            <div class="navbar-nav ms-auto">
-                <a class="nav-link" href="index.html">
-                    <i class="fas fa-arrow-left me-1"></i> Portfolio
-                </a>
-                <a class="nav-link" href="#">
-                    <i class="fas fa-bell me-2"></i>
-                    Notifications (5)
-                </a>
-                <a class="nav-link" href="#">
-                    <i class="fas fa-user me-2"></i>
-                    Admin User
-                </a>
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-59XXTKP9" height="0" width="0" style="display:none;visibility:hidden" title="Analytics"></iframe></noscript>
+  <div data-site-header></div>
+  <main id="main">
+    <section class="case-hero">
+      <div class="case-hero__bg" aria-hidden="true"><div class="bg-grid"></div><div class="bg-glow bg-glow--a"></div><div class="bg-glow bg-glow--b"></div></div>
+      <div class="container">
+        <a class="back-link" href="index.html#more"><svg class="icon" aria-hidden="true"><use href="#i-arrow-left"/></svg>All work</a>
+        <div class="case-hero__grid">
+          <div>
+            <div class="case-hero__badges"><span class="pill pill--outline">Past project</span><span class="pill pill--teal">SecopTech</span><span class="pill pill--brand">First role</span></div>
+            <h1 class="case-hero__title">Chiltan Pure ERP: <span class="text-gradient">one system for orders, stock and staff.</span></h1>
+            <p class="case-hero__lead">The ERP behind a products business in Pakistan. It covers online orders and couriers, shop tills, stock, production, purchasing and HR. In my first role I helped move it from a legacy system to Spring Boot and Angular.</p>
+            <dl class="case-hero__meta">
+              <div><dt>Role</dt><dd>Contributor</dd></div>
+              <div><dt>When</dt><dd>First role at SecopTech</dd></div>
+              <div><dt>Stack</dt><dd>Spring Boot 2.1, Angular 12</dd></div>
+              <div><dt>Database</dt><dd>MariaDB</dd></div>
+            </dl>
+          </div>
+          <div class="case-hero__visual" role="img" aria-label="Diagram: the six areas the ERP covers around one shared database.">
+            <div class="win" aria-hidden="true">
+              <div class="win__bar"><span class="win__dots"><i></i><i></i><i></i></span><span class="win__url">ERP areas</span></div>
+              <div class="win__body hub erp-hub">
+                <div class="hub__item"><b>Orders</b><span class="ui-sub">Online orders, couriers, riders</span></div>
+                <div class="hub__item"><b>Shop tills</b><span class="ui-sub">Store sales, returns, day close</span></div>
+                <div class="hub__item"><b>Stock</b><span class="ui-sub">Products, variants, barcodes</span></div>
+                <div class="hub__core" style="--c:#0f9a91"><i></i>One MariaDB database</div>
+                <div class="hub__item"><b>Production</b><span class="ui-sub">Recipes, raw materials</span></div>
+                <div class="hub__item"><b>Purchasing</b><span class="ui-sub">Vendors, purchase orders</span></div>
+                <div class="hub__item"><b>People</b><span class="ui-sub">Staff, attendance, roles</span></div>
+              </div>
             </div>
+          </div>
         </div>
-    </nav>
+      </div>
+    </section>
 
-    <div class="container-fluid erp-container">
-        <div class="row">
-            <!-- Sidebar -->
-            <div class="col-md-3 erp-sidebar">
-                <div class="p-3">
-                    <h5 class="mb-3">
-                        <i class="fas fa-th-large me-2"></i>
-                        ERP Modules
-                    </h5>
-                    
-                    <div class="module-card active">
-                        <div class="d-flex align-items-center">
-                            <i class="fas fa-tachometer-alt text-primary me-3"></i>
-                            <div>
-                                <h6 class="mb-1">Dashboard</h6>
-                                <small class="text-muted">Overview & Analytics</small>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="module-card">
-                        <div class="d-flex align-items-center">
-                            <i class="fas fa-users text-success me-3"></i>
-                            <div>
-                                <h6 class="mb-1">User Management</h6>
-                                <small class="text-muted">Users & Roles</small>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="module-card">
-                        <div class="d-flex align-items-center">
-                            <i class="fas fa-boxes text-info me-3"></i>
-                            <div>
-                                <h6 class="mb-1">Inventory</h6>
-                                <small class="text-muted">Stock Management</small>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="module-card">
-                        <div class="d-flex align-items-center">
-                            <i class="fas fa-file-invoice text-warning me-3"></i>
-                            <div>
-                                <h6 class="mb-1">Sales</h6>
-                                <small class="text-muted">Sales & Orders</small>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="module-card">
-                        <div class="d-flex align-items-center">
-                            <i class="fas fa-chart-bar text-danger me-3"></i>
-                            <div>
-                                <h6 class="mb-1">Reports</h6>
-                                <small class="text-muted">Analytics & Reports</small>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="module-card">
-                        <div class="d-flex align-items-center">
-                            <i class="fas fa-cog text-secondary me-3"></i>
-                            <div>
-                                <h6 class="mb-1">Settings</h6>
-                                <small class="text-muted">System Configuration</small>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+    <nav class="case-nav" aria-label="On this page"><div class="container"><div class="case-nav__list"><a href="#overview">Overview</a><a href="#areas">What it covers</a><a href="#role">My role</a><a href="#stack">Stack</a></div></div></nav>
 
-            <!-- Main Content -->
-            <div class="col-md-9 erp-main">
-                <div class="p-3">
-                    <!-- Dashboard Stats -->
-                    <div class="row mb-4">
-                        <div class="col-md-3">
-                            <div class="stat-card">
-                                <div class="stat-number">1,250</div>
-                                <div class="stat-label">Total Users</div>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="stat-card">
-                                <div class="stat-number">5,680</div>
-                                <div class="stat-label">Products</div>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="stat-card">
-                                <div class="stat-number">$125,430</div>
-                                <div class="stat-label">Monthly Revenue</div>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="stat-card">
-                                <div class="stat-number">98.5%</div>
-                                <div class="stat-label">System Uptime</div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- User Management -->
-                    <div class="card dashboard-card">
-                        <div class="dashboard-header">
-                            <h5 class="mb-0">
-                                <i class="fas fa-users me-2"></i>
-                                User Management System
-                            </h5>
-                        </div>
-                        <div class="card-body">
-                            <div class="data-table">
-                                <table class="table table-hover">
-                                    <thead>
-                                        <tr>
-                                            <th>User ID</th>
-                                            <th>Name</th>
-                                            <th>Email</th>
-                                            <th>Role</th>
-                                            <th>Department</th>
-                                            <th>Status</th>
-                                            <th>Last Login</th>
-                                            <th>Actions</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>U-001</td>
-                                            <td>John Smith</td>
-                                            <td>john.smith@company.com</td>
-                                            <td>Administrator</td>
-                                            <td>IT</td>
-                                            <td><span class="status-badge status-active">Active</span></td>
-                                            <td>2024-01-15 10:30</td>
-                                            <td>
-                                                <button class="btn btn-sm btn-outline-primary">Edit</button>
-                                                <button class="btn btn-sm btn-outline-danger">Delete</button>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>U-002</td>
-                                            <td>Sarah Johnson</td>
-                                            <td>sarah.johnson@company.com</td>
-                                            <td>Manager</td>
-                                            <td>Sales</td>
-                                            <td><span class="status-badge status-active">Active</span></td>
-                                            <td>2024-01-15 09:15</td>
-                                            <td>
-                                                <button class="btn btn-sm btn-outline-primary">Edit</button>
-                                                <button class="btn btn-sm btn-outline-danger">Delete</button>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>U-003</td>
-                                            <td>Mike Brown</td>
-                                            <td>mike.brown@company.com</td>
-                                            <td>Employee</td>
-                                            <td>Inventory</td>
-                                            <td><span class="status-badge status-pending">Pending</span></td>
-                                            <td>2024-01-14 16:45</td>
-                                            <td>
-                                                <button class="btn btn-sm btn-outline-primary">Edit</button>
-                                                <button class="btn btn-sm btn-outline-danger">Delete</button>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>U-004</td>
-                                            <td>Emily Davis</td>
-                                            <td>emily.davis@company.com</td>
-                                            <td>Employee</td>
-                                            <td>Finance</td>
-                                            <td><span class="status-badge status-inactive">Inactive</span></td>
-                                            <td>2024-01-10 14:20</td>
-                                            <td>
-                                                <button class="btn btn-sm btn-outline-primary">Edit</button>
-                                                <button class="btn btn-sm btn-outline-danger">Delete</button>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Inventory Management -->
-                    <div class="card dashboard-card">
-                        <div class="dashboard-header">
-                            <h5 class="mb-0">
-                                <i class="fas fa-boxes me-2"></i>
-                                Inventory Management
-                            </h5>
-                        </div>
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-md-8">
-                                    <div class="data-table">
-                                        <table class="table table-hover">
-                                            <thead>
-                                                <tr>
-                                                    <th>Product ID</th>
-                                                    <th>Product Name</th>
-                                                    <th>Category</th>
-                                                    <th>Stock</th>
-                                                    <th>Price</th>
-                                                    <th>Status</th>
-                                                    <th>Actions</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td>P-001</td>
-                                                    <td>Laptop Computer</td>
-                                                    <td>Electronics</td>
-                                                    <td>45</td>
-                                                    <td>$999.99</td>
-                                                    <td><span class="status-badge status-active">In Stock</span></td>
-                                                    <td>
-                                                        <button class="btn btn-sm btn-outline-primary">Edit</button>
-                                                        <button class="btn btn-sm btn-outline-success">Update Stock</button>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>P-002</td>
-                                                    <td>Office Chair</td>
-                                                    <td>Furniture</td>
-                                                    <td>12</td>
-                                                    <td>$299.99</td>
-                                                    <td><span class="status-badge status-pending">Low Stock</span></td>
-                                                    <td>
-                                                        <button class="btn btn-sm btn-outline-primary">Edit</button>
-                                                        <button class="btn btn-sm btn-outline-success">Update Stock</button>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>P-003</td>
-                                                    <td>Printer Paper</td>
-                                                    <td>Office Supplies</td>
-                                                    <td>0</td>
-                                                    <td>$24.99</td>
-                                                    <td><span class="status-badge status-inactive">Out of Stock</span></td>
-                                                    <td>
-                                                        <button class="btn btn-sm btn-outline-primary">Edit</button>
-                                                        <button class="btn btn-sm btn-outline-success">Update Stock</button>
-                                                    </td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="chart-container">
-                                        <h6 class="mb-3">Inventory Overview</h6>
-                                        <div class="text-center">
-                                            <div class="h4 text-primary">5,680</div>
-                                            <small class="text-muted">Total Products</small>
-                                        </div>
-                                        <hr>
-                                        <div class="d-flex justify-content-between mb-2">
-                                            <span>In Stock</span>
-                                            <span class="text-success">4,250</span>
-                                        </div>
-                                        <div class="d-flex justify-content-between mb-2">
-                                            <span>Low Stock</span>
-                                            <span class="text-warning">1,200</span>
-                                        </div>
-                                        <div class="d-flex justify-content-between mb-2">
-                                            <span>Out of Stock</span>
-                                            <span class="text-danger">230</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- API Documentation -->
-                    <div class="card dashboard-card">
-                        <div class="dashboard-header">
-                            <h5 class="mb-0">
-                                <i class="fas fa-code me-2"></i>
-                                API Documentation (Swagger Integration)
-                            </h5>
-                        </div>
-                        <div class="card-body">
-                            <div class="api-documentation">
-                                <h6 class="mb-3">RESTful API Endpoints</h6>
-                                
-                                <div class="endpoint-item">
-                                    <div class="d-flex align-items-center mb-2">
-                                        <span class="endpoint-method method-get">GET</span>
-                                        <code>/api/users</code>
-                                    </div>
-                                    <p class="text-muted mb-0">Retrieve all users with pagination and filtering</p>
-                                </div>
-                                
-                                <div class="endpoint-item">
-                                    <div class="d-flex align-items-center mb-2">
-                                        <span class="endpoint-method method-post">POST</span>
-                                        <code>/api/users</code>
-                                    </div>
-                                    <p class="text-muted mb-0">Create a new user with validation</p>
-                                </div>
-                                
-                                <div class="endpoint-item">
-                                    <div class="d-flex align-items-center mb-2">
-                                        <span class="endpoint-method method-put">PUT</span>
-                                        <code>/api/users/{id}</code>
-                                    </div>
-                                    <p class="text-muted mb-0">Update user information by ID</p>
-                                </div>
-                                
-                                <div class="endpoint-item">
-                                    <div class="d-flex align-items-center mb-2">
-                                        <span class="endpoint-method method-delete">DELETE</span>
-                                        <code>/api/users/{id}</code>
-                                    </div>
-                                    <p class="text-muted mb-0">Delete user by ID (soft delete)</p>
-                                </div>
-                                
-                                <div class="endpoint-item">
-                                    <div class="d-flex align-items-center mb-2">
-                                        <span class="endpoint-method method-get">GET</span>
-                                        <code>/api/inventory/products</code>
-                                    </div>
-                                    <p class="text-muted mb-0">Get inventory products with search and filter</p>
-                                </div>
-                                
-                                <div class="endpoint-item">
-                                    <div class="d-flex align-items-center mb-2">
-                                        <span class="endpoint-method method-get">GET</span>
-                                        <code>/api/reports/sales</code>
-                                    </div>
-                                    <p class="text-muted mb-0">Generate sales reports with date range</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Technical Features -->
-                    <div class="card dashboard-card">
-                        <div class="dashboard-header">
-                            <h5 class="mb-0">
-                                <i class="fas fa-cogs me-2"></i>
-                                Technical Implementation
-                            </h5>
-                        </div>
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <h6>Backend Technologies</h6>
-                                    <ul class="list-unstyled">
-                                        <li><i class="fas fa-check text-success me-2"></i>Spring Boot 2.1.8</li>
-                                        <li><i class="fas fa-check text-success me-2"></i>Java 11</li>
-                                        <li><i class="fas fa-check text-success me-2"></i>MariaDB Database</li>
-                                        <li><i class="fas fa-check text-success me-2"></i>Liquibase Migrations</li>
-                                        <li><i class="fas fa-check text-success me-2"></i>JWT Authentication</li>
-                                        <li><i class="fas fa-check text-success me-2"></i>Swagger Documentation</li>
-                                    </ul>
-                                </div>
-                                <div class="col-md-4">
-                                    <h6>Frontend Technologies</h6>
-                                    <ul class="list-unstyled">
-                                        <li><i class="fas fa-check text-success me-2"></i>Angular 12</li>
-                                        <li><i class="fas fa-check text-success me-2"></i>TypeScript</li>
-                                        <li><i class="fas fa-check text-success me-2"></i>Bootstrap 5</li>
-                                        <li><i class="fas fa-check text-success me-2"></i>Chart.js</li>
-                                        <li><i class="fas fa-check text-success me-2"></i>Responsive Design</li>
-                                        <li><i class="fas fa-check text-success me-2"></i>Interactive UI</li>
-                                    </ul>
-                                </div>
-                                <div class="col-md-4">
-                                    <h6>Key Features</h6>
-                                    <ul class="list-unstyled">
-                                        <li><i class="fas fa-check text-success me-2"></i>Multi-module Architecture</li>
-                                        <li><i class="fas fa-check text-success me-2"></i>Role-based Access Control</li>
-                                        <li><i class="fas fa-check text-success me-2"></i>Inventory Management</li>
-                                        <li><i class="fas fa-check text-success me-2"></i>User Management</li>
-                                        <li><i class="fas fa-check text-success me-2"></i>Reporting System</li>
-                                        <li><i class="fas fa-check text-success me-2"></i>API Documentation</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+    <section class="case-section" id="overview"><div class="container case-section__grid">
+      <header class="case-section__head" data-reveal><p class="eyebrow">Overview</p><h2 class="case-section__title">Many ways to sell, one system.</h2></header>
+      <div class="case-section__body" data-reveal>
+        <p>The business makes its own products and sells them online, by courier, and in its own shops. Those orders, the stock behind them, production and staff all sit in one ERP and one database.</p>
+        <div class="metric-row erp-metrics" data-stagger>
+          <div class="metric"><span class="metric__value"><span data-count="127">127</span></span><span class="metric__label">tables in the ERP database, Nov 2024 (whole system)</span></div>
         </div>
-    </div>
+      </div>
+    </div></section>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <section class="case-section" id="areas"><div class="container case-section__grid">
+      <header class="case-section__head" data-reveal><p class="eyebrow">What it covers</p><h2 class="case-section__title">Six areas.</h2></header>
+      <div class="case-section__body">
+        <div class="feature-grid feature-grid--3" data-stagger>
+          <div class="feature"><span class="icon-tile"><svg class="icon" aria-hidden="true"><use href="#i-briefcase"/></svg></span><h3>Online orders</h3><p>Order status history, courier bookings and tracking, riders and order sync jobs.</p></div>
+          <div class="feature"><span class="icon-tile"><svg class="icon" aria-hidden="true"><use href="#i-wallet"/></svg></span><h3>Shop tills</h3><p>Store orders, payments and returns, cash entries and a day close.</p></div>
+          <div class="feature"><span class="icon-tile"><svg class="icon" aria-hidden="true"><use href="#i-layers"/></svg></span><h3>Stock</h3><p>Products with variants, barcodes and stickers, store stock and audits.</p></div>
+          <div class="feature"><span class="icon-tile"><svg class="icon" aria-hidden="true"><use href="#i-sparkles"/></svg></span><h3>Production</h3><p>Recipes, raw materials, manufacturing requests and material use.</p></div>
+          <div class="feature"><span class="icon-tile"><svg class="icon" aria-hidden="true"><use href="#i-database"/></svg></span><h3>Purchasing</h3><p>Vendors, purchase orders and returns, and demand sheets.</p></div>
+          <div class="feature"><span class="icon-tile"><svg class="icon" aria-hidden="true"><use href="#i-users"/></svg></span><h3>People</h3><p>Employees, attendance, allowances, users, roles and role groups.</p></div>
+        </div>
+        <p class="note"><b>Where this comes from:</b> the system's database schema (Nov 2024). It shows what the ERP covers, not a list of what I built.</p>
+      </div>
+    </div></section>
+
+    <section class="case-section" id="role"><div class="container case-section__grid">
+      <header class="case-section__head" data-reveal><p class="eyebrow">My role</p><h2 class="case-section__title">Where I started.</h2></header>
+      <div class="case-section__body" data-reveal>
+        <p>This was in my first role. I was one of the developers moving the ERP from its legacy system to a Spring Boot backend and an Angular frontend.</p>
+        <p>The source code is not on my machine, so this page has no commit counts or code numbers.</p>
+      </div>
+    </div></section>
+
+    <section class="case-section" id="stack"><div class="container case-section__grid">
+      <header class="case-section__head" data-reveal><h2 class="case-section__title">Stack</h2></header>
+      <div class="case-section__body" data-reveal>
+        <ul class="stack-chips stack-chips--lg">
+          <li>Spring Boot 2.1</li><li>JPA / Hibernate</li><li>Angular 12</li><li>TypeScript</li><li>MariaDB</li>
+        </ul>
+      </div>
+    </div></section>
+
+    <section class="section section--tight"><div class="container">
+      <a class="next-project card card--spot card--lift" data-spot href="autoschedula-demo.html">
+        <div><p class="next-project__label">Next project</p><p class="next-project__title">AutoSchedula</p><p class="next-project__text">Timetables for classes, teachers and rooms</p></div>
+        <span class="next-project__arrow" aria-hidden="true"><svg class="icon"><use href="#i-arrow-right"/></svg></span>
+      </a>
+    </div></section>
+  </main>
+  <div data-site-footer></div>
 </body>
 </html>

@@ -1,0 +1,170 @@
+/* Montserrat — body text (Google Fonts) */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,500;0,600;0,700;1,500&display=swap');
+
+/* Technovier — headings only (self-hosted; no reliable numerals) */
+@font-face {
+    font-family: 'Technovier';
+    font-style: normal;
+    font-weight: 300;
+    font-display: swap;
+    src: local('Technovier Light'), url('fonts/Technovier-Light.woff') format('woff');
+}
+@font-face {
+    font-family: 'Technovier';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: local('Technovier'), url('fonts/Technovier-Regular.woff') format('woff');
+}
+@font-face {
+    font-family: 'Technovier';
+    font-style: normal;
+    font-weight: 700;
+    font-display: swap;
+    src: local('Technovier Bold'), url('fonts/Technovier-Bold.woff') format('woff');
+}
+
+:root {
+    --font-body: 'Montserrat', sans-serif;
+    --font-heading: 'Technovier', sans-serif;
+    --font-weight: 500;
+}
+
+html,
+body {
+    font-family: var(--font-body);
+    font-weight: var(--font-weight);
+}
+
+/* Body & UI text */
+button,
+input,
+select,
+textarea,
+.btn,
+.form-control,
+.dropdown-item,
+.mobile-nav-link,
+.mobile-nav-sublink,
+.mobile-nav-phone,
+.site-navbar .nav-link,
+.offcanvas-body,
+p,
+li,
+td,
+th,
+label,
+small,
+.about-text,
+.hero-role,
+.brand-subtitle,
+.hero-chip,
+.section-sub,
+.section-eyebrow,
+.exp-role,
+.exp-highlights li,
+.feature-list li,
+.project-tagline,
+.project-section-label,
+.skill-pill,
+.panel-desc,
+.module-card-body,
+.module-card-body ul,
+.tech-badge,
+.exp-chip,
+.badge-contribution,
+.badge-company,
+.exp-proj-tag,
+.feat-tag,
+.status-badge,
+.current-pill,
+.stack-pill,
+.tile span,
+.pos-total,
+.flow-arrow,
+.chip-value,
+.chip-label,
+.chip-desktop,
+.chip-mobile,
+.mobile-nav-sublink,
+.dropdown-item,
+.contact-desc,
+.btn-cta,
+.footer,
+.site-footer {
+    font-family: var(--font-body);
+    font-weight: var(--font-weight);
+}
+
+/* Stats & metrics — Montserrat only (Technovier breaks digits and symbols) */
+.proof-num,
+.proof-lbl,
+.stat-card-num,
+.p-stat-num,
+.hero-stat-num,
+.stat-number,
+.stat-card-lbl,
+.p-stat-lbl,
+.hero-stat-lbl,
+.stat-label {
+    font-family: var(--font-body) !important;
+    letter-spacing: 0 !important;
+}
+
+.stat-card-num,
+.p-stat-num,
+.hero-stat-num,
+.stat-number {
+    font-weight: 600 !important;
+}
+
+.stat-card-lbl,
+.p-stat-lbl,
+.hero-stat-lbl,
+.stat-label,
+.proof-lbl {
+    font-weight: var(--font-weight) !important;
+}
+
+.proof-num {
+    font-weight: 700 !important;
+    font-variant-numeric: tabular-nums lining-nums;
+}
+
+/* Headings — Technovier */
+h1, h2, h3, h4, h5, h6,
+.h1, .h2, .h3, .h4, .h5, .h6,
+.hero-title,
+.section-heading,
+.contact-heading,
+.exp-company,
+.project-name,
+.panel-title,
+.skill-card-title,
+.hero-demo h1,
+.panel-banner h2,
+.arch-bar h4,
+.flow-bar h5,
+.mock-section h5,
+.visual-box h6,
+.module-card-head h6,
+.brand-name,
+.offcanvas-title {
+    font-family: var(--font-heading) !important;
+    font-weight: var(--font-weight) !important;
+    letter-spacing: 0.03em;
+}
+
+/* Restore Font Awesome icon weights */
+.fa-solid,
+.fas {
+    font-weight: 900 !important;
+}
+.fa-regular,
+.far {
+    font-weight: 400 !important;
+}
+.fa-brands,
+.fab {
+    font-weight: 400 !important;
+}

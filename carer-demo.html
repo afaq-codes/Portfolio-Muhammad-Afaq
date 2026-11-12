@@ -1,373 +1,227 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- Google Tag Manager -->
-    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','GTM-59XXTKP9');</script>
-    <!-- End Google Tag Manager -->
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Carer - Care Management System</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --primary-color: #0891b2;
-            --secondary-color: #065f74;
-            --success-color: #059669;
-            --warning-color: #d97706;
-            --danger-color: #dc2626;
-            --info-color: #2563eb;
-            --light-bg: #f0f9ff;
-        }
-
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #f8fafc;
-        }
-
-        .navbar {
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            box-shadow: 0 2px 10px rgba(0,0,0,0.12);
-        }
-        .navbar-brand { font-weight: 700; color: white !important; }
-        .nav-link { color: rgba(255,255,255,0.85) !important; font-weight: 500; }
-        .nav-link:hover { color: white !important; }
-
-        .sidebar {
-            background: white;
-            min-height: 100vh;
-            border-right: 1px solid #e2e8f0;
-            padding: 0;
-        }
-        .sidebar .nav-link {
-            color: #475569 !important;
-            padding: 0.85rem 1.5rem;
-            border-bottom: 1px solid #f1f5f9;
-            font-size: 0.875rem;
-            font-weight: 500;
-            transition: all 0.2s;
-        }
-        .sidebar .nav-link:hover,
-        .sidebar .nav-link.active {
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            color: white !important;
-        }
-
-        .main-content { padding: 2rem; background: #f8fafc; min-height: 100vh; }
-
-        .stat-card {
-            background: white;
-            border-radius: 16px;
-            padding: 1.5rem;
-            box-shadow: 0 2px 12px rgba(0,0,0,0.06);
-            border: 1px solid #e2e8f0;
-            text-align: center;
-            transition: transform 0.3s;
-        }
-        .stat-card:hover { transform: translateY(-4px); box-shadow: 0 8px 25px rgba(0,0,0,0.1); }
-        .stat-number { font-size: 2.25rem; font-weight: 800; color: var(--primary-color); }
-        .stat-label { color: #64748b; font-size: 0.8rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; margin-top: 0.4rem; }
-        .stat-icon {
-            width: 44px; height: 44px;
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            border-radius: 12px;
-            display: flex; align-items: center; justify-content: center;
-            margin: 0 auto 0.75rem;
-        }
-        .stat-icon i { color: white; font-size: 1.1rem; }
-
-        .dashboard-card {
-            border: none;
-            border-radius: 16px;
-            box-shadow: 0 2px 12px rgba(0,0,0,0.06);
-            margin-bottom: 1.5rem;
-            background: white;
-            border: 1px solid #e2e8f0;
-        }
-        .dashboard-header {
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            color: white;
-            padding: 1.25rem 1.5rem;
-            border-radius: 16px 16px 0 0;
-            font-weight: 600;
-        }
-
-        .btn-primary {
-            background: var(--primary-color);
-            border: none;
-            border-radius: 50px;
-            padding: 0.6rem 1.5rem;
-            font-weight: 600;
-            font-size: 0.875rem;
-        }
-        .btn-primary:hover { background: #0e7490; }
-
-        .care-plan-card {
-            background: var(--light-bg);
-            border-left: 4px solid var(--primary-color);
-            padding: 1rem 1.25rem;
-            margin-bottom: 0.875rem;
-            border-radius: 0 12px 12px 0;
-            border: 1px solid #bae6fd;
-            border-left: 4px solid var(--primary-color);
-        }
-        .status-badge { padding: 0.25rem 0.75rem; border-radius: 50px; font-size: 0.75rem; font-weight: 600; }
-        .status-active { background: #d1fae5; color: #065f46; }
-        .status-pending { background: #fef3c7; color: #92400e; }
-        .status-review { background: #dbeafe; color: #1e40af; }
-
-        .role-badge {
-            padding: 0.2rem 0.65rem;
-            border-radius: 50px;
-            font-size: 0.75rem;
-            font-weight: 600;
-        }
-        .role-admin { background: #f3e8ff; color: #6b21a8; }
-        .role-carer { background: #e0f2fe; color: #0369a1; }
-        .role-supervisor { background: #fef9c3; color: #713f12; }
-
-        .table thead { background: linear-gradient(135deg, var(--primary-color), var(--secondary-color)); color: white; }
-        .table thead th { border: none; font-weight: 600; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.5px; padding: 0.875rem 1rem; }
-
-        .chart-placeholder {
-            background: var(--light-bg);
-            border-radius: 12px;
-            padding: 2rem;
-            text-align: center;
-            border: 2px dashed #bae6fd;
-        }
-        .amchart-bar {
-            display: flex; align-items: flex-end; gap: 8px; height: 120px; justify-content: center; margin: 1rem 0;
-        }
-        .bar { background: linear-gradient(to top, var(--primary-color), #38bdf8); border-radius: 4px 4px 0 0; width: 28px; }
-    </style>
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-59XXTKP9');</script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Carer | Muhammad Afaq</title>
+  <meta name="description" content="Carer is a care-agency management product on Spring Boot 3.2 and Angular 20, with access, CRM and HRM modules. Muhammad Afaq refactored its care plans, shifts and rotations.">
+  <meta name="author" content="Muhammad Afaq">
+  <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" content="#ffffff">
+  <link rel="canonical" href="https://muhammadafaqportfolio.netlify.app/carer-demo.html">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Muhammad Afaq">
+  <meta property="og:url" content="https://muhammadafaqportfolio.netlify.app/carer-demo.html">
+  <meta property="og:title" content="Carer | Muhammad Afaq">
+  <meta property="og:description" content="Care-agency management on Spring Boot and Angular 20. I refactored care plans, shifts and client rotations.">
+  <meta property="og:image" content="https://muhammadafaqportfolio.netlify.app/afaq.png">
+  <meta name="twitter:card" content="summary">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%234f63e7'/%3E%3Cstop offset='1' stop-color='%230f9a91'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='64' height='64' rx='16' fill='url(%23g)'/%3E%3Ctext x='32' y='42' font-family='Arial,sans-serif' font-size='28' font-weight='700' fill='white' text-anchor='middle'%3EMA%3C/text%3E%3C/svg%3E">
+  <link rel="apple-touch-icon" href="afaq-72.png">
+  <script>(function(){var t=null;try{t=localStorage.getItem('theme')}catch(e){}if(t!=='light'&&t!=='dark'){t=window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'}document.documentElement.setAttribute('data-theme',t)})();</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700;800&display=swap">
+  <link rel="stylesheet" href="assets/site.css?v=20261112">
+  <script src="assets/site.js?v=20261112" defer></script>
+  <style>
+    .cp { display: grid; gap: 0.9em; }
+    .cp-week { display: grid; grid-template-columns: minmax(0, 1.6fr) repeat(7, minmax(0, 1fr)); gap: 0.3em; align-items: center; font-size: 0.8em; }
+    .cp-week > span { color: var(--muted); font-weight: 600; text-align: center; }
+    .cp-week > b { color: var(--ink-2); font-weight: 600; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .cp-week > i { height: 1.7em; border-radius: 0.4em; background: var(--ui-fill); }
+    .cp-week > i.on { background: color-mix(in srgb, var(--c, var(--teal)) 30%, var(--card)); box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--c, var(--teal)) 45%, transparent); }
+    .cp-shift { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; gap: 0.6em; align-items: center; padding: 0.55em 0.6em; border: 1px solid var(--line); border-radius: 0.7em; background: var(--card-2); }
+    .timeline-mini { display: grid; gap: 28px; }
+    .timeline-mini h3 { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; }
+    .timeline-mini .check-list { margin-top: 12px; }
+    .case-footnote { color: var(--muted); font-size: 0.875rem; }
+  </style>
 </head>
 <body>
-    <!-- Google Tag Manager (noscript) -->
-    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-59XXTKP9"
-    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-    <!-- End Google Tag Manager (noscript) -->
-
-    <nav class="navbar navbar-expand-lg navbar-dark">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="#">
-                <i class="fas fa-hand-holding-heart me-2"></i>
-                Carer — Care Management
-            </a>
-            <div class="navbar-nav ms-auto">
-                <a class="nav-link" href="index.html">
-                    <i class="fas fa-arrow-left me-1"></i> Portfolio
-                </a>
-                <a class="nav-link" href="#">
-                    <i class="fas fa-bell me-2"></i> Alerts (4)
-                </a>
-                <a class="nav-link" href="#">
-                    <i class="fas fa-user me-2"></i> Supervisor
-                </a>
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-59XXTKP9" height="0" width="0" style="display:none;visibility:hidden" title="Analytics"></iframe></noscript>
+  <div data-site-header></div>
+  <main id="main">
+    <section class="case-hero">
+      <div class="case-hero__bg" aria-hidden="true"><div class="bg-grid"></div><div class="bg-glow bg-glow--a"></div><div class="bg-glow bg-glow--b"></div></div>
+      <div class="container">
+        <a class="back-link" href="index.html#more"><svg class="icon" aria-hidden="true"><use href="#i-arrow-left"/></svg>All work</a>
+        <div class="case-hero__grid">
+          <div>
+            <div class="case-hero__badges">
+              <span class="pill pill--outline">Internal</span>
+              <span class="pill pill--brand">Contributor</span>
+              <span class="pill pill--teal">SecopTech</span>
             </div>
+            <h1 class="case-hero__title">Carer: <span class="text-gradient">care-agency management.</span></h1>
+            <p class="case-hero__lead">A product for home-care agencies: clients, care plans, staff and shifts, with access control per tenant. I worked on it in a team of three, mostly on care plans, shifts and client rotations.</p>
+            <dl class="case-hero__meta">
+              <div><dt>Role</dt><dd>Contributor, full stack</dd></div>
+              <div><dt>When</dt><dd>Nov 2025, Apr 2026</dd></div>
+              <div><dt>Company</dt><dd>SecopTech</dd></div>
+              <div><dt>Stack</dt><dd>Spring Boot 3.2, Angular 20</dd></div>
+            </dl>
+          </div>
+          <div class="case-hero__visual" role="img" aria-label="Illustration with sample data: a weekly care plan for a sample client, with food, housekeeping and care tasks marked by day, and two shifts below it.">
+            <div class="win" aria-hidden="true">
+              <div class="win__bar"><span class="win__dots"><i></i><i></i><i></i></span><span class="win__url"><svg class="icon"><use href="#i-lock"/></svg>Care plans</span></div>
+              <div class="win__body cp">
+                <div class="mini-split">
+                  <div class="ui-row"><span class="ui-avatar" style="--c:var(--teal)">CA</span><div><p class="ui-title">Client A</p><p class="ui-sub">Care plan · week view</p></div></div>
+                  <span class="ui-badge" style="--c:var(--teal)">Active</span>
+                </div>
+                <div class="cp-week">
+                  <b></b><span>M</span><span>T</span><span>W</span><span>T</span><span>F</span><span>S</span><span>S</span>
+                  <b>Food</b><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i>
+                  <b>Housekeeping</b><i class="on" style="--c:var(--brand)"></i><i></i><i class="on" style="--c:var(--brand)"></i><i></i><i class="on" style="--c:var(--brand)"></i><i></i><i></i>
+                  <b>Care to-dos</b><i class="on" style="--c:var(--amber)"></i><i class="on" style="--c:var(--amber)"></i><i></i><i class="on" style="--c:var(--amber)"></i><i></i><i class="on" style="--c:var(--amber)"></i><i></i>
+                </div>
+                <div class="mini-stack">
+                  <div class="cp-shift"><span class="ui-avatar" style="--c:var(--brand)">S1</span><div><p class="ui-title" style="font-size:.9em">Morning visit</p><p class="ui-sub">08:00 to 09:00 · Staff A</p></div><span class="ui-badge" style="--c:#2fbf71;--c-ink:var(--green-ink)">Assigned</span></div>
+                  <div class="cp-shift"><span class="ui-avatar" style="--c:var(--violet)">S2</span><div><p class="ui-title" style="font-size:.9em">Evening visit</p><p class="ui-sub">18:30 to 19:15 · rotation</p></div><span class="ui-badge" style="--c:var(--amber)">Open</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
+      </div>
+    </section>
+
+    <nav class="case-nav" aria-label="On this page">
+      <div class="container">
+        <div class="case-nav__list">
+          <a href="#problem">Problem</a><a href="#product">The product</a><a href="#work">My work</a><a href="#numbers">Numbers</a><a href="#stack">Stack</a>
+        </div>
+      </div>
     </nav>
 
-    <div class="container-fluid">
-        <div class="row">
-            <!-- Sidebar -->
-            <div class="col-md-2 sidebar">
-                <ul class="nav flex-column">
-                    <li class="nav-item"><a class="nav-link active" href="#"><i class="fas fa-tachometer-alt me-2"></i>Dashboard</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#"><i class="fas fa-users me-2"></i>Care Recipients</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#"><i class="fas fa-user-nurse me-2"></i>Carers</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#"><i class="fas fa-clipboard-list me-2"></i>Care Plans</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#"><i class="fas fa-calendar-check me-2"></i>Visits</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#"><i class="fas fa-chart-bar me-2"></i>Reports</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#"><i class="fas fa-shield-alt me-2"></i>Permissions</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#"><i class="fas fa-cog me-2"></i>Settings</a></li>
-                </ul>
-            </div>
-
-            <!-- Main Content -->
-            <div class="col-md-10 main-content">
-                <!-- Stats Row -->
-                <div class="row g-3 mb-4">
-                    <div class="col-md-3">
-                        <div class="stat-card">
-                            <div class="stat-icon"><i class="fas fa-users"></i></div>
-                            <div class="stat-number">284</div>
-                            <div class="stat-label">Care Recipients</div>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="stat-card">
-                            <div class="stat-icon"><i class="fas fa-user-nurse"></i></div>
-                            <div class="stat-number">47</div>
-                            <div class="stat-label">Active Carers</div>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="stat-card">
-                            <div class="stat-icon"><i class="fas fa-calendar-check"></i></div>
-                            <div class="stat-number">136</div>
-                            <div class="stat-label">Visits Today</div>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="stat-card">
-                            <div class="stat-icon"><i class="fas fa-clipboard-list"></i></div>
-                            <div class="stat-number">98%</div>
-                            <div class="stat-label">Plan Compliance</div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row g-3">
-                    <!-- Active Care Plans -->
-                    <div class="col-md-6">
-                        <div class="card dashboard-card">
-                            <div class="dashboard-header">
-                                <i class="fas fa-clipboard-list me-2"></i>Active Care Plans
-                            </div>
-                            <div class="card-body p-3">
-                                <div class="care-plan-card">
-                                    <div class="d-flex justify-content-between align-items-start">
-                                        <div>
-                                            <h6 class="mb-1 fw-600">Margaret Thompson</h6>
-                                            <small class="text-muted">Personal Care &amp; Medication Support</small><br>
-                                            <small class="text-muted">Carer: James Wilson &bull; Daily Visits</small>
-                                        </div>
-                                        <span class="status-badge status-active">Active</span>
-                                    </div>
-                                </div>
-                                <div class="care-plan-card">
-                                    <div class="d-flex justify-content-between align-items-start">
-                                        <div>
-                                            <h6 class="mb-1">Robert Clarke</h6>
-                                            <small class="text-muted">Mobility Assistance &amp; Companionship</small><br>
-                                            <small class="text-muted">Carer: Sarah Ahmed &bull; 3x Per Week</small>
-                                        </div>
-                                        <span class="status-badge status-pending">Review Due</span>
-                                    </div>
-                                </div>
-                                <div class="care-plan-card">
-                                    <div class="d-flex justify-content-between align-items-start">
-                                        <div>
-                                            <h6 class="mb-1">Dorothy Evans</h6>
-                                            <small class="text-muted">Dementia Care &amp; Daily Living Support</small><br>
-                                            <small class="text-muted">Carer: Michael Brown &bull; Twice Daily</small>
-                                        </div>
-                                        <span class="status-badge status-active">Active</span>
-                                    </div>
-                                </div>
-                                <div class="text-center mt-2">
-                                    <a href="#" class="btn btn-primary btn-sm">View All Plans</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Role & Permission Management -->
-                    <div class="col-md-6">
-                        <div class="card dashboard-card">
-                            <div class="dashboard-header">
-                                <i class="fas fa-shield-alt me-2"></i>Role &amp; Permission Management
-                            </div>
-                            <div class="card-body p-3">
-                                <p class="small text-muted mb-3">Role-based access control using ngx-permissions — each role has defined module permissions.</p>
-                                <table class="table table-sm table-hover mb-0">
-                                    <thead>
-                                        <tr>
-                                            <th>User</th>
-                                            <th>Role</th>
-                                            <th>Status</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td><small>Emma Harris</small></td>
-                                            <td><span class="role-badge role-admin">Admin</span></td>
-                                            <td><span class="badge bg-success" style="font-size:0.7rem;">Active</span></td>
-                                        </tr>
-                                        <tr>
-                                            <td><small>James Wilson</small></td>
-                                            <td><span class="role-badge role-carer">Carer</span></td>
-                                            <td><span class="badge bg-success" style="font-size:0.7rem;">Active</span></td>
-                                        </tr>
-                                        <tr>
-                                            <td><small>Linda Hughes</small></td>
-                                            <td><span class="role-badge role-supervisor">Supervisor</span></td>
-                                            <td><span class="badge bg-success" style="font-size:0.7rem;">Active</span></td>
-                                        </tr>
-                                        <tr>
-                                            <td><small>David Park</small></td>
-                                            <td><span class="role-badge role-carer">Carer</span></td>
-                                            <td><span class="badge bg-warning text-dark" style="font-size:0.7rem;">Pending</span></td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                                <div class="text-center mt-2">
-                                    <a href="#" class="btn btn-primary btn-sm">Manage Roles</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Visit Analytics -->
-                <div class="row g-3 mt-1">
-                    <div class="col-md-8">
-                        <div class="card dashboard-card">
-                            <div class="dashboard-header">
-                                <i class="fas fa-chart-bar me-2"></i>Visit Analytics — AmCharts 5 Dashboard
-                            </div>
-                            <div class="card-body">
-                                <div class="chart-placeholder">
-                                    <p class="text-muted small mb-2">Weekly Visit Completion Rate</p>
-                                    <div class="amchart-bar">
-                                        <div class="bar" style="height:70px;" title="Mon"></div>
-                                        <div class="bar" style="height:95px;" title="Tue"></div>
-                                        <div class="bar" style="height:80px;" title="Wed"></div>
-                                        <div class="bar" style="height:105px;" title="Thu"></div>
-                                        <div class="bar" style="height:90px;" title="Fri"></div>
-                                        <div class="bar" style="height:60px;" title="Sat"></div>
-                                        <div class="bar" style="height:45px;" title="Sun"></div>
-                                    </div>
-                                    <div class="d-flex justify-content-center gap-4 mt-2">
-                                        <small class="text-muted">Mon</small><small class="text-muted">Tue</small>
-                                        <small class="text-muted">Wed</small><small class="text-muted">Thu</small>
-                                        <small class="text-muted">Fri</small><small class="text-muted">Sat</small>
-                                        <small class="text-muted">Sun</small>
-                                    </div>
-                                    <p class="text-muted small mt-2 mb-0">Interactive AmCharts 5 visualization in production</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="card dashboard-card h-100">
-                            <div class="dashboard-header">
-                                <i class="fas fa-code me-2"></i>Tech Highlights
-                            </div>
-                            <div class="card-body">
-                                <ul class="list-unstyled mb-0">
-                                    <li class="mb-2 d-flex align-items-center gap-2"><i class="fas fa-check-circle text-success"></i><small>Angular 20 (Latest)</small></li>
-                                    <li class="mb-2 d-flex align-items-center gap-2"><i class="fas fa-check-circle text-success"></i><small>Spring Boot + Hibernate 6</small></li>
-                                    <li class="mb-2 d-flex align-items-center gap-2"><i class="fas fa-check-circle text-success"></i><small>ngx-permissions RBAC</small></li>
-                                    <li class="mb-2 d-flex align-items-center gap-2"><i class="fas fa-check-circle text-success"></i><small>AmCharts 5 Dashboards</small></li>
-                                    <li class="mb-2 d-flex align-items-center gap-2"><i class="fas fa-check-circle text-success"></i><small>ngx-pagination</small></li>
-                                    <li class="mb-2 d-flex align-items-center gap-2"><i class="fas fa-check-circle text-success"></i><small>REST API Integration</small></li>
-                                    <li class="d-flex align-items-center gap-2"><i class="fas fa-check-circle text-success"></i><small>Role-aware UI Components</small></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+    <section class="case-section" id="problem">
+      <div class="container case-section__grid">
+        <header class="case-section__head" data-reveal>
+          <p class="eyebrow">The problem</p>
+          <h2 class="case-section__title">Who visits whom, when, and to do what.</h2>
+        </header>
+        <div class="case-section__body" data-reveal>
+          <p>A home-care agency sends staff to clients' homes every day. Each client has a care plan: meals, housekeeping and care tasks on set days. Visits repeat on rotations, and every shift needs the right person on it.</p>
+          <ul class="check-list">
+            <li>Care plans change week to week, per client and per day.</li>
+            <li>Shifts follow rotations, so one change can move many visits.</li>
+            <li>Staff records need documents and emergency contacts kept with them.</li>
+          </ul>
         </div>
-    </div>
+      </div>
+    </section>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <section class="case-section" id="product">
+      <div class="container case-section__grid">
+        <header class="case-section__head" data-reveal>
+          <p class="eyebrow">The product</p>
+          <h2 class="case-section__title">Three modules on one backend.</h2>
+        </header>
+        <div class="case-section__body">
+          <div class="feature-grid feature-grid--3" data-stagger>
+            <div class="feature">
+              <span class="icon-tile"><svg class="icon" aria-hidden="true"><use href="#i-shield"/></svg></span>
+              <h3>Access</h3>
+              <p>Tenants, users, roles, features, packages and sessions, with JWT sign-in.</p>
+            </div>
+            <div class="feature">
+              <span class="icon-tile"><svg class="icon" aria-hidden="true"><use href="#i-users"/></svg></span>
+              <h3>CRM</h3>
+              <p>Clients and their addresses, care plans by day, food and housekeeping activities, care to-dos, shifts and staff assignments.</p>
+            </div>
+            <div class="feature">
+              <span class="icon-tile"><svg class="icon" aria-hidden="true"><use href="#i-briefcase"/></svg></span>
+              <h3>HRM</h3>
+              <p>Staff, their documents and emergency contacts, departments and designations.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="case-section" id="work">
+      <div class="container case-section__grid">
+        <header class="case-section__head" data-reveal>
+          <p class="eyebrow">My work</p>
+          <h2 class="case-section__title">Care plans, shifts and rotations.</h2>
+        </header>
+        <div class="case-section__body">
+          <div class="timeline-mini">
+            <div data-reveal>
+              <h3>April 2026 <span class="pill pill--brand">Backend and UI</span></h3>
+              <ul class="check-list">
+                <li><b>Care plans.</b> Refactored the care-plan model and its new, edit, view and list screens.</li>
+                <li><b>Shifts and rotations.</b> Refactored shift and rotation logic, the schedule occurrences behind care activities, and the client-rotation dialog. Fixed rotation updates.</li>
+                <li><b>Shift tracking.</b> Worked on the shift list and its to-dos, and added time pickers.</li>
+                <li><b>Clients and CRM.</b> Refactored the client flow and fixed CRM issues across services and screens.</li>
+                <li><b>Staff.</b> Fixed staff updates, staff relations and request payloads.</li>
+                <li>Added a missing endpoint and fixed build issues.</li>
+              </ul>
+            </div>
+            <div data-reveal>
+              <h3>November 2025 <span class="pill">UI</span></h3>
+              <ul class="check-list">
+                <li>Built the carer dashboard screen.</li>
+                <li>Fixed access-management screens.</li>
+              </ul>
+            </div>
+          </div>
+          <p class="note" data-reveal><b>Team project.</b> The team had two other developers. My part is the work listed above.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="case-section" id="numbers">
+      <div class="container case-section__grid">
+        <header class="case-section__head" data-reveal>
+          <p class="eyebrow">Numbers</p>
+          <h2 class="case-section__title">From the repos.</h2>
+        </header>
+        <div class="case-section__body">
+          <div class="metric-row" data-stagger>
+            <div class="metric"><span class="metric__value"><span data-count="16">16</span></span><span class="metric__label">backend commits by me across all branches, of <b>36</b></span></div>
+            <div class="metric"><span class="metric__value"><span data-count="25">25</span></span><span class="metric__label">UI commits by me across all branches, of <b>69</b></span></div>
+            <div class="metric"><span class="metric__value"><span data-count="33">33</span></span><span class="metric__label">entities in the backend</span></div>
+            <div class="metric"><span class="metric__value"><span data-count="264">264</span></span><span class="metric__label">Java files in the backend</span></div>
+          </div>
+          <p class="case-footnote">Commits counted across all branches on 12 Nov 2026. Entity and file counts are for the whole team's codebase.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="case-section" id="stack">
+      <div class="container case-section__grid">
+        <header class="case-section__head" data-reveal>
+          <p class="eyebrow">Stack</p>
+          <h2 class="case-section__title">Spring Boot and Angular 20.</h2>
+        </header>
+        <div class="case-section__body" data-reveal>
+          <ul class="stack-chips stack-chips--lg">
+            <li>Java 17</li><li>Spring Boot 3.2</li><li>Spring Security</li><li>JPA / Hibernate</li><li>PostgreSQL</li><li>Flyway</li><li>MapStruct</li><li>JWT</li><li>springdoc OpenAPI</li><li>Docker</li><li>GitLab CI</li><li>Angular 20</li><li>Angular Material</li><li>ngx-permissions</li><li>amCharts 5</li><li>ApexCharts</li><li>RxJS</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--tight">
+      <div class="container">
+        <a class="next-project card card--spot card--lift" data-spot href="chiltan-marketing-demo.html">
+          <div>
+            <p class="next-project__label">Next project</p>
+            <p class="next-project__title">Chiltan Marketing</p>
+            <p class="next-project__text">Email campaigns for Shopify stores</p>
+          </div>
+          <span class="next-project__arrow"><svg class="icon" aria-hidden="true"><use href="#i-arrow-right"/></svg></span>
+        </a>
+      </div>
+    </section>
+  </main>
+  <div data-site-footer></div>
 </body>
 </html>

@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-59XXTKP9');</script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>FamTill | Muhammad Afaq</title>
+  <meta name="description" content="FamTill is my cloud EPOS and repair software for independent UK phone shops. Till, IMEI stock, repairs, VAT books and an AI assistant. Live at famtill.com since 11 Nov 2026.">
+  <meta name="author" content="Muhammad Afaq">
+  <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" content="#ffffff">
+  <link rel="canonical" href="https://muhammadafaqportfolio.netlify.app/famtill-demo.html">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Muhammad Afaq">
+  <meta property="og:url" content="https://muhammadafaqportfolio.netlify.app/famtill-demo.html">
+  <meta property="og:title" content="FamTill: EPOS and repairs for UK phone shops | Muhammad Afaq">
+  <meta property="og:description" content="My own product, live since 11 Nov 2026. Till, IMEI stock, repairs, VAT books and an AI assistant on Spring Boot and Angular 21.">
+  <meta property="og:image" content="https://muhammadafaqportfolio.netlify.app/img/famtill-cover.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="FamTill launch card: EPOS and repair software for UK phone shops">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="FamTill | Muhammad Afaq">
+  <meta name="twitter:description" content="Cloud EPOS and repair software for UK phone shops. Live at famtill.com.">
+  <meta name="twitter:image" content="https://muhammadafaqportfolio.netlify.app/img/famtill-cover.png">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%234f63e7'/%3E%3Cstop offset='1' stop-color='%230f9a91'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='64' height='64' rx='16' fill='url(%23g)'/%3E%3Ctext x='32' y='42' font-family='Arial,sans-serif' font-size='28' font-weight='700' fill='white' text-anchor='middle'%3EMA%3C/text%3E%3C/svg%3E">
+  <link rel="apple-touch-icon" href="afaq-72.png">
+  <script>(function(){var t=null;try{t=localStorage.getItem('theme')}catch(e){}if(t!=='light'&&t!=='dark'){t=window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'}document.documentElement.setAttribute('data-theme',t)})();</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700;800&display=swap">
+  <link rel="stylesheet" href="assets/site.css?v=20261112">
+  <script src="assets/site.js?v=20261112" defer></script>
+  <style>
+    .ft-hero-note {
+      margin-top: 14px;
+      color: var(--muted);
+      font-size: 0.9375rem;
+    }
+
+    .case-hero__visual .till {
+      grid-template-columns: minmax(0, 1fr) 17em;
+    }
+
+    @media (max-width: 559.98px) {
+      .case-hero__visual .till {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .case-hero__visual .till__grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      .case-hero__visual .till__grid .ui-tile {
+        min-height: 0;
+      }
+    }
+
+    .ft-split-pay {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4em;
+    }
+
+    .ft-timeline {
+      display: grid;
+      gap: 0;
+      border-left: 2px solid var(--line-2);
+    }
+
+    .ft-timeline li {
+      position: relative;
+      display: grid;
+      grid-template-columns: 7.5rem minmax(0, 1fr);
+      gap: 4px 16px;
+      padding: 10px 0 10px 22px;
+    }
+
+    .ft-timeline li::before {
+      content: "";
+      position: absolute;
+      top: 17px;
+      left: -6px;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--card);
+      border: 2px solid var(--brand);
+    }
+
+    .ft-timeline li:last-child::before {
+      background: var(--green);
+      border-color: var(--green);
+    }
+
+    .ft-timeline b {
+      color: var(--ink);
+      font-weight: 700;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .ft-timeline span {
+      color: var(--ink-2);
+      line-height: 1.55;
+    }
+
+    @media (max-width: 559.98px) {
+      .ft-timeline li {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    .ft-plans {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .ft-plans .metric__value small {
+      color: var(--muted);
+      font-weight: 600;
+    }
+
+    @media (max-width: 559.98px) {
+      .ft-plans {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    .case-section--dark .case-section__title {
+      color: var(--night-head);
+    }
+
+    .case-section--dark .case-section__body,
+    .case-section--dark .case-section__body > p {
+      color: var(--night-text);
+    }
+
+    .case-section--dark .ai__points {
+      margin-top: 0;
+    }
+
+    .ft-ai-mock {
+      container-type: inline-size;
+      font-size: clamp(10px, 2.6cqi, 14.5px);
+    }
+
+    .ft-ai-mock .ui-tile {
+      background: var(--surface-2);
+    }
+
+    .ft-tools {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4em;
+    }
+
+    .gallery--1 figure > img {
+      aspect-ratio: 1200 / 630;
+    }
+
+    .gallery__mock .mini {
+      font-size: clamp(11px, 3.6cqi, 14px);
+    }
+
+    .gallery__mock .mini-grid > .mini-lane {
+      min-width: 0;
+    }
+
+    .ft-z {
+      display: grid;
+      gap: 0.5em;
+      font-size: 0.9em;
+    }
+
+    .ft-z .mini-split {
+      padding-bottom: 0.45em;
+      border-bottom: 1px dashed var(--line-2);
+      color: var(--ink-2);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .ft-z .mini-split:last-child {
+      border-bottom: 0;
+      color: var(--ink);
+      font-weight: 700;
+    }
+
+    .ft-ship {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      gap: 20px;
+      align-items: start;
+    }
+
+    .ft-ship__flow {
+      padding: 20px;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: var(--surface-2);
+      font-size: 15px;
+    }
+
+    @media (max-width: 759.98px) {
+      .ft-ship {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    .ft-stack-group h3 {
+      margin-bottom: 10px;
+    }
+
+    .ft-try__actions {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 12px;
+      margin-top: 32px;
+    }
+
+    .ft-try__steps {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+      max-width: 880px;
+      margin: 44px auto 0;
+      padding: 0;
+      list-style: none;
+      counter-reset: step;
+      text-align: left;
+    }
+
+    .ft-try__steps li {
+      display: flex;
+      gap: 10px;
+      align-items: baseline;
+      padding: 12px 14px;
+      border: 1px solid var(--night-line);
+      border-radius: 14px;
+      background: rgba(255, 255, 255, 0.04);
+      color: var(--night-text);
+      font-size: 0.9375rem;
+      counter-increment: step;
+    }
+
+    .ft-try__steps li::before {
+      content: counter(step);
+      flex: none;
+      color: var(--brand-on-dark);
+      font-weight: 700;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .ft-try__foot {
+      margin-top: 22px;
+      color: var(--night-faint);
+      font-size: 0.9375rem;
+    }
+
+    @media (max-width: 759.98px) {
+      .ft-try__steps {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 459.98px) {
+      .ft-try__steps {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+  </style>
+</head>
+<body>
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-59XXTKP9" height="0" width="0" style="display:none;visibility:hidden" title="Analytics"></iframe></noscript>
+  <div data-site-header></div>
+  <noscript>
+    <nav class="container" aria-label="Main" style="padding-top:20px;display:flex;gap:18px;flex-wrap:wrap">
+      <a href="index.html#work">Work</a><a href="index.html#ai">AI</a><a href="index.html#skills">Skills</a><a href="index.html#experience">Experience</a><a href="index.html#contact">Contact</a>
+    </nav>
+  </noscript>
+
+  <main id="main">
+    <section class="case-hero" aria-labelledby="case-title">
+      <div class="case-hero__bg" aria-hidden="true"><div class="bg-grid"></div><div class="bg-glow bg-glow--a"></div><div class="bg-glow bg-glow--b"></div></div>
+      <div class="container">
+        <a class="back-link" href="index.html#work"><svg class="icon" aria-hidden="true"><use href="#i-arrow-left"/></svg>All work</a>
+        <div class="case-hero__grid">
+          <div>
+            <div class="case-hero__badges">
+              <span class="pill pill--live"><span class="live-dot" aria-hidden="true"></span>Live since 11 Nov 2026</span>
+              <span class="pill pill--brand">Own product</span>
+              <span class="pill pill--outline">Formerly Nyrovi</span>
+            </div>
+            <h1 class="case-hero__title" id="case-title">FamTill: <span class="text-gradient">EPOS and repairs for UK phone shops.</span></h1>
+            <p class="case-hero__lead">Cloud till and repair software for independent phone shops. Run the counter and the workshop on one screen. I built it, launched it and run it.</p>
+            <div class="case-hero__actions">
+              <a class="btn btn--primary btn--lg" href="https://famtill.com" target="_blank" rel="noopener" data-magnetic>Visit famtill.com <svg class="icon btn__arrow" aria-hidden="true"><use href="#i-arrow-up-right"/></svg><span class="sr-only">(opens famtill.com in a new tab)</span></a>
+              <a class="btn btn--secondary btn--lg" href="https://famtill.com/#demo" target="_blank" rel="noopener">Book a demo<span class="sr-only">(opens in a new tab)</span></a>
+            </div>
+            <p class="ft-hero-note">The app at <a href="https://app.famtill.com" target="_blank" rel="noopener">app.famtill.com<span class="sr-only">(opens in a new tab)</span></a> is invite only. A demo gets you a login to a sample shop.</p>
+            <dl class="case-hero__meta">
+              <div><dt>Role</dt><dd>Owner and developer</dd></div>
+              <div><dt>When</dt><dd>Jun 2026 to now</dd></div>
+              <div><dt>Status</dt><dd>Live, hosted in London</dd></div>
+              <div><dt>Stack</dt><dd>Spring Boot, Angular 21</dd></div>
+            </dl>
+          </div>
+
+          <div class="case-hero__visual" role="img" aria-label="Illustration with sample data: the FamTill till with a phone sold by IMEI, a screen protector and repair labour, paid partly by card and partly in cash.">
+            <div class="win" aria-hidden="true">
+              <div class="win__bar">
+                <span class="win__dots"><i></i><i></i><i></i></span>
+                <span class="win__url"><svg class="icon"><use href="#i-lock"/></svg>app.famtill.com</span>
+                <span class="live-dot"></span>
+              </div>
+              <div class="win__body">
+                <div class="mini-split" style="margin-bottom:1em">
+                  <div><p class="ui-title">Till</p><p class="ui-sub">High Street · Register A</p></div>
+                  <span class="ui-badge" style="--c:#2fbf71;--c-ink:var(--green-ink)">Till open</span>
+                </div>
+                <div class="till">
+                  <div class="till__grid">
+                    <div class="ui-tile" style="--c:#188ae2"><i></i><p class="ui-title" style="font-size:.85em">Phones</p><p class="ui-sub">by IMEI</p></div>
+                    <div class="ui-tile" style="--c:#6b5eae"><i></i><p class="ui-title" style="font-size:.85em">Repairs</p><p class="ui-sub">6 open</p></div>
+                    <div class="ui-tile" style="--c:#2fbf71"><i></i><p class="ui-title" style="font-size:.85em">Cases</p><p class="ui-sub">from £7.99</p></div>
+                    <div class="ui-tile" style="--c:#f2a93b"><i></i><p class="ui-title" style="font-size:.85em">Chargers</p><p class="ui-sub">from £12.99</p></div>
+                    <div class="ui-tile" style="--c:#4f63e7"><i></i><p class="ui-title" style="font-size:.85em">Parked</p><p class="ui-sub">2 sales</p></div>
+                    <div class="ui-tile" style="--c:#0f9a91"><i></i><p class="ui-title" style="font-size:.85em">Trade</p><p class="ui-sub">price list</p></div>
+                  </div>
+                  <div class="till__sale">
+                    <div class="till__line" style="--k:0"><b>iPhone 13 128GB, Grade A</b><span>£329.00</span><small>IMEI ···4821</small></div>
+                    <div class="till__line" style="--k:1"><b>Tempered glass</b><span>£9.99</span><small>SKU 10442</small></div>
+                    <div class="till__line" style="--k:2"><b>Screen repair, labour</b><span>£45.00</span><small>Job R-1042</small></div>
+                    <div class="till__total"><span>Total inc. VAT</span><b>£383.99</b></div>
+                    <div class="ft-split-pay"><span class="ui-badge">Card £300.00</span><span class="ui-badge" style="--c:#0f9a91">Cash £83.99</span></div>
+                    <span class="ui-btn till__pay">Paid, receipt printed <svg class="icon"><use href="#i-check"/></svg></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <nav class="case-nav" aria-label="On this page">
+      <div class="container">
+        <div class="case-nav__list">
+          <a href="#problem">Problem</a>
+          <a href="#features">What I built</a>
+          <a href="#ai-assistant">AI assistant</a>
+          <a href="#screens">Screens</a>
+          <a href="#numbers">Numbers</a>
+          <a href="#stack">Stack</a>
+          <a href="#try">Try it</a>
+        </div>
+      </div>
+    </nav>
+
+    <section class="case-section" id="problem" aria-labelledby="problem-title">
+      <div class="container case-section__grid">
+        <header class="case-section__head" data-reveal>
+          <p class="eyebrow">The problem</p>
+          <h2 class="case-section__title" id="problem-title">A phone shop does three jobs at once.</h2>
+        </header>
+        <div class="case-section__body" data-reveal>
+          <p>An independent UK phone shop sells new and used phones, sells accessories, and fixes phones in the back room. Each job needs something a plain till does not have.</p>
+          <ul class="check-list">
+            <li><b>Used phones are one of a kind.</b> Each needs its own IMEI, grade and cost, tracked from purchase to sale.</li>
+            <li><b>Repairs need a job sheet.</b> Faults, passcode, parts from stock, deposits, and a status the customer can ask about.</li>
+            <li><b>The books need UK rules.</b> Prices in GBP, 20% VAT, a VAT return and UK GDPR tools.</li>
+          </ul>
+          <p>FamTill puts the counter, the workshop and the books in one web app. A shop opens the till, books in a repair, and the stock and the books update from the same sale.</p>
+          <h3>Plans on famtill.com</h3>
+          <div class="ft-plans" data-stagger>
+            <div class="metric"><span class="metric__value">£39<small>/mo</small></span><span class="metric__label"><b>Shop.</b> 1 shop, up to 5 users</span></div>
+            <div class="metric"><span class="metric__value">£79<small>/mo</small></span><span class="metric__label"><b>Professional.</b> Up to 3 shops, 15 users</span></div>
+            <div class="metric"><span class="metric__value">£149<small>/mo</small></span><span class="metric__label"><b>Multi-store.</b> Up to 10 shops, any number of users</span></div>
+          </div>
+          <p>Prices are ex VAT. Every plan has every feature, and paying yearly gives 2 months free.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="case-section" id="features" aria-labelledby="features-title">
+      <div class="container case-section__grid">
+        <header class="case-section__head" data-reveal>
+          <p class="eyebrow">What I built</p>
+          <h2 class="case-section__title" id="features-title">One app from the till to the VAT return.</h2>
+        </header>
+        <div class="case-section__body">
+          <div class="feature-grid feature-grid--3" data-stagger>
+            <div class="feature">
+              <span class="icon-tile"><svg class="icon" aria-hidden="true"><use href="#i-wallet"/></svg></span>
+              <h3>Touch till</h3>
+              <p>Scans barcodes and IMEIs. Split payments, staff discount limits, parked sales, quotes, trade prices, refunds, thermal receipts, X and Z reports.</p>
+            </div>
+            <div class="feature">
+              <span class="icon-tile"><svg class="icon" aria-hidden="true"><use href="#i-phone"/></svg></span>
+              <h3>IMEI stock</h3>
+              <p>Each phone is one record with its own IMEI, grade and cost. One search in the top bar finds a phone across stock, sales and repairs.</p>
+            </div>
+            <div class="feature">
+              <span class="icon-tile"><svg class="icon" aria-hidden="true"><use href="#i-clock"/></svg></span>
+              <h3>Repairs</h3>
+              <p>Book in by IMEI with faults and condition. A status flow from booked in to collected, with parts from stock, labour, deposits, job sheets and warranty.</p>
+            </div>
+            <div class="feature">
+              <span class="icon-tile"><svg class="icon" aria-hidden="true"><use href="#i-layers"/></svg></span>
+              <h3>Inventory</h3>
+              <p>Suppliers, purchase orders, goods received, transfers between shops, stocktakes, write-offs and an Excel import for opening stock.</p>
+            </div>
+            <div class="feature">
+              <span class="icon-tile"><svg class="icon" aria-hidden="true"><use href="#i-database"/></svg></span>
+              <h3>Double-entry books</h3>
+              <p>UK chart of accounts, journals, expenses and payments. Sales and stock post through one queue with a guard against double posting. P&amp;L, balance sheet, VAT return.</p>
+            </div>
+            <div class="feature">
+              <span class="icon-tile"><svg class="icon" aria-hidden="true"><use href="#i-users"/></svg></span>
+              <h3>Customers</h3>
+              <p>Purchase and repair history per customer, credit accounts with statements, and a customer dashboard.</p>
+            </div>
+            <div class="feature">
+              <span class="icon-tile"><svg class="icon" aria-hidden="true"><use href="#i-layout"/></svg></span>
+              <h3>Dashboard and reports</h3>
+              <p>A live business dashboard plus sales, stock, repair and money reports, with Excel, PDF and CSV export.</p>
+            </div>
+            <div class="feature">
+              <span class="icon-tile"><svg class="icon" aria-hidden="true"><use href="#i-lock"/></svg></span>
+              <h3>Multi-tenant SaaS</h3>
+              <p>Each business is its own tenant. Several shops with a store switcher, four roles (Owner, Manager, Technician, Till), and plans that set shop and user limits.</p>
+            </div>
+            <div class="feature">
+              <span class="icon-tile"><svg class="icon" aria-hidden="true"><use href="#i-shield"/></svg></span>
+              <h3>UK GDPR</h3>
+              <p>Customer consent, data export, erasure and a complaints log.</p>
+            </div>
+          </div>
+          <p class="note"><b>Not built yet:</b> trade-in register, margin-scheme VAT, a repair-status page for customers, SMS alerts, card terminals, an offline till and a mobile app. WhatsApp "repair ready" messages are built but switched on for the platform admin only.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="case-section case-section--dark dark-panel" id="ai-assistant" aria-labelledby="ai-title">
+      <div class="dark-panel__bg" aria-hidden="true"></div>
+      <div class="container case-section__grid">
+        <header class="case-section__head" data-reveal>
+          <p class="eyebrow">AI inside the product</p>
+          <h2 class="case-section__title" id="ai-title">Ask the shop a question. <span class="text-gradient">Get a card back.</span></h2>
+        </header>
+        <div class="case-section__body">
+          <p data-reveal>A chat panel in the top bar. Staff type or speak a question, and the assistant answers from the shop's own data. It runs on Claude Haiku through the Anthropic Java SDK. It went live with the product on 11 Nov 2026.</p>
+          <ul class="ai__points" data-stagger>
+            <li class="ai__point">
+              <span class="ai__point-icon"><svg class="icon" aria-hidden="true"><use href="#i-sparkles"/></svg></span>
+              <div><b>34 read-only tools</b><p>Sales, stock and phones, customers, repairs and staff, money and VAT, suppliers, and a "where do I…" screen finder. It can show data but never change it.</p></div>
+            </li>
+            <li class="ai__point">
+              <span class="ai__point-icon"><svg class="icon" aria-hidden="true"><use href="#i-layout"/></svg></span>
+              <div><b>Answers as cards</b><p>Tiles, tables, charts, records, links to the right screen, and exports.</p></div>
+            </li>
+            <li class="ai__point">
+              <span class="ai__point-icon"><svg class="icon" aria-hidden="true"><use href="#i-mic"/></svg></span>
+              <div><b>Voice in and out</b><p>Speak the question with the browser's speech input. The answer can be read back aloud.</p></div>
+            </li>
+            <li class="ai__point">
+              <span class="ai__point-icon"><svg class="icon" aria-hidden="true"><use href="#i-wallet"/></svg></span>
+              <div><b>Cost limits</b><p>Per-shop budgets, a daily question limit per user, usage metering and saved conversation history.</p></div>
+            </li>
+          </ul>
+          <div class="ft-ai-mock" role="img" aria-label="Illustration with sample data: a staff member asks what the shop sold today, the assistant reads sales and repairs, then answers with tiles for sales, phones sold and repairs booked, and a link to the sales report." data-reveal>
+            <div class="glass chat-card" aria-hidden="true">
+              <div class="chat-card__head">
+                <span class="ui-avatar">AI</span>
+                <div><p class="ui-title" style="font-size:.95em">FamTill assistant</p><p class="ui-sub">Sample shop · read-only</p></div>
+              </div>
+              <p class="ui-bubble ui-bubble--me">What did we sell today?</p>
+              <div class="ft-tools"><span class="ui-chip">read · sales today</span><span class="ui-chip" style="--c:var(--brand)">read · repairs today</span></div>
+              <div class="mini-grid" style="--cols:3">
+                <div class="ui-tile"><b>£1,284.50</b><span>sales</span></div>
+                <div class="ui-tile"><b>4</b><span>phones sold</span></div>
+                <div class="ui-tile"><b>6</b><span>repairs booked</span></div>
+              </div>
+              <div class="ui-bars" style="--h:3.6em;--c:#188ae2"><i style="--v:.3"></i><i style="--v:.45"></i><i style="--v:.4"></i><i style="--v:.72"></i><i style="--v:.55"></i><i style="--v:.9"></i><i style="--v:.62"></i><i style="--v:.48"></i></div>
+              <div class="mini-split"><span class="ui-sub">Busiest hour: 1 pm</span><span class="ui-badge">Open sales report →</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="case-section" id="screens" aria-labelledby="screens-title">
+      <div class="container case-section__grid">
+        <header class="case-section__head" data-reveal>
+          <p class="eyebrow">Screens</p>
+          <h2 class="case-section__title" id="screens-title">What a shop works in all day.</h2>
+        </header>
+        <div class="case-section__body">
+          <div class="gallery gallery--1" data-reveal>
+            <figure>
+              <img src="img/famtill-cover.png" width="1200" height="630" loading="lazy" decoding="async" alt="The FamTill launch card: the FamTill logo, the line EPOS and repair software for UK phone shops, a printed till receipt totalling £450.00, a notice that repair R-1042 is ready, and chips for Till, Repairs, IMEI stock, VAT reports and AI assistant.">
+              <figcaption><b>Launch card.</b> The social image from famtill.com.</figcaption>
+            </figure>
+          </div>
+          <div class="gallery" data-stagger>
+            <figure>
+              <div class="gallery__mock" role="img" aria-label="Illustration with sample data: the repair queue in three columns, booked in, repairing, and ready to collect, with one job card in each.">
+                <div class="mini" aria-hidden="true">
+                  <div class="win">
+                    <div class="win__bar"><span class="win__dots"><i></i><i></i><i></i></span><span class="win__url">Repairs</span></div>
+                    <div class="win__body mini-grid" style="--cols:3">
+                      <div class="mini-lane">
+                        <div class="mini-lane__head"><span>Booked in</span><b>2</b></div>
+                        <div class="mini-ticket"><b>R-1044</b><span class="ui-sub">Pixel 7 · port</span></div>
+                        <div class="mini-ticket"><b>R-1045</b><span class="ui-sub">iPad 9 · glass</span></div>
+                      </div>
+                      <div class="mini-lane">
+                        <div class="mini-lane__head"><span>Repairing</span><b>1</b></div>
+                        <div class="mini-ticket"><b>R-1043</b><span class="ui-sub">Galaxy S21 · battery</span><span class="ui-badge" style="--c:#6b5eae">Tech: Sam</span></div>
+                      </div>
+                      <div class="mini-lane">
+                        <div class="mini-lane__head"><span>Ready</span><b>1</b></div>
+                        <div class="mini-ticket"><b>R-1042</b><span class="ui-sub">iPhone 12 · screen</span><span class="ui-badge" style="--c:#2fbf71;--c-ink:var(--green-ink)">£20 deposit</span></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <figcaption><b>Repair queue.</b> Sample data, drawn in HTML.</figcaption>
+            </figure>
+            <figure>
+              <div class="gallery__mock" role="img" aria-label="Illustration with sample data: the device stock list, one row per phone with the last digits of its IMEI, model, grade and status.">
+                <div class="mini" aria-hidden="true">
+                  <div class="win">
+                    <div class="win__bar"><span class="win__dots"><i></i><i></i><i></i></span><span class="win__url">Device stock · IMEI search</span></div>
+                    <div class="win__body mini-table">
+                      <div><span>IMEI</span><span>Model</span><span>Grade</span><span>Status</span></div>
+                      <div><span>···4821</span><span>iPhone 13</span><span>A</span><span class="ui-badge" style="--c:#2fbf71;--c-ink:var(--green-ink)">In stock</span></div>
+                      <div><span>···7730</span><span>Galaxy S22</span><span>B</span><span class="ui-badge">Sold</span></div>
+                      <div><span>···1094</span><span>Pixel 7</span><span>A</span><span class="ui-badge" style="--c:#0f9a91">Transfer</span></div>
+                      <div><span>···5512</span><span>iPhone 12</span><span>C</span><span class="ui-badge" style="--c:#f2a93b;--c-ink:var(--amber-ink)">Returned</span></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <figcaption><b>IMEI stock.</b> Sample data, drawn in HTML.</figcaption>
+            </figure>
+            <figure>
+              <div class="gallery__mock" role="img" aria-label="Illustration with sample data: the business dashboard with sales today, open repairs and low-stock items, and a bar chart of sales by hour.">
+                <div class="mini" aria-hidden="true">
+                  <div class="win">
+                    <div class="win__bar"><span class="win__dots"><i></i><i></i><i></i></span><span class="win__url">Dashboard</span></div>
+                    <div class="win__body mini-stack">
+                      <div class="mini-grid" style="--cols:3">
+                        <div class="ui-tile"><b>£1,284</b><span>sales today</span></div>
+                        <div class="ui-tile"><b>6</b><span>open repairs</span></div>
+                        <div class="ui-tile"><b>3</b><span>low stock</span></div>
+                      </div>
+                      <div class="ui-bars" style="--h:5em;--c:#188ae2"><i style="--v:.25"></i><i style="--v:.4"></i><i style="--v:.55"></i><i style="--v:.35"></i><i style="--v:.8"></i><i style="--v:.95"></i><i style="--v:.6"></i><i style="--v:.7"></i><i style="--v:.45"></i></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <figcaption><b>Dashboard.</b> Sample data, drawn in HTML.</figcaption>
+            </figure>
+            <figure>
+              <div class="gallery__mock" role="img" aria-label="Illustration with sample data: the Z report that closes the till, with cash, card and on-account totals, refunds and the counted cash.">
+                <div class="mini" aria-hidden="true">
+                  <div class="win">
+                    <div class="win__bar"><span class="win__dots"><i></i><i></i><i></i></span><span class="win__url">Z report · Register A</span></div>
+                    <div class="win__body ft-z">
+                      <div class="mini-split"><span>Card</span><span>£962.40</span></div>
+                      <div class="mini-split"><span>Cash</span><span>£284.10</span></div>
+                      <div class="mini-split"><span>On account</span><span>£58.00</span></div>
+                      <div class="mini-split"><span>Refunds</span><span>−£20.00</span></div>
+                      <div class="mini-split"><span>Cash counted</span><span class="ui-badge" style="--c:#2fbf71;--c-ink:var(--green-ink)">Matches</span></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <figcaption><b>Closing the till.</b> Sample data, drawn in HTML.</figcaption>
+            </figure>
+          </div>
+          <p>I show no screenshots of the live app, so no customer data is on this page. The mocks follow the real screens and use made-up numbers.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="case-section" id="numbers" aria-labelledby="numbers-title">
+      <div class="container case-section__grid">
+        <header class="case-section__head" data-reveal>
+          <p class="eyebrow">Numbers</p>
+          <h2 class="case-section__title" id="numbers-title">Under five months from first commit to live.</h2>
+        </header>
+        <div class="case-section__body">
+          <div class="metric-row" data-stagger>
+            <div class="metric"><span class="metric__value"><span data-count="13">13</span></span><span class="metric__label">backend modules</span></div>
+            <div class="metric"><span class="metric__value"><span data-count="120">120</span></span><span class="metric__label">database entities</span></div>
+            <div class="metric"><span class="metric__value"><span data-count="80">80</span></span><span class="metric__label">REST controllers</span></div>
+            <div class="metric"><span class="metric__value"><span data-count="276">276</span></span><span class="metric__label">Flyway migrations</span></div>
+            <div class="metric"><span class="metric__value"><span data-count="198">198</span></span><span class="metric__label">Angular components</span></div>
+            <div class="metric"><span class="metric__value"><span data-count="214">214</span></span><span class="metric__label">app routes</span></div>
+            <div class="metric"><span class="metric__value"><span data-count="524">524</span></span><span class="metric__label">backend test methods, run in CI before each deploy</span></div>
+            <div class="metric"><span class="metric__value"><span data-count="848">848</span></span><span class="metric__label">commits across the two repos</span></div>
+          </div>
+          <p>Counted on 12 Nov 2026. These are the size of the product, not lines typed by hand: I built and shipped FamTill with Claude Code as my pair.</p>
+          <h3>How it came together</h3>
+          <ol class="ft-timeline" data-reveal>
+            <li><b>18 Jun 2026</b><span>First commit. Prices in GBP with 20% VAT from the start.</span></li>
+            <li><b>Jul to Aug</b><span>Repairs and GDPR on the backend. The UI rebuild on Angular 21 starts.</span></li>
+            <li><b>Sep</b><span>Expenses, IMEI and used-phone stock, and the double-entry books.</span></li>
+            <li><b>Oct</b><span>Till extras, thermal receipts, exports, staff roles and sign-up. Tested role by role, and a new shop's first day reconciled to the penny.</span></li>
+            <li><b>1 Nov</b><span>AI assistant merged: 34 tools and voice.</span></li>
+            <li><b>11 Nov 2026</b><span>Named FamTill. famtill.com and app.famtill.com go live, and the first shop is set up.</span></li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <section class="case-section" id="stack" aria-labelledby="stack-title">
+      <div class="container case-section__grid">
+        <header class="case-section__head" data-reveal>
+          <p class="eyebrow">Stack</p>
+          <h2 class="case-section__title" id="stack-title">One Spring Boot app, one Angular app, one server in London.</h2>
+        </header>
+        <div class="case-section__body">
+          <div class="ft-stack-group" data-reveal>
+            <h3>Backend and data</h3>
+            <ul class="stack-chips stack-chips--lg"><li>Java 17</li><li>Spring Boot 3.2</li><li>PostgreSQL 17</li><li>Flyway</li><li>Redis 7</li><li>JWT auth</li><li>MapStruct</li><li>OpenAPI</li><li>iText PDFs</li><li>Apache POI</li><li>ZXing barcodes</li></ul>
+          </div>
+          <div class="ft-stack-group" data-reveal>
+            <h3>Frontend</h3>
+            <ul class="stack-chips stack-chips--lg"><li>Angular 21</li><li>TypeScript 5.9</li><li>Bootstrap 5.3</li><li>ng-bootstrap</li><li>ApexCharts</li><li>RxJS</li><li>QZ Tray printing</li></ul>
+          </div>
+          <div class="ft-stack-group" data-reveal>
+            <h3>AI</h3>
+            <ul class="stack-chips stack-chips--lg"><li>Claude Haiku</li><li>Anthropic Java SDK</li><li>Tool calling</li><li>Web Speech API</li></ul>
+          </div>
+          <div class="ft-stack-group" data-reveal>
+            <h3>Hosting and tests</h3>
+            <ul class="stack-chips stack-chips--lg"><li>Docker Compose</li><li>Caddy</li><li>GitHub Actions</li><li>GHCR</li><li>DigitalOcean London</li><li>Resend</li><li>Jasmine and Karma</li><li>Playwright</li></ul>
+          </div>
+          <div class="ft-ship" data-reveal>
+            <div class="ft-ship__flow" role="img" aria-label="Release flow: push to main, GitHub Actions builds and tests, the image goes to GitHub's container registry, an SSH deploy restarts Docker Compose on the London server, then a smoke test runs.">
+              <div class="flow" aria-hidden="true">
+                <div class="flow__node" style="--c:#4f63e7"><i></i>Push to main</div>
+                <div class="flow__link"></div>
+                <div class="flow__node" style="--c:#0f9a91"><i></i>Build and test in GitHub Actions</div>
+                <div class="flow__link"></div>
+                <div class="flow__node" style="--c:#188ae2"><i></i>Image to GHCR</div>
+                <div class="flow__link"></div>
+                <div class="flow__node" style="--c:#6b5eae"><i></i>SSH deploy, Docker Compose, London</div>
+                <div class="flow__link"></div>
+                <div class="flow__node" style="--c:#2fbf71"><i></i>Smoke test</div>
+              </div>
+            </div>
+            <ul class="check-list">
+              <li>Postgres, Redis, the backend and Caddy run in one Compose stack. Caddy serves the app and the website over HTTPS.</li>
+              <li>Nightly database backups with pg_dump.</li>
+              <li>Every tenant's rows are kept apart on every entity, and permissions are data: module, screen, action.</li>
+              <li>Password reset and welcome emails go out from the famtill.com domain.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta-panel" id="try" aria-labelledby="try-title">
+      <div class="cta-panel__bg" aria-hidden="true"></div>
+      <div class="container container--narrow" data-reveal>
+        <p class="eyebrow">Try it</p>
+        <h2 class="section-title" id="try-title">Try the <span class="text-gradient">live product.</span></h2>
+        <p class="section-lead">Browse famtill.com for features and pricing, then book a demo. You get a login to a sample shop, and the site promises a reply within one working day.</p>
+        <div class="ft-try__actions">
+          <a class="btn btn--primary btn--lg" href="https://famtill.com" target="_blank" rel="noopener">Visit famtill.com <svg class="icon btn__arrow" aria-hidden="true"><use href="#i-arrow-up-right"/></svg><span class="sr-only">(opens in a new tab)</span></a>
+          <a class="btn btn--on-dark btn--lg" href="https://famtill.com/#demo" target="_blank" rel="noopener">Book a demo<span class="sr-only">(opens in a new tab)</span></a>
+          <a class="btn btn--on-dark btn--lg" href="https://app.famtill.com" target="_blank" rel="noopener">App login<span class="sr-only">(opens in a new tab)</span></a>
+        </div>
+        <ol class="ft-try__steps" aria-label="What a 15-minute demo covers">
+          <li>Dashboard and IMEI search</li>
+          <li>A till sale with an IMEI scan</li>
+          <li>Park a sale, save a quote</li>
+          <li>Return and refund</li>
+          <li>Book a repair and move it on</li>
+          <li>Close the till with a Z report</li>
+          <li>VAT return and exports</li>
+          <li>Sign in as a Till user</li>
+          <li>Ask the AI what sold today</li>
+        </ol>
+        <p class="ft-try__foot">There is no self-serve sign-up yet.</p>
+      </div>
+    </section>
+
+    <section class="section section--tight">
+      <div class="container">
+        <a class="next-project card card--spot card--lift" data-spot href="caremd-demo.html">
+          <div>
+            <p class="next-project__label">Next project</p>
+            <p class="next-project__title">CareMD</p>
+            <p class="next-project__text">Multi-tenant medical billing SaaS</p>
+          </div>
+          <span class="next-project__arrow"><svg class="icon" aria-hidden="true"><use href="#i-arrow-right"/></svg></span>
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <div data-site-footer></div>
+</body>
+</html>

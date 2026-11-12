@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-59XXTKP9');</script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>OmniStock | Muhammad Afaq</title>
+  <meta name="description" content="OmniStock: an offline desktop app for a cash-on-delivery online shop. Racks and bins, Shopify orders, TCS and PostEx bookings, Meta ad profit and a Claude Agent SDK assistant. Grew out of StockFlow. Built solo by Muhammad Afaq.">
+  <meta name="author" content="Muhammad Afaq">
+  <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" content="#ffffff">
+  <link rel="canonical" href="https://muhammadafaqportfolio.netlify.app/omnistock-demo.html">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Muhammad Afaq">
+  <meta property="og:url" content="https://muhammadafaqportfolio.netlify.app/omnistock-demo.html">
+  <meta property="og:title" content="OmniStock | Muhammad Afaq">
+  <meta property="og:description" content="Offline desktop app for a COD online shop: racks and bins, Shopify orders, TCS and PostEx bookings, Meta ad profit and an AI assistant with read-only tools.">
+  <meta property="og:image" content="https://muhammadafaqportfolio.netlify.app/afaq.png">
+  <meta name="twitter:card" content="summary">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%234f63e7'/%3E%3Cstop offset='1' stop-color='%230f9a91'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='64' height='64' rx='16' fill='url(%23g)'/%3E%3Ctext x='32' y='42' font-family='Arial,sans-serif' font-size='28' font-weight='700' fill='white' text-anchor='middle'%3EMA%3C/text%3E%3C/svg%3E">
+  <link rel="apple-touch-icon" href="afaq-72.png">
+  <script>(function(){var t=null;try{t=localStorage.getItem('theme')}catch(e){}if(t!=='light'&&t!=='dark'){t=window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'}document.documentElement.setAttribute('data-theme',t)})();</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700;800&display=swap">
+  <link rel="stylesheet" href="assets/site.css?v=20261112">
+  <script src="assets/site.js?v=20261112" defer></script>
+  <style>
+    .case-section--dark .case-section__title,
+    .case-section--dark .feature h3 { color: var(--night-head); }
+    .case-section--dark .case-section__body,
+    .case-section--dark .case-section__body > p,
+    .case-section--dark .feature p { color: var(--night-text); }
+    .case-section--dark .icon-tile { border-color: var(--night-line); background: rgba(255, 255, 255, 0.05); color: var(--brand-on-dark); box-shadow: none; }
+    .case-section--dark .gallery figure { border-color: var(--night-line); }
+    .case-section--dark .gallery figcaption { border-color: var(--night-line); }
+    .gallery { align-items: start; }
+    .eras { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+    .eras .card { display: grid; gap: 10px; align-content: start; padding: 22px; }
+    .eras h3 { margin-top: 0; font-size: 1.25rem; }
+    .eras p { color: var(--muted); font-size: 0.9375rem; line-height: 1.55; }
+    .eras__when { color: var(--faint); font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; }
+    .eras__facts { display: flex; flex-wrap: wrap; gap: 6px 16px; color: var(--muted); font-size: 0.875rem; }
+    .eras__facts b { color: var(--ink); }
+    .check-list--cols { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px 28px; }
+    .check-list b { color: var(--ink); }
+    .mock-rows { display: grid; gap: 0.1em; }
+    .mock-rows > div { display: flex; justify-content: space-between; gap: 0.8em; padding: 0.5em 0.1em; border-bottom: 1px solid var(--line); color: var(--ink-2); font-size: 0.86em; font-variant-numeric: tabular-nums; }
+    .mock-rows > div b { color: var(--ink); font-weight: 700; }
+    .mock-rows > div.is-minus span:last-child { color: var(--red-ink); }
+    .offline-tag { display: inline-flex; align-items: center; gap: 0.4em; padding: 0.2em 0.65em; border-radius: 999px; background: var(--ui-fill); color: var(--muted); font-size: 0.75em; font-weight: 700; }
+    .offline-tag i { width: 0.55em; height: 0.55em; border-radius: 50%; background: var(--amber); }
+    .pick { display: grid; gap: 0.35em; font-size: 0.82em; }
+    .pick > div { display: grid; grid-template-columns: 3.2em minmax(0, 1fr) auto; gap: 0.5em; align-items: center; padding: 0.4em 0.5em; border: 1px solid var(--line); border-radius: 0.55em; background: var(--card); color: var(--ink-2); }
+    .pick > div b { color: var(--ink); font-family: var(--mono); font-size: 0.92em; }
+    @media (max-width: 759.98px) { .eras { grid-template-columns: minmax(0, 1fr); } }
+    @media (max-width: 559.98px) { .check-list--cols { grid-template-columns: minmax(0, 1fr); } }
+  </style>
+</head>
+<body>
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-59XXTKP9" height="0" width="0" style="display:none;visibility:hidden" title="Analytics"></iframe></noscript>
+  <div data-site-header></div>
+  <noscript>
+    <nav class="container" aria-label="Main" style="padding-top:20px;display:flex;gap:18px;flex-wrap:wrap">
+      <a href="index.html#work">Work</a><a href="index.html#ai">AI</a><a href="index.html#skills">Skills</a><a href="index.html#experience">Experience</a><a href="index.html#contact">Contact</a>
+    </nav>
+  </noscript>
+
+  <main id="main">
+    <section class="case-hero" aria-labelledby="case-title">
+      <div class="case-hero__bg" aria-hidden="true"><div class="bg-grid"></div><div class="bg-glow bg-glow--a"></div><div class="bg-glow bg-glow--b"></div></div>
+      <div class="container">
+        <a class="back-link" href="index.html#work"><svg class="icon" aria-hidden="true"><use href="#i-arrow-left"/></svg>All work</a>
+        <div class="case-hero__grid">
+          <div>
+            <div class="case-hero__badges">
+              <span class="pill pill--amber">Setting up for its first shop</span>
+              <span class="pill pill--brand">Solo build</span>
+              <span class="pill pill--outline">Grew out of StockFlow</span>
+            </div>
+            <h1 class="case-hero__title" id="case-title">OmniStock: <span class="text-gradient">one offline window for a COD online shop.</span></h1>
+            <p class="case-hero__lead">Racks and bins, Shopify orders, TCS and PostEx bookings, Meta ad spend and real profit, plus an AI assistant. It keeps working with no internet and syncs when Wi-Fi is back.</p>
+            <div class="case-hero__actions">
+              <a class="btn btn--primary btn--lg" href="#features">See what it does <svg class="icon btn__arrow" aria-hidden="true"><use href="#i-arrow-right"/></svg></a>
+              <a class="btn btn--secondary btn--lg" href="#timeline">From StockFlow to OmniStock</a>
+            </div>
+            <dl class="case-hero__meta">
+              <div><dt>Role</dt><dd>Solo: plan, build, test</dd></div>
+              <div><dt>When</dt><dd>Apr 2026 to now</dd></div>
+              <div><dt>Runs on</dt><dd>Windows, Electron 38</dd></div>
+            </dl>
+          </div>
+          <div class="case-hero__visual" role="img" aria-label="Illustration with sample data: the OmniStock Insights screen while offline, with orders, delivered, returned and net profit tiles, a weekly profit chart and a note that two sync jobs are waiting for the network.">
+            <div class="win" aria-hidden="true">
+              <div class="win__bar"><span class="win__dots"><i></i><i></i><i></i></span><span class="win__url">OmniStock · Insights</span></div>
+              <div class="win__body mini-stack" style="gap:0.9em">
+                <div class="mini-split">
+                  <div><p class="ui-title">This week</p><p class="ui-sub">Sample shop</p></div>
+                  <span class="offline-tag"><i></i>Offline · 2 jobs waiting</span>
+                </div>
+                <div class="mini-grid" style="--cols:4">
+                  <div class="ui-tile"><b>184</b><span>Orders</span></div>
+                  <div class="ui-tile"><b>139</b><span>Delivered</span></div>
+                  <div class="ui-tile"><b>21</b><span>Returned</span></div>
+                  <div class="ui-tile"><b>Rs 96k</b><span>Net profit</span></div>
+                </div>
+                <div class="ui-bars" style="--h:5.5em;--c:#0f9a91"><i style="--v:.42"></i><i style="--v:.58"></i><i style="--v:.5"></i><i style="--v:.74"></i><i style="--v:.66"></i><i style="--v:.9"></i><i style="--v:.8"></i></div>
+                <div class="mini-ticket">
+                  <div class="mini-split"><b>Shopify #1042 · COD</b><span class="ui-badge" style="--c:var(--green);--c-ink:var(--green-ink)">Risk low</span></div>
+                  <span class="ui-sub">Stock reserved in A-03 · TCS booking queued until online</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <nav class="case-nav" aria-label="On this page">
+      <div class="container">
+        <div class="case-nav__list">
+          <a href="#overview">Overview</a><a href="#timeline">Timeline</a><a href="#features">Features</a><a href="#assistant">AI assistant</a><a href="#build">How it was built</a><a href="#stack">Stack</a>
+        </div>
+      </div>
+    </nav>
+
+    <section class="case-section" id="overview">
+      <div class="container case-section__grid">
+        <header class="case-section__head" data-reveal>
+          <p class="eyebrow">The problem</p>
+          <h2 class="case-section__title">Real profit was spread over four places.</h2>
+        </header>
+        <div class="case-section__body" data-reveal>
+          <p>A cash-on-delivery shop in Pakistan sells on Shopify, ships with TCS and PostEx, and buys traffic on Meta. Orders that come back to origin and courier COD payouts decide whether a month made money.</p>
+          <p>The owner is a friend, not a developer. His numbers sat in Shopify, two courier portals and Ads Manager. OmniStock puts them in one window on his own laptop, and it keeps working without internet.</p>
+          <div class="metric-row" data-stagger>
+            <div class="metric"><span class="metric__value"><span data-count="60">60</span></span><span class="metric__label">SQLite tables (18 from StockFlow)</span></div>
+            <div class="metric"><span class="metric__value"><span data-count="22">22</span></span><span class="metric__label">Angular feature modules</span></div>
+            <div class="metric"><span class="metric__value"><span data-count="128">128</span></span><span class="metric__label">components, 26 top-level routes</span></div>
+            <div class="metric"><span class="metric__value"><span data-count="193">193</span></span><span class="metric__label">new IPC handlers, plus 79 older ones</span></div>
+            <div class="metric"><span class="metric__value"><span data-count="27">27</span></span><span class="metric__label">analytics routes</span></div>
+            <div class="metric"><span class="metric__value">~<span data-count="92">92</span>k</span><span class="metric__label">lines of JS, TS, HTML and SCSS</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="case-section" id="timeline">
+      <div class="container case-section__grid">
+        <header class="case-section__head" data-reveal>
+          <p class="eyebrow">Timeline</p>
+          <h2 class="case-section__title">It started as StockFlow.</h2>
+        </header>
+        <div class="case-section__body">
+          <div class="eras" data-stagger>
+            <div class="card">
+              <p class="eras__when">Apr to Aug 2026</p>
+              <h3>StockFlow</h3>
+              <p>My offline POS and inventory app for small shops. Version 1.5.0 has Windows installers.</p>
+              <ul class="check-list">
+                <li>Offline POS with invoices, receipts and discounts</li>
+                <li>FIFO lot costing, so profit per batch is right</li>
+                <li>Purchases, returns with restock, payments, expenses</li>
+                <li>Ed25519-signed offline licence keys</li>
+              </ul>
+              <p class="eras__facts"><span><b>56</b> commits</span><span><b>~25k</b> lines</span></p>
+            </div>
+            <div class="card">
+              <p class="eras__when">Nov 2026</p>
+              <h3>OmniStock</h3>
+              <p>Cloned from StockFlow on 11 Nov 2026 with its git history. It keeps all of the POS and adds the online-shop layer.</p>
+              <ul class="check-list">
+                <li>Warehouse racks, bins and pick lists</li>
+                <li>Shopify orders across more than one store</li>
+                <li>Courier booking, tracking and COD payouts</li>
+                <li>Meta ad spend, real profit and an AI assistant</li>
+              </ul>
+              <p class="eras__facts"><span><b>5</b> commits</span><span><b>~78k</b> lines added in 2 days</span></p>
+            </div>
+          </div>
+          <p>All 61 commits in the repo are mine. Licensing is turned off in OmniStock for now.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="case-section" id="features">
+      <div class="container case-section__grid">
+        <header class="case-section__head" data-reveal>
+          <p class="eyebrow">What it does</p>
+          <h2 class="case-section__title">From the shelf to the payout.</h2>
+        </header>
+        <div class="case-section__body">
+          <div class="feature-grid" data-stagger>
+            <div class="feature"><span class="icon-tile"><svg class="icon" aria-hidden="true"><use href="#i-layers"/></svg></span><h3>Warehouse</h3><p>Racks and bins with a visual map, scan putaway, transfers, ABC cycle counts, and barcode and QR labels.</p></div>
+            <div class="feature"><span class="icon-tile"><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg></span><h3>Pick lists by walking path</h3><p>Picks are sorted by where the bins are, with scan-to-pick. Products show rack, on hand, reserved and available.</p></div>
+            <div class="feature"><span class="icon-tile"><svg class="icon" aria-hidden="true"><use href="#i-briefcase"/></svg></span><h3>Shopify, many stores</h3><p>Admin GraphQL API 2026-10. Polls orders every 2 minutes, reserves stock, pushes stock to every store, sends tracking back.</p></div>
+            <div class="feature"><span class="icon-tile"><svg class="icon" aria-hidden="true"><use href="#i-shield"/></svg></span><h3>COD risk checks</h3><p>A risk score from the phone number's history, a blacklist and a duplicate check before an order ships.</p></div>
+            <div class="feature"><span class="icon-tile"><svg class="icon" aria-hidden="true"><use href="#i-pin"/></svg></span><h3>Couriers</h3><p>TCS and PostEx: booking, tracking, airway bills that print offline, fuzzy city matching. 8 more adapters are in code, off by default.</p></div>
+            <div class="feature"><span class="icon-tile"><svg class="icon" aria-hidden="true"><use href="#i-wallet"/></svg></span><h3>Real profit</h3><p>Meta Graph API ad spend set against delivered revenue, cost of goods, courier charges and returns. Real ROAS per campaign.</p></div>
+            <div class="feature"><span class="icon-tile"><svg class="icon" aria-hidden="true"><use href="#i-database"/></svg></span><h3>Insights</h3><p>A live dashboard and 8 tabs, a pivot explorer with saved views, and a reorder planner. Charts in ECharts.</p></div>
+            <div class="feature"><span class="icon-tile"><svg class="icon" aria-hidden="true"><use href="#i-clock"/></svg></span><h3>Offline first</h3><p>Network jobs pause offline and resume on reconnect. Backups go to Google Drive. Alerts show in Windows and, if wanted, Telegram.</p></div>
+          </div>
+          <div class="gallery">
+            <figure>
+              <div class="gallery__mock" role="img" aria-label="Illustration with sample data: rack A as a grid of bins shaded by stock level, and a pick list of four lines sorted by bin.">
+                <div class="mini" aria-hidden="true">
+                  <div class="win">
+                    <div class="win__bar"><span class="win__dots"><i></i><i></i><i></i></span><span class="win__url">Warehouse · Rack A</span></div>
+                    <div class="win__body mini-grid" style="--cols:2">
+                      <div class="mini-stack">
+                        <div class="rack" style="--c:#d97706">
+                          <i style="--v:.9"></i><i style="--v:.55"></i><i style="--v:.3"></i><i style="--v:.75"></i><i style="--v:.15"></i><i style="--v:.6"></i>
+                          <i style="--v:.4"></i><i style="--v:.85"></i><i style="--v:.2"></i><i style="--v:.5"></i><i style="--v:.7"></i><i style="--v:.25"></i>
+                          <i style="--v:.65"></i><i style="--v:.3"></i><i style="--v:.95"></i><i style="--v:.45"></i><i style="--v:.12"></i><i style="--v:.8"></i>
+                        </div>
+                        <span class="ui-sub">Darker bin, more stock</span>
+                      </div>
+                      <div class="pick">
+                        <div><b>A-01</b><span>Phone case</span><span>x2</span></div>
+                        <div><b>A-03</b><span>USB-C cable</span><span>x1</span></div>
+                        <div><b>A-07</b><span>Earbuds</span><span>x1</span></div>
+                        <div><b>A-12</b><span>Charger</span><span>x3</span></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <figcaption><b>Rack map and pick list.</b> Sample data.</figcaption>
+            </figure>
+            <figure>
+              <div class="gallery__mock" role="img" aria-label="Illustration with sample data: a profit breakdown for one week. Delivered revenue minus cost of goods, courier charges, returns and Meta ad spend gives net profit.">
+                <div class="mini" aria-hidden="true">
+                  <div class="win">
+                    <div class="win__bar"><span class="win__dots"><i></i><i></i><i></i></span><span class="win__url">Marketing · Real profit</span></div>
+                    <div class="win__body mock-rows">
+                      <div><span>Delivered revenue</span><b>Rs 412,000</b></div>
+                      <div class="is-minus"><span>Cost of goods (FIFO)</span><span>- Rs 198,500</span></div>
+                      <div class="is-minus"><span>Courier charges</span><span>- Rs 31,200</span></div>
+                      <div class="is-minus"><span>Returns to origin</span><span>- Rs 18,900</span></div>
+                      <div class="is-minus"><span>Meta ad spend</span><span>- Rs 67,400</span></div>
+                      <div><span><b>Net profit</b></span><b>Rs 96,000</b></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <figcaption><b>Real profit.</b> What is left after returns, couriers and ads. Sample data.</figcaption>
+            </figure>
+          </div>
+          <h3>Kept from StockFlow</h3>
+          <ul class="check-list check-list--cols" data-reveal>
+            <li><b>POS.</b> Invoices, small receipts, discounts, F2 for a new sale.</li>
+            <li><b>Stock.</b> Categories, suppliers, purchases and returns with restock.</li>
+            <li><b>Money.</b> Payments, expenses and reports.</li>
+            <li><b>Backups.</b> Export, import and scheduled local backups.</li>
+          </ul>
+          <p>Shipping an online order turns it into a normal sale, so FIFO cost stays right. A return to origin puts the stock back.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="case-section case-section--dark dark-panel" id="assistant">
+      <div class="dark-panel__bg" aria-hidden="true"></div>
+      <div class="container case-section__grid">
+        <header class="case-section__head" data-reveal>
+          <p class="eyebrow">AI assistant</p>
+          <h2 class="case-section__title">Ask the shop a question.</h2>
+        </header>
+        <div class="case-section__body">
+          <p>The assistant uses the Claude Agent SDK on the local Claude Code login. It can read the shop's data but never change it.</p>
+          <div class="feature-grid feature-grid--3" data-stagger>
+            <div class="feature"><span class="icon-tile"><svg class="icon" aria-hidden="true"><use href="#i-sparkles"/></svg></span><h3>12 read-only tools</h3><p>Today's numbers, orders, low stock, bin locations, top products, customers, courier and ad results, schema and SQL.</p></div>
+            <div class="feature"><span class="icon-tile"><svg class="icon" aria-hidden="true"><use href="#i-database"/></svg></span><h3>Guarded SQL</h3><p>Queries run in a separate worker. A guard lets through only SELECT and WITH.</p></div>
+            <div class="feature"><span class="icon-tile"><svg class="icon" aria-hidden="true"><use href="#i-lock"/></svg></span><h3>Keys stay hidden</h3><p>Account keys sit in Electron safeStorage and are never sent to the screen.</p></div>
+          </div>
+          <div class="gallery gallery--1">
+            <figure>
+              <div class="gallery__mock" role="img" aria-label="Illustration with sample data: a chat where the owner asks which products lost money last week after returns, and the assistant answers with two products and the reason.">
+                <div class="glass chat-card" aria-hidden="true">
+                  <div class="chat-card__head"><span class="ui-avatar">AI</span><div><p class="ui-title">OmniStock assistant</p><p class="ui-sub">Sample shop</p></div></div>
+                  <div class="ui-bubble ui-bubble--me">Which products lost money last week after returns?</div>
+                  <span class="ui-chip">run_sql · SELECT only</span>
+                  <div class="ui-bubble">Two did. Earbuds lost Rs 4,100: 9 of 22 orders came back from Karachi. Phone stands lost Rs 1,300, mostly ad spend. Want the city split?</div>
+                </div>
+              </div>
+              <figcaption><b>Assistant.</b> Sample question and answer.</figcaption>
+            </figure>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="case-section" id="build">
+      <div class="container case-section__grid">
+        <header class="case-section__head" data-reveal>
+          <p class="eyebrow">How it was built</p>
+          <h2 class="case-section__title">Two days, planned contracts, then testing.</h2>
+        </header>
+        <div class="case-section__body" data-reveal>
+          <p>I built the OmniStock layer in about two days with Claude Code. I wrote the contracts between the feature areas first. Several subagents then worked on separate areas in parallel, and I integrated and tested the result.</p>
+          <p>The courier and Shopify logic came from RynoDesk, an earlier team project. I rewrote it as Node and Electron modules and fixed 10 bugs during the port.</p>
+          <h3>Tested so far</h3>
+          <ul class="check-list">
+            <li>Dev and production builds with 0 errors</li>
+            <li>A real Electron run of 16 screens with 0 console errors and 12 background jobs</li>
+            <li>Analytics at 20,000 test orders</li>
+            <li>A 27-check Shopify and orders integration test</li>
+          </ul>
+          <p class="note"><b>Not live yet:</b> Shopify, TCS, PostEx, Meta, Google Drive and Telegram have only run against simulated responses and sample payloads, not real accounts. PostEx was checked against its official guide. TCS fields are best effort, because its COD API docs need a login. The OmniStock installer has not been built yet.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="case-section" id="stack">
+      <div class="container case-section__grid">
+        <header class="case-section__head" data-reveal>
+          <p class="eyebrow">Stack</p>
+          <h2 class="case-section__title">Built with</h2>
+        </header>
+        <div class="case-section__body">
+          <h3>App</h3>
+          <ul class="stack-chips stack-chips--lg">
+            <li>Electron 38</li><li>Node.js</li><li>Angular 17</li><li>Angular Material 17</li><li>TypeScript 5.2</li><li>RxJS 7.5</li><li>Bootstrap 5.3</li><li>SQLite (sql.js, WASM)</li><li>ECharts 5</li><li>SheetJS</li><li>zod</li><li>electron-builder 26</li>
+          </ul>
+          <h3>APIs</h3>
+          <ul class="stack-chips stack-chips--lg">
+            <li>Shopify Admin GraphQL</li><li>TCS REST</li><li>PostEx REST</li><li>Meta Graph API v27.0</li><li>Google Drive v3</li><li>Telegram Bot API</li><li>Claude Agent SDK</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--tight">
+      <div class="container">
+        <a class="next-project card card--spot card--lift" data-spot href="rynochat-demo.html">
+          <div>
+            <p class="next-project__label">Next project</p>
+            <p class="next-project__title">RynoChat</p>
+            <p class="next-project__text">Team inbox with AI chatbot flows</p>
+          </div>
+          <span class="next-project__arrow"><svg class="icon" aria-hidden="true"><use href="#i-arrow-right"/></svg></span>
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <div data-site-footer></div>
+</body>
+</html>

@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-59XXTKP9');</script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Orderyfy | Muhammad Afaq</title>
+  <meta name="description" content="Orderyfy is a live food and shop delivery marketplace on Laravel 13 and Filament 5, with a Claude sales assistant that fills the real cart and places the order. Lead developer: Muhammad Afaq.">
+  <meta name="author" content="Muhammad Afaq">
+  <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" content="#ffffff">
+  <link rel="canonical" href="https://muhammadafaqportfolio.netlify.app/orderyfy-demo.html">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Muhammad Afaq">
+  <meta property="og:url" content="https://muhammadafaqportfolio.netlify.app/orderyfy-demo.html">
+  <meta property="og:title" content="Orderyfy | Muhammad Afaq">
+  <meta property="og:description" content="A live delivery marketplace on Laravel with a Claude sales assistant: 7 tools, a cached prompt and a monthly budget guard.">
+  <meta property="og:image" content="https://muhammadafaqportfolio.netlify.app/afaq.png">
+  <meta name="twitter:card" content="summary">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%234f63e7'/%3E%3Cstop offset='1' stop-color='%230f9a91'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='64' height='64' rx='16' fill='url(%23g)'/%3E%3Ctext x='32' y='42' font-family='Arial,sans-serif' font-size='28' font-weight='700' fill='white' text-anchor='middle'%3EMA%3C/text%3E%3C/svg%3E">
+  <link rel="apple-touch-icon" href="afaq-72.png">
+  <script>(function(){var t=null;try{t=localStorage.getItem('theme')}catch(e){}if(t!=='light'&&t!=='dark'){t=window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'}document.documentElement.setAttribute('data-theme',t)})();</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700;800&display=swap">
+  <link rel="stylesheet" href="assets/site.css?v=20261112">
+  <script src="assets/site.js?v=20261112" defer></script>
+  <style>
+    .oy-hero { position: relative; padding-bottom: 5em; }
+    .oy-hero .win { width: 86%; }
+    .oy-store { display: grid; gap: 0.9em; }
+    .oy-search { padding: 0.6em 1em; border: 1px solid var(--line-2); border-radius: 999px; background: var(--card-2); color: var(--muted); font-size: 0.85em; }
+    .oy-banner { display: grid; gap: 0.2em; padding: 1em 1.1em; border-radius: 0.9em; background: color-mix(in srgb, #8cc63f 26%, var(--card)); }
+    .oy-banner b { color: var(--ink); font-size: 1.15em; letter-spacing: -0.02em; }
+    .oy-cats { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 0.5em; }
+    .oy-cat { display: grid; justify-items: center; gap: 0.35em; color: var(--ink-2); font-size: 0.7em; font-weight: 600; text-align: center; line-height: 1.2; }
+    .oy-cat i { width: 100%; aspect-ratio: 1; border-radius: 0.8em; background: color-mix(in srgb, var(--c, #8cc63f) 24%, var(--card-2)); }
+    .oy-chat { position: absolute; right: 0; bottom: 0; width: 21em; }
+    .oy-chat .ui-bubble--me { background: #4d7f0c; }
+    .gallery figure > img.is-tall { aspect-ratio: auto; height: auto; }
+    .case-section--dark .case-section__title,
+    .case-section--dark .case-section__body h3 { color: var(--night-head); }
+    .case-section--dark .case-section__body,
+    .case-section--dark .case-section__body > p,
+    .case-section--dark .check-list li { color: var(--night-text); }
+    .case-section--dark .check-list li b { color: var(--night-head); }
+    .case-section--dark .check-list li::before { background: rgba(255, 255, 255, 0.08); }
+    .case-section--dark .check-list li::after { border-color: var(--brand-on-dark); }
+    .tool-list { display: flex; flex-wrap: wrap; gap: 8px; }
+    .case-section--dark .tool-list .ui-chip { border-color: rgba(255, 255, 255, 0.12); background: rgba(255, 255, 255, 0.05); color: #d5dbe1; font-size: 0.8125rem; }
+    .case-footnote { color: var(--muted); font-size: 0.875rem; }
+  </style>
+</head>
+<body>
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-59XXTKP9" height="0" width="0" style="display:none;visibility:hidden" title="Analytics"></iframe></noscript>
+  <div data-site-header></div>
+  <main id="main">
+    <section class="case-hero">
+      <div class="case-hero__bg" aria-hidden="true"><div class="bg-grid"></div><div class="bg-glow bg-glow--a"></div><div class="bg-glow bg-glow--b"></div></div>
+      <div class="container">
+        <a class="back-link" href="index.html#work"><svg class="icon" aria-hidden="true"><use href="#i-arrow-left"/></svg>All work</a>
+        <div class="case-hero__grid">
+          <div>
+            <div class="case-hero__badges">
+              <span class="pill pill--live"><span class="live-dot" aria-hidden="true"></span>Live</span>
+              <span class="pill pill--brand">Lead developer</span>
+              <span class="pill pill--teal">Claude sales assistant</span>
+            </div>
+            <h1 class="case-hero__title">Orderyfy: <span class="text-gradient">food and shop delivery for one town.</span></h1>
+            <p class="case-hero__lead">A multi-vendor marketplace for Faqirwali, Pakistan. Customers, shops, riders and admins use one Laravel app, in English and Urdu. A Claude assistant takes orders in chat and puts them in the real cart.</p>
+            <div class="case-hero__actions">
+              <a class="btn btn--primary btn--lg" href="https://orderyfy.com" target="_blank" rel="noopener">Visit orderyfy.com <svg class="icon btn__arrow" aria-hidden="true"><use href="#i-arrow-up-right"/></svg><span class="sr-only">(opens in a new tab)</span></a>
+              <a class="btn btn--secondary btn--lg" href="#assistant">See the assistant</a>
+            </div>
+            <dl class="case-hero__meta">
+              <div><dt>Role</dt><dd>Lead developer</dd></div>
+              <div><dt>When</dt><dd>6 Oct to 5 Nov 2026</dd></div>
+              <div><dt>Launched</dt><dd>5 Nov 2026</dd></div>
+              <div><dt>Stack</dt><dd>Laravel 13, Filament 5</dd></div>
+            </dl>
+          </div>
+          <div class="case-hero__visual" role="img" aria-label="Illustration with sample data: the Orderyfy storefront with its five shop types, and the AI assistant adding three items to the cart.">
+            <div class="oy-hero" aria-hidden="true">
+              <div class="win">
+                <div class="win__bar"><span class="win__dots"><i></i><i></i><i></i></span><span class="win__url"><svg class="icon"><use href="#i-lock"/></svg>orderyfy.com</span></div>
+                <div class="win__body oy-store">
+                  <div class="mini-split"><span class="ui-sub">Deliver to <b style="color:var(--ink)">your village</b></span><span class="ui-badge" style="--c:#4d7f0c">EN · اردو</span></div>
+                  <div class="oy-search">Search shops and food</div>
+                  <div class="oy-banner"><b>Your Town. Your Orders.</b><span class="ui-sub">Pay cash when your order arrives</span></div>
+                  <div class="oy-cats">
+                    <span class="oy-cat" style="--c:#f59e0b"><i></i>Fast Food</span>
+                    <span class="oy-cat" style="--c:#0ea5e9"><i></i>Utility Store</span>
+                    <span class="oy-cat" style="--c:#22c55e"><i></i>Fruits &amp; Veg</span>
+                    <span class="oy-cat" style="--c:#a855f7"><i></i>Unstitched</span>
+                    <span class="oy-cat" style="--c:#ec4899"><i></i>Cosmetics</span>
+                  </div>
+                  <div class="ui-row"><span class="ui-avatar" style="--c:#4d7f0c">PS</span><div class="mini-stack" style="flex:1"><span class="ui-title" style="font-size:.9em">Pizza shop</span><span class="ui-sub">40 to 50 min</span></div><span class="ui-badge" style="--c:#2fbf71;--c-ink:var(--green-ink)">Open</span></div>
+                </div>
+              </div>
+              <div class="glass chat-card oy-chat">
+                <div class="chat-card__head">
+                  <span class="ui-avatar">AI</span>
+                  <div><p class="ui-title" style="font-size:.9em">Orderyfy assistant</p><p class="ui-sub">AI assistant, not a person</p></div>
+                </div>
+                <p class="ui-bubble ui-bubble--me">Two pizza rolls and one samosa, please</p>
+                <span class="ui-chip">update_cart</span>
+                <p class="ui-bubble">Added. That's Rs 2,040 before delivery. Anything else, or shall we check out?</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <nav class="case-nav" aria-label="On this page">
+      <div class="container">
+        <div class="case-nav__list">
+          <a href="#problem">Problem</a><a href="#built">What I built</a><a href="#assistant">AI assistant</a><a href="#numbers">Numbers</a><a href="#screens">Screens</a><a href="#shipping">How I shipped</a><a href="#stack">Stack</a>
+        </div>
+      </div>
+    </nav>
+
+    <section class="case-section" id="problem">
+      <div class="container case-section__grid">
+        <header class="case-section__head" data-reveal>
+          <p class="eyebrow">The problem</p>
+          <h2 class="case-section__title">A town with shops, riders and no delivery app.</h2>
+        </header>
+        <div class="case-section__body" data-reveal>
+          <p>Foodpanda doesn't cover Faqirwali. The shops are there, and so are people who can ride. What was missing was one place to order from them, with prices in rupees, Urdu on screen and cash on delivery.</p>
+          <ul class="check-list">
+            <li>Five kinds of shop, from fast food and groceries to unstitched cloth and cosmetics.</li>
+            <li>Orders go out to villages, so a flat delivery fee doesn't work.</li>
+            <li>Shops, riders and the admin team each need their own tools, on a phone.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="case-section" id="built">
+      <div class="container case-section__grid">
+        <header class="case-section__head" data-reveal>
+          <p class="eyebrow">What I built</p>
+          <h2 class="case-section__title">Four roles, one app.</h2>
+        </header>
+        <div class="case-section__body">
+          <p data-reveal>Customer storefront, vendor panel, rider app and admin panel. One phone can switch between customer, rider and vendor modes.</p>
+          <div class="feature-grid" data-stagger>
+            <div class="feature">
+              <span class="icon-tile"><svg class="icon" aria-hidden="true"><use href="#i-layers"/></svg></span>
+              <h3>Catalogue with no depth limit</h3>
+              <p>Store types, then shops, then each shop's own category tree, then products with variants. Vendors import products from CSV or Excel with sizes and photos.</p>
+            </div>
+            <div class="feature">
+              <span class="icon-tile"><svg class="icon" aria-hidden="true"><use href="#i-pin"/></svg></span>
+              <h3>Fees from real roads</h3>
+              <p>The delivery fee comes from road distance per km and a village rate card. Rider pay shows its km, petrol and fixed parts.</p>
+            </div>
+            <div class="feature">
+              <span class="icon-tile"><svg class="icon" aria-hidden="true"><use href="#i-wallet"/></svg></span>
+              <h3>Rider flow and cash</h3>
+              <p>A rider-first order flow with a wallet, drive mode, ratings, cash submissions and payouts.</p>
+            </div>
+            <div class="feature">
+              <span class="icon-tile"><svg class="icon" aria-hidden="true"><use href="#i-briefcase"/></svg></span>
+              <h3>A panel for each shop</h3>
+              <p>Each shop is its own Filament tenant, with bulk actions, WebP photos and a weekly settlement.</p>
+            </div>
+            <div class="feature">
+              <span class="icon-tile"><svg class="icon" aria-hidden="true"><use href="#i-users"/></svg></span>
+              <h3>Reasons to come back</h3>
+              <p>Loyalty points ("you'll earn X points"), coupons, and reviews with votes and reports.</p>
+            </div>
+            <div class="feature">
+              <span class="icon-tile"><svg class="icon" aria-hidden="true"><use href="#i-phone"/></svg></span>
+              <h3>Alerts that reach locked phones</h3>
+              <p>Web push for riders and kitchens. The site installs as a PWA, and customers can sign in with Google.</p>
+            </div>
+            <div class="feature">
+              <span class="icon-tile"><svg class="icon" aria-hidden="true"><use href="#i-mic"/></svg></span>
+              <h3>Urdu and voice notes</h3>
+              <p>An English / Urdu picker with a right-to-left layout. Voice notes at checkout are turned into text by Gemini.</p>
+            </div>
+            <div class="feature">
+              <span class="icon-tile"><svg class="icon" aria-hidden="true"><use href="#i-server"/></svg></span>
+              <h3>Courier pickups</h3>
+              <p>Customers can ask for a parcel to be picked up from a courier office and brought to the door.</p>
+            </div>
+          </div>
+          <h3 data-reveal>Also shipped</h3>
+          <ul class="check-list" data-reveal>
+            <li>A mobile field panel for a field agent, with shop visits, an admin report and Excel export.</li>
+            <li>A Team &amp; roles page for staff access.</li>
+            <li>Launch-day tracking: each customer step goes to GA4, the Meta Pixel, Meta's Conversions API (hashed details, shared event id) and the site's own event log. An "Ads &amp; visitors" page shows the funnel from visit to delivered order, by source and campaign, with staff, riders, shops and bots left out.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="case-section case-section--dark dark-panel" id="assistant">
+      <div class="dark-panel__bg" aria-hidden="true"></div>
+      <div class="container case-section__grid">
+        <header class="case-section__head" data-reveal>
+          <p class="eyebrow"><svg class="icon" aria-hidden="true"><use href="#i-sparkles"/></svg>AI sales assistant</p>
+          <h2 class="case-section__title">A Claude assistant that <span class="text-gradient">takes the order.</span></h2>
+          <p class="section-lead" style="margin-top:14px;font-size:1rem">Live since 18 Oct 2026, on Claude Haiku.</p>
+        </header>
+        <div class="case-section__body">
+          <p data-reveal>It isn't a FAQ bot. It searches the real catalogue and fills the real cart. It collects name, phone, village and address in a form, shows the delivery fee, and places a guest order tagged "Chatbot".</p>
+          <div data-reveal>
+            <div class="ai-demo" data-ai-demo>
+              <div class="ai-demo__tabs" role="group" aria-label="Pick a conversation">
+                <button class="ai-demo__tab" type="button" aria-pressed="true" data-turn-tab>Order<i class="ai-demo__progress" aria-hidden="true"></i></button>
+                <button class="ai-demo__tab" type="button" aria-pressed="false" data-turn-tab>Pick a shop<i class="ai-demo__progress" aria-hidden="true"></i></button>
+                <button class="ai-demo__tab" type="button" aria-pressed="false" data-turn-tab>Ask the team<i class="ai-demo__progress" aria-hidden="true"></i></button>
+              </div>
+              <div class="ai-demo__stage">
+                <div class="ai-turn is-active" data-turn>
+                  <p class="ai-turn__product"><span class="live-dot" aria-hidden="true"></span>Orderyfy assistant · sample order</p>
+                  <p class="ai-turn__q" data-step data-type>Large pizza for 4, under Rs 2,500? Add one.</p>
+                  <div class="ai-dots" aria-hidden="true"><i></i><i></i><i></i></div>
+                  <div class="ai-turn__tools" data-step><span class="ui-chip">search_products</span><span class="ui-chip" style="--c:#a3adff">update_cart</span><span class="ui-chip" style="--c:#f5c26f">show_checkout_form</span></div>
+                  <div class="ai-turn__a" data-step>
+                    <p>Added a large pizza (serves 4) for Rs 2,199. Put your name, phone and village in the form below and I'll place the order.</p>
+                    <p class="ai-turn__note">The form shows the delivery fee for your village before you confirm.</p>
+                  </div>
+                </div>
+                <div class="ai-turn" data-turn aria-hidden="true">
+                  <p class="ai-turn__product"><span class="live-dot" aria-hidden="true"></span>Orderyfy assistant · sample order</p>
+                  <p class="ai-turn__q" data-step data-type>Fresh mangoes, 2 kg, delivered today?</p>
+                  <div class="ai-dots" aria-hidden="true"><i></i><i></i><i></i></div>
+                  <div class="ai-turn__tools" data-step><span class="ui-chip">search_products</span><span class="ui-chip" style="--c:#a3adff">show_shop_choices</span></div>
+                  <div class="ai-turn__a" data-step>
+                    <p>Two fruit shops deliver to your village today. Pick one and I'll add the mangoes to your cart.</p>
+                    <p class="ai-turn__note">A closed shop shows its opening time instead.</p>
+                  </div>
+                </div>
+                <div class="ai-turn" data-turn aria-hidden="true">
+                  <p class="ai-turn__product"><span class="live-dot" aria-hidden="true"></span>Orderyfy assistant · sample question</p>
+                  <p class="ai-turn__q" data-step data-type>Do you deliver after 10 pm?</p>
+                  <div class="ai-dots" aria-hidden="true"><i></i><i></i><i></i></div>
+                  <div class="ai-turn__tools" data-step><span class="ui-chip" style="--c:#f5c26f">ask_team</span></div>
+                  <div class="ai-turn__a" data-step>
+                    <p>I've asked the team. If nobody answers in 5 minutes, I'll give you a number to call.</p>
+                    <p class="ai-turn__note">The team's answer is saved, so the bot doesn't ask twice.</p>
+                  </div>
+                </div>
+              </div>
+              <p class="ai-demo__foot">Sample conversations. The tool names and limits match the live code.</p>
+            </div>
+          </div>
+          <h3 data-reveal>Its 7 tools</h3>
+          <ul class="tool-list" data-reveal>
+            <li class="ui-chip">search_products</li><li class="ui-chip">update_cart</li><li class="ui-chip">show_checkout_form</li><li class="ui-chip">show_shop_choices</li><li class="ui-chip">show_call_button</li><li class="ui-chip">ask_team</li><li class="ui-chip">show_courier_form</li>
+          </ul>
+          <h3 data-reveal>Limits around the model</h3>
+          <ul class="check-list" data-reveal>
+            <li><b>Cached prompt.</b> The rules and a knowledge snapshot are cached. The cache key changes when the tool list's version does.</li>
+            <li><b>Three ways to pause.</b> A monthly budget ($20 by default), a cap of 30 model calls per conversation, and Anthropic's own spend limit.</li>
+            <li><b>Usage meter.</b> Every call's tokens and cost are counted, and the budget guard reads them.</li>
+            <li><b>Human handoff.</b> Questions it can't answer go to an admin inbox, with an email alert.</li>
+            <li><b>Key stays private.</b> The API key is stored encrypted and never reaches the settings page.</li>
+            <li><b>Phone first.</b> On phones it opens as a floating card.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="case-section" id="numbers">
+      <div class="container case-section__grid">
+        <header class="case-section__head" data-reveal>
+          <p class="eyebrow">Numbers</p>
+          <h2 class="case-section__title">30 days from first commit to launch.</h2>
+        </header>
+        <div class="case-section__body">
+          <div class="metric-row" data-stagger>
+            <div class="metric"><span class="metric__value"><span data-count="7">7</span></span><span class="metric__label">AI tools</span></div>
+            <div class="metric"><span class="metric__value"><span data-count="55">55</span></span><span class="metric__label">models</span></div>
+            <div class="metric"><span class="metric__value"><span data-count="30">30</span></span><span class="metric__label">Filament admin resources</span></div>
+            <div class="metric"><span class="metric__value"><span data-count="107">107</span></span><span class="metric__label">migrations</span></div>
+            <div class="metric"><span class="metric__value"><span data-count="2100" data-prefix="~">~2,100</span></span><span class="metric__label">test cases in 162 files</span></div>
+            <div class="metric"><span class="metric__value"><span data-count="80">80</span></span><span class="metric__label">build steps logged, most with a deploy id</span></div>
+            <div class="metric"><span class="metric__value"><span data-count="156">156</span></span><span class="metric__label">commits by me, plus <b>22</b> from Claude Code sessions I ran</span></div>
+            <div class="metric"><span class="metric__value"><span data-count="2">2</span></span><span class="metric__label">languages: English and Urdu</span></div>
+          </div>
+          <p class="case-footnote">Counted from the repo on 12 Nov 2026. It has 200 commits from 6 Oct to 5 Nov 2026.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="case-section" id="screens">
+      <div class="container case-section__grid">
+        <header class="case-section__head" data-reveal>
+          <p class="eyebrow">Screens</p>
+          <h2 class="case-section__title">Real screens.</h2>
+        </header>
+        <div class="case-section__body">
+          <div class="gallery gallery--1" data-reveal>
+            <figure>
+              <img src="img/orderyfy/storefront.jpg" width="1600" height="961" loading="lazy" decoding="async" alt="The Orderyfy home page: a search box, a banner reading 'Kirana, delivered to your door', and five shop types: Fast Food, Utility Store, Fruits and Vegetables, Women Unstitched, Cosmetics and Gifts.">
+              <figcaption><b>Storefront.</b> Real screenshot, 2 Nov 2026.</figcaption>
+            </figure>
+          </div>
+          <div class="gallery" data-reveal>
+            <figure>
+              <img class="is-tall" src="img/orderyfy/assistant-shops.jpg" width="640" height="1036" loading="lazy" decoding="async" alt="The Orderyfy assistant panel. The customer asks for a pizza and the assistant shows two fast food shops to pick from, one marked closed with its opening time.">
+              <figcaption><b>Shop choices.</b> It asks which shop, and shows when one is closed.</figcaption>
+            </figure>
+            <figure>
+              <img class="is-tall" src="img/orderyfy/assistant-cart.jpg" width="640" height="1036" loading="lazy" decoding="async" alt="The Orderyfy assistant panel shows two products with Add buttons, then confirms it added two pizza rolls and one pizza samosa to the cart, Rs 2,040 before delivery.">
+              <figcaption><b>Real cart.</b> Items go into the same cart the site uses.</figcaption>
+            </figure>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="case-section" id="shipping">
+      <div class="container case-section__grid">
+        <header class="case-section__head" data-reveal>
+          <p class="eyebrow">How I shipped</p>
+          <h2 class="case-section__title">Small steps, each one live.</h2>
+        </header>
+        <div class="case-section__body" data-reveal>
+          <ul class="check-list">
+            <li>Work was tracked as Jira tickets KAN-1 to KAN-52, and a status file logs 80 numbered steps.</li>
+            <li>I built with Claude Code, running agents in parallel worktrees and reviewing each one's work before merging.</li>
+            <li>The assistant step used 8 builder agents, an integrator and a review from 3 angles. The review found 15 issues, all fixed, and the full suite passed 1,487 of 1,487.</li>
+            <li>Deploys run from a script over SSH: drift check, backup, staged upload, migrate, cache rebuild, smoke test, and rollback if anything fails.</li>
+            <li>A GitHub Actions deploy workflow exists, kept manual on purpose.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="case-section" id="stack">
+      <div class="container case-section__grid">
+        <header class="case-section__head" data-reveal>
+          <p class="eyebrow">Stack</p>
+          <h2 class="case-section__title">PHP and Laravel, end to end.</h2>
+        </header>
+        <div class="case-section__body" data-reveal>
+          <ul class="stack-chips stack-chips--lg">
+            <li>PHP 8.3</li><li>Laravel 13</li><li>Filament 5</li><li>Blade</li><li>JavaScript</li><li>Tailwind 4</li><li>Vite 8</li><li>MySQL</li><li>Spatie permission</li><li>Spatie translatable</li><li>Spatie media library</li><li>Laravel Socialite</li><li>Web Push</li><li>PWA</li><li>Claude API (PHP SDK)</li><li>Gemini</li><li>PHPUnit 12</li><li>GA4</li><li>Meta Conversions API</li><li>Claude Code</li><li>Jira</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--tight">
+      <div class="container">
+        <a class="next-project card card--spot card--lift" data-spot href="nixxe-crm-demo.html">
+          <div>
+            <p class="next-project__label">Next project</p>
+            <p class="next-project__title">Nixxe CRM</p>
+            <p class="next-project__text">Sales, support and workforce CRM</p>
+          </div>
+          <span class="next-project__arrow"><svg class="icon" aria-hidden="true"><use href="#i-arrow-right"/></svg></span>
+        </a>
+      </div>
+    </section>
+  </main>
+  <div data-site-footer></div>
+</body>
+</html>
