@@ -1,538 +1,334 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','GTM-59XXTKP9');</script>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RynoDesk: POS and E-commerce Platform | Muhammad Afaq</title>
-    <meta name="description" content="RynoDesk is a retail POS and e-commerce platform where I was the second contributor, building vouchers, ledger reports, courier remittance, CRM features and a WhatsApp inbox.">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-    <link href="site-nav.css" rel="stylesheet">
-    <link href="typography.css" rel="stylesheet">
-    <link href="sticky-social.css" rel="stylesheet">
-    <link href="site-buttons.css" rel="stylesheet">
-    <link href="site-marquee.css" rel="stylesheet">
-    <link href="site-footer.css" rel="stylesheet">
-    <style>
-        :root {
-            --primary: #e85d04;
-            --primary-dark: #9d0208;
-            --sales: #c2410c;
-            --product: #b45309;
-            --inventory: #0f766e;
-            --integration: #2563eb;
-            --finance: #7c3aed;
-            --crm: #db2777;
-            --access: #475569;
-            --reports: #0e7490;
-            --tab-active: #c2410c;
-            --bg: #fff7ed;
-            --card: #ffffff;
-            --text: #1e293b;
-            --muted: #64748b;
-            --border: #fed7aa;
-        }
-        html, body { overflow-x: hidden; max-width: 100vw; }
-        body { background: var(--bg); color: var(--text); }
-        .top-nav {
-            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-            box-shadow: 0 2px 16px rgba(0,0,0,0.12);
-            padding: 0.85rem 0;
-        }
-        .top-nav .brand { font-weight: 800; color: #fff !important; font-size: 1.05rem; }
-        .top-nav .nav-link { color: rgba(255,255,255,0.9) !important; font-weight: 500; font-size: 0.875rem; }
-        .hero-demo {
-            background: linear-gradient(140deg, #431407 0%, #9a3412 50%, #7f1d1d 100%);
-            color: white;
-            padding: 3rem 0 2.5rem;
-            text-align: center;
-        }
-        .hero-demo h1 { font-size: 2rem; font-weight: 800; }
-        .hero-demo p { color: rgba(255,255,255,0.75); max-width: 520px; margin: 0.75rem auto 0; font-size: 0.9rem; }
-        .hero-stats { display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap; margin-top: 1.5rem; }
-        .hero-stat-num { font-size: 1.75rem; font-weight: 800; color: #fdba74; }
-        .hero-stat-lbl { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 1px; color: rgba(255,255,255,0.8); font-weight: 600; }
-        .back-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.4rem;
-            margin-top: 1.5rem;
-            padding: 0.5rem 1.1rem;
-            border: 1px solid rgba(255,255,255,0.35);
-            border-radius: 50px;
-            color: #fff;
-            font-size: 0.8rem;
-            font-weight: 600;
-            text-decoration: none;
-            transition: background 0.2s;
-        }
-        .back-link:hover { background: rgba(255,255,255,0.12); color: #fff; }
-        .back-link.on-light { border-color: var(--border); color: var(--primary); background: var(--card); margin-top: 0; }
-        .back-link.on-light:hover { background: var(--primary); color: #fff; border-color: var(--primary); }
-        .back-link { cursor: pointer; }
-        .demo-nav-section {
-            background: white;
-            border-bottom: 1px solid var(--border);
-            padding: 1rem 0 1.25rem;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
-        }
-        .app-tabs { display: flex; flex-wrap: wrap; gap: 0.5rem; justify-content: center; }
-        .app-tab {
-            border: 1px solid var(--border);
-            background: var(--bg);
-            color: var(--text);
-            padding: 0.5rem 0.95rem;
-            border-radius: 10px;
-            font-size: 0.78rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.2s;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.35rem;
-            white-space: nowrap;
-        }
-        .app-tab:hover, .app-tab.active {
-            background: var(--tab-active);
-            color: white;
-            border-color: var(--tab-active);
-        }
-        .main-wrap { padding: 1.5rem 0 4rem; }
-        .demo-viewport {
-            background: var(--card);
-            border: 1px solid var(--border);
-            border-radius: 20px;
-            padding: 1.25rem;
-            box-shadow: 0 8px 32px rgba(0,0,0,0.06);
-            min-height: 200px;
-        }
-        .panel { display: none; animation: fadeIn 0.25s ease; }
-        .panel.active { display: block; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
-        .flow-bar {
-            background: var(--card);
-            border: 1px solid var(--border);
-            border-radius: 18px;
-            padding: 1.5rem;
-            margin-bottom: 1.5rem;
-        }
-        .flow-bar h5 { font-weight: 800; font-size: 0.95rem; margin-bottom: 1rem; text-align: center; }
-        .flow-steps { display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 0.4rem; }
-        .flow-step {
-            background: linear-gradient(180deg, #fff7ed, #ffedd5);
-            border: 2px solid #fdba74;
-            border-radius: 12px;
-            padding: 0.85rem 1rem;
-            font-size: 0.78rem;
-            font-weight: 700;
-            text-align: center;
-            min-width: 100px;
-        }
-        .flow-step i { display: block; font-size: 1.25rem; color: var(--primary); margin-bottom: 0.35rem; }
-        .flow-arrow { color: var(--primary); font-weight: 800; }
-        .panel-banner {
-            background: var(--card);
-            border: 1px solid var(--border);
-            border-radius: 16px;
-            padding: 1.25rem 1.5rem;
-            margin-bottom: 1.25rem;
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-        .panel-banner-icon {
-            width: 48px; height: 48px;
-            border-radius: 12px;
-            display: flex; align-items: center; justify-content: center;
-            color: white; font-size: 1.2rem; flex-shrink: 0;
-        }
-        .panel-banner h2 { font-size: 1.2rem; font-weight: 800; margin: 0; }
-        .tile-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-            gap: 0.75rem;
-        }
-        .tile {
-            background: var(--card);
-            border: 1px solid var(--border);
-            border-radius: 14px;
-            padding: 1rem 0.75rem;
-            text-align: center;
-            transition: transform 0.2s, box-shadow 0.2s;
-        }
-        .tile:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 24px rgba(232,93,4,0.15);
-        }
-        .tile i { font-size: 1.35rem; margin-bottom: 0.5rem; display: block; }
-        .tile span { font-size: 0.78rem; font-weight: 700; line-height: 1.3; display: block; }
-        .visual-row {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1rem;
-            margin-top: 1.5rem;
-        }
-        @media (max-width: 768px) {
-            .visual-row { grid-template-columns: 1fr; }
-            .hero-demo { padding: 2.25rem 0 2rem; }
-            .hero-demo h1 { font-size: 1.45rem; }
-            .app-tabs {
-                flex-wrap: nowrap;
-                justify-content: flex-start;
-                overflow-x: auto;
-                -webkit-overflow-scrolling: touch;
-                padding-bottom: 0.35rem;
-                scrollbar-width: none;
-            }
-            .app-tabs::-webkit-scrollbar { display: none; }
-            .demo-viewport {
-                border-width: 2px;
-                border-radius: 16px;
-                padding: 1rem;
-                box-shadow: inset 0 0 0 1px rgba(232,93,4,0.1), 0 10px 28px rgba(0,0,0,0.08);
-            }
-            .flow-steps { justify-content: flex-start; }
-            .flow-arrow { display: none; }
-        }
-        .visual-box {
-            background: var(--card);
-            border: 1px solid var(--border);
-            border-radius: 16px;
-            padding: 1.25rem;
-        }
-        .visual-box h6 { font-weight: 800; font-size: 0.85rem; margin-bottom: 1rem; }
-        .pos-line {
-            display: flex;
-            justify-content: space-between;
-            font-size: 0.8rem;
-            padding: 0.4rem 0;
-            border-bottom: 1px dashed #ffedd5;
-        }
-        .pos-total { font-weight: 800; color: var(--primary); font-size: 1rem; margin-top: 0.5rem; }
-        .mini-bars { display: flex; align-items: flex-end; gap: 6px; height: 80px; padding-top: 0.5rem; }
-        .mini-bar {
-            flex: 1;
-            background: linear-gradient(180deg, var(--primary), var(--primary-dark));
-            border-radius: 4px 4px 0 0;
-            min-height: 12px;
-        }
-        .stack-row {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-            justify-content: center;
-            margin-top: 2rem;
-        }
-        .stack-pill {
-            background: var(--card);
-            border: 1px solid var(--border);
-            border-radius: 50px;
-            padding: 0.5rem 1rem;
-            font-size: 0.8rem;
-            font-weight: 600;
-        }
-        .stack-pill i { color: var(--primary); margin-right: 0.35rem; }
-        .hero-demo h1, .panel-banner h2, .flow-bar h5 { text-wrap: balance; }
-        .hero-demo p { line-height: 1.65; }
-        .app-tab { min-height: 40px; }
-        .app-tab:focus-visible, .main-wrap a:focus-visible { outline: 3px solid var(--primary-dark); outline-offset: 2px; }
-        .hero-demo a:focus-visible { outline: 3px solid #fff; outline-offset: 3px; }
-        .panel:focus-visible { outline: 3px solid var(--primary-dark); outline-offset: 4px; border-radius: 12px; }
-        @media (max-width: 768px) {
-            .demo-nav-section { padding: 0.6rem 0; }
-            .app-tabs { padding: 4px 2px 6px; }
-            .app-tab { min-height: 44px; }
-            .back-link { min-height: 44px; }
-            .flow-bar { padding: 1rem; }
-            .flow-steps { display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); }
-            .flow-step { min-width: 0; }
-        }
-        @media (prefers-reduced-motion: reduce) {
-            .app-tab, .tile, .panel, .back-link { transition: none; animation: none; }
-            .tile:hover { transform: none; }
-        }
-        .cta-band{background:#0b1220;padding-block:3.5rem}
-        .cta-band-inner{display:flex;flex-wrap:wrap;gap:1.5rem 2.5rem;align-items:center;justify-content:space-between;background:linear-gradient(135deg,var(--primary-dark,#0f172a) 0%,#0b1220 100%);border:1px solid rgba(255,255,255,.12);border-radius:20px;padding:2rem}
-        .cta-band-inner > div:first-child{min-width:0;flex:1 1 320px}
-        .cta-band-eyebrow{color:#a7f3d0;font-size:.78rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;margin:0 0 .5rem;display:flex;align-items:center;gap:.5rem}
-        .cta-dot{width:8px;height:8px;border-radius:50%;background:#34d399;box-shadow:0 0 0 4px rgba(52,211,153,.2);flex:0 0 8px}
-        .cta-band-title{color:#fff;font-size:clamp(1.4rem,2.6vw,2rem);margin:0 0 .5rem;text-wrap:balance}
-        .cta-band-text{color:#cbd5e1;max-width:56ch;margin:0;line-height:1.6}
-        .cta-band-actions{display:flex;flex-wrap:wrap;gap:.75rem}
-        .cta-btn{display:inline-flex;align-items:center;gap:.5rem;min-height:46px;padding:.7rem 1.3rem;border-radius:999px;font-weight:600;text-decoration:none;transition:transform .15s ease,background-color .15s ease;cursor:pointer}
-        .cta-btn-primary{background:#fff;color:var(--primary-dark,#0f172a)}
-        .cta-btn-ghost{color:#fff;border:1px solid rgba(255,255,255,.35)}
-        .cta-btn:hover{transform:translateY(-1px)}
-        .cta-btn-ghost:hover{background:rgba(255,255,255,.08);color:#fff}
-        .cta-btn:focus-visible{outline:3px solid #93c5fd;outline-offset:3px}
-        @media (prefers-reduced-motion:reduce){.cta-btn{transition:none}.cta-btn:hover{transform:none}}
-    </style>
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-59XXTKP9');</script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>RynoDesk | Muhammad Afaq</title>
+  <meta name="description" content="RynoDesk is a retail POS and e-commerce platform with inventory, a journal ledger, marketplace sync and an Electron desktop app. I built its vouchers, ledger reports and the eBay and Etsy integrations.">
+  <meta name="author" content="Muhammad Afaq">
+  <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" content="#ffffff">
+  <link rel="canonical" href="https://muhammadafaqportfolio.netlify.app/rynodesk-demo.html">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Muhammad Afaq">
+  <meta property="og:url" content="https://muhammadafaqportfolio.netlify.app/rynodesk-demo.html">
+  <meta property="og:title" content="RynoDesk: POS, stock and online orders in one place">
+  <meta property="og:description" content="Retail POS with a journal ledger, marketplace sync and an Electron desktop app. Top contributor on the frontend, second on the backend.">
+  <meta property="og:image" content="https://muhammadafaqportfolio.netlify.app/afaq.png">
+  <meta name="twitter:card" content="summary">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%234f63e7'/%3E%3Cstop offset='1' stop-color='%230f9a91'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='64' height='64' rx='16' fill='url(%23g)'/%3E%3Ctext x='32' y='42' font-family='Arial,sans-serif' font-size='28' font-weight='700' fill='white' text-anchor='middle'%3EMA%3C/text%3E%3C/svg%3E">
+  <link rel="apple-touch-icon" href="afaq-72.png">
+  <script>(function(){var t=null;try{t=localStorage.getItem('theme')}catch(e){}if(t!=='light'&&t!=='dark'){t=window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'}document.documentElement.setAttribute('data-theme',t)})();</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700;800&display=swap">
+  <link rel="stylesheet" href="assets/site.css?v=20261112">
+  <script src="assets/site.js?v=20261112" defer></script>
+  <style>
+    .rd-scene { position: relative; padding-bottom: 3em; }
+    .rd-scene__toast { position: absolute; left: 6%; bottom: 0; }
+    .rd-till { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 0.9fr); gap: 1em; }
+    .rd-till .ui-tile { display: grid; gap: 0.35em; }
+    .rd-till .ui-tile i { width: 1.6em; height: 1.6em; border-radius: 0.45em; background: color-mix(in srgb, var(--c, var(--brand)) 18%, transparent); }
+    .rd-sale { display: grid; gap: 0.5em; align-content: start; padding: 0.8em; border: 1px solid var(--line); border-radius: 0.9em; background: var(--surface-2); font-size: 0.86em; }
+    .rd-sale .mini-split { padding-bottom: 0.45em; border-bottom: 1px dashed var(--line-2); color: var(--ink-2); font-variant-numeric: tabular-nums; }
+    .rd-sale__total { color: var(--ink); font-weight: 700; }
+    .rd-sale__total b { font-size: 1.35em; letter-spacing: -0.02em; }
+    .rd-sale .ui-btn { background: var(--green); color: #06341b; }
+    .rd-state { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
+    .rd-ledger.mini-table > div { grid-template-columns: minmax(0, 1.4fr) minmax(0, 0.8fr) minmax(0, 0.8fr); }
+    .rd-lanes { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0.5em; }
+    .rd-calls { display: flex; flex-wrap: wrap; gap: 0.4em; }
+    .rd-share { display: grid; gap: 4px; }
+    .stack-group { display: grid; gap: 10px; }
+    .stack-group h3 { margin-top: 0; }
+  </style>
 </head>
 <body>
-    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-59XXTKP9" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-
-    <div id="site-nav"></div>
-
-    <section class="hero-demo">
-        <div class="container">
-            <h1><i class="fas fa-store me-2"></i>RynoDesk</h1>
-            <p>Retail POS and e-commerce platform.</p>
-            <p>I was the second contributor, with about 30% of backend and 36% of frontend commits. My contributions: receipt and payment vouchers on the journal-voucher ledger, document reversals, ledger reports, courier remittance and returns, CRM features, the WhatsApp inbox, a chatbot widget, and work on AI services on Groq and Gemini.</p>
-            <div class="hero-stats">
-                <div><div class="hero-stat-num">7</div><div class="hero-stat-lbl">Areas</div></div>
-                <div><div class="hero-stat-num">POS</div><div class="hero-stat-lbl">Desktop</div></div>
-                <div><div class="hero-stat-num">Web</div><div class="hero-stat-lbl">App</div></div>
-            </div>
-            <a href="index.html#project-rynodesk" class="back-link"><i class="fas fa-arrow-left" aria-hidden="true"></i> Back to portfolio</a>
-        </div>
-    </section>
-
-    <section class="demo-nav-section">
-        <div class="container">
-            <div class="app-tabs" role="tablist" aria-label="RynoDesk modules">
-                <button type="button" class="app-tab active" id="tab-flow" role="tab" aria-selected="true" aria-controls="panel-flow" data-panel="panel-flow"><i class="fas fa-diagram-project" aria-hidden="true"></i> Flow</button>
-                <button type="button" class="app-tab" id="tab-sales" role="tab" aria-selected="false" aria-controls="panel-sales" tabindex="-1" data-panel="panel-sales"><i class="fas fa-cart-shopping" aria-hidden="true"></i> Sales</button>
-                <button type="button" class="app-tab" id="tab-product" role="tab" aria-selected="false" aria-controls="panel-product" tabindex="-1" data-panel="panel-product"><i class="fas fa-box" aria-hidden="true"></i> Products</button>
-                <button type="button" class="app-tab" id="tab-inventory" role="tab" aria-selected="false" aria-controls="panel-inventory" tabindex="-1" data-panel="panel-inventory"><i class="fas fa-warehouse" aria-hidden="true"></i> Inventory</button>
-                <button type="button" class="app-tab" id="tab-integration" role="tab" aria-selected="false" aria-controls="panel-integration" tabindex="-1" data-panel="panel-integration"><i class="fas fa-plug" aria-hidden="true"></i> Integrations</button>
-                <button type="button" class="app-tab" id="tab-finance" role="tab" aria-selected="false" aria-controls="panel-finance" tabindex="-1" data-panel="panel-finance"><i class="fas fa-coins" aria-hidden="true"></i> Finance</button>
-                <button type="button" class="app-tab" id="tab-crm-access" role="tab" aria-selected="false" aria-controls="panel-crm-access" tabindex="-1" data-panel="panel-crm-access"><i class="fas fa-users" aria-hidden="true"></i> CRM and Access</button>
-                <button type="button" class="app-tab" id="tab-reports" role="tab" aria-selected="false" aria-controls="panel-reports" tabindex="-1" data-panel="panel-reports"><i class="fas fa-chart-line" aria-hidden="true"></i> Reports</button>
-            </div>
-        </div>
-    </section>
-
-    <div class="container main-wrap">
-        <div class="demo-viewport">
-
-        <div id="panel-flow" class="panel active" role="tabpanel" aria-labelledby="tab-flow" tabindex="0">
-            <div class="flow-bar">
-                <h5><i class="fas fa-route me-2"></i>Platform Flow</h5>
-                <div class="flow-steps">
-                    <div class="flow-step"><i class="fas fa-cloud"></i>Storefront</div>
-                    <span class="flow-arrow">→</span>
-                    <div class="flow-step"><i class="fas fa-box"></i>Products</div>
-                    <span class="flow-arrow">→</span>
-                    <div class="flow-step"><i class="fas fa-warehouse"></i>Inventory</div>
-                    <span class="flow-arrow">→</span>
-                    <div class="flow-step"><i class="fas fa-cash-register"></i>Sales / POS</div>
-                    <span class="flow-arrow">→</span>
-                    <div class="flow-step"><i class="fas fa-truck"></i>Fulfillment</div>
-                    <span class="flow-arrow">→</span>
-                    <div class="flow-step"><i class="fas fa-chart-pie"></i>Reports</div>
-                </div>
-            </div>
-            <div class="visual-row">
-                <div class="visual-box">
-                    <h6><i class="fas fa-receipt me-2"></i>POS View</h6>
-                    <div class="pos-line"><span>Item A</span><span>Rs 1,200</span></div>
-                    <div class="pos-line"><span>Item B</span><span>Rs 850</span></div>
-                    <div class="pos-line"><span>Discount</span><span>Rs 50</span></div>
-                    <div class="pos-total text-end">Total</div>
-                </div>
-                <div class="visual-box">
-                    <h6><i class="fas fa-chart-bar me-2"></i>Dashboard View</h6>
-                    <div class="mini-bars">
-                        <div class="mini-bar" style="height:45%"></div>
-                        <div class="mini-bar" style="height:70%"></div>
-                        <div class="mini-bar" style="height:55%"></div>
-                        <div class="mini-bar" style="height:90%"></div>
-                        <div class="mini-bar" style="height:60%"></div>
-                        <div class="mini-bar" style="height:75%"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div id="panel-sales" class="panel" role="tabpanel" aria-labelledby="tab-sales" tabindex="0">
-            <div class="panel-banner">
-                <div class="panel-banner-icon" style="background:var(--sales)"><i class="fas fa-cart-shopping"></i></div>
-                <h2>Sales &amp; Orders</h2>
-            </div>
-            <div class="tile-grid">
-                <div class="tile" style="color:var(--sales)"><i class="fas fa-plus-circle"></i><span>Place Order</span></div>
-                <div class="tile" style="color:var(--sales)"><i class="fas fa-cash-register"></i><span>POS</span></div>
-                <div class="tile" style="color:var(--sales)"><i class="fas fa-list"></i><span>Orders</span></div>
-                <div class="tile" style="color:var(--sales)"><i class="fas fa-tasks"></i><span>Manage</span></div>
-                <div class="tile" style="color:var(--sales)"><i class="fas fa-truck"></i><span>Booking</span></div>
-                <div class="tile" style="color:var(--sales)"><i class="fas fa-box-open"></i><span>Packing</span></div>
-                <div class="tile" style="color:var(--sales)"><i class="fas fa-rotate-left"></i><span>Returns</span></div>
-                <div class="tile" style="color:var(--sales)"><i class="fas fa-file-lines"></i><span>Dispatch</span></div>
-                <div class="tile" style="color:var(--sales)"><i class="fas fa-gear"></i><span>Setup</span></div>
-            </div>
-        </div>
-
-        <div id="panel-product" class="panel" role="tabpanel" aria-labelledby="tab-product" tabindex="0">
-            <div class="panel-banner">
-                <div class="panel-banner-icon" style="background:var(--product)"><i class="fas fa-box"></i></div>
-                <h2>Products</h2>
-            </div>
-            <div class="tile-grid">
-                <div class="tile" style="color:var(--product)"><i class="fas fa-tags"></i><span>Products</span></div>
-                <div class="tile" style="color:var(--product)"><i class="fas fa-pen-to-square"></i><span>Manage</span></div>
-                <div class="tile" style="color:var(--product)"><i class="fas fa-cubes"></i><span>Materials</span></div>
-                <div class="tile" style="color:var(--product)"><i class="fas fa-store"></i><span>Store Products</span></div>
-                <div class="tile" style="color:var(--product)"><i class="fas fa-sitemap"></i><span>BOM</span></div>
-                <div class="tile" style="color:var(--product)"><i class="fas fa-sliders"></i><span>Setup</span></div>
-            </div>
-        </div>
-
-        <div id="panel-inventory" class="panel" role="tabpanel" aria-labelledby="tab-inventory" tabindex="0">
-            <div class="panel-banner">
-                <div class="panel-banner-icon" style="background:var(--inventory)"><i class="fas fa-warehouse"></i></div>
-                <h2>Inventory</h2>
-            </div>
-            <div class="tile-grid">
-                <div class="tile" style="color:var(--inventory)"><i class="fas fa-file-contract"></i><span>Purchase Orders</span></div>
-                <div class="tile" style="color:var(--inventory)"><i class="fas fa-clipboard-check"></i><span>GRN</span></div>
-                <div class="tile" style="color:var(--inventory)"><i class="fas fa-arrow-down"></i><span>Purchase</span></div>
-                <div class="tile" style="color:var(--inventory)"><i class="fas fa-arrow-rotate-left"></i><span>Purchase Return</span></div>
-                <div class="tile" style="color:var(--inventory)"><i class="fas fa-right-left"></i><span>Conversion</span></div>
-                <div class="tile" style="color:var(--inventory)"><i class="fas fa-sliders"></i><span>Adjustment</span></div>
-                <div class="tile" style="color:var(--inventory)"><i class="fas fa-truck-moving"></i><span>Transfer</span></div>
-                <div class="tile" style="color:var(--inventory)"><i class="fas fa-magnifying-glass"></i><span>Audit</span></div>
-                <div class="tile" style="color:var(--inventory)"><i class="fas fa-truck-field"></i><span>Suppliers</span></div>
-            </div>
-        </div>
-
-        <div id="panel-integration" class="panel" role="tabpanel" aria-labelledby="tab-integration" tabindex="0">
-            <div class="panel-banner">
-                <div class="panel-banner-icon" style="background:var(--integration)"><i class="fas fa-plug"></i></div>
-                <h2>Integrations</h2>
-            </div>
-            <div class="tile-grid">
-                <div class="tile" style="color:var(--integration)"><i class="fas fa-store"></i><span>Storefronts</span></div>
-                <div class="tile" style="color:var(--integration)"><i class="fas fa-shipping-fast"></i><span>Logistics</span></div>
-                <div class="tile" style="color:var(--integration)"><i class="fab fa-shopify"></i><span>Shopify</span></div>
-                <div class="tile" style="color:var(--integration)"><i class="fas fa-shopping-bag"></i><span>Daraz</span></div>
-                <div class="tile" style="color:var(--integration)"><i class="fas fa-globe"></i><span>Wix</span></div>
-                <div class="tile" style="color:var(--integration)"><i class="fab fa-wordpress"></i><span>WordPress</span></div>
-                <div class="tile" style="color:var(--integration)"><i class="fas fa-hand-holding-dollar"></i><span>Courier Remittance (my work)</span></div>
-                <div class="tile" style="color:var(--integration)"><i class="fas fa-truck-ramp-box"></i><span>Courier Returns (my work)</span></div>
-                <div class="tile" style="color:var(--integration)"><i class="fas fa-wand-magic-sparkles"></i><span>AI Services: Groq, Gemini (contributed)</span></div>
-            </div>
-        </div>
-
-        <div id="panel-finance" class="panel" role="tabpanel" aria-labelledby="tab-finance" tabindex="0">
-            <div class="panel-banner">
-                <div class="panel-banner-icon" style="background:var(--finance)"><i class="fas fa-coins"></i></div>
-                <h2>Finance</h2>
-            </div>
-            <div class="tile-grid">
-                <div class="tile" style="color:var(--finance)"><i class="fas fa-book"></i><span>Chart Of Accounts</span></div>
-                <div class="tile" style="color:var(--finance)"><i class="fas fa-file-invoice-dollar"></i><span>Journal Vouchers</span></div>
-                <div class="tile" style="color:var(--finance)"><i class="fas fa-file-import"></i><span>Receipt Vouchers (my work)</span></div>
-                <div class="tile" style="color:var(--finance)"><i class="fas fa-file-export"></i><span>Payment Vouchers (my work)</span></div>
-                <div class="tile" style="color:var(--finance)"><i class="fas fa-arrow-rotate-left"></i><span>Document Reversals (my work)</span></div>
-                <div class="tile" style="color:var(--finance)"><i class="fas fa-money-bill-wave"></i><span>Expenses</span></div>
-                <div class="tile" style="color:var(--finance)"><i class="fas fa-gear"></i><span>Setup</span></div>
-            </div>
-        </div>
-
-        <div id="panel-crm-access" class="panel" role="tabpanel" aria-labelledby="tab-crm-access" tabindex="0">
-            <div class="panel-banner">
-                <div class="panel-banner-icon" style="background:var(--access)"><i class="fas fa-users"></i></div>
-                <h2>CRM &amp; Access</h2>
-            </div>
-            <div class="tile-grid">
-                <div class="tile" style="color:var(--crm)"><i class="fas fa-user"></i><span>Customers</span></div>
-                <div class="tile" style="color:var(--crm)"><i class="fas fa-user-slash"></i><span>Customer Blacklist, Auto Order Cancel (my work)</span></div>
-                <div class="tile" style="color:var(--crm)"><i class="fas fa-link"></i><span>Order to Customer Linking (my work)</span></div>
-                <div class="tile" style="color:var(--crm)"><i class="fas fa-gauge-high"></i><span>CRM Dashboard (my work)</span></div>
-                <div class="tile" style="color:var(--crm)"><i class="fab fa-whatsapp"></i><span>WhatsApp Inbox (my work)</span></div>
-                <div class="tile" style="color:var(--crm)"><i class="fas fa-robot"></i><span>Chatbot Widget (my work)</span></div>
-                <div class="tile" style="color:var(--access)"><i class="fas fa-user-gear"></i><span>Users</span></div>
-                <div class="tile" style="color:var(--access)"><i class="fas fa-user-shield"></i><span>Roles</span></div>
-                <div class="tile" style="color:var(--access)"><i class="fas fa-shop"></i><span>Stores</span></div>
-                <div class="tile" style="color:var(--access)"><i class="fas fa-warehouse"></i><span>Warehouses</span></div>
-                <div class="tile" style="color:var(--access)"><i class="fas fa-cube"></i><span>Packages</span></div>
-                <div class="tile" style="color:var(--access)"><i class="fas fa-building"></i><span>Business</span></div>
-            </div>
-        </div>
-
-        <div id="panel-reports" class="panel" role="tabpanel" aria-labelledby="tab-reports" tabindex="0">
-            <div class="panel-banner">
-                <div class="panel-banner-icon" style="background:var(--reports)"><i class="fas fa-chart-line"></i></div>
-                <h2>Reports</h2>
-            </div>
-            <div class="tile-grid">
-                <div class="tile" style="color:var(--reports)"><i class="fas fa-chart-area"></i><span>Sales Dashboard</span></div>
-                <div class="tile" style="color:var(--reports)"><i class="fas fa-chart-dots"></i><span>Settlements</span></div>
-                <div class="tile" style="color:var(--reports)"><i class="fas fa-money-bill-trend-up"></i><span>Expense Dashboard</span></div>
-                <div class="tile" style="color:var(--reports)"><i class="fas fa-chart-bar"></i><span>Sales Reports</span></div>
-                <div class="tile" style="color:var(--reports)"><i class="fas fa-boxes-stacked"></i><span>Inventory Reports</span></div>
-                <div class="tile" style="color:var(--reports)"><i class="fas fa-scale-balanced"></i><span>Financial Reports</span></div>
-                <div class="tile" style="color:var(--reports)"><i class="fas fa-book-open"></i><span>Ledger Reports (my work)</span></div>
-            </div>
-        </div>
-
-        </div>
-
-        <div class="stack-row">
-            <span class="stack-pill"><i class="fas fa-server"></i> Spring Boot</span>
-            <span class="stack-pill"><i class="fas fa-laptop-code"></i> Angular</span>
-            <span class="stack-pill"><i class="fas fa-database"></i> PostgreSQL</span>
-            <span class="stack-pill"><i class="fas fa-desktop"></i> Electron</span>
-        </div>
-    </div>
-
-    <section class="cta-band" aria-labelledby="cta-band-title">
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-59XXTKP9" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <div data-site-header></div>
+  <main id="main">
+    <section class="case-hero">
+      <div class="case-hero__bg" aria-hidden="true"><div class="bg-grid"></div><div class="bg-glow bg-glow--a"></div><div class="bg-glow bg-glow--b"></div></div>
       <div class="container">
-        <div class="cta-band-inner">
+        <a class="back-link" href="index.html#work"><svg class="icon" aria-hidden="true"><use href="#i-arrow-left"/></svg>All work</a>
+        <div class="case-hero__grid">
           <div>
-            <p class="cta-band-eyebrow"><span class="cta-dot" aria-hidden="true"></span> Open to remote projects</p>
-            <h2 id="cta-band-title" class="cta-band-title">Need something like this built?</h2>
-            <p class="cta-band-text">I build CRM systems, AI integrations and multi-tenant SaaS on Spring Boot and Angular. Tell me what you need and let's plan it.</p>
+            <div class="case-hero__badges">
+              <span class="pill pill--teal">Team product</span>
+              <span class="pill pill--brand">Major contributor</span>
+              <span class="pill pill--outline">Web + Electron desktop</span>
+            </div>
+            <h1 class="case-hero__title">RynoDesk: <span class="text-gradient">POS, stock and online orders in one place.</span></h1>
+            <p class="case-hero__lead">A retail POS and e-commerce platform with inventory, a journal ledger, marketplace sync and an Electron desktop app. I built its vouchers and ledger reports, CRM features, and the eBay and Etsy integrations.</p>
+            <div class="case-hero__actions">
+              <a class="btn btn--primary btn--lg" href="#my-work">See my work <svg class="icon btn__arrow" aria-hidden="true"><use href="#i-arrow-right"/></svg></a>
+              <a class="btn btn--secondary btn--lg" href="#integrations">Integrations</a>
+            </div>
+            <dl class="case-hero__meta">
+              <div><dt>Role</dt><dd>Major contributor</dd></div>
+              <div><dt>My commits</dt><dd>Dec 2024 to Aug 2026</dd></div>
+              <div><dt>Company</dt><dd>SecopTech</dd></div>
+              <div><dt>Stack</dt><dd>Spring Boot, Angular, Electron</dd></div>
+            </dl>
           </div>
-          <div class="cta-band-actions">
-            <a class="cta-btn cta-btn-primary" href="index.html#contact"><i class="fas fa-paper-plane" aria-hidden="true"></i> Start a project</a>
-            <a class="cta-btn cta-btn-ghost" href="index.html#projects"><i class="fas fa-th-large" aria-hidden="true"></i> All projects</a>
+          <div class="case-hero__visual" role="img" aria-label="Illustration with sample data: the RynoDesk POS ringing up a sale of three items, and a receipt voucher posted to the ledger.">
+            <div class="rd-scene" aria-hidden="true">
+              <div class="win">
+                <div class="win__bar"><div class="win__dots"><i></i><i></i><i></i></div><span class="win__url"><svg class="icon"><use href="#i-lock"/></svg>RynoDesk · POS</span></div>
+                <div class="win__body">
+                  <div class="rd-till">
+                    <div class="mini-grid" style="--cols:2">
+                      <div class="ui-tile" style="--c:#c2410c"><i></i><b>Rs 1,200</b><span>Cotton shirt</span></div>
+                      <div class="ui-tile" style="--c:#4f63e7"><i></i><b>Rs 850</b><span>Face wash</span></div>
+                      <div class="ui-tile" style="--c:#0f9a91"><i></i><b>Rs 450</b><span>Hair oil</span></div>
+                      <div class="ui-tile" style="--c:#f2a93b"><i></i><b>Rs 2,300</b><span>Sandals</span></div>
+                    </div>
+                    <div class="rd-sale">
+                      <p class="ui-title" style="font-size:1em">Sale #10482</p>
+                      <div class="mini-split"><span>Cotton shirt</span><span>Rs 1,200</span></div>
+                      <div class="mini-split"><span>Face wash</span><span>Rs 850</span></div>
+                      <div class="mini-split"><span>Discount</span><span>- Rs 50</span></div>
+                      <div class="mini-split rd-sale__total" style="border:0"><span>Total</span><b>Rs 2,000</b></div>
+                      <span class="ui-btn">Take payment</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="glass toast rd-scene__toast">
+                <span class="icon-tile"><svg class="icon"><use href="#i-wallet"/></svg></span>
+                <div><b>Receipt voucher RV-0192 posted</b><span class="ui-sub">Journal entry written to the ledger</span></div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </section>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="site-nav.js"></script>
-    <script src="site-marquee.js"></script>
-    <div id="site-footer"></div>
+    <nav class="case-nav" aria-label="On this page">
+      <div class="container">
+        <div class="case-nav__list">
+          <a href="#overview">Overview</a>
+          <a href="#my-work">My work</a>
+          <a href="#integrations">Integrations</a>
+          <a href="#share">My share</a>
+          <a href="#stack">Stack</a>
+        </div>
+      </div>
+    </nav>
 
-    <script src="sticky-social.js"></script>
-    <script src="site-footer.js"></script>
-    <script>
-        (function() {
-            var tabs = Array.prototype.slice.call(document.querySelectorAll('.app-tab'));
-            function select(tab, moveFocus) {
-                tabs.forEach(function(t) {
-                    var on = t === tab;
-                    t.classList.toggle('active', on);
-                    t.setAttribute('aria-selected', on ? 'true' : 'false');
-                    t.tabIndex = on ? 0 : -1;
-                    document.getElementById(t.getAttribute('data-panel')).classList.toggle('active', on);
-                });
-                if (moveFocus) tab.focus();
-                tab.scrollIntoView({ block: 'nearest', inline: 'nearest' });
-            }
-            tabs.forEach(function(tab, i) {
-                tab.addEventListener('click', function() { select(tab, false); });
-                tab.addEventListener('keydown', function(e) {
-                    var next = null;
-                    if (e.key === 'ArrowRight') next = tabs[(i + 1) % tabs.length];
-                    else if (e.key === 'ArrowLeft') next = tabs[(i - 1 + tabs.length) % tabs.length];
-                    else if (e.key === 'Home') next = tabs[0];
-                    else if (e.key === 'End') next = tabs[tabs.length - 1];
-                    if (next) { e.preventDefault(); select(next, true); }
-                });
-            });
-        })();
-    </script>
+    <section class="case-section" id="overview">
+      <div class="container case-section__grid">
+        <header class="case-section__head" data-reveal>
+          <p class="eyebrow">The problem</p>
+          <h2 class="case-section__title">Shop, website and marketplace sales lived apart.</h2>
+        </header>
+        <div class="case-section__body" data-reveal>
+          <p>A retailer sells over the counter, on its own store and on marketplaces like Daraz. Stock, orders, couriers and cash end up in different tools, and the books are hard to match.</p>
+          <p>RynoDesk keeps all of it in one system: the POS, products and inventory, orders and dispatch, a journal ledger, CRM and reports. It runs in the browser and as an Electron desktop app.</p>
+          <ul class="stack-chips">
+            <li>POS</li><li>Orders and dispatch</li><li>Products and BOM</li><li>Inventory: PO, GRN, transfers, audit</li><li>Chart of accounts</li><li>Journal vouchers</li><li>Expenses</li><li>CRM</li><li>Users, roles, stores</li><li>Reports</li>
+          </ul>
+          <div class="metric-row" data-stagger>
+            <div class="metric"><span class="metric__value"><span data-count="10">10</span></span><span class="metric__label">backend modules</span></div>
+            <div class="metric"><span class="metric__value"><span data-count="117">117</span></span><span class="metric__label">entities</span></div>
+            <div class="metric"><span class="metric__value"><span data-count="60">60</span></span><span class="metric__label">REST controllers</span></div>
+            <div class="metric"><span class="metric__value"><span data-count="250">250</span></span><span class="metric__label">Flyway migrations</span></div>
+          </div>
+          <p class="ui-sub">Size of the main branch, built by the whole team.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="case-section" id="my-work">
+      <div class="container case-section__grid">
+        <header class="case-section__head" data-reveal>
+          <p class="eyebrow">My work</p>
+          <h2 class="case-section__title">The ledger, CRM and new sales channels.</h2>
+        </header>
+        <div class="case-section__body">
+          <p>Each card says where the code lives. Work on a feature branch is built but not merged into main yet.</p>
+          <div class="feature-grid" data-stagger>
+            <div class="feature">
+              <span class="icon-tile"><svg class="icon" aria-hidden="true"><use href="#i-wallet"/></svg></span>
+              <h3>Receipt and payment vouchers</h3>
+              <p>Money in and out, posted as journal entries on the existing ledger.</p>
+              <p class="rd-state"><span class="pill pill--live">On main</span></p>
+            </div>
+            <div class="feature">
+              <span class="icon-tile"><svg class="icon" aria-hidden="true"><use href="#i-layers"/></svg></span>
+              <h3>Reversals and ledger reports</h3>
+              <p>Reverse a posted document cleanly, and read account ledgers with item purchase history.</p>
+              <p class="rd-state"><span class="pill pill--live">On main</span></p>
+            </div>
+            <div class="feature">
+              <span class="icon-tile"><svg class="icon" aria-hidden="true"><use href="#i-users"/></svg></span>
+              <h3>CRM features</h3>
+              <p>A customer blacklist and linking orders to customers, plus a chatbot.</p>
+              <p class="rd-state"><span class="pill pill--live">On main</span></p>
+            </div>
+            <div class="feature">
+              <span class="icon-tile"><svg class="icon" aria-hidden="true"><use href="#i-arrow-up-right"/></svg></span>
+              <h3>eBay integration</h3>
+              <p>OAuth 2.0 sign-in with token refresh, product fetch from the Inventory API, create and publish offers, update products, fetch orders.</p>
+              <p class="rd-state"><span class="pill pill--amber">Feature branch</span><span class="pill pill--outline">Built alone</span></p>
+            </div>
+            <div class="feature">
+              <span class="icon-tile"><svg class="icon" aria-hidden="true"><use href="#i-arrow-up-right"/></svg></span>
+              <h3>Etsy integration</h3>
+              <p>Shop check, listings with images, orders from receipts and transactions, publish and update listings.</p>
+              <p class="rd-state"><span class="pill pill--amber">Feature branch</span><span class="pill pill--outline">Built alone</span></p>
+            </div>
+            <div class="feature">
+              <span class="icon-tile"><svg class="icon" aria-hidden="true"><use href="#i-arrow-up-right"/></svg></span>
+              <h3>Wix integration</h3>
+              <p>A teammate started it; I finished it. Product sync, variant mapping, order sync and product create.</p>
+              <p class="rd-state"><span class="pill pill--amber">Feature branch</span></p>
+            </div>
+            <div class="feature">
+              <span class="icon-tile"><svg class="icon" aria-hidden="true"><use href="#i-database"/></svg></span>
+              <h3>Courier returns</h3>
+              <p>Log a parcel the courier sends back, find its order, then receive and grade the items.</p>
+              <p class="rd-state"><span class="pill pill--amber">Feature branch</span></p>
+            </div>
+            <div class="feature">
+              <span class="icon-tile"><svg class="icon" aria-hidden="true"><use href="#i-shield"/></svg></span>
+              <h3>COD remittance</h3>
+              <p>Record the cash a courier pays back for delivered orders, matched to orders, with journal entries.</p>
+              <p class="rd-state"><span class="pill pill--amber">Feature branch</span></p>
+            </div>
+          </div>
+          <p>I also contributed to the WhatsApp inbox and to the AI services on Groq and Gemini.</p>
+          <div class="gallery">
+            <figure>
+              <div class="gallery__mock" role="img" aria-label="Illustration with sample data: a receipt voucher journal entry with cash debited and the customer account credited.">
+                <div class="win" aria-hidden="true">
+                  <div class="win__bar"><div class="win__dots"><i></i><i></i><i></i></div><span class="win__url">Receipt voucher RV-0192</span></div>
+                  <div class="win__body">
+                    <div class="mini-table rd-ledger">
+                      <div><span>Account</span><span>Debit</span><span>Credit</span></div>
+                      <div><span>Cash in hand</span><span>2,000</span><span></span></div>
+                      <div><span>Customer account</span><span></span><span>2,000</span></div>
+                      <div><b>Total</b><b>2,000</b><b>2,000</b></div>
+                    </div>
+                    <div class="mini-split" style="margin-top:.8em"><span class="ui-sub">Balanced</span><span class="ui-badge" style="--c:#2fbf71;--c-ink:var(--green-ink)">Posted</span></div>
+                  </div>
+                </div>
+              </div>
+              <figcaption><b>Voucher.</b> HTML mock with sample data.</figcaption>
+            </figure>
+            <figure>
+              <div class="gallery__mock" role="img" aria-label="Illustration with sample data: courier returns moving from logged, to matched to an order, to graded.">
+                <div class="win" aria-hidden="true">
+                  <div class="win__bar"><div class="win__dots"><i></i><i></i><i></i></div><span class="win__url">Courier returns</span></div>
+                  <div class="win__body">
+                    <div class="rd-lanes">
+                      <div class="mini-lane"><p class="mini-lane__head">Logged <b>3</b></p><div class="mini-ticket"><b>RT-0041</b><span class="ui-sub">Order not found yet</span></div><div class="mini-ticket"><b>RT-0042</b><span class="ui-sub">2 items</span></div></div>
+                      <div class="mini-lane"><p class="mini-lane__head">Matched <b>2</b></p><div class="mini-ticket"><b>RT-0038</b><span class="ui-sub">Order #10391</span></div></div>
+                      <div class="mini-lane"><p class="mini-lane__head">Graded <b>5</b></p><div class="mini-ticket"><b>RT-0035</b><span class="ui-badge" style="--c:#2fbf71;--c-ink:var(--green-ink)">Resellable</span></div></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <figcaption><b>Courier returns.</b> HTML mock with sample data.</figcaption>
+            </figure>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="case-section section--wash" id="integrations">
+      <div class="container case-section__grid">
+        <header class="case-section__head" data-reveal>
+          <p class="eyebrow">Integrations</p>
+          <h2 class="case-section__title">One shape for every storefront.</h2>
+        </header>
+        <div class="case-section__body">
+          <p>Every platform plugs into one integration factory with the same five calls. A new marketplace is one more class that answers those five.</p>
+          <div class="gallery gallery--1">
+            <figure>
+              <div class="gallery__mock" role="img" aria-label="Diagram: RynoDesk connects to Shopify, WooCommerce and Daraz on main, and to eBay, Etsy and Wix on feature branches, all through the same five calls.">
+                <div class="mini" aria-hidden="true">
+                  <div class="hub" style="--c:#c2410c">
+                    <div class="hub__core"><i></i>RynoDesk integration factory</div>
+                    <div class="hub__item"><b>Shopify</b><span class="ui-badge" style="--c:#2fbf71;--c-ink:var(--green-ink)">main</span></div>
+                    <div class="hub__item"><b>WooCommerce</b><span class="ui-badge" style="--c:#2fbf71;--c-ink:var(--green-ink)">main</span></div>
+                    <div class="hub__item"><b>Daraz</b><span class="ui-badge" style="--c:#2fbf71;--c-ink:var(--green-ink)">main</span></div>
+                    <div class="hub__item"><b>eBay</b><span class="ui-badge" style="--c:#f2a93b;--c-ink:var(--amber-ink)">branch, mine</span></div>
+                    <div class="hub__item"><b>Etsy</b><span class="ui-badge" style="--c:#f2a93b;--c-ink:var(--amber-ink)">branch, mine</span></div>
+                    <div class="hub__item"><b>Wix</b><span class="ui-badge" style="--c:#f2a93b;--c-ink:var(--amber-ink)">branch</span></div>
+                    <div class="mini-ticket" style="grid-column:1/-1"><b>Five calls on every platform</b><div class="rd-calls"><span class="ui-chip">verify connection</span><span class="ui-chip">fetch products</span><span class="ui-chip">fetch orders</span><span class="ui-chip">publish product</span><span class="ui-chip">update product</span></div></div>
+                  </div>
+                </div>
+              </div>
+              <figcaption><b>Storefronts.</b> Where each integration stands today.</figcaption>
+            </figure>
+          </div>
+          <ul class="check-list">
+            <li><b>eBay:</b> 35 files, about 1,700 lines, May 2026.</li>
+            <li><b>Etsy:</b> 16 files, about 800 lines, June 2026.</li>
+            <li><b>Wix:</b> 9 commits to finish it, 38 files, about 1,800 lines, May 2026.</li>
+            <li><b>Courier returns and COD remittance:</b> 68 files, about 2,600 lines, June to July 2026.</li>
+          </ul>
+          <p class="note"><b>To be clear:</b> eBay, Etsy, Wix, courier returns and COD remittance are on feature branches, not on main. The 10 Pakistani courier integrations on main (TCS, Leopard, PostEx, Trax and others) were built by my teammates.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="case-section" id="share">
+      <div class="container case-section__grid">
+        <header class="case-section__head" data-reveal>
+          <p class="eyebrow">My share</p>
+          <h2 class="case-section__title">Top contributor on the frontend.</h2>
+        </header>
+        <div class="case-section__body" data-reveal>
+          <p>Counted from git history on all branches, without merge commits.</p>
+          <div class="metric-row" data-stagger>
+            <div class="metric"><span class="metric__value"><span data-count="46" data-suffix="%">46%</span></span><span class="metric__label">of frontend commits <b>(220 of 477)</b>, the most of anyone</span></div>
+            <div class="metric"><span class="metric__value"><span data-count="38" data-suffix="%">38%</span></span><span class="metric__label">of backend commits <b>(198 of 525)</b>, second on the team</span></div>
+            <div class="metric"><span class="metric__value"><span data-count="418">418</span></span><span class="metric__label">commits in all, Dec 2024 to Aug 2026</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="case-section" id="stack">
+      <div class="container case-section__grid">
+        <header class="case-section__head" data-reveal>
+          <p class="eyebrow">Stack</p>
+          <h2 class="case-section__title">What it runs on.</h2>
+        </header>
+        <div class="case-section__body">
+          <div class="stack-group">
+            <h3>Platform</h3>
+            <ul class="stack-chips stack-chips--lg">
+              <li>Java 17</li><li>Spring Boot 3.2</li><li>PostgreSQL</li><li>Flyway</li><li>Redis</li><li>Angular 17</li><li>Angular Material</li><li>ApexCharts</li><li>Electron</li><li>Groq</li><li>Gemini</li>
+            </ul>
+          </div>
+          <div class="stack-group">
+            <h3>Integrations I worked on</h3>
+            <ul class="stack-chips stack-chips--lg">
+              <li>eBay Inventory API</li><li>eBay OAuth 2.0</li><li>Etsy API</li><li>Wix API</li><li>WhatsApp (contributed)</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--tight">
+      <div class="container">
+        <a class="next-project card card--spot card--lift" data-spot href="famtill-demo.html">
+          <div><p class="next-project__label">Next project</p><p class="next-project__title">FamTill</p><p class="next-project__text">EPOS and repairs for UK phone shops</p></div>
+          <span class="next-project__arrow"><svg class="icon" aria-hidden="true"><use href="#i-arrow-right"/></svg></span>
+        </a>
+      </div>
+    </section>
+  </main>
+  <div data-site-footer></div>
 </body>
 </html>

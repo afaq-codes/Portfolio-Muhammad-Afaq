@@ -1,794 +1,195 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- Google Tag Manager -->
-    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','GTM-59XXTKP9');</script>
-    <!-- End Google Tag Manager -->
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AutoSchedula: Automated Timetable System | Muhammad Afaq</title>
-    <meta name="description" content="My final-year project: automated university timetable generation on Spring Boot 3.2 and Angular 14, built solo.">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <link href="site-nav.css" rel="stylesheet">
-    <link href="typography.css" rel="stylesheet">
-    <link href="sticky-social.css" rel="stylesheet">
-    <link href="site-buttons.css" rel="stylesheet">
-    <link href="site-marquee.css" rel="stylesheet">
-    <link href="site-footer.css" rel="stylesheet">
-    <style>
-        :root {
-            --primary-color: #7209b7;
-            --secondary-color: #3a0ca3;
-            --success-color: #27ae60;
-            --warning-color: #f39c12;
-            --danger-color: #e74c3c;
-            --info-color: #3498db;
-            --light-bg: #f8f9fa;
-            --ring: #3a0ca3;
-        }
-
-        body {
-            background-color: #ffffff;
-        }
-        
-        .navbar {
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        }
-        
-        .navbar-brand {
-            font-weight: 700;
-            color: white !important;
-        }
-        
-        .nav-link {
-            color: rgba(255,255,255,0.9) !important;
-            font-weight: 500;
-        }
-        
-        .nav-link:hover {
-            color: white !important;
-        }
-        
-        .timetable-container {
-            background: #f8f9fa;
-            min-height: 100vh;
-            padding: 0;
-        }
-        
-        .timetable-sidebar {
-            background: white;
-            border-right: 1px solid #e9ecef;
-            height: auto;
-            overflow: visible;
-        }
-        
-        .timetable-main {
-            background: white;
-            height: auto;
-            overflow: visible;
-        }
-        
-        .timetable-grid {
-            display: grid;
-            grid-template-columns: 100px repeat(5, 1fr);
-            gap: 1px;
-            background: #dee2e6;
-            border-radius: 10px;
-            overflow: hidden;
-        }
-        
-        .time-slot {
-            background: var(--primary-color);
-            color: white;
-            padding: 1rem 0.5rem;
-            text-align: center;
-            font-weight: 600;
-            font-size: 0.9rem;
-        }
-        
-        .day-header {
-            background: var(--secondary-color);
-            color: white;
-            padding: 1rem 0.5rem;
-            text-align: center;
-            font-weight: 600;
-        }
-        
-        .schedule-cell {
-            background: white;
-            padding: 0.5rem;
-            min-height: 80px;
-            border: 1px solid #e9ecef;
-            position: relative;
-        }
-        
-        .schedule-item {
-            background: linear-gradient(135deg, #2471a3, #1e8449);
-            color: white;
-            padding: 0.5rem;
-            border-radius: 5px;
-            margin-bottom: 0.25rem;
-            font-size: 0.8rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-        
-        .schedule-item:hover {
-            transform: scale(1.02);
-            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
-        }
-        
-        .teacher-card {
-            border: 1px solid #e9ecef;
-            border-radius: 10px;
-            padding: 1rem;
-            margin-bottom: 1rem;
-            transition: all 0.3s ease;
-        }
-        
-        .teacher-card:hover {
-            border-color: var(--primary-color);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-        }
-        
-        .section-card {
-            background: white;
-            border: 1px solid #e9ecef;
-            border-radius: 10px;
-            padding: 1rem;
-            margin-bottom: 1rem;
-            transition: all 0.3s ease;
-        }
-        
-        .section-card:hover {
-            border-color: var(--success-color);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-        }
-        
-        .conflict-warning {
-            background: #fff3cd;
-            border: 1px solid #ffeaa7;
-            border-radius: 5px;
-            padding: 0.5rem;
-            margin-bottom: 0.5rem;
-            font-size: 0.8rem;
-        }
-        
-        .conflict-warning i {
-            color: var(--warning-color);
-        }
-        
-        .dashboard-card {
-            border: none;
-            border-radius: 15px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-            margin-bottom: 2rem;
-        }
-        
-        .dashboard-header {
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            color: white;
-            padding: 1.5rem;
-            border-radius: 15px 15px 0 0;
-        }
-        
-        .stat-card {
-            background: white;
-            border-radius: 15px;
-            padding: 1.5rem;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-            text-align: center;
-            transition: transform 0.3s ease;
-        }
-        
-        .stat-card:hover {
-            transform: translateY(-5px);
-        }
-        
-        .stat-number {
-            font-size: 2.5rem;
-            font-weight: 700;
-            color: var(--primary-color);
-        }
-        
-        .stat-label {
-            color: #666;
-            font-size: 0.9rem;
-            margin-top: 0.5rem;
-        }
-        
-        .btn-primary {
-            background: var(--primary-color);
-            border: none;
-            border-radius: 25px;
-            padding: 0.75rem 2rem;
-            font-weight: 600;
-        }
-        
-        .btn-primary:hover {
-            background: #5f0497;
-        }
-        
-        .algorithm-status {
-            background: linear-gradient(135deg, #1e8449, #2471a3);
-            color: white;
-            padding: 1.5rem;
-            border-radius: 15px;
-            margin: 1rem 0;
-        }
-        
-        .optimization-metrics {
-            background: white;
-            color: #212529;
-            border-radius: 15px;
-            padding: 1.5rem;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-        }
-        
-        .metric-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0.75rem 0;
-            border-bottom: 1px solid #e9ecef;
-        }
-        
-        .metric-item:last-child {
-            border-bottom: none;
-        }
-        
-        .metric-value {
-            font-weight: 700;
-            color: var(--primary-color);
-        }
-
-        .timetable-container > .row { margin-left: 0; margin-right: 0; }
-        .demo-app a, .demo-app button, .demo-app .btn { cursor: pointer; }
-        .demo-app :is(a, button, input, select, textarea, [tabindex]):focus-visible { outline: 3px solid var(--ring); outline-offset: 2px; box-shadow: none; }
-        .demo-app .text-warning { color: #a15c07 !important; }
-        .demo-app .badge.bg-warning { color: #212529; }
-        .timetable-scroll { overflow-x: auto; border-radius: 0 0 15px 15px; }
-        .timetable-grid { min-width: 800px; }
-        .timetable-grid .time-slot { position: sticky; left: 0; z-index: 1; }
-
-        .teacher-card .rounded-circle { flex: 0 0 40px; }
-
-        @media (max-width: 991.98px) {
-            .timetable-sidebar { border-right: 0; border-bottom: 1px solid #e9ecef; }
-        }
-
-        @media (max-width: 767.98px) {
-            .demo-app .btn { min-height: 44px; display: inline-flex; align-items: center; justify-content: center; }
-            .stat-card { padding: 1.25rem 1rem; }
-            .stat-number { font-size: 2rem; }
-        }
-
-        @media (prefers-reduced-motion: reduce) {
-            .demo-app *, .demo-app *::before, .demo-app *::after { transition: none !important; animation: none !important; }
-            .schedule-item:hover, .stat-card:hover { transform: none; }
-        }
-
-        .hero-demo { background: linear-gradient(140deg, #1f0a4d 0%, #3a0ca3 50%, #5a0890 100%); color: white; padding: 3rem 0 2.5rem; text-align: center; }
-        .hero-demo h1 { font-size: 2rem; font-weight: 800; text-wrap: balance; }
-        .hero-demo p { color: rgba(255,255,255,0.85); max-width: 640px; margin: 0.75rem auto 0; font-size: 0.9rem; line-height: 1.7; }
-        .back-link { display: inline-flex; align-items: center; gap: 0.4rem; margin-top: 1.5rem; padding: 0.5rem 1.1rem; border: 1px solid rgba(255,255,255,0.35); border-radius: 50px; color: #fff; font-size: 0.8rem; font-weight: 600; text-decoration: none; transition: background 0.2s; cursor: pointer; }
-        .back-link:hover { background: rgba(255,255,255,0.12); color: #fff; }
-        .hero-demo a:focus-visible { outline: 3px solid #fff; outline-offset: 3px; box-shadow: none; }
-        .mock-strip { padding: 1rem 0 0.75rem; }
-        .mock-chip { display: inline-flex; align-items: center; gap: 0.45rem; padding: 0.35rem 0.85rem; border-radius: 999px; background: #f3e8ff; color: #3a0ca3; border: 1px solid #d8b4fe; font-size: 0.78rem; font-weight: 600; line-height: 1.4; }
-        @media (max-width: 768px) {
-            .hero-demo { padding: 2.25rem 0 2rem; }
-            .hero-demo h1 { font-size: 1.45rem; }
-            .back-link { min-height: 44px; }
-        }
-        @media (prefers-reduced-motion: reduce) {
-            .hero-demo *, .hero-demo *::after { transition: none !important; animation: none !important; }
-        }
-
-        .cta-band{background:#0b1220;padding-block:3.5rem}
-        .cta-band-inner{display:flex;flex-wrap:wrap;gap:1.5rem 2.5rem;align-items:center;justify-content:space-between;background:linear-gradient(135deg,var(--primary-dark,#0f172a) 0%,#0b1220 100%);border:1px solid rgba(255,255,255,.12);border-radius:20px;padding:2rem}
-        .cta-band-inner > div:first-child{min-width:0;flex:1 1 320px}
-        .cta-band-eyebrow{color:#a7f3d0;font-size:.78rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;margin:0 0 .5rem;display:flex;align-items:center;gap:.5rem}
-        .cta-dot{width:8px;height:8px;border-radius:50%;background:#34d399;box-shadow:0 0 0 4px rgba(52,211,153,.2);flex:0 0 8px}
-        .cta-band-title{color:#fff;font-size:clamp(1.4rem,2.6vw,2rem);margin:0 0 .5rem;text-wrap:balance}
-        .cta-band-text{color:#cbd5e1;max-width:56ch;margin:0;line-height:1.6}
-        .cta-band-actions{display:flex;flex-wrap:wrap;gap:.75rem}
-        .cta-btn{display:inline-flex;align-items:center;gap:.5rem;min-height:46px;padding:.7rem 1.3rem;border-radius:999px;font-weight:600;text-decoration:none;transition:transform .15s ease,background-color .15s ease;cursor:pointer}
-        .cta-btn-primary{background:#fff;color:var(--primary-dark,#0f172a)}
-        .cta-btn-ghost{color:#fff;border:1px solid rgba(255,255,255,.35)}
-        .cta-btn:hover{transform:translateY(-1px)}
-        .cta-btn-ghost:hover{background:rgba(255,255,255,.08);color:#fff}
-        .cta-btn:focus-visible{outline:3px solid #93c5fd;outline-offset:3px}
-        @media (prefers-reduced-motion:reduce){.cta-btn{transition:none}.cta-btn:hover{transform:none}}
-        .cta-band{--primary-dark:#3a0ca3}
-    </style>
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-59XXTKP9');</script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>AutoSchedula | Muhammad Afaq</title>
+  <meta name="description" content="My final-year project, built solo: a multi-tenant timetable app on Spring Boot 3.2 and Angular 14 that blocks double-booked rooms.">
+  <meta name="author" content="Muhammad Afaq">
+  <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" content="#ffffff">
+  <link rel="canonical" href="https://muhammadafaqportfolio.netlify.app/autoschedula-demo">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Muhammad Afaq">
+  <meta property="og:title" content="AutoSchedula | Muhammad Afaq">
+  <meta property="og:description" content="Final-year project, built solo: timetables for classes, teachers and rooms, with a clash check.">
+  <meta property="og:image" content="https://muhammadafaqportfolio.netlify.app/afaq.png">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%234f63e7'/%3E%3Cstop offset='1' stop-color='%230f9a91'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='64' height='64' rx='16' fill='url(%23g)'/%3E%3Ctext x='32' y='42' font-family='Arial,sans-serif' font-size='28' font-weight='700' fill='white' text-anchor='middle'%3EMA%3C/text%3E%3C/svg%3E">
+  <link rel="apple-touch-icon" href="afaq-72.png">
+  <script>(function(){var t=null;try{t=localStorage.getItem('theme')}catch(e){}if(t!=='light'&&t!=='dark'){t=window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'}document.documentElement.setAttribute('data-theme',t)})();</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700;800&display=swap">
+  <link rel="stylesheet" href="assets/site.css?v=20261112">
+  <script src="assets/site.js?v=20261112" defer></script>
+  <style>
+    .tt { display: grid; grid-template-columns: 3.6em repeat(5, minmax(0, 1fr)); gap: 0.3em; font-size: 0.8em; }
+    .tt > span { display: grid; place-items: center; min-height: 2em; color: var(--faint); font-size: 0.85em; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; }
+    .tt > span.tt__time { justify-items: start; letter-spacing: 0; text-transform: none; font-variant-numeric: tabular-nums; }
+    .tt__cell { display: grid; gap: 0.1em; min-height: 3.2em; padding: 0.35em 0.4em; border-radius: 0.5em; background: color-mix(in srgb, var(--c, var(--brand)) 13%, var(--card)); border-left: 0.2em solid var(--c, var(--brand)); color: var(--ink); line-height: 1.2; }
+    .tt__cell b { font-size: 0.95em; }
+    .tt__cell small { color: var(--muted); font-size: 0.8em; }
+    .tt__cell--empty { border: 1px dashed var(--line-2); background: transparent; }
+    .tt__cell--clash { background: var(--amber-50); border-left-color: var(--amber); outline: 2px solid var(--amber); outline-offset: -2px; }
+    .as-visual { display: grid; gap: 0.9em; }
+    .as-toast { justify-self: end; max-width: 100%; white-space: normal; }
+    .as-toast .icon { width: 1.4em; height: 1.4em; flex: none; color: var(--amber-ink); }
+    .as-field { display: grid; gap: 0.25em; min-width: 0; }
+    .as-field span { color: var(--muted); font-size: 0.72em; font-weight: 600; }
+    .as-field b { overflow: hidden; padding: 0.45em 0.6em; border: 1px solid var(--line-2); border-radius: 0.55em; background: var(--card); color: var(--ink); font-size: 0.82em; font-weight: 500; text-overflow: ellipsis; white-space: nowrap; }
+    .as-error { padding: 0.55em 0.7em; border-radius: 0.55em; background: var(--amber-50); color: var(--amber-ink); font-size: 0.8em; font-weight: 600; }
+  </style>
 </head>
 <body>
-    <!-- Google Tag Manager (noscript) -->
-    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-59XXTKP9"
-    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-    <!-- End Google Tag Manager (noscript) -->
-    <div id="site-nav"></div>
-
-    <section class="hero-demo">
-        <div class="container">
-            <h1><i class="fas fa-calendar-alt me-2" aria-hidden="true"></i>AutoSchedula</h1>
-            <p>My final-year project: automated university timetable generation on Spring Boot 3.2 and Angular 14, built solo.</p>
-            <a href="index.html#project-autoschedula" class="back-link"><i class="fas fa-arrow-left" aria-hidden="true"></i> Back to portfolio</a>
-        </div>
-    </section>
-
-    <div class="mock-strip">
-        <div class="container-fluid">
-            <span class="mock-chip"><i class="fas fa-flask" aria-hidden="true"></i> Interactive mock-up · sample data</span>
-        </div>
-    </div>
-
-    <div class="container-fluid timetable-container demo-app">
-        <div class="row">
-            <!-- Sidebar -->
-            <div class="col-lg-4 col-xl-3 timetable-sidebar">
-                <div class="p-3">
-                    <h5 class="mb-3">
-                        <i class="fas fa-cogs me-2"></i>
-                        Management
-                    </h5>
-                    
-                    <!-- Teachers -->
-                    <div class="mb-4">
-                        <h6 class="text-primary">Teachers</h6>
-                        <div class="teacher-card">
-                            <div class="d-flex align-items-center">
-                                <div class="bg-primary rounded-circle d-flex align-items-center justify-content-center me-3" style="width: 40px; height: 40px;">
-                                    <i class="fas fa-user text-white"></i>
-                                </div>
-                                <div>
-                                    <h6 class="mb-1">Dr. Sarah Johnson</h6>
-                                    <small class="text-muted">Mathematics</small>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="teacher-card">
-                            <div class="d-flex align-items-center">
-                                <div class="bg-success rounded-circle d-flex align-items-center justify-content-center me-3" style="width: 40px; height: 40px;">
-                                    <i class="fas fa-user text-white"></i>
-                                </div>
-                                <div>
-                                    <h6 class="mb-1">Prof. Michael Brown</h6>
-                                    <small class="text-muted">Physics</small>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="teacher-card">
-                            <div class="d-flex align-items-center">
-                                <div class="bg-info rounded-circle d-flex align-items-center justify-content-center me-3" style="width: 40px; height: 40px;">
-                                    <i class="fas fa-user text-white"></i>
-                                </div>
-                                <div>
-                                    <h6 class="mb-1">Dr. Emily Davis</h6>
-                                    <small class="text-muted">Chemistry</small>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Sections -->
-                    <div class="mb-4">
-                        <h6 class="text-success">Sections</h6>
-                        <div class="section-card">
-                            <h6 class="mb-1">Section A</h6>
-                            <small class="text-muted">30 Students</small>
-                            <div class="mt-2">
-                                <span class="badge bg-success">Active</span>
-                            </div>
-                        </div>
-                        
-                        <div class="section-card">
-                            <h6 class="mb-1">Section B</h6>
-                            <small class="text-muted">28 Students</small>
-                            <div class="mt-2">
-                                <span class="badge bg-success">Active</span>
-                            </div>
-                        </div>
-                        
-                        <div class="section-card">
-                            <h6 class="mb-1">Section C</h6>
-                            <small class="text-muted">32 Students</small>
-                            <div class="mt-2">
-                                <span class="badge bg-warning">Pending</span>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Quick Actions -->
-                    <div class="mb-4">
-                        <h6 class="text-warning">Quick Actions</h6>
-                        <div class="d-grid gap-2">
-                            <button class="btn btn-primary btn-sm">
-                                <i class="fas fa-magic me-2"></i>
-                                Generate Schedule
-                            </button>
-                            <button class="btn btn-outline-primary btn-sm">
-                                <i class="fas fa-search me-2"></i>
-                                Check Conflicts
-                            </button>
-                            <button class="btn btn-outline-success btn-sm">
-                                <i class="fas fa-download me-2"></i>
-                                Export Timetable
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Main Timetable Area -->
-            <div class="col-lg-8 col-xl-9 timetable-main">
-                <div class="p-3">
-                    <!-- Dashboard Stats -->
-                    <div class="row g-3 mb-4">
-                        <div class="col-6 col-md-3">
-                            <div class="stat-card">
-                                <div class="stat-number">15</div>
-                                <div class="stat-label">Teachers</div>
-                            </div>
-                        </div>
-                        <div class="col-6 col-md-3">
-                            <div class="stat-card">
-                                <div class="stat-number">8</div>
-                                <div class="stat-label">Sections</div>
-                            </div>
-                        </div>
-                        <div class="col-6 col-md-3">
-                            <div class="stat-card">
-                                <div class="stat-number">0</div>
-                                <div class="stat-label">Conflicts</div>
-                            </div>
-                        </div>
-                        <div class="col-6 col-md-3">
-                            <div class="stat-card">
-                                <div class="stat-number">95%</div>
-                                <div class="stat-label">Efficiency</div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Timetable Grid -->
-                    <div class="card dashboard-card">
-                        <div class="dashboard-header">
-                            <h5 class="mb-0">
-                                <i class="fas fa-calendar-alt me-2"></i>
-                                Weekly Timetable, Spring 2024
-                            </h5>
-                        </div>
-                        <div class="card-body p-0 timetable-scroll" tabindex="0" role="region" aria-label="Weekly timetable">
-                            <div class="timetable-grid">
-                                <!-- Time Column -->
-                                <div class="time-slot">Time</div>
-                                <div class="day-header">Monday</div>
-                                <div class="day-header">Tuesday</div>
-                                <div class="day-header">Wednesday</div>
-                                <div class="day-header">Thursday</div>
-                                <div class="day-header">Friday</div>
-                                
-                                <!-- Time Slots -->
-                                <div class="time-slot">8:00 AM</div>
-                                <div class="schedule-cell">
-                                    <div class="schedule-item">
-                                        <strong>Math 101</strong><br>
-                                        <small>Dr. Johnson - Section A</small>
-                                    </div>
-                                </div>
-                                <div class="schedule-cell">
-                                    <div class="schedule-item">
-                                        <strong>Physics 201</strong><br>
-                                        <small>Prof. Brown - Section B</small>
-                                    </div>
-                                </div>
-                                <div class="schedule-cell">
-                                    <div class="schedule-item">
-                                        <strong>Chemistry 101</strong><br>
-                                        <small>Dr. Davis - Section C</small>
-                                    </div>
-                                </div>
-                                <div class="schedule-cell">
-                                    <div class="schedule-item">
-                                        <strong>Math 201</strong><br>
-                                        <small>Dr. Johnson - Section A</small>
-                                    </div>
-                                </div>
-                                <div class="schedule-cell">
-                                    <div class="schedule-item">
-                                        <strong>Physics 101</strong><br>
-                                        <small>Prof. Brown - Section B</small>
-                                    </div>
-                                </div>
-                                
-                                <div class="time-slot">9:00 AM</div>
-                                <div class="schedule-cell">
-                                    <div class="schedule-item">
-                                        <strong>Chemistry 201</strong><br>
-                                        <small>Dr. Davis - Section A</small>
-                                    </div>
-                                </div>
-                                <div class="schedule-cell">
-                                    <div class="schedule-item">
-                                        <strong>Math 301</strong><br>
-                                        <small>Dr. Johnson - Section C</small>
-                                    </div>
-                                </div>
-                                <div class="schedule-cell">
-                                    <div class="schedule-item">
-                                        <strong>Physics 301</strong><br>
-                                        <small>Prof. Brown - Section A</small>
-                                    </div>
-                                </div>
-                                <div class="schedule-cell">
-                                    <div class="schedule-item">
-                                        <strong>Chemistry 301</strong><br>
-                                        <small>Dr. Davis - Section B</small>
-                                    </div>
-                                </div>
-                                <div class="schedule-cell">
-                                    <div class="schedule-item">
-                                        <strong>Math 401</strong><br>
-                                        <small>Dr. Johnson - Section C</small>
-                                    </div>
-                                </div>
-                                
-                                <div class="time-slot">10:00 AM</div>
-                                <div class="schedule-cell">
-                                    <div class="schedule-item">
-                                        <strong>Lab Session</strong><br>
-                                        <small>Physics Lab - Section A</small>
-                                    </div>
-                                </div>
-                                <div class="schedule-cell">
-                                    <div class="schedule-item">
-                                        <strong>Lab Session</strong><br>
-                                        <small>Chemistry Lab - Section B</small>
-                                    </div>
-                                </div>
-                                <div class="schedule-cell">
-                                    <div class="schedule-item">
-                                        <strong>Lab Session</strong><br>
-                                        <small>Math Lab - Section C</small>
-                                    </div>
-                                </div>
-                                <div class="schedule-cell">
-                                    <div class="schedule-item">
-                                        <strong>Lab Session</strong><br>
-                                        <small>Physics Lab - Section A</small>
-                                    </div>
-                                </div>
-                                <div class="schedule-cell">
-                                    <div class="schedule-item">
-                                        <strong>Lab Session</strong><br>
-                                        <small>Chemistry Lab - Section B</small>
-                                    </div>
-                                </div>
-                                
-                                <div class="time-slot">11:00 AM</div>
-                                <div class="schedule-cell">
-                                    <div class="schedule-item">
-                                        <strong>Break</strong><br>
-                                        <small>Free Period</small>
-                                    </div>
-                                </div>
-                                <div class="schedule-cell">
-                                    <div class="schedule-item">
-                                        <strong>Break</strong><br>
-                                        <small>Free Period</small>
-                                    </div>
-                                </div>
-                                <div class="schedule-cell">
-                                    <div class="schedule-item">
-                                        <strong>Break</strong><br>
-                                        <small>Free Period</small>
-                                    </div>
-                                </div>
-                                <div class="schedule-cell">
-                                    <div class="schedule-item">
-                                        <strong>Break</strong><br>
-                                        <small>Free Period</small>
-                                    </div>
-                                </div>
-                                <div class="schedule-cell">
-                                    <div class="schedule-item">
-                                        <strong>Break</strong><br>
-                                        <small>Free Period</small>
-                                    </div>
-                                </div>
-                                
-                                <div class="time-slot">12:00 PM</div>
-                                <div class="schedule-cell">
-                                    <div class="schedule-item">
-                                        <strong>Lunch</strong><br>
-                                        <small>Free Period</small>
-                                    </div>
-                                </div>
-                                <div class="schedule-cell">
-                                    <div class="schedule-item">
-                                        <strong>Lunch</strong><br>
-                                        <small>Free Period</small>
-                                    </div>
-                                </div>
-                                <div class="schedule-cell">
-                                    <div class="schedule-item">
-                                        <strong>Lunch</strong><br>
-                                        <small>Free Period</small>
-                                    </div>
-                                </div>
-                                <div class="schedule-cell">
-                                    <div class="schedule-item">
-                                        <strong>Lunch</strong><br>
-                                        <small>Free Period</small>
-                                    </div>
-                                </div>
-                                <div class="schedule-cell">
-                                    <div class="schedule-item">
-                                        <strong>Lunch</strong><br>
-                                        <small>Free Period</small>
-                                    </div>
-                                </div>
-                                
-                                <div class="time-slot">1:00 PM</div>
-                                <div class="schedule-cell">
-                                    <div class="schedule-item">
-                                        <strong>Advanced Math</strong><br>
-                                        <small>Dr. Johnson - Section A</small>
-                                    </div>
-                                </div>
-                                <div class="schedule-cell">
-                                    <div class="schedule-item">
-                                        <strong>Advanced Physics</strong><br>
-                                        <small>Prof. Brown - Section B</small>
-                                    </div>
-                                </div>
-                                <div class="schedule-cell">
-                                    <div class="schedule-item">
-                                        <strong>Advanced Chemistry</strong><br>
-                                        <small>Dr. Davis - Section C</small>
-                                    </div>
-                                </div>
-                                <div class="schedule-cell">
-                                    <div class="schedule-item">
-                                        <strong>Advanced Math</strong><br>
-                                        <small>Dr. Johnson - Section A</small>
-                                    </div>
-                                </div>
-                                <div class="schedule-cell">
-                                    <div class="schedule-item">
-                                        <strong>Advanced Physics</strong><br>
-                                        <small>Prof. Brown - Section B</small>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Algorithm Status -->
-                    <div class="algorithm-status">
-                        <h5 class="mb-3">
-                            <i class="fas fa-robot me-2"></i>
-                            Scheduling Algorithm Status
-                        </h5>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <h6>Optimization Results</h6>
-                                <div class="optimization-metrics">
-                                    <div class="metric-item">
-                                        <span>Resource Utilization</span>
-                                        <span class="metric-value">95%</span>
-                                    </div>
-                                    <div class="metric-item">
-                                        <span>Conflict Resolution</span>
-                                        <span class="metric-value">100%</span>
-                                    </div>
-                                    <div class="metric-item">
-                                        <span>Teacher Satisfaction</span>
-                                        <span class="metric-value">92%</span>
-                                    </div>
-                                    <div class="metric-item">
-                                        <span>Schedule Efficiency</span>
-                                        <span class="metric-value">98%</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <h6>Algorithm Features</h6>
-                                <ul class="list-unstyled">
-                                    <li><i class="fas fa-check text-light me-2"></i>Genetic Algorithm Optimization</li>
-                                    <li><i class="fas fa-check text-light me-2"></i>Constraint Satisfaction</li>
-                                    <li><i class="fas fa-check text-light me-2"></i>Real-time Conflict Detection</li>
-                                    <li><i class="fas fa-check text-light me-2"></i>Teacher Preference Matching</li>
-                                    <li><i class="fas fa-check text-light me-2"></i>Room Availability Checking</li>
-                                    <li><i class="fas fa-check text-light me-2"></i>Load Balancing</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Technical Features -->
-                    <div class="card dashboard-card">
-                        <div class="dashboard-header">
-                            <h5 class="mb-0">
-                                <i class="fas fa-cogs me-2"></i>
-                                Technical Implementation
-                            </h5>
-                        </div>
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <h6>Backend Technologies</h6>
-                                    <ul class="list-unstyled">
-                                        <li><i class="fas fa-check text-success me-2"></i>Spring Boot 3.2</li>
-                                        <li><i class="fas fa-check text-success me-2"></i>Java 17</li>
-                                        <li><i class="fas fa-check text-success me-2"></i>PostgreSQL Database</li>
-                                        <li><i class="fas fa-check text-success me-2"></i>JWT Authentication</li>
-                                        <li><i class="fas fa-check text-success me-2"></i>RESTful APIs</li>
-                                        <li><i class="fas fa-check text-success me-2"></i>Algorithm Engine</li>
-                                    </ul>
-                                </div>
-                                <div class="col-md-4">
-                                    <h6>Frontend Technologies</h6>
-                                    <ul class="list-unstyled">
-                                        <li><i class="fas fa-check text-success me-2"></i>Angular 14</li>
-                                        <li><i class="fas fa-check text-success me-2"></i>TypeScript</li>
-                                        <li><i class="fas fa-check text-success me-2"></i>Bootstrap 5</li>
-                                        <li><i class="fas fa-check text-success me-2"></i>Interactive UI</li>
-                                        <li><i class="fas fa-check text-success me-2"></i>Real-time Updates</li>
-                                        <li><i class="fas fa-check text-success me-2"></i>Responsive Design</li>
-                                    </ul>
-                                </div>
-                                <div class="col-md-4">
-                                    <h6>Key Features</h6>
-                                    <ul class="list-unstyled">
-                                        <li><i class="fas fa-check text-success me-2"></i>Automated Scheduling</li>
-                                        <li><i class="fas fa-check text-success me-2"></i>Conflict Resolution</li>
-                                        <li><i class="fas fa-check text-success me-2"></i>Teacher Management</li>
-                                        <li><i class="fas fa-check text-success me-2"></i>Section Management</li>
-                                        <li><i class="fas fa-check text-success me-2"></i>Export Functionality</li>
-                                        <li><i class="fas fa-check text-success me-2"></i>Optimization Engine</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <section class="cta-band" aria-labelledby="cta-band-title">
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-59XXTKP9" height="0" width="0" style="display:none;visibility:hidden" title="Analytics"></iframe></noscript>
+  <div data-site-header></div>
+  <main id="main">
+    <section class="case-hero">
+      <div class="case-hero__bg" aria-hidden="true"><div class="bg-grid"></div><div class="bg-glow bg-glow--a"></div><div class="bg-glow bg-glow--b"></div></div>
       <div class="container">
-        <div class="cta-band-inner">
+        <a class="back-link" href="index.html#more"><svg class="icon" aria-hidden="true"><use href="#i-arrow-left"/></svg>All work</a>
+        <div class="case-hero__grid">
           <div>
-            <p class="cta-band-eyebrow"><span class="cta-dot" aria-hidden="true"></span> Open to remote projects</p>
-            <h2 id="cta-band-title" class="cta-band-title">Need something like this built?</h2>
-            <p class="cta-band-text">I build CRM systems, AI integrations and multi-tenant SaaS on Spring Boot and Angular. Tell me what you need and let's plan it.</p>
+            <div class="case-hero__badges"><span class="pill pill--outline">Final-year project</span><span class="pill pill--brand">Built solo</span></div>
+            <h1 class="case-hero__title">AutoSchedula: <span class="text-gradient">timetables for classes, teachers and rooms.</span></h1>
+            <p class="case-hero__lead">My final-year project at the University of Education, Lahore. An admin sets up classes, sections, courses, teachers and time slots, then builds a timetable for each section. The app refuses a second entry for the same room, slot and day.</p>
+            <dl class="case-hero__meta">
+              <div><dt>Role</dt><dd>Sole developer</dd></div>
+              <div><dt>When</dt><dd>Mar to Jun 2024</dd></div>
+              <div><dt>Commits</dt><dd>22, all mine</dd></div>
+              <div><dt>Stack</dt><dd>Spring Boot 3.2, Angular 14</dd></div>
+            </dl>
           </div>
-          <div class="cta-band-actions">
-            <a class="cta-btn cta-btn-primary" href="index.html#contact"><i class="fas fa-paper-plane" aria-hidden="true"></i> Start a project</a>
-            <a class="cta-btn cta-btn-ghost" href="index.html#projects"><i class="fas fa-th-large" aria-hidden="true"></i> All projects</a>
+          <div class="case-hero__visual" role="img" aria-label="Illustration with sample data: a weekly timetable for one section, with one slot flagged because the room is already booked.">
+            <div class="as-visual" aria-hidden="true">
+              <div class="win">
+                <div class="win__bar"><span class="win__dots"><i></i><i></i><i></i></span><span class="win__url">Timetable: BSIT 8A</span></div>
+                <div class="win__body">
+                  <div class="tt">
+                    <span></span><span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span>
+                    <span class="tt__time">08:30</span>
+                    <div class="tt__cell"><b>CS-401</b><small>Room 12</small></div>
+                    <div class="tt__cell tt__cell--empty"></div>
+                    <div class="tt__cell"><b>CS-401</b><small>Room 12</small></div>
+                    <div class="tt__cell" style="--c:#0f9a91"><b>IT-410</b><small>Lab 2</small></div>
+                    <div class="tt__cell tt__cell--empty"></div>
+                    <span class="tt__time">10:00</span>
+                    <div class="tt__cell" style="--c:#0f9a91"><b>IT-410</b><small>Lab 2</small></div>
+                    <div class="tt__cell" style="--c:#6b5eae"><b>CS-405</b><small>Room 7</small></div>
+                    <div class="tt__cell tt__cell--clash"><b>CS-405</b><small>Room 7</small></div>
+                    <div class="tt__cell tt__cell--empty"></div>
+                    <div class="tt__cell" style="--c:#6b5eae"><b>CS-405</b><small>Room 7</small></div>
+                    <span class="tt__time">11:30</span>
+                    <div class="tt__cell tt__cell--empty"></div>
+                    <div class="tt__cell"><b>CS-401</b><small>Room 12</small></div>
+                    <div class="tt__cell tt__cell--empty"></div>
+                    <div class="tt__cell" style="--c:#6b5eae"><b>CS-405</b><small>Room 7</small></div>
+                    <div class="tt__cell" style="--c:#0f9a91"><b>IT-410</b><small>Lab 2</small></div>
+                  </div>
+                </div>
+              </div>
+              <div class="toast glass as-toast"><svg class="icon"><use href="#i-clock"/></svg><div><b>Time sheet already exists for the day</b><span class="ui-sub">Room 7 is taken on Wed at 10:00</span></div></div>
+            </div>
           </div>
         </div>
       </div>
     </section>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="site-nav.js"></script>
-    <script src="site-marquee.js"></script>
-    <div id="site-footer"></div>
+    <nav class="case-nav" aria-label="On this page"><div class="container"><div class="case-nav__list"><a href="#problem">Problem</a><a href="#features">What I built</a><a href="#screens">Screens</a><a href="#stack">Stack</a></div></div></nav>
 
-    <script src="sticky-social.js"></script>
-    <script src="site-footer.js"></script>
+    <section class="case-section" id="problem"><div class="container case-section__grid">
+      <header class="case-section__head" data-reveal><p class="eyebrow">The problem</p><h2 class="case-section__title">One room, booked twice.</h2></header>
+      <div class="case-section__body" data-reveal>
+        <p>A timetable built by hand makes it easy to put two classes in one room at the same time. AutoSchedula keeps the setup data in one place and checks each entry when it is saved.</p>
+        <div class="metric-row" data-stagger>
+          <div class="metric"><span class="metric__value"><span data-count="22">22</span></span><span class="metric__label">commits, all mine</span></div>
+          <div class="metric"><span class="metric__value"><span data-count="126">126</span></span><span class="metric__label">Java files</span></div>
+          <div class="metric"><span class="metric__value"><span data-count="14">14</span></span><span class="metric__label">JPA entities</span></div>
+          <div class="metric"><span class="metric__value"><span data-count="5">5</span></span><span class="metric__label">Flyway migrations</span></div>
+        </div>
+      </div>
+    </div></section>
+
+    <section class="case-section" id="features"><div class="container case-section__grid">
+      <header class="case-section__head" data-reveal><p class="eyebrow">What I built</p><h2 class="case-section__title">Backend, Angular app and database.</h2></header>
+      <div class="case-section__body">
+        <div class="feature-grid" data-stagger>
+          <div class="feature"><span class="icon-tile"><svg class="icon" aria-hidden="true"><use href="#i-server"/></svg></span><h3>Multi-tenant</h3><p>Each institute is a tenant with its own users and data.</p></div>
+          <div class="feature"><span class="icon-tile"><svg class="icon" aria-hidden="true"><use href="#i-shield"/></svg></span><h3>Roles and features</h3><p>Users get roles, and roles get features, so each screen is open to the right people.</p></div>
+          <div class="feature"><span class="icon-tile"><svg class="icon" aria-hidden="true"><use href="#i-lock"/></svg></span><h3>Sign-in</h3><p>JWT access and refresh tokens, with emails for new accounts and forgotten passwords.</p></div>
+          <div class="feature"><span class="icon-tile"><svg class="icon" aria-hidden="true"><use href="#i-cap"/></svg></span><h3>Classes and sections</h3><p>Create classes and the sections inside them.</p></div>
+          <div class="feature"><span class="icon-tile"><svg class="icon" aria-hidden="true"><use href="#i-users"/></svg></span><h3>Courses, teachers, lectures</h3><p>Full create, edit and delete screens for each.</p></div>
+          <div class="feature"><span class="icon-tile"><svg class="icon" aria-hidden="true"><use href="#i-clock"/></svg></span><h3>Time slots and terms</h3><p>Set the slots in a day and pick the term from a list.</p></div>
+          <div class="feature"><span class="icon-tile"><svg class="icon" aria-hidden="true"><use href="#i-layout"/></svg></span><h3>Timetable sheets</h3><p>One sheet per section: course, teacher, room, slot and day.</p></div>
+          <div class="feature"><span class="icon-tile"><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg></span><h3>Clash check</h3><p>Saving a second entry for the same room, slot and day is refused.</p></div>
+        </div>
+      </div>
+    </div></section>
+
+    <section class="case-section" id="screens"><div class="container case-section__grid">
+      <header class="case-section__head" data-reveal><p class="eyebrow">Screens</p><h2 class="case-section__title">From setup to sheet.</h2></header>
+      <div class="case-section__body">
+        <div class="gallery">
+          <figure>
+            <div class="gallery__mock" role="img" aria-label="Diagram: the setup order, from tenant to classes, sections, courses and teachers, time slots, and finally the timetable sheet.">
+              <div class="flow" aria-hidden="true">
+                <div class="flow__node" style="--c:#0f9a91"><i></i>Tenant and users</div>
+                <div class="flow__link"></div>
+                <div class="flow__node"><i></i>Classes and sections</div>
+                <div class="flow__link"></div>
+                <div class="flow__node"><i></i>Courses and teachers</div>
+                <div class="flow__link"></div>
+                <div class="flow__node"><i></i>Time slots and term</div>
+                <div class="flow__link"></div>
+                <div class="flow__node" style="--c:#6b5eae"><i></i>Timetable sheet</div>
+              </div>
+            </div>
+            <figcaption><b>Setup order.</b> Each step feeds the next.</figcaption>
+          </figure>
+          <figure>
+            <div class="gallery__mock" role="img" aria-label="Illustration with sample data: the add entry form, showing the error when the room is already booked.">
+              <div class="win" aria-hidden="true">
+                <div class="win__bar"><span class="win__dots"><i></i><i></i><i></i></span><span class="win__url">New entry</span></div>
+                <div class="win__body mini-stack">
+                  <div class="mini-grid">
+                    <div class="as-field"><span>Course</span><b>CS-405</b></div>
+                    <div class="as-field"><span>Teacher</span><b>Teacher B</b></div>
+                    <div class="as-field"><span>Room</span><b>Room 7</b></div>
+                    <div class="as-field"><span>Day</span><b>Wednesday</b></div>
+                  </div>
+                  <div class="as-field"><span>Time slot</span><b>10:00 to 11:30</b></div>
+                  <p class="as-error">Time sheet already exists for the day</p>
+                  <div class="mini-split"><span class="ui-sub">Sample data</span><span class="ui-btn">Save</span></div>
+                </div>
+              </div>
+            </div>
+            <figcaption><b>Clash check.</b> Sample data, real error text.</figcaption>
+          </figure>
+        </div>
+        <p class="note"><b>Not built:</b> there is no automatic timetable generator and no AI. Entries are added by hand, and the app checks each one.</p>
+      </div>
+    </div></section>
+
+    <section class="case-section" id="stack"><div class="container case-section__grid">
+      <header class="case-section__head" data-reveal><h2 class="case-section__title">Stack</h2></header>
+      <div class="case-section__body" data-reveal>
+        <ul class="stack-chips stack-chips--lg">
+          <li>Java 17</li><li>Spring Boot 3.2</li><li>Spring Security</li><li>JWT</li><li>Spring Mail</li><li>MapStruct</li><li>Lombok</li><li>springdoc OpenAPI</li><li>PostgreSQL</li><li>Flyway</li><li>Angular 14</li><li>Angular Material</li><li>Bootstrap 5</li>
+        </ul>
+      </div>
+    </div></section>
+
+    <section class="section section--tight"><div class="container">
+      <a class="next-project card card--spot card--lift" data-spot href="wellness-demo.html">
+        <div><p class="next-project__label">Next project</p><p class="next-project__title">WellnessNow</p><p class="next-project__text">UI fixes on a health-screening app</p></div>
+        <span class="next-project__arrow" aria-hidden="true"><svg class="icon"><use href="#i-arrow-right"/></svg></span>
+      </a>
+    </div></section>
+  </main>
+  <div data-site-footer></div>
 </body>
 </html>

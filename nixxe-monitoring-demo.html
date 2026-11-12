@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-59XXTKP9');</script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Nixxe Monitoring | Muhammad Afaq</title>
+  <meta name="description" content="Nixxe Monitoring: a consent-first workforce monitoring system. An Electron tray agent for Windows, a Spring Boot module and Angular admin screens inside Nixxe CRM. Built by Muhammad Afaq.">
+  <meta name="author" content="Muhammad Afaq">
+  <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" content="#ffffff">
+  <link rel="canonical" href="https://muhammadafaqportfolio.netlify.app/nixxe-monitoring-demo.html">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Muhammad Afaq">
+  <meta property="og:url" content="https://muhammadafaqportfolio.netlify.app/nixxe-monitoring-demo.html">
+  <meta property="og:title" content="Nixxe Monitoring | Muhammad Afaq">
+  <meta property="og:description" content="Consent-first workforce monitoring: a Windows tray agent on Electron, live view over WebRTC, and card data blacked out on the laptop before upload.">
+  <meta property="og:image" content="https://muhammadafaqportfolio.netlify.app/afaq.png">
+  <meta name="twitter:card" content="summary">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%234f63e7'/%3E%3Cstop offset='1' stop-color='%230f9a91'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='64' height='64' rx='16' fill='url(%23g)'/%3E%3Ctext x='32' y='42' font-family='Arial,sans-serif' font-size='28' font-weight='700' fill='white' text-anchor='middle'%3EMA%3C/text%3E%3C/svg%3E">
+  <link rel="apple-touch-icon" href="afaq-72.png">
+  <script>(function(){var t=null;try{t=localStorage.getItem('theme')}catch(e){}if(t!=='light'&&t!=='dark'){t=window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'}document.documentElement.setAttribute('data-theme',t)})();</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700;800&display=swap">
+  <link rel="stylesheet" href="assets/site.css?v=20261112">
+  <script src="assets/site.js?v=20261112" defer></script>
+  <style>
+    .case-section--dark .case-section__title,
+    .case-section--dark .feature h3 { color: var(--night-head); }
+    .case-section--dark .case-section__body,
+    .case-section--dark .case-section__body > p,
+    .case-section--dark .feature p { color: var(--night-text); }
+    .case-section--dark .icon-tile { border-color: var(--night-line); background: rgba(255, 255, 255, 0.05); color: var(--brand-on-dark); box-shadow: none; }
+    .gallery { align-items: start; }
+    .parts { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+    .parts .card { padding: 20px; }
+    .parts h3 { margin-top: 14px; font-size: 1.0625rem; }
+    .parts p { margin-top: 6px; color: var(--muted); font-size: 0.9375rem; line-height: 1.5; }
+    .parts__step { color: var(--faint); font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; }
+    .check-list--cols { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px 28px; }
+    .check-list b { color: var(--ink); }
+    .mock-rows { display: grid; gap: 0.1em; }
+    .mock-rows > div { display: flex; justify-content: space-between; gap: 0.8em; padding: 0.5em 0.1em; border-bottom: 1px solid var(--line); color: var(--ink-2); font-size: 0.86em; }
+    .mock-rows > div b { color: var(--ink); font-weight: 600; }
+    .speak-bar { display: flex; align-items: center; justify-content: space-between; gap: 0.6em; padding: 0.55em 0.8em; border-radius: 0.7em; background: var(--ink); color: var(--bg); font-size: 0.8em; font-weight: 600; }
+    .speak-bar .ui-btn { min-height: 2em; padding: 0 0.8em; background: rgba(255, 255, 255, 0.16); }
+    .hero-redact { position: absolute; right: 0.5em; bottom: 0.5em; width: 46%; height: 42%; }
+    @media (max-width: 759.98px) { .parts { grid-template-columns: minmax(0, 1fr); } }
+    @media (max-width: 559.98px) { .check-list--cols { grid-template-columns: minmax(0, 1fr); } }
+  </style>
+</head>
+<body>
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-59XXTKP9" height="0" width="0" style="display:none;visibility:hidden" title="Analytics"></iframe></noscript>
+  <div data-site-header></div>
+  <noscript>
+    <nav class="container" aria-label="Main" style="padding-top:20px;display:flex;gap:18px;flex-wrap:wrap">
+      <a href="index.html#work">Work</a><a href="index.html#ai">AI</a><a href="index.html#skills">Skills</a><a href="index.html#experience">Experience</a><a href="index.html#contact">Contact</a>
+    </nav>
+  </noscript>
+
+  <main id="main">
+    <section class="case-hero" aria-labelledby="case-title">
+      <div class="case-hero__bg" aria-hidden="true"><div class="bg-grid"></div><div class="bg-glow bg-glow--a"></div><div class="bg-glow bg-glow--b"></div></div>
+      <div class="container">
+        <a class="back-link" href="index.html#work"><svg class="icon" aria-hidden="true"><use href="#i-arrow-left"/></svg>All work</a>
+        <div class="case-hero__grid">
+          <div>
+            <div class="case-hero__badges">
+              <span class="pill pill--teal">Internal tool</span>
+              <span class="pill pill--brand">Built by me</span>
+              <span class="pill pill--outline">v1.0.5</span>
+            </div>
+            <h1 class="case-hero__title" id="case-title">Nixxe Monitoring: <span class="text-gradient">consent-first workforce monitoring.</span></h1>
+            <p class="case-hero__lead">A Windows tray agent, a backend module and admin screens inside Nixxe CRM. Staff read a notice and agree before anything is captured. Card details are blacked out on the laptop before any upload.</p>
+            <div class="case-hero__actions">
+              <a class="btn btn--primary btn--lg" href="#how">How it works <svg class="icon btn__arrow" aria-hidden="true"><use href="#i-arrow-right"/></svg></a>
+              <a class="btn btn--secondary btn--lg" href="nixxe-crm-demo.html">The CRM it lives in</a>
+            </div>
+            <dl class="case-hero__meta">
+              <div><dt>Role</dt><dd>Builder, all three parts</dd></div>
+              <div><dt>When</dt><dd>Oct to Nov 2026</dd></div>
+              <div><dt>Runs on</dt><dd>Windows staff laptops</dd></div>
+            </dl>
+          </div>
+          <div class="case-hero__visual" role="img" aria-label="Illustration with sample data: the Monitoring board in the CRM with four devices. One screen shows a blacked-out payment area. An idle alert is open below.">
+            <div class="win" aria-hidden="true">
+              <div class="win__bar"><span class="win__dots"><i></i><i></i><i></i></span><span class="win__url">Nixxe CRM · Monitoring · Board</span></div>
+              <div class="win__body mini-stack" style="gap:0.9em">
+                <div class="mini-split">
+                  <div><p class="ui-title">Board</p><p class="ui-sub">Sample devices, today</p></div>
+                  <span class="ui-badge" style="--c:var(--green);--c-ink:var(--green-ink)">3 of 4 online</span>
+                </div>
+                <div class="mini-grid" style="--cols:2">
+                  <div class="mini-stack">
+                    <div class="mini-screen"><span class="ui-line" style="--w:70%"></span><span class="ui-line" style="--w:50%"></span><span class="ui-line" style="--w:62%"></span><span class="redact hero-redact">Payment area hidden on the laptop</span></div>
+                    <div class="ui-row ui-sub"><span class="ch" style="background:#2fbf71"></span>Device 01 · Active</div>
+                  </div>
+                  <div class="mini-stack">
+                    <div class="mini-screen"><span class="ui-line" style="--w:80%"></span><span class="ui-line" style="--w:60%"></span><span class="ui-line" style="--w:40%"></span></div>
+                    <div class="ui-row ui-sub"><span class="ch" style="background:#f2a93b"></span>Device 02 · Idle 22m</div>
+                  </div>
+                  <div class="mini-stack">
+                    <div class="mini-screen"><span class="ui-line" style="--w:55%"></span><span class="ui-line" style="--w:75%"></span><span class="ui-line" style="--w:35%"></span></div>
+                    <div class="ui-row ui-sub"><span class="ch" style="background:#2fbf71"></span>Device 03 · Live view</div>
+                  </div>
+                  <div class="mini-stack">
+                    <div class="mini-screen" style="opacity:.55"><span class="ui-line" style="--w:30%"></span></div>
+                    <div class="ui-row ui-sub"><span class="ch" style="background:#9aa3ad"></span>Device 04 · Offline</div>
+                  </div>
+                </div>
+                <div class="mini-ticket">
+                  <div class="mini-split"><b>Long idle · Device 02</b><span class="ui-badge" style="--c:var(--amber);--c-ink:var(--amber-ink)">Open</span></div>
+                  <span class="ui-sub">Raised by the 2-minute alert check during shift hours</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <nav class="case-nav" aria-label="On this page">
+      <div class="container">
+        <div class="case-nav__list">
+          <a href="#overview">Overview</a><a href="#how">How it works</a><a href="#agent">Agent</a><a href="#admin">Admin screens</a><a href="#privacy">Privacy</a><a href="#stack">Stack</a>
+        </div>
+      </div>
+    </nav>
+
+    <section class="case-section" id="overview">
+      <div class="container case-section__grid">
+        <header class="case-section__head" data-reveal>
+          <p class="eyebrow">The problem</p>
+          <h2 class="case-section__title">See work on staff laptops, openly, without card data leaving them.</h2>
+        </header>
+        <div class="case-section__body" data-reveal>
+          <p>Nixxe runs a call centre on its own CRM. The company wanted to know which staff laptops were active during a shift, keep regular screenshots, and open a live view when needed.</p>
+          <p>Two rules shaped the build. Staff must see a notice and agree before any capture starts. And the payment screens in the CRM must never reach the server as images or video.</p>
+          <div class="metric-row" data-stagger>
+            <div class="metric"><span class="metric__value"><span data-count="3">3</span></span><span class="metric__label">parts: agent, backend module, admin UI</span></div>
+            <div class="metric"><span class="metric__value"><span data-count="9">9</span></span><span class="metric__label">JPA entities in the module</span></div>
+            <div class="metric"><span class="metric__value"><span data-count="8">8</span></span><span class="metric__label">REST controllers</span></div>
+            <div class="metric"><span class="metric__value"><span data-count="20">20</span></span><span class="metric__label">backend services</span></div>
+            <div class="metric"><span class="metric__value"><span data-count="8">8</span></span><span class="metric__label">Flyway migrations (V368 to V375)</span></div>
+            <div class="metric"><span class="metric__value">~<span data-count="1900">1,900</span></span><span class="metric__label">lines of agent JavaScript</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="case-section" id="how">
+      <div class="container case-section__grid">
+        <header class="case-section__head" data-reveal>
+          <p class="eyebrow">How it works</p>
+          <h2 class="case-section__title">One agent, one module, one admin area.</h2>
+        </header>
+        <div class="case-section__body">
+          <div class="parts" data-stagger>
+            <div class="card">
+              <p class="parts__step">On the laptop</p>
+              <span class="icon-tile" style="margin-top:12px"><svg class="icon" aria-hidden="true"><use href="#i-terminal"/></svg></span>
+              <h3>Electron tray agent</h3>
+              <p>Starts on login and sits in the tray. Captures, redacts and uploads. An optional Windows service restarts it if it is killed.</p>
+            </div>
+            <div class="card">
+              <p class="parts__step">On the server</p>
+              <span class="icon-tile" style="margin-top:12px"><svg class="icon" aria-hidden="true"><use href="#i-server"/></svg></span>
+              <h3>Spring Boot module</h3>
+              <p>Takes uploads over HTTPS with a device token, checked by its own auth filter. Two scheduled jobs raise alerts and clean up old data.</p>
+            </div>
+            <div class="card">
+              <p class="parts__step">In the CRM</p>
+              <span class="icon-tile" style="margin-top:12px"><svg class="icon" aria-hidden="true"><use href="#i-layout"/></svg></span>
+              <h3>Angular admin area</h3>
+              <p>Board, devices, screenshots, activity, alerts, audit and policy. Admins issue enrolment codes and shutdown tokens here.</p>
+            </div>
+          </div>
+          <h3>Timings the agent and server follow</h3>
+          <div class="metric-row" data-stagger>
+            <div class="metric"><span class="metric__value"><span data-count="10">10</span><small> min</small></span><span class="metric__label">default screenshot interval, can be randomised</span></div>
+            <div class="metric"><span class="metric__value"><span data-count="5">5</span><small> s</small></span><span class="metric__label">idle-time check</span></div>
+            <div class="metric"><span class="metric__value"><span data-count="1">1</span><small> min</small></span><span class="metric__label">heartbeat and activity samples</span></div>
+            <div class="metric"><span class="metric__value"><span data-count="2">2</span><small> min</small></span><span class="metric__label">server alert check</span></div>
+            <div class="metric"><span class="metric__value"><span data-count="45">45</span><small> days</small></span><span class="metric__label">default retention, then a nightly job deletes</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="case-section" id="agent">
+      <div class="container case-section__grid">
+        <header class="case-section__head" data-reveal>
+          <p class="eyebrow">The agent</p>
+          <h2 class="case-section__title">What runs on each laptop.</h2>
+        </header>
+        <div class="case-section__body">
+          <div class="feature-grid" data-stagger>
+            <div class="feature"><span class="icon-tile"><svg class="icon" aria-hidden="true"><use href="#i-lock"/></svg></span><h3>Enrolment by code</h3><p>The employee types a one-time code from the admin. The agent registers with a hashed machine ID and gets a device token.</p></div>
+            <div class="feature"><span class="icon-tile"><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg></span><h3>Consent before capture</h3><p>The company notice shows first. Nothing is captured until the employee clicks "I understand and acknowledge".</p></div>
+            <div class="feature"><span class="icon-tile"><svg class="icon" aria-hidden="true"><use href="#i-layers"/></svg></span><h3>Screenshots on policy</h3><p>The primary screen on the policy interval, only inside work hours unless the policy says otherwise.</p></div>
+            <div class="feature"><span class="icon-tile"><svg class="icon" aria-hidden="true"><use href="#i-clock"/></svg></span><h3>Activity, not keystrokes</h3><p>Idle time from Electron's powerMonitor, plus the foreground app and window title. Sent as 1-minute samples. No keystroke logging.</p></div>
+            <div class="feature"><span class="icon-tile"><svg class="icon" aria-hidden="true"><use href="#i-mic"/></svg></span><h3>Live view and talk</h3><p>Video over WebRTC, with a JPEG-frame fallback. Admins can talk back. The employee hears a chime and sees a bar with a mute button.</p></div>
+            <div class="feature"><span class="icon-tile"><svg class="icon" aria-hidden="true"><use href="#i-wallet"/></svg></span><h3>Payment redaction</h3><p>The CRM sends the payment section's screen area to a local listener. The agent blacks it out on screenshots and video before upload.</p></div>
+            <div class="feature"><span class="icon-tile"><svg class="icon" aria-hidden="true"><use href="#i-shield"/></svg></span><h3>Signed shutdown</h3><p>The tray has no plain Quit. Pausing or removing it needs an admin-signed Ed25519 token for that one device.</p></div>
+            <div class="feature"><span class="icon-tile"><svg class="icon" aria-hidden="true"><use href="#i-arrow-up-right"/></svg></span><h3>Auto-update</h3><p>electron-updater checks the backend's release folder, downloads in the background and installs on restart.</p></div>
+          </div>
+          <div class="gallery">
+            <figure>
+              <div class="gallery__mock" role="img" aria-label="Illustration with sample text: the agent's consent screen with the monitoring notice and an acknowledge button.">
+                <div class="mini" aria-hidden="true">
+                  <div class="win">
+                    <div class="win__bar"><span class="win__dots"><i></i><i></i><i></i></span><span class="win__url">Nixxe Monitor · Consent</span></div>
+                    <div class="win__body mini-stack" style="gap:0.7em">
+                      <p class="ui-title">Monitoring notice</p>
+                      <span class="ui-line" style="--w:95%"></span><span class="ui-line" style="--w:88%"></span><span class="ui-line" style="--w:92%"></span><span class="ui-line" style="--w:60%"></span>
+                      <div class="mini-split"><span class="ui-chip">Notice version 1</span><span class="ui-btn">I understand and acknowledge</span></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <figcaption><b>Consent.</b> Capture starts only after this click. Sample text.</figcaption>
+            </figure>
+            <figure>
+              <div class="gallery__mock" role="img" aria-label="Illustration with sample data: the employee's screen during a live view, with the payment area blacked out and a bar saying an administrator is speaking, with a mute button.">
+                <div class="mini" aria-hidden="true">
+                  <div class="win">
+                    <div class="win__bar"><span class="win__dots"><i></i><i></i><i></i></span><span class="win__url">Employee screen · live view on</span></div>
+                    <div class="win__body mini-stack" style="gap:0.7em">
+                      <div class="mini-screen"><span class="ui-line" style="--w:72%"></span><span class="ui-line" style="--w:48%"></span><span class="ui-line" style="--w:64%"></span><span class="redact hero-redact">Card fields blacked out</span></div>
+                      <div class="speak-bar"><span>An administrator is speaking to you</span><span class="ui-btn">Mute</span></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <figcaption><b>Live view.</b> Talk is announced. Card fields never leave the laptop. Sample data.</figcaption>
+            </figure>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="case-section" id="admin">
+      <div class="container case-section__grid">
+        <header class="case-section__head" data-reveal>
+          <p class="eyebrow">Admin screens</p>
+          <h2 class="case-section__title">Run it from inside the CRM.</h2>
+        </header>
+        <div class="case-section__body">
+          <ul class="check-list check-list--cols" data-reveal>
+            <li><b>Board.</b> A live tile per device with presence.</li>
+            <li><b>Devices.</b> Create and send enrolment codes. Pause, resume, revoke, reassign or delete.</li>
+            <li><b>Screenshots.</b> A gallery with secure image loading.</li>
+            <li><b>Activity.</b> Per-employee and team usage, with productive, unproductive and neutral rules.</li>
+            <li><b>Alerts.</b> Agent down, tamper, long idle, offline during shift. List and resolve.</li>
+            <li><b>Audit.</b> Who viewed which screenshots or live sessions.</li>
+            <li><b>Policy.</b> Interval, randomising, live view, activity, work hours, blur, retention and consent text.</li>
+            <li><b>Reminder banner.</b> Shown to staff whose device has no running agent.</li>
+          </ul>
+          <div class="gallery">
+            <figure>
+              <div class="gallery__mock" role="img" aria-label="Illustration with sample settings: the Policy screen with a 10 minute screenshot interval, randomising on, live view on, activity on, sample work hours and 45 days retention.">
+                <div class="mini" aria-hidden="true">
+                  <div class="win">
+                    <div class="win__bar"><span class="win__dots"><i></i><i></i><i></i></span><span class="win__url">Monitoring · Policy</span></div>
+                    <div class="win__body mock-rows">
+                      <div><span>Screenshot interval</span><b>10 min</b></div>
+                      <div><span>Randomise interval</span><b>On</b></div>
+                      <div><span>Live view</span><b>On</b></div>
+                      <div><span>Activity tracking</span><b>On</b></div>
+                      <div><span>Work hours</span><b>09:00 to 18:00</b></div>
+                      <div><span>Keep data for</span><b>45 days</b></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <figcaption><b>Policy.</b> The agent reloads it every 5 minutes. Sample settings.</figcaption>
+            </figure>
+            <figure>
+              <div class="gallery__mock" role="img" aria-label="Illustration with sample data: the Activity screen with three employees and bars split into productive, neutral and unproductive time.">
+                <div class="mini" aria-hidden="true">
+                  <div class="win">
+                    <div class="win__bar"><span class="win__dots"><i></i><i></i><i></i></span><span class="win__url">Monitoring · Activity</span></div>
+                    <div class="win__body mini-stack" style="gap:0.75em">
+                      <div class="mini-split"><p class="ui-title">Team today</p><span class="ui-sub">Sample team</span></div>
+                      <div class="mini-stack"><div class="mini-split ui-sub"><span>Employee A</span><span>6h 40m</span></div><div class="mini-meter"><i style="--v:.82"></i></div></div>
+                      <div class="mini-stack"><div class="mini-split ui-sub"><span>Employee B</span><span>5h 55m</span></div><div class="mini-meter"><i style="--v:.7"></i></div></div>
+                      <div class="mini-stack"><div class="mini-split ui-sub"><span>Employee C</span><span>4h 10m</span></div><div class="mini-meter"><i style="--v:.5"></i></div></div>
+                      <div class="ui-row" style="flex-wrap:wrap;gap:0.4em"><span class="ui-badge" style="--c:var(--green);--c-ink:var(--green-ink)">Productive</span><span class="ui-badge" style="--c:#7b8794">Neutral</span><span class="ui-badge" style="--c:var(--amber);--c-ink:var(--amber-ink)">Unproductive</span></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <figcaption><b>Activity.</b> Category rules sort apps into three groups. Sample data.</figcaption>
+            </figure>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="case-section case-section--dark dark-panel" id="privacy">
+      <div class="dark-panel__bg" aria-hidden="true"></div>
+      <div class="container case-section__grid">
+        <header class="case-section__head" data-reveal>
+          <p class="eyebrow">Privacy</p>
+          <h2 class="case-section__title">Open with staff by design.</h2>
+        </header>
+        <div class="case-section__body">
+          <p>This is overt monitoring. Staff know the agent is there, and the limits are in the code.</p>
+          <div class="feature-grid feature-grid--3" data-stagger>
+            <div class="feature"><span class="icon-tile"><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg></span><h3>Notice first</h3><p>Versioned consent text, set in the policy.</p></div>
+            <div class="feature"><span class="icon-tile"><svg class="icon" aria-hidden="true"><use href="#i-wallet"/></svg></span><h3>Cards stay local</h3><p>Redaction runs before upload, with sharp for images and canvas for video.</p></div>
+            <div class="feature"><span class="icon-tile"><svg class="icon" aria-hidden="true"><use href="#i-terminal"/></svg></span><h3>No keystrokes</h3><p>Only idle time, app name and window title.</p></div>
+            <div class="feature"><span class="icon-tile"><svg class="icon" aria-hidden="true"><use href="#i-users"/></svg></span><h3>Viewers are logged</h3><p>An audit trail of every screenshot and live session opened.</p></div>
+            <div class="feature"><span class="icon-tile"><svg class="icon" aria-hidden="true"><use href="#i-mic"/></svg></span><h3>Talk is announced</h3><p>A chime and an on-screen bar, with mute.</p></div>
+            <div class="feature"><span class="icon-tile"><svg class="icon" aria-hidden="true"><use href="#i-clock"/></svg></span><h3>Data expires</h3><p>Screenshots and samples are deleted after 45 days by default.</p></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="case-section" id="stack">
+      <div class="container case-section__grid">
+        <header class="case-section__head" data-reveal>
+          <p class="eyebrow">Stack</p>
+          <h2 class="case-section__title">Built with</h2>
+        </header>
+        <div class="case-section__body">
+          <h3>Agent</h3>
+          <ul class="stack-chips stack-chips--lg">
+            <li>Electron 38</li><li>Node.js</li><li>electron-builder (NSIS)</li><li>electron-updater</li><li>WebRTC</li><li>sharp</li><li>node-windows</li><li>PowerShell P/Invoke</li><li>Ed25519</li>
+          </ul>
+          <h3>Server and admin</h3>
+          <ul class="stack-chips stack-chips--lg">
+            <li>Spring Boot 3.2</li><li>Java 17</li><li>PostgreSQL</li><li>Flyway</li><li>Angular 14</li>
+          </ul>
+          <p>A headless Node script tests enrolment, heartbeat, upload and consent against a running backend. It ships as an NSIS installer and a portable exe.</p>
+          <p class="note"><b>Limits:</b> the tray lock stops casual quitting, but real lock-down also needs standard-user Windows accounts or MDM. The installer is not code-signed yet.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--tight">
+      <div class="container">
+        <a class="next-project card card--spot card--lift" data-spot href="omnistock-demo.html">
+          <div>
+            <p class="next-project__label">Next project</p>
+            <p class="next-project__title">OmniStock</p>
+            <p class="next-project__text">Offline desktop app for a cash-on-delivery online shop</p>
+          </div>
+          <span class="next-project__arrow"><svg class="icon" aria-hidden="true"><use href="#i-arrow-right"/></svg></span>
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <div data-site-footer></div>
+</body>
+</html>

@@ -1,613 +1,461 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','GTM-59XXTKP9');</script>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Multi-tenant customer messaging and conversational CRM for WhatsApp, Instagram and Messenger, with agents, automation and AI chatbot flows in one inbox.">
-    <title>RynoChat: Omnichannel Messaging and AI Chatbots | Muhammad Afaq</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-    <link href="site-nav.css" rel="stylesheet">
-    <link href="typography.css" rel="stylesheet">
-    <link href="sticky-social.css" rel="stylesheet">
-    <link href="site-buttons.css" rel="stylesheet">
-    <link href="site-marquee.css" rel="stylesheet">
-    <link href="site-footer.css" rel="stylesheet">
-    <style>
-        :root {
-            --primary: #1d4b84;
-            --primary-dark: #0b2545;
-            --channels: #1d4b84;
-            --inbox: #0369a1;
-            --flows: #4338ca;
-            --ai: #7c3aed;
-            --automation: #0d9488;
-            --platform: #475569;
-            --bg: #eff6ff;
-            --card: #ffffff;
-            --text: #1e293b;
-            --muted: #475569;
-            --border: #bfdbfe;
-        }
-        html, body { overflow-x: hidden; overflow-x: clip; max-width: 100vw; }
-        body { background: var(--bg); color: var(--text); }
-        .top-nav {
-            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-            box-shadow: 0 2px 16px rgba(0,0,0,0.12);
-            padding: 0.85rem 0;
-        }
-        .top-nav .brand { font-weight: 800; color: #fff !important; font-size: 1.05rem; }
-        .top-nav .nav-link { color: rgba(255,255,255,0.9) !important; font-weight: 500; font-size: 0.875rem; }
-        .hero-demo {
-            background: linear-gradient(140deg, #0b2545 0%, #1d4b84 50%, #13315c 100%);
-            color: white;
-            padding: 3rem 0 2.5rem;
-            text-align: center;
-        }
-        .hero-demo h1 { font-size: 2rem; font-weight: 800; }
-        .hero-demo p { color: rgba(255,255,255,0.75); max-width: 520px; margin: 0.75rem auto 0; font-size: 0.9rem; }
-        .hero-stats { display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap; margin-top: 1.5rem; }
-        .hero-stat-num { font-size: 1.75rem; font-weight: 800; color: #93c5fd; }
-        .hero-stat-lbl { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 1px; color: rgba(255,255,255,0.5); font-weight: 600; }
-        .demo-nav-section {
-            background: white;
-            border-bottom: 1px solid var(--border);
-            padding: 1rem 0 1.25rem;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
-        }
-        .app-tabs { display: flex; flex-wrap: wrap; gap: 0.5rem; justify-content: center; }
-        .app-tab {
-            border: 1px solid var(--border);
-            background: var(--bg);
-            color: var(--text);
-            padding: 0.5rem 0.95rem;
-            border-radius: 10px;
-            font-size: 0.78rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.35rem;
-            white-space: nowrap;
-        }
-        .app-tab:hover, .app-tab.active {
-            background: var(--primary);
-            color: white;
-            border-color: var(--primary);
-        }
-        .main-wrap { padding: 1.5rem 0 4rem; }
-        .demo-viewport {
-            background: var(--card);
-            border: 1px solid var(--border);
-            border-radius: 20px;
-            padding: 1.25rem;
-            box-shadow: 0 8px 32px rgba(0,0,0,0.06);
-            min-height: 200px;
-        }
-        .panel { display: none; animation: fadeIn 0.25s ease; }
-        .panel.active { display: block; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
-        .flow-bar {
-            background: var(--card);
-            border: 1px solid var(--border);
-            border-radius: 18px;
-            padding: 1.5rem;
-            margin-bottom: 1.5rem;
-        }
-        .flow-bar h5 { font-weight: 800; font-size: 0.95rem; margin-bottom: 1rem; text-align: center; }
-        .flow-steps { display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 0.4rem; }
-        .flow-step {
-            background: linear-gradient(180deg, #eff6ff, #dbeafe);
-            border: 2px solid #93c5fd;
-            border-radius: 12px;
-            padding: 0.85rem 1rem;
-            font-size: 0.78rem;
-            font-weight: 700;
-            text-align: center;
-            min-width: 100px;
-        }
-        .flow-step i { display: block; font-size: 1.25rem; color: var(--primary); margin-bottom: 0.35rem; }
-        .flow-arrow { color: var(--primary); font-weight: 800; }
-        .panel-banner {
-            background: var(--card);
-            border: 1px solid var(--border);
-            border-radius: 16px;
-            padding: 1.25rem 1.5rem;
-            margin-bottom: 1.25rem;
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-        .panel-banner-icon {
-            width: 48px; height: 48px;
-            border-radius: 12px;
-            display: flex; align-items: center; justify-content: center;
-            color: white; font-size: 1.2rem; flex-shrink: 0;
-        }
-        .panel-banner h2 { font-size: 1.2rem; font-weight: 800; margin: 0; }
-        .tile-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-            gap: 0.75rem;
-        }
-        .tile {
-            background: var(--card);
-            border: 1px solid var(--border);
-            border-radius: 14px;
-            padding: 1rem 0.75rem;
-            text-align: center;
-            transition: transform 0.2s, box-shadow 0.2s;
-        }
-        .tile:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 24px rgba(29,75,132,0.15);
-        }
-        .tile i { font-size: 1.35rem; margin-bottom: 0.5rem; display: block; }
-        .tile span { font-size: 0.78rem; font-weight: 700; line-height: 1.3; display: block; }
-        .visual-row {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1rem;
-            margin-top: 1.5rem;
-        }
-        @media (max-width: 768px) {
-            .visual-row { grid-template-columns: 1fr; }
-            .hero-demo { padding: 2.25rem 0 2rem; }
-            .hero-demo h1 { font-size: 1.45rem; }
-            .app-tabs {
-                flex-wrap: nowrap;
-                justify-content: flex-start;
-                overflow-x: auto;
-                -webkit-overflow-scrolling: touch;
-                padding-bottom: 0.35rem;
-                scrollbar-width: none;
-            }
-            .app-tabs::-webkit-scrollbar { display: none; }
-            .demo-viewport {
-                border-width: 2px;
-                border-radius: 16px;
-                padding: 1rem;
-                box-shadow: inset 0 0 0 1px rgba(29,75,132,0.1), 0 10px 28px rgba(0,0,0,0.08);
-            }
-            .flow-steps { justify-content: flex-start; }
-            .flow-arrow { display: none; }
-        }
-        .visual-box {
-            background: var(--card);
-            border: 1px solid var(--border);
-            border-radius: 16px;
-            padding: 1.25rem;
-        }
-        .visual-box h6 { font-weight: 800; font-size: 0.85rem; margin-bottom: 1rem; }
-        .pos-line {
-            display: flex;
-            justify-content: space-between;
-            font-size: 0.8rem;
-            padding: 0.4rem 0;
-            border-bottom: 1px dashed #dbeafe;
-        }
-        .pos-total { font-weight: 800; color: var(--primary); font-size: 1rem; margin-top: 0.5rem; }
-        .mini-bars { display: flex; align-items: flex-end; gap: 6px; height: 80px; padding-top: 0.5rem; }
-        .mini-bar {
-            flex: 1;
-            background: linear-gradient(180deg, var(--primary), var(--primary-dark));
-            border-radius: 4px 4px 0 0;
-            min-height: 12px;
-        }
-        .stack-row {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-            justify-content: center;
-            margin-top: 2rem;
-        }
-        .stack-pill {
-            background: var(--card);
-            border: 1px solid var(--border);
-            border-radius: 50px;
-            padding: 0.5rem 1rem;
-            font-size: 0.8rem;
-            font-weight: 600;
-        }
-        .stack-pill i { color: var(--primary); margin-right: 0.35rem; }
-        .back-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.4rem;
-            margin-top: 1.5rem;
-            padding: 0.5rem 1.1rem;
-            border: 1px solid rgba(255,255,255,0.35);
-            border-radius: 50px;
-            color: #fff;
-            font-size: 0.8rem;
-            font-weight: 600;
-            text-decoration: none;
-            transition: background 0.2s;
-        }
-        .back-link:hover { background: rgba(255,255,255,0.12); color: #fff; }
-        .back-link.on-light { border-color: var(--border); color: var(--primary); background: var(--card); margin-top: 0; }
-        .back-link.on-light:hover { background: var(--primary); color: #fff; border-color: var(--primary); }
-        .hero-demo h1, .panel-title, .panel-banner h2 { text-wrap: balance; }
-        @media (max-width:575.98px){.hero-stats{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem 1.5rem;max-width:320px;margin-inline:auto}}
-        @media (max-width:575.98px){.hero-stats > div:last-child:nth-child(odd){grid-column:1 / -1}}
-        .hero-demo p { color: rgba(255,255,255,0.85); line-height: 1.7; }
-        .hero-stat-num { font-variant-numeric: tabular-nums; }
-        .hero-stat-lbl { color: rgba(255,255,255,0.8); }
-        .demo-nav-section { top: var(--site-nav-h, 72px); }
-        .app-tab, .back-link { cursor: pointer; }
-        .app-tab:focus-visible { outline: 3px solid var(--primary); outline-offset: 2px; }
-        .panel:focus-visible { outline: 3px solid var(--primary); outline-offset: 4px; border-radius: 14px; }
-        .main-wrap a:focus-visible, .cap-strip a:focus-visible { outline: 3px solid var(--primary); outline-offset: 3px; }
-        .hero-demo a:focus-visible, .hero-demo button:focus-visible { outline: 3px solid #fff; outline-offset: 3px; box-shadow: none; }
-        .tile span { color: var(--text); }
-        @media (max-width: 768px) {
-            .demo-nav-section { padding: 0.6rem 0; }
-            .app-tabs { padding: 5px 5px 0.4rem; margin-inline: -5px; scroll-padding-inline: 5px; }
-            .app-tab { min-height: 44px; padding-inline: 1rem; }
-            .back-link, .btn-hero-primary, .btn-hero-ghost, .hero-demo .btn { min-height: 44px; display: inline-flex; align-items: center; }
-        }
-        @media (prefers-reduced-motion: reduce) {
-            .hero-demo *, .hero-demo *::after, .cap-strip *, .demo-shell *, .demo-shell *::after { transition: none !important; animation: none !important; scroll-behavior: auto !important; }
-            .tile:hover, .module-card:hover, .btn-hero-primary:hover, .btn-hero-ghost:hover { transform: none; }
-        }
-        .pos-line { gap: 1rem; }
-        .pos-line span:last-child { text-align: right; }
-        @media (max-width: 768px) {
-            .panel-banner { flex-direction: column; align-items: flex-start; }
-            .flow-steps { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); }
-            .flow-step { min-width: 0; }
-            .flow-step:last-of-type:nth-of-type(odd) { grid-column: 1 / -1; }
-        }
-        .cta-band{background:#0b1220;padding-block:3.5rem}
-        .cta-band-inner{display:flex;flex-wrap:wrap;gap:1.5rem 2.5rem;align-items:center;justify-content:space-between;background:linear-gradient(135deg,var(--primary-dark,#0f172a) 0%,#0b1220 100%);border:1px solid rgba(255,255,255,.12);border-radius:20px;padding:2rem}
-        .cta-band-inner > div:first-child{min-width:0;flex:1 1 320px}
-        .cta-band-eyebrow{color:#a7f3d0;font-size:.78rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;margin:0 0 .5rem;display:flex;align-items:center;gap:.5rem}
-        .cta-dot{width:8px;height:8px;border-radius:50%;background:#34d399;box-shadow:0 0 0 4px rgba(52,211,153,.2);flex:0 0 8px}
-        .cta-band-title{color:#fff;font-size:clamp(1.4rem,2.6vw,2rem);margin:0 0 .5rem;text-wrap:balance}
-        .cta-band-text{color:#cbd5e1;max-width:56ch;margin:0;line-height:1.6}
-        .cta-band-actions{display:flex;flex-wrap:wrap;gap:.75rem}
-        .cta-btn{display:inline-flex;align-items:center;gap:.5rem;min-height:46px;padding:.7rem 1.3rem;border-radius:999px;font-weight:600;text-decoration:none;transition:transform .15s ease,background-color .15s ease;cursor:pointer}
-        .cta-btn-primary{background:#fff;color:var(--primary-dark,#0f172a)}
-        .cta-btn-ghost{color:#fff;border:1px solid rgba(255,255,255,.35)}
-        .cta-btn:hover{transform:translateY(-1px)}
-        .cta-btn-ghost:hover{background:rgba(255,255,255,.08);color:#fff}
-        .cta-btn:focus-visible{outline:3px solid #93c5fd;outline-offset:3px}
-        @media (prefers-reduced-motion:reduce){.cta-btn{transition:none}.cta-btn:hover{transform:none}}
-    </style>
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-59XXTKP9');</script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>RynoChat | Muhammad Afaq</title>
+  <meta name="description" content="RynoChat puts WhatsApp, Instagram and Messenger in one team inbox with AI chatbot flows. I led the web app and built its Android app in Flutter on my own.">
+  <meta name="author" content="Muhammad Afaq">
+  <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" content="#ffffff">
+  <link rel="canonical" href="https://muhammadafaqportfolio.netlify.app/rynochat-demo.html">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Muhammad Afaq">
+  <meta property="og:url" content="https://muhammadafaqportfolio.netlify.app/rynochat-demo.html">
+  <meta property="og:title" content="RynoChat: one inbox for WhatsApp, Instagram and Messenger">
+  <meta property="og:description" content="Team inbox with AI chatbot flows on Spring Boot and Angular, plus an Android app in Flutter: 50 screens, built solo in two weeks.">
+  <meta property="og:image" content="https://muhammadafaqportfolio.netlify.app/afaq.png">
+  <meta name="twitter:card" content="summary">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%234f63e7'/%3E%3Cstop offset='1' stop-color='%230f9a91'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='64' height='64' rx='16' fill='url(%23g)'/%3E%3Ctext x='32' y='42' font-family='Arial,sans-serif' font-size='28' font-weight='700' fill='white' text-anchor='middle'%3EMA%3C/text%3E%3C/svg%3E">
+  <link rel="apple-touch-icon" href="afaq-72.png">
+  <script>(function(){var t=null;try{t=localStorage.getItem('theme')}catch(e){}if(t!=='light'&&t!=='dark'){t=window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'}document.documentElement.setAttribute('data-theme',t)})();</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700;800&display=swap">
+  <link rel="stylesheet" href="assets/site.css?v=20261112">
+  <script src="assets/site.js?v=20261112" defer></script>
+  <style>
+    .rc-scene { position: relative; padding-bottom: 3.5em; }
+    .rc-scene > .win { margin-right: 30%; }
+    .rc-scene__phone { position: absolute; right: 0; bottom: 0; width: 14.5em; }
+    .rc-scene__phone .phone__screen { min-height: 25em; }
+    .rc-thread { display: grid; grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.4fr); gap: 1em; }
+    .rc-chat { display: grid; gap: 0.55em; align-content: start; padding-left: 1em; border-left: 1px solid var(--line); }
+    .rc-chat .ui-bubble { font-size: 0.82em; }
+    .rc-chat .ui-chip { justify-self: start; }
+    .rc-composer { display: flex; align-items: center; gap: 0.5em; margin-top: 0.4em; padding: 0.4em 0.4em 0.4em 0.8em; border: 1px solid var(--line-2); border-radius: 999px; }
+    .rc-composer .ui-line { flex: 1; }
+    .rc-composer .ui-btn { min-height: 2em; border-radius: 999px; font-size: 0.75em; }
+    .rc-phone { max-width: 17em; margin-inline: auto; }
+    .rc-phone .phone__screen { min-height: 31em; }
+    .rc-banner { margin-bottom: 0.6em; padding: 0.35em 0.7em; border-radius: 0.6em; background: var(--amber-50); color: var(--amber-ink); font-size: 0.72em; font-weight: 700; }
+    .rc-steps { display: flex; flex-wrap: wrap; gap: 0.4em; align-content: start; }
+    .rc-plan { display: grid; gap: 0.7em; }
+    .rc-plan__row { display: grid; gap: 0.35em; }
+    .rc-plan__row .mini-split { font-size: 0.85em; color: var(--ink-2); }
+    .rc-plan__row b { color: var(--ink); }
+    .rc-areas { margin-top: 4px; }
+    .rc-new { display: grid; gap: 14px; }
+    .rc-new li { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 4px 14px; align-items: start; padding: 16px 18px; border: 1px solid var(--line); border-radius: 16px; background: var(--card); }
+    .rc-new li > .pill { grid-row: span 2; margin-top: 1px; }
+    .rc-new b { color: var(--ink); font-weight: 600; }
+    .rc-new p { color: var(--muted); font-size: 0.9375rem; line-height: 1.5; }
+    .stack-group { display: grid; gap: 10px; }
+    .stack-group h3 { margin-top: 0; }
+    @media (max-width: 559.98px) {
+      .rc-new li { grid-template-columns: minmax(0, 1fr); }
+      .rc-new li > .pill { grid-row: auto; justify-self: start; }
+    }
+  </style>
 </head>
 <body>
-    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-59XXTKP9" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-
-    <div id="site-nav"></div>
-
-    <section class="hero-demo">
-        <div class="container">
-            <h1><i class="fas fa-comments me-2" aria-hidden="true"></i>RynoChat</h1>
-            <p>Multi-tenant customer messaging and conversational CRM for WhatsApp, Instagram and Messenger. Agents, automation and AI chatbot flows in one inbox.</p>
-            <div class="hero-stats">
-                <div><div class="hero-stat-num">13</div><div class="hero-stat-lbl">Modules</div></div>
-                <div><div class="hero-stat-num">129</div><div class="hero-stat-lbl">Entities</div></div>
-                <div><div class="hero-stat-num">84</div><div class="hero-stat-lbl">Controllers</div></div>
-                <div><div class="hero-stat-num">219</div><div class="hero-stat-lbl">Migrations</div></div>
-            </div>
-            <a href="index.html#project-rynochat" class="back-link"><i class="fas fa-arrow-left" aria-hidden="true"></i> Back to portfolio</a>
-        </div>
-    </section>
-
-    <div class="demo-shell">
-    <section class="demo-nav-section">
-        <div class="container">
-            <div class="app-tabs" role="tablist" aria-label="RynoChat modules">
-                <button type="button" class="app-tab active" data-panel="panel-channels" role="tab" id="tab-channels" aria-controls="panel-channels" aria-selected="true" tabindex="0"><i class="fas fa-tower-broadcast" aria-hidden="true"></i> Channels and Onboarding</button>
-                <button type="button" class="app-tab" data-panel="panel-inbox" role="tab" id="tab-inbox" aria-controls="panel-inbox" aria-selected="false" tabindex="-1"><i class="fas fa-inbox" aria-hidden="true"></i> Shared Inbox</button>
-                <button type="button" class="app-tab" data-panel="panel-flows" role="tab" id="tab-flows" aria-controls="panel-flows" aria-selected="false" tabindex="-1"><i class="fas fa-diagram-project" aria-hidden="true"></i> Chatbot Flow Builder</button>
-                <button type="button" class="app-tab" data-panel="panel-ai" role="tab" id="tab-ai" aria-controls="panel-ai" aria-selected="false" tabindex="-1"><i class="fas fa-robot" aria-hidden="true"></i> AI Layer</button>
-                <button type="button" class="app-tab" data-panel="panel-automation" role="tab" id="tab-automation" aria-controls="panel-automation" aria-selected="false" tabindex="-1"><i class="fas fa-bell" aria-hidden="true"></i> Automation and Notifications</button>
-                <button type="button" class="app-tab" data-panel="panel-platform" role="tab" id="tab-platform" aria-controls="panel-platform" aria-selected="false" tabindex="-1"><i class="fas fa-server" aria-hidden="true"></i> Platform and Operations</button>
-            </div>
-        </div>
-    </section>
-
-    <div class="container main-wrap">
-        <div class="demo-viewport">
-
-        <div id="panel-channels" class="panel active" role="tabpanel" aria-labelledby="tab-channels" tabindex="0">
-            <div class="panel-banner">
-                <div class="panel-banner-icon" style="background:var(--channels)"><i class="fas fa-tower-broadcast" aria-hidden="true"></i></div>
-                <div>
-                    <h2>Channels and Onboarding</h2>
-                    <p class="small mb-0 mt-1" style="color:var(--muted)">Each tenant connects its own channels. All three run on the Meta Graph API, with webhook processing on the backend.</p>
-                </div>
-            </div>
-            <div class="tile-grid">
-                <div class="tile" style="color:var(--channels)"><i class="fab fa-whatsapp" aria-hidden="true"></i><span>WhatsApp</span></div>
-                <div class="tile" style="color:var(--channels)"><i class="fab fa-instagram" aria-hidden="true"></i><span>Instagram</span></div>
-                <div class="tile" style="color:var(--channels)"><i class="fab fa-facebook-messenger" aria-hidden="true"></i><span>Messenger</span></div>
-                <div class="tile" style="color:var(--channels)"><i class="fab fa-meta" aria-hidden="true"></i><span>Meta Graph API</span></div>
-                <div class="tile" style="color:var(--channels)"><i class="fas fa-bolt" aria-hidden="true"></i><span>Webhook Processing</span></div>
-                <div class="tile" style="color:var(--channels)"><i class="fas fa-building" aria-hidden="true"></i><span>Per-Tenant Onboarding</span></div>
-            </div>
-            <div class="visual-row">
-                <div class="visual-box">
-                    <h6><i class="fas fa-user-plus me-2" aria-hidden="true"></i>Onboarding per Tenant</h6>
-                    <div class="pos-line"><span><i class="fab fa-whatsapp me-2" aria-hidden="true"></i>WhatsApp</span><span>Meta Embedded Signup</span></div>
-                    <div class="pos-line"><span><i class="fab fa-instagram me-2" aria-hidden="true"></i>Instagram</span><span>Instagram Login</span></div>
-                    <div class="pos-line"><span><i class="fab fa-facebook-messenger me-2" aria-hidden="true"></i>Messenger</span><span>Facebook Pages</span></div>
-                    <div class="pos-total text-end">One tenant, three channels</div>
-                </div>
-                <div class="visual-box">
-                    <h6><i class="fas fa-route me-2" aria-hidden="true"></i>How a Message Arrives</h6>
-                    <div class="pos-line"><span>1. Customer writes</span><span>WhatsApp, Instagram or Messenger</span></div>
-                    <div class="pos-line"><span>2. Meta sends it</span><span>Graph API webhook</span></div>
-                    <div class="pos-line"><span>3. Backend handles it</span><span>Webhook processing</span></div>
-                    <div class="pos-line"><span>4. Team sees it</span><span>Shared inbox</span></div>
-                </div>
-            </div>
-        </div>
-
-        <div id="panel-inbox" class="panel" role="tabpanel" aria-labelledby="tab-inbox" tabindex="0">
-            <div class="panel-banner">
-                <div class="panel-banner-icon" style="background:var(--inbox)"><i class="fas fa-inbox" aria-hidden="true"></i></div>
-                <div>
-                    <h2>Shared Inbox</h2>
-                    <p class="small mb-0 mt-1" style="color:var(--muted)">One inbox for WhatsApp, Instagram and Messenger. Agents work from it, and each agent sees their own unread count.</p>
-                </div>
-            </div>
-            <div class="tile-grid">
-                <div class="tile" style="color:var(--inbox)"><i class="fas fa-inbox" aria-hidden="true"></i><span>One Inbox</span></div>
-                <div class="tile" style="color:var(--inbox)"><i class="fas fa-user-group" aria-hidden="true"></i><span>Agents</span></div>
-                <div class="tile" style="color:var(--inbox)"><i class="fas fa-envelope-open-text" aria-hidden="true"></i><span>Per-Agent Unread Counts</span></div>
-                <div class="tile" style="color:var(--inbox)"><i class="fas fa-photo-film" aria-hidden="true"></i><span>Media Handling</span></div>
-                <div class="tile" style="color:var(--inbox)"><i class="fas fa-file-pdf" aria-hidden="true"></i><span>PDF Export</span></div>
-                <div class="tile" style="color:var(--inbox)"><i class="fas fa-headset" aria-hidden="true"></i><span>Handoff from Bot</span></div>
-            </div>
-            <div class="visual-box mt-4">
-                <h6><i class="fas fa-comments me-2" aria-hidden="true"></i>Inbox View</h6>
-                <div class="pos-line"><span><i class="fab fa-whatsapp me-2" aria-hidden="true"></i>WhatsApp conversation</span><span>Chatbot flow</span></div>
-                <div class="pos-line"><span><i class="fab fa-instagram me-2" aria-hidden="true"></i>Instagram conversation</span><span>Handed to an agent</span></div>
-                <div class="pos-line"><span><i class="fab fa-facebook-messenger me-2" aria-hidden="true"></i>Messenger conversation</span><span>Unread for me</span></div>
-                <div class="pos-total text-end">One inbox, three channels</div>
-            </div>
-        </div>
-
-        <div id="panel-flows" class="panel" role="tabpanel" aria-labelledby="tab-flows" tabindex="0">
-            <div class="panel-banner">
-                <div class="panel-banner-icon" style="background:var(--flows)"><i class="fas fa-diagram-project" aria-hidden="true"></i></div>
-                <div>
-                    <h2>Chatbot Flow Builder</h2>
-                    <p class="small mb-0 mt-1" style="color:var(--muted)">I built a visual flow builder in Angular. The backend flow engine runs each flow per conversation.</p>
-                </div>
-            </div>
-            <div class="flow-bar">
-                <h5><i class="fas fa-cubes me-2" aria-hidden="true"></i>Node Types</h5>
-                <div class="flow-steps">
-                    <div class="flow-step"><i class="fas fa-play" aria-hidden="true"></i>Start</div>
-                    <span class="flow-arrow">→</span>
-                    <div class="flow-step"><i class="fas fa-message" aria-hidden="true"></i>Send message</div>
-                    <span class="flow-arrow">→</span>
-                    <div class="flow-step"><i class="fas fa-photo-film" aria-hidden="true"></i>Send media</div>
-                    <span class="flow-arrow">→</span>
-                    <div class="flow-step"><i class="fas fa-circle-question" aria-hidden="true"></i>Ask question</div>
-                    <span class="flow-arrow">→</span>
-                    <div class="flow-step"><i class="fas fa-pen-to-square" aria-hidden="true"></i>Set variable</div>
-                    <span class="flow-arrow">→</span>
-                    <div class="flow-step"><i class="fas fa-code-branch" aria-hidden="true"></i>Condition</div>
-                    <span class="flow-arrow">→</span>
-                    <div class="flow-step"><i class="fas fa-link" aria-hidden="true"></i>Webhook</div>
-                    <span class="flow-arrow">→</span>
-                    <div class="flow-step"><i class="fas fa-brain" aria-hidden="true"></i>LLM</div>
-                    <span class="flow-arrow">→</span>
-                    <div class="flow-step"><i class="fas fa-headset" aria-hidden="true"></i>Handoff to agent</div>
-                </div>
-            </div>
-            <div class="visual-row">
-                <div class="visual-box">
-                    <h6><i class="fas fa-pen-ruler me-2" aria-hidden="true"></i>Builder</h6>
-                    <div class="pos-line"><span>Frontend</span><span>Angular</span></div>
-                    <div class="pos-line"><span>Editor</span><span>Visual flow builder</span></div>
-                    <div class="pos-line"><span>Node types</span><span>9</span></div>
-                    <div class="pos-line"><span>AI step</span><span>LLM node</span></div>
-                </div>
-                <div class="visual-box">
-                    <h6><i class="fas fa-gears me-2" aria-hidden="true"></i>Flow Engine</h6>
-                    <div class="pos-line"><span>Runs on</span><span>Spring Boot backend</span></div>
-                    <div class="pos-line"><span>Runs</span><span>Per conversation</span></div>
-                    <div class="pos-line"><span>Outside calls</span><span>Webhook node</span></div>
-                    <div class="pos-line"><span>Exit to a person</span><span>Handoff to a human agent</span></div>
-                </div>
-            </div>
-        </div>
-
-        <div id="panel-ai" class="panel" role="tabpanel" aria-labelledby="tab-ai" tabindex="0">
-            <div class="panel-banner">
-                <div class="panel-banner-icon" style="background:var(--ai)"><i class="fas fa-robot" aria-hidden="true"></i></div>
-                <div>
-                    <h2>AI Layer</h2>
-                    <p class="small mb-0 mt-1" style="color:var(--muted)">I built one AI provider layer over Anthropic Claude, Groq and Google Gemini. AI runs inside chatbot flows and on voice notes, and flows can hand a conversation to a human agent.</p>
-                </div>
-            </div>
-            <div class="tile-grid">
-                <div class="tile" style="color:var(--ai)"><i class="fas fa-wand-magic-sparkles" aria-hidden="true"></i><span>Anthropic Claude</span></div>
-                <div class="tile" style="color:var(--ai)"><i class="fas fa-bolt" aria-hidden="true"></i><span>Groq</span></div>
-                <div class="tile" style="color:var(--ai)"><i class="fas fa-gem" aria-hidden="true"></i><span>Google Gemini</span></div>
-                <div class="tile" style="color:var(--ai)"><i class="fas fa-microphone" aria-hidden="true"></i><span>Voice-Note Speech-to-Text</span></div>
-                <div class="tile" style="color:var(--ai)"><i class="fas fa-brain" aria-hidden="true"></i><span>LLM Step in Flows</span></div>
-                <div class="tile" style="color:var(--ai)"><i class="fas fa-headset" aria-hidden="true"></i><span>Human Handoff</span></div>
-            </div>
-            <div class="visual-row">
-                <div class="visual-box">
-                    <h6><i class="fas fa-layer-group me-2" aria-hidden="true"></i>One Provider Layer</h6>
-                    <div class="pos-line"><span>Anthropic Claude</span><span>LLM provider</span></div>
-                    <div class="pos-line"><span>Groq</span><span>LLM provider and speech-to-text</span></div>
-                    <div class="pos-line"><span>Google Gemini</span><span>LLM provider</span></div>
-                    <div class="pos-total text-end">One layer, three providers</div>
-                </div>
-                <div class="visual-box">
-                    <h6><i class="fas fa-microphone me-2" aria-hidden="true"></i>Voice Note to Text</h6>
-                    <div class="pos-line"><span>Input</span><span>WhatsApp voice note</span></div>
-                    <div class="pos-line"><span>Engine</span><span>Groq speech-to-text</span></div>
-                    <div class="pos-line"><span>Output</span><span>Text transcript</span></div>
-                </div>
-            </div>
-        </div>
-
-        <div id="panel-automation" class="panel" role="tabpanel" aria-labelledby="tab-automation" tabindex="0">
-            <div class="panel-banner">
-                <div class="panel-banner-icon" style="background:var(--automation)"><i class="fas fa-bell" aria-hidden="true"></i></div>
-                <div>
-                    <h2>Automation and Notifications</h2>
-                    <p class="small mb-0 mt-1" style="color:var(--muted)">Automation and chatbot flows reply to customers. Push notifications and per-agent unread counts tell agents where to look.</p>
-                </div>
-            </div>
-            <div class="tile-grid">
-                <div class="tile" style="color:var(--automation)"><i class="fas fa-gears" aria-hidden="true"></i><span>Automation</span></div>
-                <div class="tile" style="color:var(--automation)"><i class="fas fa-diagram-project" aria-hidden="true"></i><span>Chatbot Flows</span></div>
-                <div class="tile" style="color:var(--automation)"><i class="fas fa-bell" aria-hidden="true"></i><span>Push Notifications</span></div>
-                <div class="tile" style="color:var(--automation)"><i class="fas fa-envelope-open-text" aria-hidden="true"></i><span>Per-Agent Unread Counts</span></div>
-                <div class="tile" style="color:var(--automation)"><i class="fas fa-bolt" aria-hidden="true"></i><span>Webhook Processing</span></div>
-                <div class="tile" style="color:var(--automation)"><i class="fas fa-headset" aria-hidden="true"></i><span>Handoff to Agent</span></div>
-            </div>
-        </div>
-
-        <div id="panel-platform" class="panel" role="tabpanel" aria-labelledby="tab-platform" tabindex="0">
-            <div class="panel-banner">
-                <div class="panel-banner-icon" style="background:var(--platform)"><i class="fas fa-server" aria-hidden="true"></i></div>
-                <div>
-                    <h2>Platform and Operations</h2>
-                    <p class="small mb-0 mt-1" style="color:var(--muted)">A multi-tenant Spring Boot and Angular platform, with data retention, audit and metrics built in.</p>
-                </div>
-            </div>
-            <div class="tile-grid">
-                <div class="tile" style="color:var(--platform)"><i class="fas fa-building" aria-hidden="true"></i><span>Multi-Tenant</span></div>
-                <div class="tile" style="color:var(--platform)"><i class="fas fa-clock-rotate-left" aria-hidden="true"></i><span>Retention</span></div>
-                <div class="tile" style="color:var(--platform)"><i class="fas fa-trash-can" aria-hidden="true"></i><span>Bulk Delete</span></div>
-                <div class="tile" style="color:var(--platform)"><i class="fas fa-clipboard-check" aria-hidden="true"></i><span>Audit</span></div>
-                <div class="tile" style="color:var(--platform)"><i class="fas fa-layer-group" aria-hidden="true"></i><span>Redis</span></div>
-                <div class="tile" style="color:var(--platform)"><i class="fas fa-heart-pulse" aria-hidden="true"></i><span>Spring Actuator</span></div>
-                <div class="tile" style="color:var(--platform)"><i class="fas fa-chart-line" aria-hidden="true"></i><span>Prometheus Metrics</span></div>
-                <div class="tile" style="color:var(--platform)"><i class="fas fa-database" aria-hidden="true"></i><span>Flyway Migrations</span></div>
-                <div class="tile" style="color:var(--platform)"><i class="fab fa-docker" aria-hidden="true"></i><span>Docker and nginx</span></div>
-            </div>
-            <div class="visual-row">
-                <div class="visual-box">
-                    <h6><i class="fas fa-cubes me-2" aria-hidden="true"></i>Backend Size</h6>
-                    <div class="pos-line"><span>Backend modules</span><span>13</span></div>
-                    <div class="pos-line"><span>Entities</span><span>129</span></div>
-                    <div class="pos-line"><span>REST controllers</span><span>84</span></div>
-                    <div class="pos-line"><span>Flyway migrations</span><span>219</span></div>
-                </div>
-                <div class="visual-box">
-                    <h6><i class="fas fa-screwdriver-wrench me-2" aria-hidden="true"></i>Running It</h6>
-                    <div class="pos-line"><span>Database</span><span>PostgreSQL and Flyway</span></div>
-                    <div class="pos-line"><span>Metrics</span><span>Spring Actuator and Prometheus</span></div>
-                    <div class="pos-line"><span>Data lifecycle</span><span>Retention and bulk delete</span></div>
-                    <div class="pos-line"><span>Deploy</span><span>Docker and nginx</span></div>
-                </div>
-            </div>
-        </div>
-
-        </div>
-
-        <div class="visual-row">
-            <div class="visual-box">
-                <h6><i class="fas fa-user-tie me-2" aria-hidden="true"></i>My Role</h6>
-                <p class="small mb-3">I was the lead developer on RynoChat at SecopTech, with about 80% of the commits. It is a CRM and an AI project in one: a shared inbox for customer conversations, and chatbot flows with an LLM step and human handoff.</p>
-                <div class="pos-line"><span>Company</span><span>SecopTech</span></div>
-                <div class="pos-line"><span>Role</span><span>Lead developer</span></div>
-                <div class="pos-line"><span>Period</span><span>June to October 2026</span></div>
-                <div class="pos-line"><span>Commits</span><span>About 80%</span></div>
-            </div>
-            <div class="visual-box">
-                <h6><i class="fas fa-layer-group me-2" aria-hidden="true"></i>Tech Stack</h6>
-                <div class="stack-row" style="margin-top:0;justify-content:flex-start">
-                    <span class="stack-pill"><i class="fab fa-java" aria-hidden="true"></i> Java 17</span>
-                    <span class="stack-pill"><i class="fas fa-server" aria-hidden="true"></i> Spring Boot</span>
-                    <span class="stack-pill"><i class="fas fa-database" aria-hidden="true"></i> PostgreSQL</span>
-                    <span class="stack-pill"><i class="fas fa-code-branch" aria-hidden="true"></i> Flyway</span>
-                    <span class="stack-pill"><i class="fas fa-layer-group" aria-hidden="true"></i> Redis</span>
-                    <span class="stack-pill"><i class="fas fa-chart-line" aria-hidden="true"></i> Spring Actuator and Prometheus</span>
-                    <span class="stack-pill"><i class="fab fa-angular" aria-hidden="true"></i> Angular 17</span>
-                    <span class="stack-pill"><i class="fab fa-docker" aria-hidden="true"></i> Docker</span>
-                    <span class="stack-pill"><i class="fas fa-network-wired" aria-hidden="true"></i> nginx</span>
-                    <span class="stack-pill"><i class="fab fa-meta" aria-hidden="true"></i> Meta Graph API</span>
-                    <span class="stack-pill"><i class="fas fa-robot" aria-hidden="true"></i> Claude, Groq and Gemini</span>
-                </div>
-            </div>
-        </div>
-    </div>
-    </div>
-
-    <section class="cta-band" aria-labelledby="cta-band-title">
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-59XXTKP9" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <div data-site-header></div>
+  <main id="main">
+    <section class="case-hero">
+      <div class="case-hero__bg" aria-hidden="true"><div class="bg-grid"></div><div class="bg-glow bg-glow--a"></div><div class="bg-glow bg-glow--b"></div></div>
       <div class="container">
-        <div class="cta-band-inner">
+        <a class="back-link" href="index.html#work"><svg class="icon" aria-hidden="true"><use href="#i-arrow-left"/></svg>All work</a>
+        <div class="case-hero__grid">
           <div>
-            <p class="cta-band-eyebrow"><span class="cta-dot" aria-hidden="true"></span> Open to remote projects</p>
-            <h2 id="cta-band-title" class="cta-band-title">Need something like this built?</h2>
-            <p class="cta-band-text">I build CRM systems, AI integrations and multi-tenant SaaS on Spring Boot and Angular. Tell me what you need and let's plan it.</p>
+            <div class="case-hero__badges">
+              <span class="pill pill--live"><span class="live-dot"></span>Live</span>
+              <span class="pill pill--brand">Lead developer</span>
+              <span class="pill pill--teal">Web + Flutter app</span>
+            </div>
+            <h1 class="case-hero__title">RynoChat: <span class="text-gradient">one inbox for WhatsApp, Instagram and Messenger.</span></h1>
+            <p class="case-hero__lead">A multi-tenant team inbox with AI chatbot flows. I led the web app with about 80% of the commits, then built the Android app in Flutter on my own.</p>
+            <div class="case-hero__actions">
+              <a class="btn btn--primary btn--lg" href="https://rynochat.io" target="_blank" rel="noopener">Visit rynochat.io <svg class="icon btn__arrow" aria-hidden="true"><use href="#i-arrow-up-right"/></svg></a>
+              <a class="btn btn--secondary btn--lg" href="#mobile"><svg class="icon" aria-hidden="true"><use href="#i-phone"/></svg>See the Flutter app</a>
+            </div>
+            <dl class="case-hero__meta">
+              <div><dt>Role</dt><dd>Lead developer; solo on the Android app</dd></div>
+              <div><dt>When</dt><dd>Jun to Oct 2026</dd></div>
+              <div><dt>Company</dt><dd>SecopTech</dd></div>
+              <div><dt>Stack</dt><dd>Spring Boot, Angular, Flutter</dd></div>
+            </dl>
           </div>
-          <div class="cta-band-actions">
-            <a class="cta-btn cta-btn-primary" href="index.html#contact"><i class="fas fa-paper-plane" aria-hidden="true"></i> Start a project</a>
-            <a class="cta-btn cta-btn-ghost" href="index.html#projects"><i class="fas fa-th-large" aria-hidden="true"></i> All projects</a>
+          <div class="case-hero__visual" role="img" aria-label="Illustration with sample data: the RynoChat web inbox with a WhatsApp conversation that a chatbot hands to an agent, and the Flutter app on a phone showing the same inbox.">
+            <div class="rc-scene" aria-hidden="true">
+              <div class="win">
+                <div class="win__bar"><div class="win__dots"><i></i><i></i><i></i></div><span class="win__url"><svg class="icon"><use href="#i-lock"/></svg>RynoChat · Inbox</span></div>
+                <div class="win__body">
+                  <div class="rc-thread">
+                    <div class="inbox">
+                      <div class="inbox__tabs"><span>All</span><span>Mine</span></div>
+                      <div class="inbox__row"><span class="ui-avatar" style="--c:#4f63e7">AK<span class="ch ch--wa"></span></span><div><span class="ui-line" style="--w:85%"></span><span class="ui-line" style="--w:55%"></span></div><span class="inbox__count">2</span></div>
+                      <div class="inbox__row"><span class="ui-avatar" style="--c:#d62976">SR<span class="ch ch--ig"></span></span><div><span class="ui-line" style="--w:70%"></span><span class="ui-line" style="--w:45%"></span></div><span class="inbox__count">1</span></div>
+                      <div class="inbox__row"><span class="ui-avatar" style="--c:#1877f2">MN<span class="ch ch--fb"></span></span><div><span class="ui-line" style="--w:75%"></span><span class="ui-line" style="--w:40%"></span></div></div>
+                      <div class="inbox__row"><span class="ui-avatar" style="--c:#0f9a91">HB<span class="ch ch--wa"></span></span><div><span class="ui-line" style="--w:65%"></span><span class="ui-line" style="--w:50%"></span></div></div>
+                    </div>
+                    <div class="rc-chat">
+                      <span class="ui-chip" style="--c:#25d366">WhatsApp</span>
+                      <div class="ui-bubble">Has my order shipped?</div>
+                      <div class="ui-bubble ui-bubble--me">Bot: Please send your order number.</div>
+                      <div class="ui-bubble">10482</div>
+                      <span class="ui-badge" style="--c:#f2a93b;--c-ink:var(--amber-ink)">Handed to an agent</span>
+                      <div class="rc-composer"><span class="ui-line" style="--w:60%"></span><span class="ui-btn">Send</span></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="phone rc-scene__phone">
+                <div class="phone__screen">
+                  <div class="inbox">
+                    <div class="inbox__head"><p class="ui-title" style="font-size:.9em">Inbox</p><span class="ui-badge" style="--c:#2fbf71;--c-ink:var(--green-ink)">Available</span></div>
+                    <div class="inbox__tabs"><span>All</span><span>WA</span><span>IG</span></div>
+                    <div class="inbox__row"><span class="ui-avatar" style="--c:#4f63e7">AK<span class="ch ch--wa"></span></span><div><span class="ui-line" style="--w:85%"></span><span class="ui-line" style="--w:55%"></span></div><span class="inbox__count">2</span></div>
+                    <div class="inbox__row"><span class="ui-avatar" style="--c:#d62976">SR<span class="ch ch--ig"></span></span><div><span class="ui-line" style="--w:70%"></span><span class="ui-line" style="--w:45%"></span></div><span class="inbox__count">1</span></div>
+                    <div class="inbox__row"><span class="ui-avatar" style="--c:#1877f2">MN<span class="ch ch--fb"></span></span><div><span class="ui-line" style="--w:75%"></span><span class="ui-line" style="--w:40%"></span></div></div>
+                    <div class="inbox__row"><span class="ui-avatar" style="--c:#0f9a91">HB<span class="ch ch--wa"></span></span><div><span class="ui-line" style="--w:60%"></span><span class="ui-line" style="--w:45%"></span></div></div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </section>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="site-nav.js"></script>
-    <script src="site-marquee.js"></script>
-    <div id="site-footer"></div>
+    <nav class="case-nav" aria-label="On this page">
+      <div class="container">
+        <div class="case-nav__list">
+          <a href="#overview">Overview</a>
+          <a href="#web">Web app</a>
+          <a href="#new">What's new</a>
+          <a href="#mobile">Flutter app</a>
+          <a href="#share">My share</a>
+          <a href="#stack">Stack</a>
+        </div>
+      </div>
+    </nav>
 
-    <script src="sticky-social.js"></script>
-    <script src="site-footer.js"></script>
-    <script>
-        (function () {
-            var tabs = Array.prototype.slice.call(document.querySelectorAll('.app-tab'));
-            var bar = document.querySelector('.demo-nav-section');
-            var view = document.querySelector('.demo-viewport');
-            var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-            function activate(tab, focus) {
-                tabs.forEach(function (t) {
-                    var on = t === tab;
-                    t.classList.toggle('active', on);
-                    t.setAttribute('aria-selected', on ? 'true' : 'false');
-                    t.tabIndex = on ? 0 : -1;
-                    var panel = document.getElementById(t.getAttribute('data-panel'));
-                    if (panel) panel.classList.toggle('active', on);
-                });
-                if (focus) tab.focus();
-                var strip = tab.parentNode;
-                if (strip.scrollWidth > strip.clientWidth) {
-                    strip.scrollTo({ left: tab.offsetLeft - strip.offsetLeft - 16, behavior: reduce ? 'auto' : 'smooth' });
-                }
-                if (bar && view) {
-                    var gap = view.getBoundingClientRect().top - bar.getBoundingClientRect().bottom;
-                    if (gap < 0) window.scrollTo({ top: window.pageYOffset + gap - 12, behavior: reduce ? 'auto' : 'smooth' });
-                }
-            }
-            tabs.forEach(function (tab, i) {
-                tab.addEventListener('click', function () { activate(tab, false); });
-                tab.addEventListener('keydown', function (e) {
-                    var next = null;
-                    if (e.key === 'ArrowRight') next = (i + 1) % tabs.length;
-                    else if (e.key === 'ArrowLeft') next = (i - 1 + tabs.length) % tabs.length;
-                    else if (e.key === 'Home') next = 0;
-                    else if (e.key === 'End') next = tabs.length - 1;
-                    if (next === null) return;
-                    e.preventDefault();
-                    activate(tabs[next], true);
-                });
-            });
-        })();
-    </script>
+    <section class="case-section" id="overview">
+      <div class="container case-section__grid">
+        <header class="case-section__head" data-reveal>
+          <p class="eyebrow">The problem</p>
+          <h2 class="case-section__title">Customer chats were spread over three apps.</h2>
+        </header>
+        <div class="case-section__body" data-reveal>
+          <p>A business gets messages on WhatsApp, Instagram and Messenger. Each one lives in its own app. Replies get missed, and nobody knows who is handling which chat.</p>
+          <p>RynoChat puts all three in one shared inbox. Each tenant connects its own channels. Chatbot flows answer the easy questions, then hand the chat to a person.</p>
+          <div class="metric-row" data-stagger>
+            <div class="metric"><span class="metric__value"><span data-count="13">13</span></span><span class="metric__label">backend modules</span></div>
+            <div class="metric"><span class="metric__value"><span data-count="129">129</span></span><span class="metric__label">entities</span></div>
+            <div class="metric"><span class="metric__value"><span data-count="85">85</span></span><span class="metric__label">REST controllers</span></div>
+            <div class="metric"><span class="metric__value"><span data-count="222">222</span></span><span class="metric__label">Flyway migrations</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="case-section" id="web">
+      <div class="container case-section__grid">
+        <header class="case-section__head" data-reveal>
+          <p class="eyebrow">Web app</p>
+          <h2 class="case-section__title">What I built on the web side.</h2>
+        </header>
+        <div class="case-section__body">
+          <div class="feature-grid" data-stagger>
+            <div class="feature">
+              <span class="icon-tile"><svg class="icon" aria-hidden="true"><use href="#i-layers"/></svg></span>
+              <h3>Channels per tenant</h3>
+              <p>WhatsApp Embedded Signup, Instagram Login and Facebook Pages, all on the Meta Graph API with webhook processing.</p>
+            </div>
+            <div class="feature">
+              <span class="icon-tile"><svg class="icon" aria-hidden="true"><use href="#i-users"/></svg></span>
+              <h3>Shared inbox</h3>
+              <p>One list for all three channels. Per-agent unread counts, pinned chats, labels, assign, resolve and reopen.</p>
+            </div>
+            <div class="feature">
+              <span class="icon-tile"><svg class="icon" aria-hidden="true"><use href="#i-terminal"/></svg></span>
+              <h3>Chatbot flow builder</h3>
+              <p>A visual builder in Angular with 9 step types, from questions and conditions to webhooks, an LLM step and handoff. The backend runs each flow per conversation.</p>
+            </div>
+            <div class="feature">
+              <span class="icon-tile"><svg class="icon" aria-hidden="true"><use href="#i-sparkles"/></svg></span>
+              <h3>One AI provider layer</h3>
+              <p>Claude, Groq and Gemini behind one layer. WhatsApp voice notes are turned into text with Groq.</p>
+            </div>
+            <div class="feature">
+              <span class="icon-tile"><svg class="icon" aria-hidden="true"><use href="#i-whatsapp"/></svg></span>
+              <h3>WhatsApp groups</h3>
+              <p>Create and edit groups, share an invite link, approve or reject join requests, and manage participants.</p>
+            </div>
+            <div class="feature">
+              <span class="icon-tile"><svg class="icon" aria-hidden="true"><use href="#i-phone"/></svg></span>
+              <h3>Push to phones</h3>
+              <p>Device tokens and Firebase Cloud Messaging. The server pushes new messages to the agent's phone.</p>
+            </div>
+            <div class="feature">
+              <span class="icon-tile"><svg class="icon" aria-hidden="true"><use href="#i-shield"/></svg></span>
+              <h3>Running it</h3>
+              <p>Data retention, bulk delete, PDF export and an audit log. Actuator and Prometheus metrics, Docker and nginx.</p>
+            </div>
+            <div class="feature">
+              <span class="icon-tile"><svg class="icon" aria-hidden="true"><use href="#i-layout"/></svg></span>
+              <h3>Six UI languages</h3>
+              <p>English, Arabic, German, Spanish, French and Urdu, including the login and password reset pages.</p>
+            </div>
+          </div>
+          <div class="gallery gallery--1">
+            <figure>
+              <div class="gallery__mock" role="img" aria-label="Illustration with sample data: a chatbot flow that asks for an order number, checks it, answers with the LLM step and hands off to an agent, next to the list of 9 step types.">
+                <div class="win" aria-hidden="true">
+                  <div class="win__bar"><div class="win__dots"><i></i><i></i><i></i></div><span class="win__url">Flow builder · Order status</span></div>
+                  <div class="win__body">
+                    <div class="mini-grid" style="--cols:2">
+                      <div class="flow">
+                        <div class="flow__node" style="--c:#2fbf71"><i></i>Start: new WhatsApp chat</div>
+                        <div class="flow__link"></div>
+                        <div class="flow__node" style="--c:#4f63e7"><i></i>Ask question: order number</div>
+                        <div class="flow__link"></div>
+                        <div class="flow__node" style="--c:#0f9a91"><i></i>Condition: order found</div>
+                        <div class="flow__link"></div>
+                        <div class="flow__node" style="--c:#962fbf"><i></i>LLM: answer the question</div>
+                        <div class="flow__link"></div>
+                        <div class="flow__node" style="--c:#f2a93b"><i></i>Hand off to agent</div>
+                      </div>
+                      <div class="mini-stack">
+                        <p class="ui-sub">Step types</p>
+                        <div class="rc-steps">
+                          <span class="ui-chip" style="--c:#2fbf71">Start</span>
+                          <span class="ui-chip" style="--c:#4f63e7">Send message</span>
+                          <span class="ui-chip" style="--c:#4f63e7">Send media</span>
+                          <span class="ui-chip" style="--c:#4f63e7">Ask question</span>
+                          <span class="ui-chip" style="--c:#0f9a91">Set variable</span>
+                          <span class="ui-chip" style="--c:#0f9a91">Condition</span>
+                          <span class="ui-chip" style="--c:#1877f2">Webhook</span>
+                          <span class="ui-chip" style="--c:#962fbf">LLM</span>
+                          <span class="ui-chip" style="--c:#f2a93b">Handoff</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <figcaption><b>Flow builder.</b> HTML mock with sample data, not a screenshot.</figcaption>
+            </figure>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="case-section section--wash" id="new">
+      <div class="container case-section__grid">
+        <header class="case-section__head" data-reveal>
+          <p class="eyebrow">What's new</p>
+          <h2 class="case-section__title">Plans with limits, and flows on more channels.</h2>
+        </header>
+        <div class="case-section__body">
+          <p>Since the last update to this page in October, nearly all the new work is mine: every UI commit and 6 of 7 backend commits.</p>
+          <ul class="rc-new" data-stagger>
+            <li><span class="pill pill--brand">28 Oct</span><b>Pricing plans with limits</b><p>Each package sets how many channels and WhatsApp numbers a tenant may connect. The backend enforces it, and the package screens show the limits.</p></li>
+            <li><span class="pill pill--brand">28 Oct</span><b>Advanced steps as a paid feature</b><p>The LLM and Webhook steps need "Advanced Steps" in the tenant's package. A flow that uses them on a lower plan is rejected on save.</p></li>
+            <li><span class="pill pill--brand">30 Oct</span><b>One flow on several channels</b><p>A flow can now run on more than one channel. Old single-channel flows were moved over by a migration.</p></li>
+            <li><span class="pill pill--brand">30 Oct</span><b>Flows for chosen contacts</b><p>A flow runs for all contacts, or only for a picked list.</p></li>
+            <li><span class="pill pill--outline">Fixes</span><b>Across the app</b><p>Login and password reset in all 6 languages, chat labels, roles, contact and segment forms, inbox, routing rules and the agent performance report.</p></li>
+          </ul>
+          <div class="gallery gallery--1">
+            <figure>
+              <div class="gallery__mock" role="img" aria-label="Illustration with sample data: a package showing 3 of 3 channels used, 1 of 2 WhatsApp numbers used, and Advanced Steps locked.">
+                <div class="win" aria-hidden="true">
+                  <div class="win__bar"><div class="win__dots"><i></i><i></i><i></i></div><span class="win__url">Packages · Growth</span></div>
+                  <div class="win__body">
+                    <div class="rc-plan">
+                      <div class="mini-split"><p class="ui-title">Growth plan</p><span class="ui-badge">Current</span></div>
+                      <div class="rc-plan__row"><div class="mini-split"><span>Channels</span><b>3 of 3</b></div><div class="mini-meter"><i style="--v:1"></i></div></div>
+                      <div class="rc-plan__row"><div class="mini-split"><span>WhatsApp numbers</span><b>1 of 2</b></div><div class="mini-meter"><i style="--v:.5"></i></div></div>
+                      <div class="mini-split"><span class="ui-sub">Advanced Steps (LLM, Webhook)</span><span class="ui-badge" style="--c:#f2a93b;--c-ink:var(--amber-ink)">Upgrade to use</span></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <figcaption><b>Plan limits.</b> HTML mock with sample data, not a screenshot.</figcaption>
+            </figure>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="case-section" id="mobile">
+      <div class="container case-section__grid">
+        <header class="case-section__head" data-reveal>
+          <p class="eyebrow"><svg class="icon" aria-hidden="true"><use href="#i-phone"/></svg>Flutter app</p>
+          <h2 class="case-section__title">The same inbox on Android, built solo in two weeks.</h2>
+        </header>
+        <div class="case-section__body">
+          <p>Agents answer WhatsApp, Instagram and Messenger chats from their phone. Admins can also run contacts, campaigns, chatbots, users and reports. The app talks to the same Spring Boot backend, and I added the endpoints it needed: push tokens, pinned chats and WhatsApp groups.</p>
+          <div class="metric-row" data-stagger>
+            <div class="metric"><span class="metric__value"><span data-count="50">50</span></span><span class="metric__label">screens</span></div>
+            <div class="metric"><span class="metric__value"><span data-count="287">287</span></span><span class="metric__label">Dart files</span></div>
+            <div class="metric"><span class="metric__value"><span data-count="38" data-suffix="k">38k</span></span><span class="metric__label">lines of Dart, not counting generated code</span></div>
+            <div class="metric"><span class="metric__value"><span data-count="49">49</span></span><span class="metric__label">permission codes that shape screens and actions</span></div>
+          </div>
+          <div class="feature-grid feature-grid--3" data-stagger>
+            <div class="feature">
+              <span class="icon-tile"><svg class="icon" aria-hidden="true"><use href="#i-clock"/></svg></span>
+              <h3>Live inbox</h3>
+              <p>Server-Sent Events keep it current. A banner shows when the link drops and reconnects.</p>
+            </div>
+            <div class="feature">
+              <span class="icon-tile"><svg class="icon" aria-hidden="true"><use href="#i-mail"/></svg></span>
+              <h3>Push notifications</h3>
+              <p>Firebase Cloud Messaging. The token is registered at login and removed at logout.</p>
+            </div>
+            <div class="feature">
+              <span class="icon-tile"><svg class="icon" aria-hidden="true"><use href="#i-mic"/></svg></span>
+              <h3>Full composer</h3>
+              <p>Photos and files, WhatsApp template picker, full-screen images, video and audio playback.</p>
+            </div>
+            <div class="feature">
+              <span class="icon-tile"><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg></span>
+              <h3>Chat actions</h3>
+              <p>Assign, resolve, reopen, label and mark read. Pinned chats, unread counts and an available or busy switch.</p>
+            </div>
+            <div class="feature">
+              <span class="icon-tile"><svg class="icon" aria-hidden="true"><use href="#i-briefcase"/></svg></span>
+              <h3>Admin on the go</h3>
+              <p>Contacts with CSV import, broadcasts, templates, chatbot flows, users, teams, roles and an audit log.</p>
+            </div>
+            <div class="feature">
+              <span class="icon-tile"><svg class="icon" aria-hidden="true"><use href="#i-sun"/></svg></span>
+              <h3>Reports, themes, languages</h3>
+              <p>KPI tiles and charts, light and dark mode, and English, Arabic and Bengali.</p>
+            </div>
+          </div>
+          <div class="gallery gallery--3">
+            <figure>
+              <div class="gallery__mock" role="img" aria-label="Illustration with sample data: the app inbox with channel tabs, a reconnecting banner and unread counts.">
+                <div class="phone rc-phone" aria-hidden="true">
+                  <div class="phone__screen">
+                    <div class="inbox">
+                      <div class="inbox__head"><p class="ui-title" style="font-size:.9em">Inbox</p><span class="ui-badge" style="--c:#2fbf71;--c-ink:var(--green-ink)">Available</span></div>
+                      <p class="rc-banner">Reconnecting...</p>
+                      <div class="inbox__tabs"><span>All</span><span>WA</span><span>IG</span><span>FB</span></div>
+                      <div class="inbox__row"><span class="ui-avatar" style="--c:#4f63e7">AK<span class="ch ch--wa"></span></span><div><span class="ui-line" style="--w:85%"></span><span class="ui-line" style="--w:55%"></span></div><span class="inbox__count">2</span></div>
+                      <div class="inbox__row"><span class="ui-avatar" style="--c:#d62976">SR<span class="ch ch--ig"></span></span><div><span class="ui-line" style="--w:70%"></span><span class="ui-line" style="--w:45%"></span></div><span class="inbox__count">1</span></div>
+                      <div class="inbox__row"><span class="ui-avatar" style="--c:#1877f2">MN<span class="ch ch--fb"></span></span><div><span class="ui-line" style="--w:75%"></span><span class="ui-line" style="--w:40%"></span></div><span class="inbox__pin">Pinned</span></div>
+                      <div class="inbox__row"><span class="ui-avatar" style="--c:#0f9a91">HB<span class="ch ch--wa"></span></span><div><span class="ui-line" style="--w:60%"></span><span class="ui-line" style="--w:45%"></span></div></div>
+                      <div class="inbox__row"><span class="ui-avatar" style="--c:#c2410c">ZA<span class="ch ch--wa"></span></span><div><span class="ui-line" style="--w:72%"></span><span class="ui-line" style="--w:38%"></span></div></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <figcaption><b>Inbox.</b> Sample data.</figcaption>
+            </figure>
+            <figure>
+              <div class="gallery__mock" role="img" aria-label="Illustration with sample data: a conversation with a customer, a template reply and the composer.">
+                <div class="phone rc-phone" aria-hidden="true">
+                  <div class="phone__screen">
+                    <div class="mini-stack">
+                      <div class="ui-row"><span class="ui-avatar" style="--c:#4f63e7">AK</span><div><p class="ui-title" style="font-size:.85em">Customer</p><span class="ui-sub">WhatsApp</span></div></div>
+                      <div class="ui-bubble">Hi, is the blue one in stock?</div>
+                      <div class="ui-bubble ui-bubble--me">Yes, we have 4 left.</div>
+                      <div class="ui-bubble">Great, I'll order today.</div>
+                      <span class="ui-chip" style="--c:#25d366">Template: order_confirm</span>
+                      <div class="rc-composer"><span class="ui-line" style="--w:60%"></span><span class="ui-btn">Send</span></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <figcaption><b>Conversation.</b> Sample data.</figcaption>
+            </figure>
+            <figure>
+              <div class="gallery__mock" role="img" aria-label="Illustration with sample data: a reports screen with KPI tiles and a bar chart.">
+                <div class="phone rc-phone" aria-hidden="true">
+                  <div class="phone__screen">
+                    <div class="mini-stack">
+                      <p class="ui-title" style="font-size:.9em">Overview</p>
+                      <div class="mini-grid" style="--cols:2">
+                        <div class="ui-tile"><b>184</b><span>Open chats</span></div>
+                        <div class="ui-tile"><b>6m</b><span>First reply</span></div>
+                        <div class="ui-tile"><b>72%</b><span>Resolved</span></div>
+                        <div class="ui-tile"><b>31</b><span>Bot handoffs</span></div>
+                      </div>
+                      <div class="ui-tile"><span>Chats this week</span><div class="ui-bars" style="--h:5em;margin-top:.5em"><i style="--v:.45"></i><i style="--v:.6"></i><i style="--v:.5"></i><i style="--v:.8"></i><i style="--v:.7"></i><i style="--v:.95"></i><i style="--v:.55"></i></div></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <figcaption><b>Reports.</b> Sample data.</figcaption>
+            </figure>
+          </div>
+          <h3>Screen areas</h3>
+          <ul class="stack-chips rc-areas">
+            <li>Sign in</li><li>Inbox</li><li>WhatsApp groups</li><li>Contacts and segments</li><li>Broadcasts and templates</li><li>Chatbot flows and routing</li><li>Media library</li><li>Users, teams and roles</li><li>Reports and audit log</li><li>Channels and labels</li><li>Profile</li>
+          </ul>
+          <p class="note"><b>Not done yet:</b> Android only for now. The iOS project exists, but iOS push is still planned. There is no store listing; version 1.0.0 ships as a direct APK, built on 30 Oct 2026.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="case-section section--wash" id="share">
+      <div class="container case-section__grid">
+        <header class="case-section__head" data-reveal>
+          <p class="eyebrow">My share</p>
+          <h2 class="case-section__title">Most of the code is mine.</h2>
+        </header>
+        <div class="case-section__body" data-reveal>
+          <p>Counted from git history on all branches, without merge commits. One other developer worked on the web app with me.</p>
+          <div class="metric-row" data-stagger>
+            <div class="metric"><span class="metric__value"><span data-count="85" data-suffix="%">85%</span></span><span class="metric__label">of backend commits <b>(66 of 78)</b></span></div>
+            <div class="metric"><span class="metric__value"><span data-count="80" data-suffix="%">80%</span></span><span class="metric__label">of web UI commits <b>(66 of 83)</b></span></div>
+            <div class="metric"><span class="metric__value"><span data-count="7">7</span><small> of 8</small></span><span class="metric__label">app commits; the 8th is the empty repo setup</span></div>
+            <div class="metric"><span class="metric__value"><span data-count="16">16</span><small> days</small></span><span class="metric__label">from first to last app commit, 15 to 30 Oct</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="case-section" id="stack">
+      <div class="container case-section__grid">
+        <header class="case-section__head" data-reveal>
+          <p class="eyebrow">Stack</p>
+          <h2 class="case-section__title">What it runs on.</h2>
+        </header>
+        <div class="case-section__body">
+          <div class="stack-group">
+            <h3>Web</h3>
+            <ul class="stack-chips stack-chips--lg">
+              <li>Java 17</li><li>Spring Boot 3.2</li><li>PostgreSQL</li><li>Flyway</li><li>Redis</li><li>Angular 17</li><li>Angular Material</li><li>Meta Graph API</li><li>Claude, Groq, Gemini</li><li>Firebase Cloud Messaging</li><li>Actuator and Prometheus</li><li>Docker</li><li>nginx</li>
+            </ul>
+          </div>
+          <div class="stack-group">
+            <h3>Mobile</h3>
+            <ul class="stack-chips stack-chips--lg">
+              <li>Flutter</li><li>Dart 3.5</li><li>Riverpod</li><li>Dio</li><li>Firebase Messaging</li><li>Local notifications</li><li>Hive</li><li>fl_chart</li><li>Form Builder</li><li>just_audio and video_player</li><li>adaptive_theme</li><li>intl</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--tight">
+      <div class="container">
+        <a class="next-project card card--spot card--lift" data-spot href="rynodesk-demo.html">
+          <div><p class="next-project__label">Next project</p><p class="next-project__title">RynoDesk</p><p class="next-project__text">POS, inventory and e-commerce platform</p></div>
+          <span class="next-project__arrow"><svg class="icon" aria-hidden="true"><use href="#i-arrow-right"/></svg></span>
+        </a>
+      </div>
+    </section>
+  </main>
+  <div data-site-footer></div>
 </body>
 </html>

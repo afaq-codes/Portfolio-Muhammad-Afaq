@@ -1,789 +1,394 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','GTM-59XXTKP9');</script>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Multi-tenant SaaS for medical billing, revenue cycle management, client portal, mail, messaging, HR, assets and practice administration, built as primary developer on Spring Boot 3.2, Angular 14 and PostgreSQL.">
-    <title>CareMD: Medical Billing Platform | Muhammad Afaq</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-    <link href="site-nav.css" rel="stylesheet">
-    <link href="typography.css" rel="stylesheet">
-    <link href="sticky-social.css" rel="stylesheet">
-    <link href="site-buttons.css" rel="stylesheet">
-    <link href="site-marquee.css" rel="stylesheet">
-    <link href="site-footer.css" rel="stylesheet">
-    <style>
-        :root {
-            --primary: #0066cc;
-            --primary-dark: #003d99;
-            --clinical: #2e7d32;
-            --hr: #6a1b9a;
-            --assets: #ef6c00;
-            --access: #455a64;
-            --reports: #00838f;
-            --notify: #1565c0;
-            --bg: #f1f5f9;
-            --card: #ffffff;
-            --text: #1e293b;
-            --muted: #475569;
-            --border: #e2e8f0;
-        }
-        html, body { overflow-x: hidden; overflow-x: clip; max-width: 100vw; }
-        body { background: var(--bg); color: var(--text); }
-        .top-nav {
-            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-            box-shadow: 0 2px 16px rgba(0,0,0,0.12);
-            padding: 0.85rem 0;
-        }
-        .top-nav .brand { font-weight: 800; color: #fff !important; font-size: 1.05rem; }
-        .top-nav .nav-link { color: rgba(255,255,255,0.9) !important; font-weight: 500; font-size: 0.875rem; }
-        .hero-demo {
-            background: linear-gradient(140deg, #0f172a 0%, #1e3a5f 55%, #0f3460 100%);
-            color: white;
-            padding: 3rem 0 2.5rem;
-        }
-        .hero-demo h1 { font-size: 2rem; font-weight: 800; letter-spacing: -0.5px; }
-        .hero-demo p { color: rgba(255,255,255,0.75); max-width: 720px; margin: 0.75rem auto 0; font-size: 0.95rem; line-height: 1.7; }
-        .hero-stats { display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap; margin-top: 1.75rem; }
-        .hero-stat-num { font-size: 1.75rem; font-weight: 800; color: #93c5fd; }
-        .hero-stat-lbl { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 1px; color: rgba(255,255,255,0.55); font-weight: 600; }
-        .demo-nav-section {
-            background: white;
-            border-bottom: 1px solid var(--border);
-            padding: 1rem 0 1.25rem;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
-        }
-        .app-tabs {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-            justify-content: center;
-        }
-        .app-tab {
-            border: 1px solid var(--border);
-            background: var(--bg);
-            color: var(--text);
-            padding: 0.55rem 1rem;
-            border-radius: 10px;
-            font-size: 0.78rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.4rem;
-            white-space: nowrap;
-        }
-        .app-tab:hover, .app-tab.active {
-            background: var(--primary);
-            color: white;
-            border-color: var(--primary);
-        }
-        .app-tab[data-app="clinical"].active { background: var(--clinical); border-color: var(--clinical); }
-        .app-tab[data-app="hr"].active { background: var(--hr); border-color: var(--hr); }
-        .app-tab[data-app="assets"].active { background: var(--assets); border-color: var(--assets); }
-        .app-tab[data-app="access"].active { background: var(--access); border-color: var(--access); }
-        .app-tab[data-app="reports"].active { background: var(--reports); border-color: var(--reports); }
-        .app-tab[data-app="notifications"].active { background: var(--notify); border-color: var(--notify); }
-        .main-wrap { padding: 1.5rem 0 4rem; }
-        .demo-viewport {
-            background: var(--card);
-            border: 1px solid var(--border);
-            border-radius: 20px;
-            padding: 1.25rem;
-            box-shadow: 0 8px 32px rgba(0,0,0,0.06);
-            min-height: 200px;
-        }
-        .panel { display: none; animation: fadeIn 0.3s ease; }
-        .panel.active { display: block; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
-        .panel-header {
-            background: var(--card);
-            border-radius: 18px;
-            padding: 1.5rem 1.75rem;
-            border: 1px solid var(--border);
-            margin-bottom: 1.5rem;
-            display: flex;
-            align-items: flex-start;
-            gap: 1rem;
-            flex-wrap: wrap;
-        }
-        .panel-icon {
-            width: 52px; height: 52px;
-            border-radius: 14px;
-            display: flex; align-items: center; justify-content: center;
-            color: white; font-size: 1.35rem; flex-shrink: 0;
-        }
-        .panel-icon.clinical { background: var(--clinical); }
-        .panel-icon.hr { background: var(--hr); }
-        .panel-icon.assets { background: var(--assets); }
-        .panel-icon.access { background: var(--access); }
-        .panel-icon.reports { background: var(--reports); }
-        .panel-icon.notifications { background: var(--notify); }
-        .panel-title { font-size: 1.35rem; font-weight: 800; margin: 0; }
-        .panel-desc { font-size: 0.875rem; color: var(--muted); margin: 0.25rem 0 0; line-height: 1.55; }
-        .module-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1rem; }
-        .module-card {
-            background: var(--card);
-            border: 1px solid var(--border);
-            border-radius: 16px;
-            overflow: hidden;
-            transition: transform 0.2s, box-shadow 0.2s;
-        }
-        .module-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 12px 32px rgba(0,0,0,0.08);
-        }
-        .module-card-head {
-            padding: 1rem 1.15rem;
-            border-bottom: 1px solid var(--border);
-            display: flex;
-            align-items: center;
-            gap: 0.65rem;
-        }
-        .module-card-head i { font-size: 1.1rem; opacity: 0.85; }
-        .module-card-head h6 { margin: 0; font-weight: 700; font-size: 0.95rem; }
-        .module-card-body { padding: 1rem 1.15rem; }
-        .module-card-body ul { margin: 0; padding-left: 1.1rem; font-size: 0.8rem; color: var(--muted); line-height: 1.65; }
-        .module-card-body li { margin-bottom: 0.2rem; }
-        .tag-row { display: flex; flex-wrap: wrap; gap: 0.35rem; margin-top: 0.65rem; }
-        .feat-tag {
-            font-size: 0.68rem;
-            font-weight: 600;
-            padding: 0.2rem 0.55rem;
-            border-radius: 6px;
-            background: #f1f5f9;
-            color: #475569;
-        }
-        .mock-section {
-            background: var(--card);
-            border: 1px solid var(--border);
-            border-radius: 18px;
-            padding: 1.5rem;
-            margin-top: 1.5rem;
-        }
-        .mock-section h5 { font-size: 1rem; font-weight: 700; margin-bottom: 1rem; }
-        .mock-table { font-size: 0.8rem; }
-        .mock-table thead { background: var(--primary); color: white; }
-        .mock-table .badge-pending { background: #fef3c7; color: #92400e; }
-        .mock-table .badge-done { background: #d1fae5; color: #065f46; }
-        .mock-table .badge-flag { background: #fee2e2; color: #991b1b; }
-        .arch-bar {
-            background: var(--card);
-            border: 1px solid var(--border);
-            border-radius: 18px;
-            padding: 2rem;
-            margin-top: 2rem;
-        }
-        .arch-bar h4 { font-weight: 800; margin-bottom: 1.25rem; }
-        .arch-cols { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; }
-        .arch-item {
-            text-align: center;
-            padding: 1.25rem;
-            background: var(--bg);
-            border-radius: 12px;
-            border: 1px solid var(--border);
-        }
-        .arch-item i { font-size: 1.5rem; color: var(--primary); margin-bottom: 0.5rem; }
-        .arch-item strong { display: block; font-size: 0.85rem; }
-        .arch-item span { font-size: 0.75rem; color: var(--muted); }
-        @media (max-width: 768px) {
-            .hero-demo { padding: 2.25rem 0 2rem; }
-            .hero-demo h1 { font-size: 1.45rem; }
-            .hero-stats { gap: 1.25rem; }
-            .demo-nav-section { padding: 0.85rem 0; }
-            .app-tabs {
-                flex-wrap: nowrap;
-                justify-content: flex-start;
-                overflow-x: auto;
-                -webkit-overflow-scrolling: touch;
-                padding-bottom: 0.35rem;
-                scrollbar-width: none;
-            }
-            .app-tabs::-webkit-scrollbar { display: none; }
-            .demo-viewport {
-                border-width: 2px;
-                border-radius: 16px;
-                padding: 1rem;
-                box-shadow: inset 0 0 0 1px rgba(0,102,204,0.08), 0 10px 28px rgba(0,0,0,0.08);
-            }
-            .module-grid { grid-template-columns: 1fr; }
-            .panel-header { flex-direction: column; }
-            .arch-cols { grid-template-columns: 1fr 1fr; }
-        }
-        .back-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.4rem;
-            margin-top: 1.5rem;
-            padding: 0.5rem 1.1rem;
-            border: 1px solid rgba(255,255,255,0.35);
-            border-radius: 50px;
-            color: #fff;
-            font-size: 0.8rem;
-            font-weight: 600;
-            text-decoration: none;
-            transition: background 0.2s;
-        }
-        .back-link:hover { background: rgba(255,255,255,0.12); color: #fff; }
-        .back-link.on-light { border-color: var(--border); color: var(--primary); background: var(--card); margin-top: 0; }
-        .back-link.on-light:hover { background: var(--primary); color: #fff; border-color: var(--primary); }
-        .hero-demo h1, .panel-title, .panel-banner h2 { text-wrap: balance; }
-        @media (max-width:575.98px){.hero-stats{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem 1.5rem;max-width:320px;margin-inline:auto}}
-        @media (max-width:575.98px){.hero-stats > div:last-child:nth-child(odd){grid-column:1 / -1}}
-        .hero-demo p { color: rgba(255,255,255,0.85); line-height: 1.7; }
-        .hero-stat-num { font-variant-numeric: tabular-nums; }
-        .hero-stat-lbl { color: rgba(255,255,255,0.8); }
-        .demo-nav-section { top: var(--site-nav-h, 72px); }
-        .app-tab, .back-link { cursor: pointer; }
-        .app-tab:focus-visible { outline: 3px solid var(--primary); outline-offset: 2px; }
-        .panel:focus-visible { outline: 3px solid var(--primary); outline-offset: 4px; border-radius: 14px; }
-        .main-wrap a:focus-visible, .cap-strip a:focus-visible { outline: 3px solid var(--primary); outline-offset: 3px; }
-        .hero-demo a:focus-visible, .hero-demo button:focus-visible { outline: 3px solid #fff; outline-offset: 3px; box-shadow: none; }
-        .tile span { color: var(--text); }
-        @media (max-width: 768px) {
-            .demo-nav-section { padding: 0.6rem 0; }
-            .app-tabs { padding: 5px 5px 0.4rem; margin-inline: -5px; scroll-padding-inline: 5px; }
-            .app-tab { min-height: 44px; padding-inline: 1rem; }
-            .back-link, .btn-hero-primary, .btn-hero-ghost, .hero-demo .btn { min-height: 44px; display: inline-flex; align-items: center; }
-        }
-        @media (prefers-reduced-motion: reduce) {
-            .hero-demo *, .hero-demo *::after, .cap-strip *, .demo-shell *, .demo-shell *::after { transition: none !important; animation: none !important; scroll-behavior: auto !important; }
-            .tile:hover, .module-card:hover, .btn-hero-primary:hover, .btn-hero-ghost:hover { transform: none; }
-        }
-        .module-card-head h6 { color: var(--text); }
-        .mock-table th, .mock-table td { white-space: nowrap; }
-        @media (min-width: 769px) {
-            .arch-cols { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-        }
-        @media (max-width: 768px) {
-            .hero-demo p a { display: inline-flex; align-items: center; min-height: 44px; }
-        }
-        .cta-band{background:#0b1220;padding-block:3.5rem}
-        .cta-band-inner{display:flex;flex-wrap:wrap;gap:1.5rem 2.5rem;align-items:center;justify-content:space-between;background:linear-gradient(135deg,var(--primary-dark,#0f172a) 0%,#0b1220 100%);border:1px solid rgba(255,255,255,.12);border-radius:20px;padding:2rem}
-        .cta-band-inner > div:first-child{min-width:0;flex:1 1 320px}
-        .cta-band-eyebrow{color:#a7f3d0;font-size:.78rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;margin:0 0 .5rem;display:flex;align-items:center;gap:.5rem}
-        .cta-dot{width:8px;height:8px;border-radius:50%;background:#34d399;box-shadow:0 0 0 4px rgba(52,211,153,.2);flex:0 0 8px}
-        .cta-band-title{color:#fff;font-size:clamp(1.4rem,2.6vw,2rem);margin:0 0 .5rem;text-wrap:balance}
-        .cta-band-text{color:#cbd5e1;max-width:56ch;margin:0;line-height:1.6}
-        .cta-band-actions{display:flex;flex-wrap:wrap;gap:.75rem}
-        .cta-btn{display:inline-flex;align-items:center;gap:.5rem;min-height:46px;padding:.7rem 1.3rem;border-radius:999px;font-weight:600;text-decoration:none;transition:transform .15s ease,background-color .15s ease;cursor:pointer}
-        .cta-btn-primary{background:#fff;color:var(--primary-dark,#0f172a)}
-        .cta-btn-ghost{color:#fff;border:1px solid rgba(255,255,255,.35)}
-        .cta-btn:hover{transform:translateY(-1px)}
-        .cta-btn-ghost:hover{background:rgba(255,255,255,.08);color:#fff}
-        .cta-btn:focus-visible{outline:3px solid #93c5fd;outline-offset:3px}
-        @media (prefers-reduced-motion:reduce){.cta-btn{transition:none}.cta-btn:hover{transform:none}}
-    </style>
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-59XXTKP9');</script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>CareMD | Muhammad Afaq</title>
+  <meta name="description" content="CareMD is a multi-tenant medical billing SaaS: claims, payment posting, AR follow-ups, denials, a client portal, phone, mail, HR and payroll. Built from scratch by Muhammad Afaq as primary developer.">
+  <meta name="author" content="Muhammad Afaq">
+  <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" content="#ffffff">
+  <link rel="canonical" href="https://muhammadafaqportfolio.netlify.app/caremd-demo">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Muhammad Afaq">
+  <meta property="og:url" content="https://muhammadafaqportfolio.netlify.app/caremd-demo">
+  <meta property="og:title" content="CareMD | Muhammad Afaq">
+  <meta property="og:description" content="A multi-tenant medical billing SaaS I built from scratch: 18 modules, 200+ entities, 410+ migrations, 1,000+ permission checks.">
+  <meta property="og:image" content="https://muhammadafaqportfolio.netlify.app/afaq.png">
+  <meta name="twitter:card" content="summary">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%234f63e7'/%3E%3Cstop offset='1' stop-color='%230f9a91'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='64' height='64' rx='16' fill='url(%23g)'/%3E%3Ctext x='32' y='42' font-family='Arial,sans-serif' font-size='28' font-weight='700' fill='white' text-anchor='middle'%3EMA%3C/text%3E%3C/svg%3E">
+  <link rel="apple-touch-icon" href="afaq-72.png">
+  <script>(function(){var t=null;try{t=localStorage.getItem('theme')}catch(e){}if(t!=='light'&&t!=='dark'){t=window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'}document.documentElement.setAttribute('data-theme',t)})();</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700;800&display=swap">
+  <link rel="stylesheet" href="assets/site.css?v=20261112">
+  <script src="assets/site.js?v=20261112" defer></script>
+  <style>
+    .feature__pills { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
+    .feature__pills .pill { min-height: 22px; padding: 0 8px; font-size: 0.6875rem; white-space: normal; }
+    .case-legend { color: var(--muted); font-size: 0.875rem; line-height: 1.9; }
+    .case-legend .pill { min-height: 20px; padding: 0 8px; font-size: 0.6875rem; vertical-align: 1px; }
+    .check-list--2 { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px 28px; }
+    @media (max-width: 559.98px) { .check-list--2 { grid-template-columns: minmax(0, 1fr); } }
+    .case-hero__visual .win { max-width: 36em; margin-inline: auto; }
+    .mock-head { display: flex; align-items: center; justify-content: space-between; gap: 0.8em; }
+    .mock-total { display: flex; justify-content: space-between; padding: 0.2em 0.2em 0; color: var(--ink); font-size: 0.86em; font-weight: 700; font-variant-numeric: tabular-nums; }
+    .case-section__head .case-section__sub { margin-top: 12px; color: var(--muted); }
+  </style>
 </head>
 <body>
-    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-59XXTKP9" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-
-    <div id="site-nav"></div>
-
-    <section class="hero-demo text-center">
-        <div class="container">
-            <h1><i class="fas fa-hospital-alt me-2" aria-hidden="true"></i>CareMD Medical Billing Platform</h1>
-            <p>
-                Multi-tenant SaaS for medical billing, revenue cycle management, client portal, mail, messaging, HR, assets, and practice administration.
-                Built as primary developer with Spring Boot 3.2, Angular 14, and PostgreSQL with Flyway migrations.
-            </p>
-            <p>
-                Nixxe CRM was built on this platform core and later split into its own product.
-                <a href="nixxe-crm-demo.html" class="text-white fw-semibold">See the Nixxe CRM demo</a>
-            </p>
-            <div class="hero-stats">
-                <div><div class="hero-stat-num">188</div><div class="hero-stat-lbl">Domain Entities</div></div>
-                <div><div class="hero-stat-num">377</div><div class="hero-stat-lbl">DB Migrations</div></div>
-                <div><div class="hero-stat-num">134</div><div class="hero-stat-lbl">REST Controllers</div></div>
-                <div><div class="hero-stat-num">17</div><div class="hero-stat-lbl">Backend Modules</div></div>
-                <div><div class="hero-stat-num">900+</div><div class="hero-stat-lbl">Permission Checks</div></div>
-                <div><div class="hero-stat-num">~494</div><div class="hero-stat-lbl">Angular Components</div></div>
-            </div>
-            <a href="index.html#project-caremd" class="back-link"><i class="fas fa-arrow-left" aria-hidden="true"></i> Back to portfolio</a>
-        </div>
-    </section>
-
-    <div class="demo-shell">
-    <section class="demo-nav-section">
-        <div class="container">
-            <div class="app-tabs" role="tablist" aria-label="CareMD modules">
-                <button type="button" class="app-tab active" data-app="clinical" data-panel="panel-clinical" role="tab" id="tab-clinical" aria-controls="panel-clinical" aria-selected="true" tabindex="0"><i class="fas fa-file-medical" aria-hidden="true"></i> Billing / Clinical</button>
-                <button type="button" class="app-tab" data-app="portal" data-panel="panel-portal" role="tab" id="tab-portal" aria-controls="panel-portal" aria-selected="false" tabindex="-1"><i class="fas fa-handshake" aria-hidden="true"></i> Portal / Mail</button>
-                <button type="button" class="app-tab" data-app="hr" data-panel="panel-hr" role="tab" id="tab-hr" aria-controls="panel-hr" aria-selected="false" tabindex="-1"><i class="fas fa-users" aria-hidden="true"></i> HR / Operations</button>
-                <button type="button" class="app-tab" data-app="assets" data-panel="panel-assets" role="tab" id="tab-assets" aria-controls="panel-assets" aria-selected="false" tabindex="-1"><i class="fas fa-boxes-stacked" aria-hidden="true"></i> Assets</button>
-                <button type="button" class="app-tab" data-app="access" data-panel="panel-access" role="tab" id="tab-access" aria-controls="panel-access" aria-selected="false" tabindex="-1"><i class="fas fa-shield-halved" aria-hidden="true"></i> Access</button>
-                <button type="button" class="app-tab" data-app="reports" data-panel="panel-reports" role="tab" id="tab-reports" aria-controls="panel-reports" aria-selected="false" tabindex="-1"><i class="fas fa-chart-pie" aria-hidden="true"></i> Reports</button>
-                <button type="button" class="app-tab" data-app="notifications" data-panel="panel-notifications" role="tab" id="tab-notifications" aria-controls="panel-notifications" aria-selected="false" tabindex="-1"><i class="fas fa-bell" aria-hidden="true"></i> Notifications</button>
-            </div>
-        </div>
-    </section>
-
-    <div class="container main-wrap">
-        <div class="demo-viewport">
-
-        <!-- CLINICAL / BILLING -->
-        <div id="panel-clinical" class="panel active" role="tabpanel" aria-labelledby="tab-clinical" tabindex="0">
-            <div class="panel-header">
-                <div class="panel-icon clinical"><i class="fas fa-file-medical" aria-hidden="true"></i></div>
-                <div>
-                    <h2 class="panel-title">Billing &amp; clinical RCM</h2>
-                    <p class="panel-desc">End-to-end revenue cycle: practices, patients, appointments, insurance claims, payments, AR follow-ups, denial management, negative balances, and claim configuration. Multi-tenant data isolation per practice with role-gated workflows.</p>
-                </div>
-            </div>
-            <div class="module-grid">
-                <div class="module-card">
-                    <div class="module-card-head" style="color:var(--clinical)"><i class="fas fa-gauge-high" aria-hidden="true"></i><h6>My dashboard</h6></div>
-                    <div class="module-card-body">
-                        <ul><li>Personalized biller dashboard with claim KPIs</li><li>Quick filters by practice, status, and date range</li><li>At-a-glance workload and pending actions</li></ul>
-                        <div class="tag-row"><span class="feat-tag">ApexCharts</span><span class="feat-tag">Role-gated</span></div>
-                    </div>
-                </div>
-                <div class="module-card">
-                    <div class="module-card-head" style="color:var(--clinical)"><i class="fas fa-calendar" aria-hidden="true"></i><h6>Appointment calendar</h6></div>
-                    <div class="module-card-body">
-                        <ul><li>FullCalendar-based scheduling view</li><li>Practice-scoped appointment visibility</li><li>Calendar and list views for front-desk workflows</li></ul>
-                        <div class="tag-row"><span class="feat-tag">FullCalendar</span><span class="feat-tag">WebSocket updates</span></div>
-                    </div>
-                </div>
-                <div class="module-card">
-                    <div class="module-card-head" style="color:var(--clinical)"><i class="fas fa-hospital" aria-hidden="true"></i><h6>Practices</h6></div>
-                    <div class="module-card-body">
-                        <ul><li>CRUD for medical practices / facilities</li><li>Multi-tenant practice switcher in header</li><li>Facility, place-of-service, and insurance linkage</li></ul>
-                        <div class="tag-row"><span class="feat-tag">List / New / Update / View</span><span class="feat-tag">ngx-datatable</span></div>
-                    </div>
-                </div>
-                <div class="module-card">
-                    <div class="module-card-head" style="color:var(--clinical)"><i class="fas fa-user-injured" aria-hidden="true"></i><h6>Patients</h6></div>
-                    <div class="module-card-body">
-                        <ul><li>Patient demographics and insurance profiles</li><li>Authorizations and eligibility tracking</li><li>Bulk patient import (Excel)</li></ul>
-                        <div class="tag-row"><span class="feat-tag">Batch Import</span><span class="feat-tag">PatientInsurance</span></div>
-                    </div>
-                </div>
-                <div class="module-card">
-                    <div class="module-card-head" style="color:var(--clinical)"><i class="fas fa-calendar-check" aria-hidden="true"></i><h6>Appointments</h6></div>
-                    <div class="module-card-body">
-                        <ul><li>Appointment list, create, update, view</li><li>Scheduled and future appointment views</li><li>Appointment import and action history</li></ul>
-                        <div class="tag-row"><span class="feat-tag">Import</span><span class="feat-tag">AppointmentAction</span></div>
-                    </div>
-                </div>
-                <div class="module-card">
-                    <div class="module-card-head" style="color:var(--clinical)"><i class="fas fa-file-invoice" aria-hidden="true"></i><h6>Claims</h6></div>
-                    <div class="module-card-body">
-                        <ul><li>Full claim lifecycle: new, update, view, list</li><li>Claim status workflow and action audit trail</li><li>Claims import and CPT code import</li><li>Advanced search with JPA Specifications</li></ul>
-                        <div class="tag-row"><span class="feat-tag">RCM Core</span><span class="feat-tag">ClaimStatus</span><span class="feat-tag">RefCpt</span></div>
-                    </div>
-                </div>
-                <div class="module-card">
-                    <div class="module-card-head" style="color:var(--clinical)"><i class="fas fa-flag" aria-hidden="true"></i><h6>Flagged claims</h6></div>
-                    <div class="module-card-body">
-                        <ul><li>Claims flagged for review or follow-up</li><li>Configurable claim flags (setup module)</li><li>Permission-gated flagged claims queue</li></ul>
-                        <div class="tag-row"><span class="feat-tag">ClaimFlag</span><span class="feat-tag">Workflow</span></div>
-                    </div>
-                </div>
-                <div class="module-card">
-                    <div class="module-card-head" style="color:var(--clinical)"><i class="fas fa-money-bill-wave" aria-hidden="true"></i><h6>Payments</h6></div>
-                    <div class="module-card-body">
-                        <ul><li>Insurance response posting and adjustments</li><li>Patient payment entry and listing</li><li>Bulk payments processing</li><li>Payment selector for multi-line posting</li></ul>
-                        <div class="tag-row"><span class="feat-tag">ERA / EOB</span><span class="feat-tag">Bulk Payments</span></div>
-                    </div>
-                </div>
-                <div class="module-card">
-                    <div class="module-card-head" style="color:var(--clinical)"><i class="fas fa-briefcase" aria-hidden="true"></i><h6>AR workspace</h6></div>
-                    <div class="module-card-body">
-                        <ul><li>One workspace for AR follow-up work</li><li>Daily follow-up generation</li><li>Assignment pools with per-user daily limits</li></ul>
-                        <div class="tag-row"><span class="feat-tag">Assignment Pool</span><span class="feat-tag">Daily Limits</span></div>
-                    </div>
-                </div>
-                <div class="module-card">
-                    <div class="module-card-head" style="color:var(--clinical)"><i class="fas fa-ban" aria-hidden="true"></i><h6>Denial management</h6></div>
-                    <div class="module-card-body">
-                        <ul><li>Dedicated module for denied claims</li><li>Part of the claims and billing cycle</li></ul>
-                        <div class="tag-row"><span class="feat-tag">RCM Core</span></div>
-                    </div>
-                </div>
-                <div class="module-card">
-                    <div class="module-card-head" style="color:var(--clinical)"><i class="fas fa-scale-unbalanced" aria-hidden="true"></i><h6>Negative balance</h6></div>
-                    <div class="module-card-body">
-                        <ul><li>Track accounts with outstanding negative balances</li><li>Balance reconciliation view</li><li>Filtered list with practice context</li></ul>
-                        <div class="tag-row"><span class="feat-tag">Reconciliation</span></div>
-                    </div>
-                </div>
-                <div class="module-card">
-                    <div class="module-card-head" style="color:var(--clinical)"><i class="fas fa-sliders" aria-hidden="true"></i><h6>Setup, claim flags</h6></div>
-                    <div class="module-card-body">
-                        <ul><li>Admin configuration for claim flag types</li><li>CRUD for flag definitions used across claims</li><li>Permission-checked setup screens</li></ul>
-                        <div class="tag-row"><span class="feat-tag">Reference Data</span></div>
-                    </div>
-                </div>
-            </div>
-            <div class="mock-section">
-                <h5><i class="fas fa-table me-2 text-primary" aria-hidden="true"></i>Sample claims list, mock data</h5>
-                <div class="table-responsive">
-                    <table class="table table-hover mock-table mb-0">
-                        <thead><tr><th>Claim #</th><th>Patient</th><th>Practice</th><th>Payer</th><th>Charges</th><th>Status</th><th>DOS</th></tr></thead>
-                        <tbody>
-                            <tr><td>CLM-2025-8841</td><td>Patient A</td><td>Practice A</td><td>Blue Cross</td><td>$1,250.00</td><td><span class="badge badge-pending">Submitted</span></td><td>2025-04-12</td></tr>
-                            <tr><td>CLM-2025-8839</td><td>Patient B</td><td>Practice B</td><td>Aetna</td><td>$850.00</td><td><span class="badge badge-done">Paid</span></td><td>2025-04-10</td></tr>
-                            <tr><td>CLM-2025-8835</td><td>Patient C</td><td>Practice A</td><td>Cigna</td><td>$2,100.00</td><td><span class="badge badge-flag">On Hold</span></td><td>2025-04-08</td></tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-
-        <!-- PORTAL / MAIL -->
-        <div id="panel-portal" class="panel" role="tabpanel" aria-labelledby="tab-portal" tabindex="0">
-            <div class="panel-header">
-                <div class="panel-icon" style="background:var(--primary)"><i class="fas fa-handshake" aria-hidden="true"></i></div>
-                <div>
-                    <h2 class="panel-title">Client portal &amp; mailbox</h2>
-                    <p class="panel-desc">Client-facing side of the platform: a client portal with request workflows and case flow, plus a mailbox with secure links and per-practice templates.</p>
-                </div>
-            </div>
-            <div class="module-grid">
-                <div class="module-card">
-                    <div class="module-card-head" style="color:var(--primary)"><i class="fas fa-door-open" aria-hidden="true"></i><h6>Client portal</h6></div>
-                    <div class="module-card-body">
-                        <ul><li>Client portal requests from practices</li><li>Request workflows</li><li>Case flow</li><li>Practice contacts</li></ul>
-                        <div class="tag-row"><span class="feat-tag">Requests</span><span class="feat-tag">Case Flow</span></div>
-                    </div>
-                </div>
-                <div class="module-card">
-                    <div class="module-card-head" style="color:var(--primary)"><i class="fas fa-envelope-open-text" aria-hidden="true"></i><h6>Mailbox</h6></div>
-                    <div class="module-card-body">
-                        <ul><li>Mailbox inside the platform</li><li>Secure links</li><li>Per-practice templates for outreach emails</li></ul>
-                        <div class="tag-row"><span class="feat-tag">Secure Links</span><span class="feat-tag">Templates</span></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- HR -->
-        <div id="panel-hr" class="panel" role="tabpanel" aria-labelledby="tab-hr" tabindex="0">
-            <div class="panel-header">
-                <div class="panel-icon hr"><i class="fas fa-users" aria-hidden="true"></i></div>
-                <div>
-                    <h2 class="panel-title">HR and operations</h2>
-                    <p class="panel-desc">Workforce management: attendance with PWA check-in, leave management, loans, timesheets, team structure, shift schedules, employee records, and recruiting pipelines.</p>
-                </div>
-            </div>
-            <div class="module-grid">
-                <div class="module-card">
-                    <div class="module-card-head" style="color:var(--hr)"><i class="fas fa-fingerprint" aria-hidden="true"></i><h6>Attendance</h6></div>
-                    <div class="module-card-body">
-                        <ul><li>Check-in / check-out with break tracking</li><li>Attendance list and detailed view per employee</li><li>PWA support with offline today-cache</li><li>Break overlay for active sessions</li></ul>
-                        <div class="tag-row"><span class="feat-tag">PWA</span><span class="feat-tag">AttendanceBreak</span></div>
-                    </div>
-                </div>
-                <div class="module-card">
-                    <div class="module-card-head" style="color:var(--hr)"><i class="fas fa-plane-departure" aria-hidden="true"></i><h6>Leaves</h6></div>
-                    <div class="module-card-body">
-                        <ul><li>Leave request submission and approval workflow</li><li>Leave types and balance deduction</li><li>Manager review and status tracking</li></ul>
-                    </div>
-                </div>
-                <div class="module-card">
-                    <div class="module-card-head" style="color:var(--hr)"><i class="fas fa-piggy-bank" aria-hidden="true"></i><h6>Leave bank</h6></div>
-                    <div class="module-card-body">
-                        <ul><li>Employee self-service leave balance view</li><li>Accrual and usage history</li><li>Employee-only gated route</li></ul>
-                    </div>
-                </div>
-                <div class="module-card">
-                    <div class="module-card-head" style="color:var(--hr)"><i class="fas fa-hand-holding-dollar" aria-hidden="true"></i><h6>Loans</h6></div>
-                    <div class="module-card-body">
-                        <ul><li>Employee loan requests and approvals</li><li>Repayment schedule tracking (LoanRepayment)</li><li>Payroll deduction integration</li></ul>
-                        <div class="tag-row"><span class="feat-tag">Loan</span><span class="feat-tag">Repayment</span></div>
-                    </div>
-                </div>
-                <div class="module-card">
-                    <div class="module-card-head" style="color:var(--hr)"><i class="fas fa-calendar-day" aria-hidden="true"></i><h6>Public holidays</h6></div>
-                    <div class="module-card-body">
-                        <ul><li>Company holiday calendar management</li><li>CRUD for public holiday definitions</li><li>Used in attendance and payroll calculations</li></ul>
-                    </div>
-                </div>
-                <div class="module-card">
-                    <div class="module-card-head" style="color:var(--hr)"><i class="fas fa-clock" aria-hidden="true"></i><h6>Timesheets</h6></div>
-                    <div class="module-card-body">
-                        <ul><li>Timesheet entry with line items (TimesheetItem)</li><li>Weekly / period-based submission</li><li>Approval workflow for managers</li></ul>
-                    </div>
-                </div>
-                <div class="module-card">
-                    <div class="module-card-head" style="color:var(--hr)"><i class="fas fa-people-group" aria-hidden="true"></i><h6>Teams</h6></div>
-                    <div class="module-card-body">
-                        <ul><li>Team structure and member assignment</li><li>Team-based reporting and scheduling</li><li>Links employees to organizational units</li></ul>
-                    </div>
-                </div>
-                <div class="module-card">
-                    <div class="module-card-head" style="color:var(--hr)"><i class="fas fa-calendar-week" aria-hidden="true"></i><h6>Schedules</h6></div>
-                    <div class="module-card-body">
-                        <ul><li>Shift schedule planning and assignment</li><li>Schedule list with employee mapping</li><li>Supports operations workforce planning</li></ul>
-                    </div>
-                </div>
-                <div class="module-card">
-                    <div class="module-card-head" style="color:var(--hr)"><i class="fas fa-id-badge" aria-hidden="true"></i><h6>Employees</h6></div>
-                    <div class="module-card-body">
-                        <ul><li>Full employee CRUD with profile pictures</li><li>Compensation, designation, and status</li><li>Employee view with linked attendance and loans</li></ul>
-                        <div class="tag-row"><span class="feat-tag">Profile Picture</span><span class="feat-tag">Employee</span></div>
-                    </div>
-                </div>
-                <div class="module-card">
-                    <div class="module-card-head" style="color:var(--hr)"><i class="fas fa-user-plus" aria-hidden="true"></i><h6>Recruiting</h6></div>
-                    <div class="module-card-body">
-                        <ul><li>Meta hiring leads from campaigns</li><li>Custom hiring with manual lead entry</li><li>Status dialog for hiring pipeline stages</li></ul>
-                        <div class="tag-row"><span class="feat-tag">MetaHiringLead</span><span class="feat-tag">CustomHiringLead</span></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- ASSETS -->
-        <div id="panel-assets" class="panel" role="tabpanel" aria-labelledby="tab-assets" tabindex="0">
-            <div class="panel-header">
-                <div class="panel-icon assets"><i class="fas fa-boxes-stacked" aria-hidden="true"></i></div>
-                <div>
-                    <h2 class="panel-title">Assets</h2>
-                    <p class="panel-desc">IT and office asset inventory management to track hardware, employee assignments, categories, and summary dashboards.</p>
-                </div>
-            </div>
-            <div class="module-grid">
-                <div class="module-card">
-                    <div class="module-card-head" style="color:var(--assets)"><i class="fas fa-chart-pie" aria-hidden="true"></i><h6>Summary dashboard</h6></div>
-                    <div class="module-card-body">
-                        <ul><li>Asset allocation overview charts</li><li>Counts by category and assignment status</li><li>Quick navigation to inventory and assignments</li></ul>
-                    </div>
-                </div>
-                <div class="module-card">
-                    <div class="module-card-head" style="color:var(--assets)"><i class="fas fa-laptop" aria-hidden="true"></i><h6>Inventory</h6></div>
-                    <div class="module-card-body">
-                        <ul><li>Asset CRUD with serial numbers, purchase date, and condition</li><li>Search and filter with ngx-datatable</li><li>Asset view with assignment history</li></ul>
-                        <div class="tag-row"><span class="feat-tag">Asset</span></div>
-                    </div>
-                </div>
-                <div class="module-card">
-                    <div class="module-card-head" style="color:var(--assets)"><i class="fas fa-user-check" aria-hidden="true"></i><h6>Assignments</h6></div>
-                    <div class="module-card-body">
-                        <ul><li>Assign assets to employees</li><li>Track assignment dates and return status</li><li>Create and list assignment records</li></ul>
-                        <div class="tag-row"><span class="feat-tag">AssetAssignment</span></div>
-                    </div>
-                </div>
-                <div class="module-card">
-                    <div class="module-card-head" style="color:var(--assets)"><i class="fas fa-folder-tree" aria-hidden="true"></i><h6>Categories</h6></div>
-                    <div class="module-card-body">
-                        <ul><li>Asset category taxonomy (laptops, monitors, etc.)</li><li>Category CRUD with asset count linkage</li></ul>
-                        <div class="tag-row"><span class="feat-tag">AssetCategory</span></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- ACCESS -->
-        <div id="panel-access" class="panel" role="tabpanel" aria-labelledby="tab-access" tabindex="0">
-            <div class="panel-header">
-                <div class="panel-icon access"><i class="fas fa-shield-halved" aria-hidden="true"></i></div>
-                <div>
-                    <h2 class="panel-title">Access &amp; administration</h2>
-                    <p class="panel-desc">Multi-tenant identity and authorization for users, roles, feature packages, tenant management, and real-time in-app messaging via WebSocket/STOMP.</p>
-                </div>
-            </div>
-            <div class="module-grid">
-                <div class="module-card">
-                    <div class="module-card-head" style="color:var(--access)"><i class="fas fa-users-gear" aria-hidden="true"></i><h6>Users</h6></div>
-                    <div class="module-card-body">
-                        <ul><li>User CRUD with role and practice assignment</li><li>Password reset and session management</li><li>JWT access and refresh tokens with server-side session revocation</li></ul>
-                        <div class="tag-row"><span class="feat-tag">JWT</span><span class="feat-tag">Spring Security</span></div>
-                    </div>
-                </div>
-                <div class="module-card">
-                    <div class="module-card-head" style="color:var(--access)"><i class="fas fa-user-shield" aria-hidden="true"></i><h6>Roles</h6></div>
-                    <div class="module-card-body">
-                        <ul><li>Hierarchical role-based access control</li><li>Role-to-feature permission mapping</li><li>900+ method-level permission checks</li></ul>
-                    </div>
-                </div>
-                <div class="module-card">
-                    <div class="module-card-head" style="color:var(--access)"><i class="fas fa-cube" aria-hidden="true"></i><h6>Packages</h6></div>
-                    <div class="module-card-body">
-                        <ul><li>Subscription packages for tenant features</li><li>Package-to-module and feature bundling</li><li>Controls which app areas a tenant can access</li></ul>
-                        <div class="tag-row"><span class="feat-tag">Package</span><span class="feat-tag">Feature</span><span class="feat-tag">Module</span></div>
-                    </div>
-                </div>
-                <div class="module-card">
-                    <div class="module-card-head" style="color:var(--access)"><i class="fas fa-building" aria-hidden="true"></i><h6>Tenants</h6></div>
-                    <div class="module-card-body">
-                        <ul><li>Multi-tenant organization management</li><li>Tenant provisioning and configuration</li><li>BaseTenantEntity isolation across all data</li></ul>
-                        <div class="tag-row"><span class="feat-tag">Multi-Tenant</span></div>
-                    </div>
-                </div>
-                <div class="module-card">
-                    <div class="module-card-head" style="color:var(--access)"><i class="fas fa-comments" aria-hidden="true"></i><h6>Messages</h6></div>
-                    <div class="module-card-body">
-                        <ul><li>Real-time in-app messaging</li><li>Group chats and media sharing</li><li>WebSocket/STOMP push notifications</li><li>User-to-user communication within platform</li></ul>
-                        <div class="tag-row"><span class="feat-tag">WebSocket</span><span class="feat-tag">STOMP</span><span class="feat-tag">Groups</span><span class="feat-tag">Media</span></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- REPORTS -->
-        <div id="panel-reports" class="panel" role="tabpanel" aria-labelledby="tab-reports" tabindex="0">
-            <div class="panel-header">
-                <div class="panel-icon reports"><i class="fas fa-chart-pie" aria-hidden="true"></i></div>
-                <div>
-                    <h2 class="panel-title">Reports &amp; analytics</h2>
-                    <p class="panel-desc">Unified reports hub with role-filtered sections for clinical RCM analytics, billing summaries, data quality, payer intelligence, HR attendance and payroll reports, and user activity audit logs.</p>
-                </div>
-            </div>
-            <div class="module-grid">
-                <div class="module-card">
-                    <div class="module-card-head" style="color:var(--reports)"><i class="fas fa-hospital" aria-hidden="true"></i><h6>Clinical reports</h6></div>
-                    <div class="module-card-body">
-                        <ul><li>Service reports with ApexCharts analytics</li><li>Facility reports</li><li>Claim denial and secondary denial reports</li><li>Resubmission tracker</li><li>On-hold claims report</li><li>Patient balance report</li><li>Check report (ERA reconciliation)</li></ul>
-                    </div>
-                </div>
-                <div class="module-card">
-                    <div class="module-card-head" style="color:var(--reports)"><i class="fas fa-file-invoice-dollar" aria-hidden="true"></i><h6>Billing &amp; payer reports</h6></div>
-                    <div class="module-card-body">
-                        <ul><li>Monthly billing summary</li><li>Data quality checks</li><li>Payer intelligence</li></ul>
-                        <div class="tag-row"><span class="feat-tag">Monthly Summary</span><span class="feat-tag">Data Quality</span></div>
-                    </div>
-                </div>
-                <div class="module-card">
-                    <div class="module-card-head" style="color:var(--reports)"><i class="fas fa-user-clock" aria-hidden="true"></i><h6>HR reports</h6></div>
-                    <div class="module-card-body">
-                        <ul><li>Attendance reports and daily summaries</li><li>Employee leave bank report</li><li>Daily performance report</li><li>Payroll / salary summary</li><li>Performance adjustment admin</li></ul>
-                    </div>
-                </div>
-                <div class="module-card">
-                    <div class="module-card-head" style="color:var(--reports)"><i class="fas fa-list-check" aria-hidden="true"></i><h6>Activity logs</h6></div>
-                    <div class="module-card-body">
-                        <ul><li>User activity audit trail</li><li>Filterable log viewer for compliance</li><li>Tracks critical actions across modules</li></ul>
-                        <div class="tag-row"><span class="feat-tag">ActivityLog</span></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- NOTIFICATIONS -->
-        <div id="panel-notifications" class="panel" role="tabpanel" aria-labelledby="tab-notifications" tabindex="0">
-            <div class="panel-header">
-                <div class="panel-icon notifications"><i class="fas fa-bell" aria-hidden="true"></i></div>
-                <div>
-                    <h2 class="panel-title">Notifications</h2>
-                    <p class="panel-desc">System-wide notification center with alerts for claim updates, approvals, assignments, and platform events delivered in real time, plus web push and live user presence.</p>
-                </div>
-            </div>
-            <div class="module-grid">
-                <div class="module-card">
-                    <div class="module-card-head" style="color:var(--notify)"><i class="fas fa-inbox" aria-hidden="true"></i><h6>Notification center</h6></div>
-                    <div class="module-card-body">
-                        <ul><li>Centralized notifications list</li><li>Read / unread status tracking</li><li>Linked to backend Notification entity</li><li>Integrates with WebSocket for live delivery</li></ul>
-                        <div class="tag-row"><span class="feat-tag">Notification</span><span class="feat-tag">Real-time</span></div>
-                    </div>
-                </div>
-                <div class="module-card">
-                    <div class="module-card-head" style="color:var(--notify)"><i class="fas fa-tower-broadcast" aria-hidden="true"></i><h6>Web push</h6></div>
-                    <div class="module-card-body">
-                        <ul><li>Web push notifications to the browser</li><li>Sits next to the in-app notification center</li></ul>
-                        <div class="tag-row"><span class="feat-tag">Web Push</span></div>
-                    </div>
-                </div>
-                <div class="module-card">
-                    <div class="module-card-head" style="color:var(--notify)"><i class="fas fa-circle-dot" aria-hidden="true"></i><h6>User presence</h6></div>
-                    <div class="module-card-body">
-                        <ul><li>Live user presence across the platform</li></ul>
-                        <div class="tag-row"><span class="feat-tag">Presence</span></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        </div>
-
-        <!-- ARCHITECTURE -->
-        <div class="arch-bar">
-            <h4><i class="fas fa-sitemap me-2" aria-hidden="true"></i>Technical architecture</h4>
-            <div class="arch-cols">
-                <div class="arch-item"><i class="fas fa-server d-block" aria-hidden="true"></i><strong>Spring Boot 3.2</strong><span>REST API · Java 17 · MapStruct · Lombok</span></div>
-                <div class="arch-item"><i class="fas fa-laptop-code d-block" aria-hidden="true"></i><strong>Angular 14 SPA</strong><span>Lazy modules · Material · ngx-datatable</span></div>
-                <div class="arch-item"><i class="fas fa-database d-block" aria-hidden="true"></i><strong>PostgreSQL</strong><span>Flyway migrations · JPA/Hibernate 6</span></div>
-                <div class="arch-item"><i class="fas fa-lock d-block" aria-hidden="true"></i><strong>Security</strong><span>JWT · RBAC · Multi-tenant isolation</span></div>
-                <div class="arch-item"><i class="fas fa-bolt d-block" aria-hidden="true"></i><strong>Real-time</strong><span>WebSocket/STOMP · Caffeine cache</span></div>
-                <div class="arch-item"><i class="fas fa-cloud d-block" aria-hidden="true"></i><strong>Deployment</strong><span>Docker · nginx · GitLab CI · New Relic</span></div>
-            </div>
-        </div>
-    </div>
-    </div>
-
-    <section class="cta-band" aria-labelledby="cta-band-title">
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-59XXTKP9" height="0" width="0" style="display:none;visibility:hidden" title="Analytics"></iframe></noscript>
+  <div data-site-header></div>
+  <main id="main">
+    <section class="case-hero">
+      <div class="case-hero__bg" aria-hidden="true"><div class="bg-grid"></div><div class="bg-glow bg-glow--a"></div><div class="bg-glow bg-glow--b"></div></div>
       <div class="container">
-        <div class="cta-band-inner">
+        <a class="back-link" href="index.html#work"><svg class="icon" aria-hidden="true"><use href="#i-arrow-left"/></svg>All work</a>
+        <div class="case-hero__grid">
           <div>
-            <p class="cta-band-eyebrow"><span class="cta-dot" aria-hidden="true"></span> Open to remote projects</p>
-            <h2 id="cta-band-title" class="cta-band-title">Need something like this built?</h2>
-            <p class="cta-band-text">I build CRM systems, AI integrations and multi-tenant SaaS on Spring Boot and Angular. Tell me what you need and let's plan it.</p>
+            <div class="case-hero__badges">
+              <span class="pill pill--live"><span class="live-dot" aria-hidden="true"></span>In production</span>
+              <span class="pill pill--brand">Primary developer</span>
+            </div>
+            <h1 class="case-hero__title">CareMD: <span class="text-gradient">medical billing from claim to payment.</span></h1>
+            <p class="case-hero__lead">A multi-tenant medical billing SaaS. Claims, payment posting, AR follow-ups, denials, a client portal, phone, mail, HR and payroll live in one product, and each practice's data is kept separate. I built it from scratch.</p>
+            <div class="case-hero__actions">
+              <a class="btn btn--primary btn--lg" href="#features">See what it does <svg class="icon btn__arrow" aria-hidden="true"><use href="#i-arrow-right"/></svg></a>
+              <a class="btn btn--secondary btn--lg" href="index.html#contact">Talk to me</a>
+            </div>
+            <dl class="case-hero__meta">
+              <div><dt>Role</dt><dd>Primary developer</dd></div>
+              <div><dt>When</dt><dd>Feb 2025 to now</dd></div>
+              <div><dt>Commits</dt><dd>2,900+, 95%+ mine</dd></div>
+            </dl>
           </div>
-          <div class="cta-band-actions">
-            <a class="cta-btn cta-btn-primary" href="index.html#contact"><i class="fas fa-paper-plane" aria-hidden="true"></i> Start a project</a>
-            <a class="cta-btn cta-btn-ghost" href="index.html#projects"><i class="fas fa-th-large" aria-hidden="true"></i> All projects</a>
+          <div class="case-hero__visual" role="img" aria-label="Illustration with sample data: an AR Workspace screen with today's follow-up counts and a claims table.">
+            <div class="win" aria-hidden="true">
+              <div class="win__bar"><span class="win__dots"><i></i><i></i><i></i></span><span class="win__url"><svg class="icon"><use href="#i-lock"/></svg>AR Workspace · Practice A</span></div>
+              <div class="win__body mini-stack">
+                <div class="mock-head">
+                  <div><p class="ui-title">Today's queue</p><p class="ui-sub">Follow-ups and denials in one list</p></div>
+                  <span class="ui-btn">Post payment</span>
+                </div>
+                <div class="mini-grid" style="--cols:3">
+                  <div class="ui-tile"><b>48</b><span>follow-ups due</span></div>
+                  <div class="ui-tile"><b>6</b><span>new denials</span></div>
+                  <div class="ui-tile"><b>0</b><span>duplicates on re-run</span></div>
+                </div>
+                <div class="mini-table">
+                  <div><span>Claim</span><span>Payer</span><span>Amount</span><span>Status</span></div>
+                  <div><span>CLM-20418</span><span>Payer A</span><span>$412.00</span><span class="ui-badge" style="--c:#2fbf71;--c-ink:var(--green-ink)">Paid</span></div>
+                  <div><span>CLM-20419</span><span>Payer B</span><span>$188.50</span><span class="ui-badge" style="--c:#e5484d;--c-ink:var(--red-ink)">Denied</span></div>
+                  <div><span>CLM-20422</span><span>Payer A</span><span>$96.00</span><span class="ui-badge" style="--c:#f2a93b;--c-ink:var(--amber-ink)">Day 30</span></div>
+                  <div><span>CLM-20425</span><span>Payer C</span><span>$1,240.00</span><span class="ui-badge">Submitted</span></div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </section>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="site-nav.js"></script>
-    <script src="site-marquee.js"></script>
-    <div id="site-footer"></div>
+    <nav class="case-nav" aria-label="On this page">
+      <div class="container">
+        <div class="case-nav__list">
+          <a href="#overview">Overview</a>
+          <a href="#features">Features</a>
+          <a href="#numbers">Numbers</a>
+          <a href="#recent">Recent work</a>
+          <a href="#screens">Screens</a>
+          <a href="#stack">Stack</a>
+          <a href="#role">My role</a>
+        </div>
+      </div>
+    </nav>
 
-    <script src="sticky-social.js"></script>
-    <script src="site-footer.js"></script>
-    <script>
-        (function () {
-            var tabs = Array.prototype.slice.call(document.querySelectorAll('.app-tab'));
-            var bar = document.querySelector('.demo-nav-section');
-            var view = document.querySelector('.demo-viewport');
-            var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-            function activate(tab, focus) {
-                tabs.forEach(function (t) {
-                    var on = t === tab;
-                    t.classList.toggle('active', on);
-                    t.setAttribute('aria-selected', on ? 'true' : 'false');
-                    t.tabIndex = on ? 0 : -1;
-                    var panel = document.getElementById(t.getAttribute('data-panel'));
-                    if (panel) panel.classList.toggle('active', on);
-                });
-                if (focus) tab.focus();
-                var strip = tab.parentNode;
-                if (strip.scrollWidth > strip.clientWidth) {
-                    strip.scrollTo({ left: tab.offsetLeft - strip.offsetLeft - 16, behavior: reduce ? 'auto' : 'smooth' });
-                }
-                if (bar && view) {
-                    var gap = view.getBoundingClientRect().top - bar.getBoundingClientRect().bottom;
-                    if (gap < 0) window.scrollTo({ top: window.pageYOffset + gap - 12, behavior: reduce ? 'auto' : 'smooth' });
-                }
-            }
-            tabs.forEach(function (tab, i) {
-                tab.addEventListener('click', function () { activate(tab, false); });
-                tab.addEventListener('keydown', function (e) {
-                    var next = null;
-                    if (e.key === 'ArrowRight') next = (i + 1) % tabs.length;
-                    else if (e.key === 'ArrowLeft') next = (i - 1 + tabs.length) % tabs.length;
-                    else if (e.key === 'Home') next = 0;
-                    else if (e.key === 'End') next = tabs.length - 1;
-                    if (next === null) return;
-                    e.preventDefault();
-                    activate(tabs[next], true);
-                });
-            });
-        })();
-    </script>
+    <section class="case-section" id="overview">
+      <div class="container case-section__grid">
+        <header class="case-section__head" data-reveal>
+          <p class="eyebrow">The problem</p>
+          <h2 class="case-section__title">Many practices, one billing team.</h2>
+        </header>
+        <div class="case-section__body" data-reveal>
+          <p>A billing team works for many practices at once. Every claim has to be sent, chased and paid. Every denial needs a next step. Each practice should see only its own patients and claims.</p>
+          <p>The team also runs its own day: calls with payers, mail, requests from practices, staff attendance and payroll. CareMD puts all of that in one product, with permission checks on the server.</p>
+          <ul class="check-list">
+            <li>Each practice's data is kept separate.</li>
+            <li>The next follow-up for each claim is created on schedule, without duplicates.</li>
+            <li>Practices send requests and get answers inside the product.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="case-section" id="features">
+      <div class="container case-section__grid">
+        <header class="case-section__head" data-reveal>
+          <p class="eyebrow">What I built</p>
+          <h2 class="case-section__title">The parts the team uses every day.</h2>
+        </header>
+        <div class="case-section__body">
+          <p class="case-legend"><span class="pill pill--live">Live</span> in daily use. <span class="pill pill--teal">Shipped</span> deployed to production. <span class="pill pill--amber">Built</span> done, not deployed yet.</p>
+          <div class="feature-grid" data-stagger>
+            <div class="feature">
+              <span class="icon-tile"><svg class="icon" aria-hidden="true"><use href="#i-wallet"/></svg></span>
+              <h3>Payment ledger</h3>
+              <p>Insurance payments are posted per claim and per CPT line in one workspace, with a running balance. A balance sheet check that compares posted payments was committed on 11 Nov 2026 and isn’t deployed yet.</p>
+              <div class="feature__pills"><span class="pill pill--live">Live</span></div>
+            </div>
+            <div class="feature">
+              <span class="icon-tile"><svg class="icon" aria-hidden="true"><use href="#i-clock"/></svg></span>
+              <h3>AR follow-up engine</h3>
+              <p>Each insurer has its own follow-up schedule. CareMD creates the next follow-up for every claim and escalates it, with no duplicates when it runs again. A team lead assigns the work.</p>
+              <div class="feature__pills"><span class="pill pill--teal">Shipped</span><span class="pill pill--outline">Test on a data copy: 1,653 follow-ups, 0 duplicates</span></div>
+            </div>
+            <div class="feature">
+              <span class="icon-tile"><svg class="icon" aria-hidden="true"><use href="#i-shield"/></svg></span>
+              <h3>Denial management</h3>
+              <p>Denials are tracked as events with a cap on resubmissions. They sit in one AR Workspace, next to the follow-up queue.</p>
+              <div class="feature__pills"><span class="pill pill--teal">Shipped</span></div>
+            </div>
+            <div class="feature">
+              <span class="icon-tile"><svg class="icon" aria-hidden="true"><use href="#i-phone"/></svg></span>
+              <h3>RingCentral phone</h3>
+              <p>Calls sync into CareMD with recordings, a call report, voicemail, texts and fax. A newer part transcribes calls with Groq and writes AI call notes onto the matching call.</p>
+              <div class="feature__pills"><span class="pill pill--live">Live</span><span class="pill pill--amber">AI notes: built</span></div>
+            </div>
+            <div class="feature">
+              <span class="icon-tile"><svg class="icon" aria-hidden="true"><use href="#i-users"/></svg></span>
+              <h3>Client portal</h3>
+              <p>Practices send requests to the billing team, chat on each request and get web push alerts. A response-time clock and coverage outcomes went live in Oct 2026.</p>
+              <div class="feature__pills"><span class="pill pill--live">Live</span></div>
+            </div>
+            <div class="feature">
+              <span class="icon-tile"><svg class="icon" aria-hidden="true"><use href="#i-layout"/></svg></span>
+              <h3>Case Flow board</h3>
+              <p>A ClickUp-style board for a neuropsychology clinic: Space, Folder, Stage and Case, with labels, short case keys, one assignee and an activity feed. Stage deadlines came in Nov 2026.</p>
+              <div class="feature__pills"><span class="pill pill--live">Live</span></div>
+            </div>
+            <div class="feature">
+              <span class="icon-tile"><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg></span>
+              <h3>Neuro referrals</h3>
+              <p>Referrals come in, a doctor decides, and an accepted referral opens a case on the Case Flow board.</p>
+              <div class="feature__pills"><span class="pill pill--teal">Shipped</span></div>
+            </div>
+            <div class="feature">
+              <span class="icon-tile"><svg class="icon" aria-hidden="true"><use href="#i-database"/></svg></span>
+              <h3>Payer Intelligence</h3>
+              <p>Payer, plan and coverage data, carved out as its own app inside CareMD with separate screens and permissions.</p>
+              <div class="feature__pills"><span class="pill pill--teal">Shipped</span></div>
+            </div>
+            <div class="feature">
+              <span class="icon-tile"><svg class="icon" aria-hidden="true"><use href="#i-mail"/></svg></span>
+              <h3>Medical record submissions</h3>
+              <p>Records sent to payers are logged per claim, with a daily productivity count. Record emails and PDF files are built but not deployed yet.</p>
+              <div class="feature__pills"><span class="pill pill--teal">Shipped</span></div>
+            </div>
+            <div class="feature">
+              <span class="icon-tile"><svg class="icon" aria-hidden="true"><use href="#i-layers"/></svg></span>
+              <h3>DME as its own flow</h3>
+              <p>Durable medical equipment work has its own flow, dashboard and reports, apart from the main billing flow.</p>
+              <div class="feature__pills"><span class="pill pill--live">Live</span></div>
+            </div>
+          </div>
+          <h3>Also inside CareMD</h3>
+          <ul class="check-list check-list--2">
+            <li>A sales CRM with leads and a pipeline for the new sales team.</li>
+            <li>A separate demo server with made-up data, so sales can show the product.</li>
+            <li>HR, attendance, leaves and payroll for the billing staff.</li>
+            <li>Mailbox, templates and real-time messages with web push.</li>
+            <li>Users, roles and a permission tree down to single actions.</li>
+            <li>Setup screens for practices, payers and reference data.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="case-section" id="numbers">
+      <div class="container case-section__grid">
+        <header class="case-section__head" data-reveal>
+          <p class="eyebrow">Numbers</p>
+          <h2 class="case-section__title">Counted from the code on 12 Nov 2026.</h2>
+        </header>
+        <div class="case-section__body">
+          <div class="metric-row" data-stagger>
+            <div class="metric"><span class="metric__value"><span data-count="18">18</span></span><span class="metric__label">backend modules</span></div>
+            <div class="metric"><span class="metric__value"><span data-count="204">204</span></span><span class="metric__label">JPA entities</span></div>
+            <div class="metric"><span class="metric__value"><span data-count="157">157</span></span><span class="metric__label">REST controllers</span></div>
+            <div class="metric"><span class="metric__value"><span data-count="416">416</span></span><span class="metric__label">Flyway migrations</span></div>
+            <div class="metric"><span class="metric__value"><span data-count="1084">1,084</span></span><span class="metric__label">method-level permission checks</span></div>
+            <div class="metric"><span class="metric__value"><span data-count="575">575</span></span><span class="metric__label">Angular components</span></div>
+            <div class="metric"><span class="metric__value"><span data-count="26">26</span></span><span class="metric__label">scheduled job classes</span></div>
+            <div class="metric"><span class="metric__value"><span data-count="2921">2,921</span></span><span class="metric__label">commits in two repos, <b>95%+</b> mine</span></div>
+          </div>
+          <p>On 21 Oct 2026 the counts were 17 modules, 188 entities, 134 controllers and 377 migrations. Since then the main branch has gained a telephony module, 16 entities, 23 controllers and 39 migrations.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="case-section" id="recent">
+      <div class="container case-section__grid">
+        <header class="case-section__head" data-reveal>
+          <p class="eyebrow">Recent work</p>
+          <h2 class="case-section__title">168 commits since 21 Oct 2026, all mine.</h2>
+        </header>
+        <div class="case-section__body" data-reveal>
+          <ul class="check-list">
+            <li><b>Phone:</b> the RingCentral module, then call links, call notes and AI note fixes.</li>
+            <li><b>Payments:</b> payment posting, the payments flow and a balance sheet check on posted payments (not deployed yet).</li>
+            <li><b>Denials and follow-ups:</b> denial code updates and a follow-up schedule per insurer.</li>
+            <li><b>Neuro clinic:</b> the referrals flow, Case Flow updates and stage deadlines.</li>
+            <li><b>DME:</b> split into its own flow and dashboard.</li>
+            <li><b>Records:</b> medical record emails and record updates.</li>
+            <li><b>Sales and HR:</b> sales CRM work, medical allowance, vendor payments and salary increment fixes.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="case-section" id="screens">
+      <div class="container case-section__grid">
+        <header class="case-section__head" data-reveal>
+          <p class="eyebrow">Screens</p>
+          <h2 class="case-section__title">Sketches with sample data.</h2>
+          <p class="case-section__sub">CareMD holds patient data, so nothing here comes from the live system.</p>
+        </header>
+        <div class="case-section__body">
+          <div class="gallery" data-stagger>
+            <figure>
+              <div class="gallery__mock" role="img" aria-label="Sample payment posting screen: one claim with three CPT lines, paid amounts and a claim balance.">
+                <div class="win" aria-hidden="true">
+                  <div class="win__bar"><span class="win__dots"><i></i><i></i><i></i></span><span class="win__url">Payments · CLM-20418</span></div>
+                  <div class="win__body mini-stack">
+                    <div class="mini-split"><span class="ui-title">Payer A · ERA 7731</span><span class="ui-badge" style="--c:#2fbf71;--c-ink:var(--green-ink)">Posted</span></div>
+                    <div class="mini-table">
+                      <div><span>CPT</span><span>Billed</span><span>Paid</span><span>Balance</span></div>
+                      <div><span>99213</span><span>$180.00</span><span>$122.40</span><span>$0.00</span></div>
+                      <div><span>96132</span><span>$210.00</span><span>$150.10</span><span>$12.00</span></div>
+                      <div><span>96136</span><span>$95.00</span><span>$61.75</span><span>$0.00</span></div>
+                    </div>
+                    <div class="mock-total"><span>Claim balance</span><span>$12.00</span></div>
+                  </div>
+                </div>
+              </div>
+              <figcaption><b>Payment ledger.</b> Posting per CPT line. Sample data.</figcaption>
+            </figure>
+            <figure>
+              <div class="gallery__mock" role="img" aria-label="Sample Case Flow board with three stages and case cards showing short keys, labels and a deadline.">
+                <div class="win" aria-hidden="true">
+                  <div class="win__bar"><span class="win__dots"><i></i><i></i><i></i></span><span class="win__url">Case Flow · Folder A</span></div>
+                  <div class="win__body mini-grid" style="--cols:3">
+                    <div class="mini-lane">
+                      <div class="mini-lane__head"><span>Intake</span><b>5</b></div>
+                      <div class="mini-ticket"><b>NP-114</b><span class="ui-sub">Referral accepted</span></div>
+                      <div class="mini-ticket"><b>NP-117</b><span class="ui-badge">Auth needed</span></div>
+                    </div>
+                    <div class="mini-lane">
+                      <div class="mini-lane__head"><span>Testing</span><b>3</b></div>
+                      <div class="mini-ticket"><b>NP-108</b><span class="ui-badge" style="--c:#f2a93b;--c-ink:var(--amber-ink)">Due in 2 days</span></div>
+                      <div class="mini-ticket"><b>NP-110</b><span class="ui-sub">Assignee A</span></div>
+                    </div>
+                    <div class="mini-lane">
+                      <div class="mini-lane__head"><span>Report</span><b>2</b></div>
+                      <div class="mini-ticket"><b>NP-097</b><span class="ui-badge" style="--c:#2fbf71;--c-ink:var(--green-ink)">Sent</span></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <figcaption><b>Case Flow.</b> Stages with deadlines. Sample data.</figcaption>
+            </figure>
+            <figure>
+              <div class="gallery__mock" role="img" aria-label="Sample client portal request with a short chat between a practice and the billing team.">
+                <div class="win" aria-hidden="true">
+                  <div class="win__bar"><span class="win__dots"><i></i><i></i><i></i></span><span class="win__url">Portal · Request #482</span></div>
+                  <div class="win__body mini-stack">
+                    <div class="mini-split"><span class="ui-title">Eligibility check</span><span class="ui-badge" style="--c:var(--teal)">Answered in 42 min</span></div>
+                    <p class="ui-bubble">Can you check coverage for Patient A before Friday's visit?</p>
+                    <p class="ui-bubble ui-bubble--me">Checked. Active with Payer B. Copay is $25.</p>
+                    <span class="ui-chip" style="--c:var(--brand)">Outcome: covered</span>
+                  </div>
+                </div>
+              </div>
+              <figcaption><b>Client portal.</b> Chat on each request. Sample data.</figcaption>
+            </figure>
+            <figure>
+              <div class="gallery__mock" role="img" aria-label="Sample call log with three synced calls, one of them carrying an AI call note.">
+                <div class="win" aria-hidden="true">
+                  <div class="win__bar"><span class="win__dots"><i></i><i></i><i></i></span><span class="win__url">Phone · Calls</span></div>
+                  <div class="win__body mini-stack">
+                    <div class="mini-table">
+                      <div><span>Caller</span><span>Type</span><span>Length</span><span>Note</span></div>
+                      <div><span>Payer A</span><span>Inbound</span><span>6:12</span><span class="ui-badge" style="--c:#7b5ce0">AI note</span></div>
+                      <div><span>Practice B</span><span>Outbound</span><span>2:48</span><span class="ui-badge">Recording</span></div>
+                      <div><span>Payer C</span><span>Voicemail</span><span>0:41</span><span class="ui-badge" style="--c:#f2a93b;--c-ink:var(--amber-ink)">To do</span></div>
+                    </div>
+                    <p class="ui-sub">AI note: claim sent back for reprocessing, payment expected in 14 days.</p>
+                  </div>
+                </div>
+              </div>
+              <figcaption><b>Phone.</b> Calls with AI notes (built, not deployed). Sample data.</figcaption>
+            </figure>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="case-section" id="stack">
+      <div class="container case-section__grid">
+        <header class="case-section__head" data-reveal>
+          <p class="eyebrow">Stack</p>
+          <h2 class="case-section__title">One Spring Boot app, one Angular app.</h2>
+        </header>
+        <div class="case-section__body">
+          <h3>Backend</h3>
+          <ul class="stack-chips stack-chips--lg"><li>Java 17</li><li>Spring Boot 3.2</li><li>Spring Security + JWT</li><li>JPA / Hibernate</li><li>PostgreSQL</li><li>Flyway</li><li>MapStruct</li><li>Lombok</li><li>Spring Mail</li><li>Apache POI</li></ul>
+          <h3>Frontend</h3>
+          <ul class="stack-chips stack-chips--lg"><li>Angular 14</li><li>Angular Material</li><li>Bootstrap 5</li><li>RxJS</li><li>ApexCharts</li><li>ECharts</li><li>Chart.js</li><li>Quill</li></ul>
+          <h3>Real-time and integrations</h3>
+          <ul class="stack-chips stack-chips--lg"><li>WebSocket (STOMP)</li><li>Web push (VAPID)</li><li>RingCentral</li><li>Groq speech-to-text</li></ul>
+          <h3>Ops</h3>
+          <ul class="stack-chips stack-chips--lg"><li>Docker</li><li>GitLab CI</li><li>nginx</li><li>New Relic</li></ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="case-section" id="role">
+      <div class="container case-section__grid">
+        <header class="case-section__head" data-reveal>
+          <p class="eyebrow">My role</p>
+          <h2 class="case-section__title">Primary developer, from schema to server.</h2>
+        </header>
+        <div class="case-section__body" data-reveal>
+          <ul class="check-list">
+            <li>Built CareMD from scratch and set up the multi-tenant design that keeps each practice's data apart.</li>
+            <li>Wrote 1,167 of 1,192 backend commits and 1,659 of 1,729 frontend commits.</li>
+            <li>Run releases end to end: Flyway migrations, Docker builds through GitLab CI, nginx and New Relic.</li>
+            <li>Built <a class="text-link" href="nixxe-crm-demo.html">Nixxe CRM</a> on the CareMD core, then split it into its own product.</li>
+          </ul>
+          <p class="note"><b>What CI does:</b> it compiles the code and builds the Docker images. It is not a full test pipeline, and automated tests are few.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--tight">
+      <div class="container">
+        <a class="next-project card card--spot card--lift" data-spot href="orderyfy-demo.html">
+          <div>
+            <p class="next-project__label">Next project</p>
+            <p class="next-project__title">Orderyfy</p>
+            <p class="next-project__text">Food and shop delivery marketplace with a Claude sales assistant</p>
+          </div>
+          <span class="next-project__arrow"><svg class="icon" aria-hidden="true"><use href="#i-arrow-right"/></svg></span>
+        </a>
+      </div>
+    </section>
+  </main>
+  <div data-site-footer></div>
 </body>
 </html>
